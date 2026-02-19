@@ -204,3 +204,9 @@ The project is in **initial setup phase**. The following have been defined but n
 | API routes | `backend/api/main.py`, `backend/api/routes/chat.py` |
 | Translations | `pipeline/i18n/translator.py`, `pipeline/constants.py` (SUPPORTED_LANGUAGES) |
 | Tests | `tests/evaluation/test_queries.json` for expected behaviour |
+
+---
+
+## Language
+
+All code, comments, docstrings, commit messages, documentation, and any other text produced in this repository must be in English. This includes inline comments, variable names that contain words, log messages, error messages, test descriptions, and markdown files. The only exception is content inside i18n fields within data files, where Spanish translations are intentionally stored alongside English. If you are unsure whether something counts as project text, default to English.
