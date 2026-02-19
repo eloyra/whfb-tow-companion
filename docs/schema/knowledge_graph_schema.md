@@ -1,63 +1,63 @@
-# Esquema del Grafo de Conocimiento
-## Sistema de Asistencia Conversacional — Warhammer: The Old World
-**Versión:** 1.0  
-**Fuente de datos:** tow.whfb.app  
-**Última revisión:** 2025-02-19
+# Knowledge Graph Schema
+## Conversational Assistant System — Warhammer: The Old World
+**Version:** 1.0  
+**Data source:** tow.whfb.app  
+**Last revised:** 2025-02-19
 
 ---
 
-## Índice
-1. [Principios de diseño](#principios-de-diseño)
-2. [Constantes del sistema](#constantes-del-sistema)
-3. [Tipos de nodos](#tipos-de-nodos)
-4. [Tipos de aristas](#tipos-de-aristas)
-5. [Diagrama de relaciones](#diagrama-de-relaciones)
-6. [Notas de implementación](#notas-de-implementación)
+## Table of Contents
+1. [Design principles](#design-principles)
+2. [System constants](#system-constants)
+3. [Node types](#node-types)
+4. [Edge types](#edge-types)
+5. [Relationship diagram](#relationship-diagram)
+6. [Implementation notes](#implementation-notes)
 
 ---
 
-## Principios de diseño
+## Design principles
 
-- **Inglés como idioma canónico.** Toda la información estructural y los textos fuente se almacenan en inglés. Las traducciones se añaden en el campo `i18n` de cada nodo sin modificar la estructura del grafo.
-- **`i18n` solo para campos traducibles.** Los campos invariantes (`id`, `url`, `source_citation`, stats numéricos, fechas) nunca se duplican en `i18n`.
-- **Embeddings multilingües.** El sistema usa un modelo de embeddings multilingüe (ej. `paraphrase-multilingual-mpnet-base-v2`) que permite queries en cualquier idioma sin necesidad de traducir la query.
-- **Relaciones de características como constantes.** La correspondencia entre abreviaturas de perfil (`WS`, `BS`...) y sus nodos `CoreRule` se resuelve mediante una tabla de constantes (`CHARACTERISTIC_MAP`), no mediante aristas del grafo, para evitar ruido estructural.
-- **Redundancia controlada.** Los campos `troop_type_id` y `unit_category_id` se almacenan como atributos del nodo `Unit` además de existir como aristas `HAS_TYPE`, para facilitar la serialización al vector store sin traversal de grafo.
+- **English as the canonical language.** All structural data and source texts are stored in English. Translations are added in the `i18n` field of each node without modifying the graph structure.
+- **`i18n` only for translatable fields.** Invariant fields (`id`, `url`, `source_citation`, numeric stats, dates) are never duplicated inside `i18n`.
+- **Multilingual embeddings.** The system uses a multilingual embedding model (e.g. `paraphrase-multilingual-mpnet-base-v2`) that allows queries in any language without needing to translate the query at runtime.
+- **Characteristic relationships as constants.** The mapping between profile abbreviations (`WS`, `BS`...) and their `CoreRule` nodes is resolved via a constants table (`CHARACTERISTIC_MAP`), not via graph edges, to avoid structural noise.
+- **Controlled redundancy.** The `troop_type_id` and `unit_category_id` fields are stored as attributes on the `Unit` node in addition to existing as `HAS_TYPE` edges, to facilitate serialisation to the vector store without graph traversal.
 
 ---
 
-## Constantes del sistema
+## System constants
 
 ```python
-# Mapa de abreviaturas de perfil a nodos CoreRule
-CHARACTERISTIC_MAP = {
-    "M":  {"id": "movement",         "url": "https://tow.whfb.app/model-profiles/movement"},
-    "WS": {"id": "weapon-skill",     "url": "https://tow.whfb.app/model-profiles/weapon-skill"},
-    "BS": {"id": "ballistic-skill",  "url": "https://tow.whfb.app/model-profiles/ballistic-skill"},
-    "S":  {"id": "strength",         "url": "https://tow.whfb.app/model-profiles/strength"},
-    "T":  {"id": "toughness",        "url": "https://tow.whfb.app/model-profiles/toughness"},
-    "W":  {"id": "wounds",           "url": "https://tow.whfb.app/model-profiles/wounds"},
-    "I":  {"id": "initiative",       "url": "https://tow.whfb.app/model-profiles/initiative"},
-    "A":  {"id": "attacks",          "url": "https://tow.whfb.app/model-profiles/attacks"},
-    "Ld": {"id": "leadership",       "url": "https://tow.whfb.app/model-profiles/leadership"},
+# Map from profile abbreviations to CoreRule node ids
+CHARACTERISTIC_MAP: dict[str, dict[str, str]] = {
+    "M":  {"id": "movement",        "url": "https://tow.whfb.app/model-profiles/movement"},
+    "WS": {"id": "weapon-skill",    "url": "https://tow.whfb.app/model-profiles/weapon-skill"},
+    "BS": {"id": "ballistic-skill", "url": "https://tow.whfb.app/model-profiles/ballistic-skill"},
+    "S":  {"id": "strength",        "url": "https://tow.whfb.app/model-profiles/strength"},
+    "T":  {"id": "toughness",       "url": "https://tow.whfb.app/model-profiles/toughness"},
+    "W":  {"id": "wounds",          "url": "https://tow.whfb.app/model-profiles/wounds"},
+    "I":  {"id": "initiative",      "url": "https://tow.whfb.app/model-profiles/initiative"},
+    "A":  {"id": "attacks",         "url": "https://tow.whfb.app/model-profiles/attacks"},
+    "Ld": {"id": "leadership",      "url": "https://tow.whfb.app/model-profiles/leadership"},
 }
 
-# Idiomas soportados
-SUPPORTED_LANGUAGES = ["en", "es"]
-DEFAULT_LANGUAGE = "en"
+# Supported languages
+SUPPORTED_LANGUAGES: list[str] = ["en", "es"]
+DEFAULT_LANGUAGE: str = "en"
 ```
 
 ---
 
-## Tipos de nodos
+## Node types
 
 ### `Army`
-Representa cada facción jugable. Nodo raíz del que cuelgan todas las unidades.
+Represents each playable faction. Root node from which all units hang.
 
 ```python
 {
-    # --- Invariantes ---
-    "id":               str,    # slug único. Ej: "vampire-counts"
+    # --- Invariants ---
+    "id":               str,    # unique slug. E.g: "vampire-counts"
     "url":              str,    # "https://tow.whfb.app/army/vampire-counts"
     "source_citation": {
         "book":         str,    # "Vampire Counts"
@@ -65,10 +65,10 @@ Representa cada facción jugable. Nodo raíz del que cuelgan todas las unidades.
     },
     "last_updated":     str,    # ISO 8601: "2024-03-01"
 
-    # --- Canónico inglés ---
+    # --- English canonical ---
     "name":             str,    # "Vampire Counts"
 
-    # --- Traducciones ---
+    # --- Translations ---
     "i18n": {
         "en": {"name": str},
         "es": {"name": str},
@@ -80,12 +80,12 @@ Representa cada facción jugable. Nodo raíz del que cuelgan todas las unidades.
 ---
 
 ### `Unit`
-Representa unidades, personajes y monturas con perfil estadístico.
+Represents units, characters and mounts with a stat profile.
 
 ```python
 {
-    # --- Invariantes ---
-    "id":               str,    # slug único. Ej: "blood-knights"
+    # --- Invariants ---
+    "id":               str,    # unique slug. E.g: "blood-knights"
     "url":              str,    # "https://tow.whfb.app/unit/blood-knights"
     "source_citation": {
         "book":         str,    # "Vampire Counts"
@@ -93,24 +93,24 @@ Representa unidades, personajes y monturas con perfil estadístico.
     },
     "last_updated":     str,    # ISO 8601: "2024-03-01"
 
-    "cost_points_per_model": int,   # 39 (siempre unitario; personajes únicos tienen unit_size.max=1)
+    "cost_points_per_model": int,   # 39 (always per model; unique characters have unit_size.max=1)
 
-    "unit_category_id": str,    # slug del nodo TroopType. Ej: "cavalry"
-    "troop_type_id":    str,    # slug del nodo TroopType. Ej: "heavy-cavalry"
+    "unit_category_id": str,    # TroopType node slug. E.g: "cavalry"
+    "troop_type_id":    str,    # TroopType node slug. E.g: "heavy-cavalry"
 
     "base_size_mm": {
-        "width":        int,    # dimensión frontal en mm. Ej: 30
-        "depth":        int     # dimensión de profundidad en mm. Ej: 60
+        "width":        int,    # front-facing dimension in mm. E.g: 30
+        "depth":        int     # depth dimension in mm. E.g: 60
     },
 
     "unit_size": {
-        "min":          int,    # mínimo de modelos. Ej: 5
-        "max":          int | None  # None = sin límite explícito; 1 para personajes/monstruos únicos
+        "min":          int,    # minimum number of models. E.g: 5
+        "max":          int | None  # None = no explicit maximum; 1 for unique characters/monsters
     },
 
-    # Lista de subperfiles (puede ser 1 o varios si la unidad tiene rider+mount, champion, etc.)
-    # Las claves de stats son las abreviaturas canónicas del juego.
-    # None representa "-" en la wiki (característica no aplicable a ese subfil).
+    # List of sub-profiles (may be 1 or more if the unit has rider+mount, champion, etc.)
+    # Stat keys are the canonical game abbreviations.
+    # None represents "-" in the wiki (characteristic not applicable to that sub-profile).
     "profiles": [
         {
             "name": str,        # "Blood Knight", "Kastellan", "Nightmare"...
@@ -126,10 +126,10 @@ Representa unidades, personajes y monturas con perfil estadístico.
         }
     ],
 
-    # --- Canónico inglés ---
+    # --- English canonical ---
     "name":             str,    # "Blood Knights"
 
-    # --- Traducciones ---
+    # --- Translations ---
     "i18n": {
         "en": {"name": str},
         "es": {"name": str},
@@ -137,36 +137,36 @@ Representa unidades, personajes y monturas con perfil estadístico.
 }
 ```
 
-> **Nota sobre `profiles`:** El nombre de cada subperfil (`"name"`) es invariante (nombre propio del juego). Los valores numéricos son invariantes. No hay campo `text` en `Unit` porque el contenido textual de una unidad se distribuye entre los nodos `Rule`, `Weapon` y `MagicItem` enlazados por aristas.
+> **Note on `profiles`:** The name of each sub-profile (`"name"`) is invariant (proper game name). Numeric values are invariant. There is no `text` field on `Unit` because a unit's textual content is distributed across the `Rule`, `Weapon` and `MagicItem` nodes linked by edges.
 
 ---
 
 ### `Rule`
-Representa reglas especiales: universales, de ejército o únicas de unidad.
+Represents special rules: universal, army-specific, or unit-unique.
 
 ```python
 {
-    # --- Invariantes ---
-    "id":               str,    # slug. Ej: "necromantic-undead", "fear"
+    # --- Invariants ---
+    "id":               str,    # slug. E.g: "necromantic-undead", "fear"
     "url":              str,    # "https://tow.whfb.app/special-rules/fear"
     "source_citation": {
-        "book":         str,    # "Rulebook" o "Vampire Counts"
+        "book":         str,    # "Rulebook" or "Vampire Counts"
         "page":         int | None
     },
     "last_updated":     str,    # ISO 8601
 
-    # Ámbito de la regla:
-    # "universal" → válida para todos los ejércitos
-    # "army"      → específica de un ejército (army_id obligatorio)
-    # "unique"    → específica de una unidad concreta
+    # Rule scope:
+    # "universal" → applies to all armies
+    # "army"      → specific to one army (army_id required)
+    # "unique"    → specific to a single unit
     "rule_scope":       str,    # "universal" | "army" | "unique"
-    "army_id":          str | None,  # slug del ejército si rule_scope = "army"
+    "army_id":          str | None,  # army slug if rule_scope = "army"
 
-    # --- Canónico inglés ---
+    # --- English canonical ---
     "name":             str,    # "Fear"
-    "text":             str,    # texto completo de la regla en inglés
+    "text":             str,    # full rule text in English
 
-    # --- Traducciones ---
+    # --- Translations ---
     "i18n": {
         "en": {"name": str, "text": str},
         "es": {"name": str, "text": str},
@@ -177,12 +177,12 @@ Representa reglas especiales: universales, de ejército o únicas de unidad.
 ---
 
 ### `CoreRule`
-Representa páginas de mecánicas generales del reglamento (fases de juego, movimiento, disparo, magia, perfiles, terreno, etc.). Se diferencia de `Rule` en que no es una regla especial que posee una unidad, sino una mecánica del sistema.
+Represents pages covering general rulebook mechanics (game phases, movement, shooting, magic, profiles, terrain, etc.). Distinguished from `Rule` in that it is not a special rule owned by a unit, but a system mechanic.
 
 ```python
 {
-    # --- Invariantes ---
-    "id":               str,    # slug. Ej: "the-charge-move"
+    # --- Invariants ---
+    "id":               str,    # slug. E.g: "the-charge-move"
     "url":              str,    # "https://tow.whfb.app/movement-in-detail/the-charge-move"
     "source_citation": {
         "book":         str,    # "Rulebook"
@@ -190,18 +190,18 @@ Representa páginas de mecánicas generales del reglamento (fases de juego, movi
     },
     "last_updated":     str,    # ISO 8601
 
-    "section":          str,    # sección padre en la wiki. Ej: "movement-in-detail"
-    "section_id":       str,    # slug de la sección padre. Ej: "movement-in-detail"
+    "section":          str,    # parent section name in the wiki. E.g: "Movement in Detail"
+    "section_id":       str,    # parent section slug. E.g: "movement-in-detail"
 
-    # Navegación secuencial (útil para contexto en retrieval)
+    # Sequential navigation (useful for retrieval context)
     "prev_page_url":    str | None,
     "next_page_url":    str | None,
 
-    # --- Canónico inglés ---
+    # --- English canonical ---
     "name":             str,    # "The Charge Move"
-    "text":             str,    # texto completo
+    "text":             str,    # full text
 
-    # --- Traducciones ---
+    # --- Translations ---
     "i18n": {
         "en": {"name": str, "text": str},
         "es": {"name": str, "text": str},
@@ -212,12 +212,12 @@ Representa páginas de mecánicas generales del reglamento (fases de juego, movi
 ---
 
 ### `TroopType`
-Representa los tipos y subtipos de tropa del reglamento. Los nodos existen en la wiki bajo `/troop-types-in-detail/`.
+Represents troop types and subtypes from the rulebook. Nodes exist in the wiki under `/troop-types-in-detail/`.
 
 ```python
 {
-    # --- Invariantes ---
-    "id":               str,    # slug. Ej: "heavy-cavalry"
+    # --- Invariants ---
+    "id":               str,    # slug. E.g: "heavy-cavalry"
     "url":              str,    # "https://tow.whfb.app/troop-types-in-detail/heavy-cavalry"
     "source_citation": {
         "book":         str,
@@ -225,13 +225,13 @@ Representa los tipos y subtipos de tropa del reglamento. Los nodos existen en la
     },
     "last_updated":     str,
 
-    "category":         str,    # categoría de nivel superior. Ej: "cavalry", "infantry", "monster"
+    "category":         str,    # top-level category. E.g: "cavalry", "infantry", "monster"
 
-    # --- Canónico inglés ---
+    # --- English canonical ---
     "name":             str,    # "Heavy Cavalry"
-    "text":             str,    # descripción del tipo de tropa
+    "text":             str,    # troop type description
 
-    # --- Traducciones ---
+    # --- Translations ---
     "i18n": {
         "en": {"name": str, "text": str},
         "es": {"name": str, "text": str},
@@ -242,12 +242,12 @@ Representa los tipos y subtipos de tropa del reglamento. Los nodos existen en la
 ---
 
 ### `Weapon`
-Representa armas, armaduras y equipo adicional.
+Represents weapons, armour and additional equipment.
 
 ```python
 {
-    # --- Invariantes ---
-    "id":               str,    # slug. Ej: "lance"
+    # --- Invariants ---
+    "id":               str,    # slug. E.g: "lance"
     "url":              str,    # "https://tow.whfb.app/weapons-of-war/lance"
     "source_citation": {
         "book":         str,
@@ -255,14 +255,14 @@ Representa armas, armaduras y equipo adicional.
     },
     "last_updated":     str,
 
-    # Clasificación del equipo
+    # Equipment classification
     "weapon_class":     str,    # "melee" | "missile" | "armour" | "equipment"
 
-    # --- Canónico inglés ---
+    # --- English canonical ---
     "name":             str,    # "Lance"
-    "text":             str,    # descripción completa con reglas de uso
+    "text":             str,    # full description including rules of use
 
-    # --- Traducciones ---
+    # --- Translations ---
     "i18n": {
         "en": {"name": str, "text": str},
         "es": {"name": str, "text": str},
@@ -273,29 +273,29 @@ Representa armas, armaduras y equipo adicional.
 ---
 
 ### `Spell`
-Representa hechizos individuales de los Lores de Magia.
+Represents individual spells from the Lores of Magic.
 
 ```python
 {
-    # --- Invariantes ---
-    "id":               str,    # slug. Ej: "invocation-of-nehek"
-    "url":              str,    # URL de la página del lore (con anchor al hechizo si aplica)
+    # --- Invariants ---
+    "id":               str,    # slug. E.g: "invocation-of-nehek"
+    "url":              str,    # lore page URL (with anchor to the spell if applicable)
     "source_citation": {
         "book":         str,
         "page":         int | None
     },
     "last_updated":     str,
 
-    "lore_id":          str,    # slug del lore. Ej: "necromancy"
-    "casting_value":    int,    # valor de lanzamiento
+    "lore_id":          str,    # lore slug. E.g: "necromancy"
+    "casting_value":    int,    # casting value
     "spell_type":       str,    # "Hex" | "Magic Missile" | "Conveyance" | "Enchantment" |
                                 # "Assailment" | "Magical Vortex" | "Bound Spell"
 
-    # --- Canónico inglés ---
+    # --- English canonical ---
     "name":             str,    # "Invocation of Nehek"
-    "text":             str,    # texto completo del hechizo
+    "text":             str,    # full spell text
 
-    # --- Traducciones ---
+    # --- Translations ---
     "i18n": {
         "en": {"name": str, "text": str},
         "es": {"name": str, "text": str},
@@ -306,12 +306,12 @@ Representa hechizos individuales de los Lores de Magia.
 ---
 
 ### `MagicItem`
-Representa ítems mágicos universales y poderes específicos de ejército (ej. Vampiric Powers).
+Represents universal magic items and army-specific powers (e.g. Vampiric Powers).
 
 ```python
 {
-    # --- Invariantes ---
-    "id":               str,    # slug. Ej: "sword-of-battle"
+    # --- Invariants ---
+    "id":               str,    # slug. E.g: "sword-of-battle"
     "url":              str,    # "https://tow.whfb.app/magic-items/magic-weapons"
     "source_citation": {
         "book":         str,
@@ -321,15 +321,15 @@ Representa ítems mágicos universales y poderes específicos de ejército (ej. 
 
     "item_type":        str,    # "magic_weapon" | "magic_armour" | "talisman" |
                                 # "magic_standard" | "enchanted_item" | "arcane_item" |
-                                # "vampiric_power" | (otros poderes de ejército)
-    "points_cost":      int | None,  # coste en puntos; None si es variable
-    "army_id":          str | None,  # None si es universal; slug del ejército si es exclusivo
+                                # "vampiric_power" | (other army-specific powers)
+    "points_cost":      int | None,  # points cost; None if variable
+    "army_id":          str | None,  # None if universal; army slug if exclusive to one army
 
-    # --- Canónico inglés ---
+    # --- English canonical ---
     "name":             str,
-    "text":             str,    # descripción completa incluyendo efectos de juego
+    "text":             str,    # full description including in-game effects
 
-    # --- Traducciones ---
+    # --- Translations ---
     "i18n": {
         "en": {"name": str, "text": str},
         "es": {"name": str, "text": str},
@@ -340,24 +340,24 @@ Representa ítems mágicos universales y poderes específicos de ejército (ej. 
 ---
 
 ### `FAQ`
-Representa preguntas frecuentes oficiales integradas en la wiki.
+Represents official FAQ entries integrated in the wiki.
 
 ```python
 {
-    # --- Invariantes ---
-    "id":               str,    # slug generado. Ej: "faq-regeneration-flaming-attacks"
-    "url":              str,    # "https://tow.whfb.app/faq" (con anchor si aplica)
+    # --- Invariants ---
+    "id":               str,    # generated slug. E.g: "faq-regeneration-flaming-attacks"
+    "url":              str,    # "https://tow.whfb.app/faq" (with anchor if applicable)
     "source_citation": {
         "book":         str,    # "FAQ 2024"
         "page":         int | None
     },
     "last_updated":     str,
 
-    # --- Canónico inglés ---
-    "question":         str,    # texto de la pregunta
-    "answer":           str,    # texto de la respuesta
+    # --- English canonical ---
+    "question":         str,    # question text
+    "answer":           str,    # answer text
 
-    # --- Traducciones ---
+    # --- Translations ---
     "i18n": {
         "en": {"question": str, "answer": str},
         "es": {"question": str, "answer": str},
@@ -368,12 +368,12 @@ Representa preguntas frecuentes oficiales integradas en la wiki.
 ---
 
 ### `Errata`
-Representa correcciones y enmiendas oficiales integradas en la wiki.
+Represents official corrections and amendments integrated in the wiki.
 
 ```python
 {
-    # --- Invariantes ---
-    "id":               str,    # slug generado. Ej: "errata-regeneration-2024-01"
+    # --- Invariants ---
+    "id":               str,    # generated slug. E.g: "errata-regeneration-2024-01"
     "url":              str,    # "https://tow.whfb.app/errata"
     "source_citation": {
         "book":         str,    # "Errata & Amendments 2024"
@@ -381,11 +381,11 @@ Representa correcciones y enmiendas oficiales integradas en la wiki.
     },
     "last_updated":     str,
 
-    # --- Canónico inglés ---
-    "original_text":    str,    # texto original corregido
-    "corrected_text":   str,    # texto correcto tras la enmienda
+    # --- English canonical ---
+    "original_text":    str,    # original text being corrected
+    "corrected_text":   str,    # correct text after the amendment
 
-    # --- Traducciones ---
+    # --- Translations ---
     "i18n": {
         "en": {"original_text": str, "corrected_text": str},
         "es": {"original_text": str, "corrected_text": str},
@@ -395,31 +395,31 @@ Representa correcciones y enmiendas oficiales integradas en la wiki.
 
 ---
 
-## Tipos de aristas
+## Edge types
 
-Las aristas son **dirigidas**. El grafo se implementa como `networkx.DiGraph`.
+All edges are **directed**. The graph is implemented as `networkx.DiGraph`.
 
-### Relaciones estructurales
+### Structural relationships
 
-| Arista | De → A | Descripción | Ejemplo |
+| Edge | From → To | Description | Example |
 |---|---|---|---|
-| `BELONGS_TO` | `Unit` → `Army` | Unidad pertenece a un ejército | Blood Knights → Vampire Counts |
-| `HAS_TYPE` | `Unit` → `TroopType` | Tipo de tropa de la unidad | Blood Knights → Heavy Cavalry |
-| `HAS_RULE` | `Unit` → `Rule` | Regla especial base de la unidad (siempre activa) | Blood Knights → Regeneration |
-| `HAS_OPTIONAL_RULE` | `Unit` → `Rule` | Regla adquirible como upgrade de puntos | Blood Knights → Drilled |
-| `HAS_WEAPON` | `Unit` → `Weapon` | Equipo estándar incluido en el coste base | Blood Knights → Lance |
-| `HAS_OPTIONAL_WEAPON` | `Unit` → `Weapon` | Equipo opcional o reemplazable | Vampire Count → Great Weapon |
-| `CAN_MOUNT` | `Unit` → `Unit` | Personaje puede montar esta montura | Vampire Count → Zombie Dragon |
-| `CAN_TAKE_ITEM` | `Unit` → `MagicItem` | Puede comprar ítems de esta categoría | Vampire Count → Vampiric Powers |
-| `USES_LORE` | `Unit` → `Spell` | Mago puede usar hechizos de este lore | Vampire Count → Necromancy |
-| `PART_OF_SECTION` | `CoreRule` → `CoreRule` | Relación jerárquica padre-hijo de sección | The Charge Move → Movement in Detail |
+| `BELONGS_TO` | `Unit` → `Army` | Unit belongs to an army | Blood Knights → Vampire Counts |
+| `HAS_TYPE` | `Unit` → `TroopType` | Troop type of the unit | Blood Knights → Heavy Cavalry |
+| `HAS_RULE` | `Unit` → `Rule` | Base special rule of the unit (always active) | Blood Knights → Regeneration |
+| `HAS_OPTIONAL_RULE` | `Unit` → `Rule` | Rule acquirable as a points upgrade | Blood Knights → Drilled |
+| `HAS_WEAPON` | `Unit` → `Weapon` | Standard equipment included in base cost | Blood Knights → Lance |
+| `HAS_OPTIONAL_WEAPON` | `Unit` → `Weapon` | Optional or replaceable equipment | Vampire Count → Great Weapon |
+| `CAN_MOUNT` | `Unit` → `Unit` | Character can ride this mount | Vampire Count → Zombie Dragon |
+| `CAN_TAKE_ITEM` | `Unit` → `MagicItem` | Can purchase items of this category | Vampire Count → Vampiric Powers |
+| `USES_LORE` | `Unit` → `Spell` | Wizard can use spells from this lore | Vampire Count → Necromancy |
+| `PART_OF_SECTION` | `CoreRule` → `CoreRule` | Hierarchical parent-child section relationship | The Charge Move → Movement in Detail |
 
-### Atributos de aristas con coste
+### Edge attributes for upgrades
 
-Las aristas que representan upgrades de puntos llevan un atributo `cost`:
+Edges representing points upgrades carry a `cost` attribute:
 
 ```python
-# Ejemplo: Blood Knights pueden adquirir Drilled por +3 pts/modelo
+# Example: Blood Knights can acquire Drilled for +3 pts/model
 graph.add_edge("blood-knights", "drilled",
     relation="HAS_OPTIONAL_RULE",
     cost=3,
@@ -427,31 +427,31 @@ graph.add_edge("blood-knights", "drilled",
 )
 ```
 
-### Relaciones semánticas (extraídas de hiperlinks en el texto)
+### Semantic relationships (extracted from hyperlinks in text)
 
-| Arista | De → A | Descripción | Fuente de extracción |
+| Edge | From → To | Description | Extraction source |
 |---|---|---|---|
-| `REFERENCES` | `Rule` → `Rule` | Regla menciona o cita otra regla | Links en el cuerpo de texto |
-| `REFERENCES` | `Rule` → `CoreRule` | Regla cita una mecánica del reglamento | Links en el cuerpo de texto |
-| `REFERENCES` | `CoreRule` → `CoreRule` | Mecánica cita otra mecánica | Links en el cuerpo de texto |
-| `REFERENCES` | `CoreRule` → `Rule` | Mecánica cita una regla especial | Links en el cuerpo de texto |
-| `REFERENCES` | `Spell` → `Rule` | Hechizo cita una regla especial | Links en el cuerpo de texto |
-| `REFERENCES` | `Spell` → `CoreRule` | Hechizo cita una mecánica | Links en el cuerpo de texto |
+| `REFERENCES` | `Rule` → `Rule` | Rule mentions or cites another rule | Links in body text |
+| `REFERENCES` | `Rule` → `CoreRule` | Rule cites a rulebook mechanic | Links in body text |
+| `REFERENCES` | `CoreRule` → `CoreRule` | Mechanic cites another mechanic | Links in body text |
+| `REFERENCES` | `CoreRule` → `Rule` | Mechanic cites a special rule | Links in body text |
+| `REFERENCES` | `Spell` → `Rule` | Spell cites a special rule | Links in body text |
+| `REFERENCES` | `Spell` → `CoreRule` | Spell cites a mechanic | Links in body text |
 
-### Relaciones de clarificación y corrección
+### Clarification and correction relationships
 
-| Arista | De → A | Descripción |
+| Edge | From → To | Description |
 |---|---|---|
-| `CLARIFIES` | `FAQ` → `Rule` | FAQ aclara una regla especial |
-| `CLARIFIES` | `FAQ` → `CoreRule` | FAQ aclara una mecánica del reglamento |
-| `CLARIFIES` | `FAQ` → `Unit` | FAQ aclara el perfil o comportamiento de una unidad |
-| `AMENDS` | `Errata` → `Rule` | Errata corrige el texto de una regla especial |
-| `AMENDS` | `Errata` → `CoreRule` | Errata corrige una mecánica del reglamento |
-| `AMENDS` | `Errata` → `Unit` | Errata modifica el perfil o equipo de una unidad |
+| `CLARIFIES` | `FAQ` → `Rule` | FAQ clarifies a special rule |
+| `CLARIFIES` | `FAQ` → `CoreRule` | FAQ clarifies a rulebook mechanic |
+| `CLARIFIES` | `FAQ` → `Unit` | FAQ clarifies a unit's profile or behaviour |
+| `AMENDS` | `Errata` → `Rule` | Errata corrects the text of a special rule |
+| `AMENDS` | `Errata` → `CoreRule` | Errata corrects a rulebook mechanic |
+| `AMENDS` | `Errata` → `Unit` | Errata modifies a unit's profile or equipment |
 
 ---
 
-## Diagrama de relaciones
+## Relationship diagram
 
 ```
                     CLARIFIES / AMENDS
@@ -479,26 +479,26 @@ graph.add_edge("blood-knights", "drilled",
 
 ---
 
-## Notas de implementación
+## Implementation notes
 
-### Serialización del grafo
+### Graph serialisation
 
-NetworkX serializa el grafo a GraphML o JSON. Los atributos deben ser tipos primitivos o strings JSON para compatibilidad:
+NetworkX serialises the graph to GraphML or JSON. Attributes must be primitive types or JSON strings for compatibility:
 
 ```python
-import networkx as nx
 import json
+import networkx as nx
 
 G = nx.DiGraph()
 
-# Los atributos compuestos (dicts, lists) se serializan como JSON strings
+# Compound attributes (dicts, lists) are serialised as JSON strings
 node_data = {
     "id": "blood-knights",
     "source_citation": json.dumps({"book": "Vampire Counts", "page": 13}),
     "profiles": json.dumps([{"name": "Blood Knight", "WS": 5, ...}]),
     "base_size_mm": json.dumps({"width": 30, "depth": 60}),
     "i18n": json.dumps({"en": {"name": "Blood Knights"}, "es": {"name": "Caballeros de Sangre"}}),
-    # Primitivos directamente:
+    # Primitives directly:
     "cost_points_per_model": 39,
     "last_updated": "2024-03-01",
     "name": "Blood Knights",
@@ -506,31 +506,32 @@ node_data = {
 G.add_node("blood-knights", **node_data)
 ```
 
-### Generación de embeddings
+### Generating embeddings
 
-Se genera un embedding por nodo y por idioma soportado, usando el campo `text` (o `question`+`answer` para FAQ):
+One embedding is generated per node using the `text` field (or `question`+`answer` for FAQ nodes):
 
 ```python
-# Para modelos multilingües, los textos en distintos idiomas
-# se proyectan al mismo espacio vectorial:
-# → una query en español encuentra nodos con texto en inglés
+# With multilingual models, texts in different languages
+# are projected into the same vector space:
+# → a query in Spanish finds nodes whose text is in English
 
 from sentence_transformers import SentenceTransformer
+
 model = SentenceTransformer("paraphrase-multilingual-mpnet-base-v2")
 
 for node_id, data in G.nodes(data=True):
     text_en = data.get("text", data.get("name", ""))
     embedding = model.encode(text_en)
-    # Almacenar en vector store (ChromaDB / FAISS) con metadata del nodo
+    # Store in vector store (ChromaDB / FAISS) with node metadata
 ```
 
-### Añadir un idioma nuevo
+### Adding a new language
 
-El proceso no modifica la estructura del grafo:
+The process does not modify the graph structure:
 
 ```python
-def add_language(G, lang_code, translation_fn):
-    """Añade traducciones a todos los nodos sin modificar la estructura del grafo."""
+def add_language(G: nx.DiGraph, lang_code: str, translation_fn) -> None:
+    """Add translations to all nodes without modifying the graph structure."""
     for node_id, data in G.nodes(data=True):
         i18n = json.loads(data.get("i18n", "{}"))
         if lang_code not in i18n:
@@ -542,14 +543,14 @@ def add_language(G, lang_code, translation_fn):
             G.nodes[node_id]["i18n"] = json.dumps(i18n)
 ```
 
-### Fallback de idioma
+### Language fallback
 
-En tiempo de query, si el idioma solicitado no está disponible se usa inglés:
+At query time, if the requested language is not available, English is used as fallback:
 
 ```python
-def get_text(node_data, lang, field="text"):
+def get_text(node_data: dict, lang: str, field: str = "text") -> str:
     i18n = json.loads(node_data.get("i18n", "{}"))
     if lang in i18n and field in i18n[lang]:
         return i18n[lang][field]
-    return node_data.get(field, "")  # fallback a inglés canónico
+    return node_data.get(field, "")  # fallback to English canonical
 ```
