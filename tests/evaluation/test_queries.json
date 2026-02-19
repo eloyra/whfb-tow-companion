@@ -1,0 +1,26 @@
+[
+  {
+    "id": "q001",
+    "language": "en",
+    "query": "What happens when a unit with Regeneration is hit by Flaming Attacks?",
+    "expected_rules": ["regeneration", "flaming-attacks"],
+    "expected_army": null,
+    "category": "rule_interaction"
+  },
+  {
+    "id": "q002",
+    "language": "es",
+    "query": "¿Cuántos puntos cuesta una unidad de Blood Knights con Full Plate Armour?",
+    "expected_rules": [],
+    "expected_army": "vampire-counts",
+    "category": "army_building"
+  },
+  {
+    "id": "q003",
+    "language": "en",
+    "query": "What happens to a Vampire Counts army when the General is killed?",
+    "expected_rules": ["the-death-of-a-general", "necromantic-undead", "regeneration"],
+    "expected_army": "vampire-counts",
+    "category": "multi_hop"
+  }
+]
