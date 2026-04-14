@@ -136,6 +136,95 @@ ARMY_SLUGS = [
 
 ---
 
+## Addendum — Implementation findings (2026-04-14)
+
+During parser implementation, the site was re-inspected to validate the data
+extraction strategy.  The following **significant architectural discovery**
+supersedes the HTML-scraping assumption made in this ADR.
+
+### The site is a Next.js + Contentful CMS application
+
+`tow.whfb.app` is **not** a server-rendered HTML site in the traditional sense.
+It is a Next.js application backed by Contentful as a headless CMS.  Every page
+is pre-rendered via **Incremental Static Regeneration (ISR)** and includes the
+complete Contentful entry data embedded in the HTML as a JSON blob:
+
+```html
+<script id="__NEXT_DATA__" type="application/json">
+  {"props": {"pageProps": {"entry": {...}, "rulesByType": [...], ...}}, ...}
+</script>
+```
+
+This `__NEXT_DATA__` tag contains the full Contentful response including all
+linked entries (resolved at build time), richtext documents, and metadata.
+**No BeautifulSoup DOM traversal is needed.**  A single regex extract +
+`json.loads()` gives complete, structured data for every page.
+
+### ISR fallback pages
+
+When a page is requested for the first time (before ISR pre-renders it),
+Next.js returns a **fallback HTML** where `isFallback: true` in the
+`__NEXT_DATA__` JSON and `pageProps` is an empty object `{}`.
+
+The crawler must detect this and retry the page.  Detection:
+
+```python
+data = json.loads(next_data_blob)
+if data.get("isFallback"):
+    # page not yet rendered — schedule a retry
+```
+
+Pages that are not yet pre-rendered can be triggered by visiting them in a
+browser (or making an HTTP request), after which ISR builds the page and
+subsequent requests receive the full data.
+
+### Contentful content types
+
+The site uses three primary Contentful content types:
+
+| Content type    | URL pattern | Parser |
+|-----------------|-------------|--------|
+| `association`   | `/army/{slug}` | ArmyParser |
+| `armyListEntry` | `/unit/{slug}` | UnitParser |
+| `rule`          | everything else | RuleParser, CoreRuleParser, SpellParser, MagicItemParser, WeaponParser |
+
+The `rule` content type is distinguished by `entry.fields.ruleType[0].fields.slug`:
+
+| `ruleType.slug` | Parser dispatched |
+|-----------------|-------------------|
+| `special-rules` | RuleParser → Rule node |
+| `troop-types-in-detail` | RuleParser → TroopType node |
+| `weapons-of-war` | WeaponParser |
+| `the-lores-of-magic` | SpellParser |
+| `magic-items` / `magic-items-and-abilities` | MagicItemParser |
+| anything else (section slug) | CoreRuleParser |
+
+**Routing is done by URL pattern** in `parsers/__init__.py`, which is more
+reliable than content-type inspection at runtime because the crawler classifies
+URLs before fetching them.
+
+### Embedded content in richtext bodies
+
+Several Contentful content types embed child entries inside richtext `body`
+fields as `embedded-entry-block` nodes.  The child data is under
+`block.data.<key>[]`:
+
+| Page type | Richtext key | Content |
+|-----------|-------------|---------|
+| Lore of magic | `data.spell[]` | Individual spell objects |
+| Magic items | `data.magicItem[]` | Individual magic item objects |
+
+These embedded arrays are the **only** source for spell and magic item data —
+there are no individual pages per spell or magic item.
+
+### FAQ and Errata page structure
+
+The FAQ (`/faq`) and errata (`/errata`) pages do **not** use a single `entry`
+key.  Instead, `pageProps.entries` is a flat array of Q&A / correction objects.
+Each entry has `{fields: {question/name, body (richtext), source, slug}}`.
+
+---
+
 ## References
 
 - Live `robots.txt`: <https://tow.whfb.app/robots.txt>

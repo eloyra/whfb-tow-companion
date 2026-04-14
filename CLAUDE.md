@@ -161,19 +161,17 @@ make lint           # run ruff
 
 ## Current project status
 
-The project is in **initial setup phase**. The following have been defined but not yet implemented:
-
 - [x] Directory and file structure
 - [x] Knowledge graph schema (`docs/schema/knowledge_graph_schema.md`)
 - [x] `pyproject.toml` with all dependencies
 - [x] `pipeline/constants.py` with `CHARACTERISTIC_MAP`, `NodeType`, `EdgeType`
-- [x] `pipeline/run_pipeline.py` entry point (stubs only)
+- [x] `pipeline/run_pipeline.py` entry point
 - [x] `backend/api/main.py` (wired up, routes not implemented)
 - [x] `backend/llm/client.py` (abstraction, implementations pending)
 - [x] Sample data in `data/samples/vampire-counts-sample.json`
-- [ ] `pipeline/scraper/crawler.py` — **next task**
-- [ ] `pipeline/scraper/parsers/*.py` — after crawler
-- [ ] `pipeline/graph/builder.py`
+- [x] `pipeline/scraper/crawler.py` — dual-seed BFS crawler (ADR-0002)
+- [x] `pipeline/scraper/parsers/*.py` — 9 parsers + coordinator (ADR-0003)
+- [ ] `pipeline/graph/builder.py` — **next task** (see ADR-0001, ADR-0004)
 - [ ] `pipeline/embeddings/`
 - [ ] `backend/rag/`
 - [ ] `frontend/`
@@ -211,7 +209,7 @@ When you are about to implement or modify a component, check `docs/decisions/` f
 | Working on | Read first |
 |---|---|
 | Scraper / parsers | `docs/decisions/ADR-0002-crawler-architecture.md`, `docs/decisions/ADR-0003-army-page-data-strategy.md`, `docs/schema/knowledge_graph_schema.md`, `pipeline/constants.py` |
-| Graph builder | `docs/decisions/ADR-0001-graph-database-selection.md`, `docs/schema/knowledge_graph_schema.md`, `pipeline/constants.py` |
+| Graph builder | `docs/decisions/ADR-0001-graph-database-selection.md`, `docs/decisions/ADR-0004-parse-output-contract.md`, `docs/schema/knowledge_graph_schema.md`, `pipeline/constants.py` |
 | RAG pipeline | `backend/rag/pipeline.py`, `backend/llm/client.py` |
 | API routes | `backend/api/main.py`, `backend/api/routes/chat.py` |
 | Translations | `pipeline/i18n/translator.py`, `pipeline/constants.py` (SUPPORTED_LANGUAGES) |

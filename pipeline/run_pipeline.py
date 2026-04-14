@@ -22,12 +22,16 @@ STAGES = ["scrape", "parse", "graph", "embed", "translate"]
 
 def run_scrape() -> None:
     logger.info("Stage: scrape")
-    # TODO: from pipeline.scraper.crawler import Crawler; Crawler().run()
+    from pipeline.scraper.crawler import Crawler
+
+    Crawler().run()
 
 
 def run_parse() -> None:
     logger.info("Stage: parse")
-    # TODO: from pipeline.scraper.parsers import run_all_parsers; run_all_parsers()
+    from pipeline.scraper.parsers import run_all_parsers
+
+    run_all_parsers()
 
 
 def run_graph() -> None:

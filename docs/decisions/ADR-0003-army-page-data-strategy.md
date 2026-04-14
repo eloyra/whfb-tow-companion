@@ -151,6 +151,67 @@ Four distinct parsers are required:
 
 ---
 
+## Addendum — Revised data model after `__NEXT_DATA__` investigation (2026-04-14)
+
+After the original ADR was written, it was discovered that the site is a
+Next.js + Contentful application (see ADR-0002 addendum).  All page data is
+embedded in a `__NEXT_DATA__` JSON blob.  This changes several implementation
+details, though the core decision (wiki-only, no GitHub JSONs) stands.
+
+### Unit stat profiles ARE on the unit page
+
+The original ADR stated: *"Full stat reference table — a plain HTML `<table>`
+on `/army/{slug}`"* and treated the army page as the canonical stat source.
+
+This was **incorrect**.  Inspection of unit pages' `__NEXT_DATA__` revealed
+that the `armyListEntry` Contentful entry embeds the `unitProfile` array
+directly on each unit page:
+
+```json
+"unitProfile": [
+  {"Name": "Clanrat", "M": "5", "WS": "3", "BS": "3", "S": "3",
+   "T": "3", "W": "1", "I": "4", "A": "1", "Ld": "4"},
+  {"Name": "Clawleader", "M": "5", "WS": "3", "BS": "3", "S": "3",
+   "T": "3", "W": "1", "I": "4", "A": "2", "Ld": "4"}
+]
+```
+
+All stat profiles (including split profiles for cavalry rider + mount, chariot
++ crew) are present on the unit page.  The army-page stat table is redundant.
+
+**Consequence:** No cross-page bridging is needed.  The `UnitParser` extracts
+all stat profiles from `pageProps.entry.fields.unitProfile` directly.  The
+unit-profile bridging pattern described in ADR-0004 is **obsolete**.
+
+### Richtext body fields — not plain text
+
+Special rules, equipment, upgrade options, and all descriptive text are stored
+as Contentful **richtext documents** (nested JSON with `nodeType`, `content`,
+`value` keys), not as plain HTML.  Plain-text extraction requires recursive
+traversal with `_richtext_to_text()`.
+
+Importantly, rule links inside richtext bodies are encoded as
+`entry-hyperlink` nodes with `data.target.fields.slug`.  These provide
+strongly-typed graph edges without regex matching on text.
+
+### Revised parser design
+
+The table in the original ADR is superseded by the following:
+
+| Parser | Source field | Output |
+|--------|-------------|--------|
+| ArmyParser | `pageProps.entry` (association) + `pageProps.rulesByType` + `pageProps.unitsByType` | Army node, HAS_RULE / HAS_WEAPON / USES_LORE / CAN_TAKE_ITEM / BELONGS_TO edges |
+| UnitParser | `pageProps.entry` (armyListEntry) | Unit node with embedded `profiles[]`, HAS_RULE edges, BELONGS_TO edges |
+| RuleParser | `pageProps.entry` (rule, ruleType=special-rules or troop-types) | Rule or TroopType node |
+| CoreRuleParser | `pageProps.entry` (rule, ruleType=section) | CoreRule node, PART_OF_SECTION edges |
+| WeaponParser | `pageProps.entry` (rule, ruleType=weapons-of-war) | Weapon node |
+| SpellParser | `pageProps.entry` body → embedded-entry-block → `data.spell[]` | Multiple Spell nodes |
+| MagicItemParser | `pageProps.entry` body → embedded-entry-block → `data.magicItem[]` | Multiple MagicItem nodes |
+| FAQParser | `pageProps.entries[]` | Multiple FAQ nodes, CLARIFIES edges |
+| ErrataParser | `pageProps.entries[]` | Multiple Errata nodes, AMENDS edges |
+
+---
+
 ## References
 
 - Skaven army page inspected: <https://tow.whfb.app/army/skaven>
