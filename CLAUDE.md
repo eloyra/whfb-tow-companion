@@ -194,12 +194,24 @@ The project is in **initial setup phase**. The following have been defined but n
 
 ---
 
+## Documentation and design decisions
+
+The `docs/` folder is the authoritative source for design context beyond what is in CLAUDE.md:
+
+- `docs/schema/` — knowledge graph schema (read before touching any pipeline or graph code)
+- `docs/decisions/` — Architecture Decision Records (ADRs); **read the relevant ADR before working on any component it covers.** Each ADR explains what was decided, why, and what alternatives were rejected — this context prevents re-litigating closed decisions.
+- `docs/diagrams/` — architecture and flow diagrams
+
+When you are about to implement or modify a component, check `docs/decisions/` first for an ADR that covers it. If one exists, its constraints and rationale are binding unless the user explicitly overrides them.
+
+---
+
 ## Important files to read before working on a component
 
 | Working on | Read first |
 |---|---|
-| Scraper / parsers | `docs/schema/knowledge_graph_schema.md`, `pipeline/constants.py` |
-| Graph builder | `docs/schema/knowledge_graph_schema.md`, `pipeline/constants.py` |
+| Scraper / parsers | `docs/decisions/ADR-0002-crawler-architecture.md`, `docs/decisions/ADR-0003-army-page-data-strategy.md`, `docs/schema/knowledge_graph_schema.md`, `pipeline/constants.py` |
+| Graph builder | `docs/decisions/ADR-0001-graph-database-selection.md`, `docs/schema/knowledge_graph_schema.md`, `pipeline/constants.py` |
 | RAG pipeline | `backend/rag/pipeline.py`, `backend/llm/client.py` |
 | API routes | `backend/api/main.py`, `backend/api/routes/chat.py` |
 | Translations | `pipeline/i18n/translator.py`, `pipeline/constants.py` (SUPPORTED_LANGUAGES) |
