@@ -61,7 +61,7 @@ class ErrataParser(BaseParser):
             slug: str = fields.get("slug", "")
             source: str = fields.get("source", "")
 
-            corrected_text = self._richtext_to_text(fields.get("body"))
+            corrected_text = self._body_text(fields)
 
             if not slug:
                 slug = self._name_to_slug(raw_name[:60]) or f"errata-{idx:03d}"

@@ -45,7 +45,7 @@ class CoreRuleParser(BaseParser):
             logger.warning("CoreRuleParser: no name field at %s", url)
             return result
 
-        body_text = self._richtext_to_text(fields.get("body"))
+        body_text = self._body_text(fields)
         description = self._richtext_to_text(fields.get("description")) or ""
         text = body_text or description
 

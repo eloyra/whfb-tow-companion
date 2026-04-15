@@ -105,7 +105,7 @@ class MagicItemParser(BaseParser):
             return None
 
         description_text = self._richtext_to_text(data.get("description"))
-        body_text = self._richtext_to_text(data.get("body"))
+        body_text = self._body_text(data)
         text = description_text or body_text
 
         return {

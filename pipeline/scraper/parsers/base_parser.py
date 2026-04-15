@@ -109,14 +109,41 @@ class BaseParser(ABC):
     # ------------------------------------------------------------------
 
     def _richtext_to_text(self, node: dict | None) -> str:
-        """Recursively extract plain text from a Contentful rich-text document."""
+        """Recursively extract plain text from a Contentful rich-text document.
+
+        Handles ``embedded-entry-block`` nodes by descending into the embedded
+        entry's fields: prefers the pre-computed ``bodyIndex`` string, then falls
+        back to recursing into ``richText`` or ``body``.  This ensures that
+        Contentful ``chart`` entries (tables) embedded in a body are not silently
+        dropped.
+        """
         if not isinstance(node, dict):
             return ""
         if node.get("nodeType") == "text":
             return node.get("value", "")
+        if node.get("nodeType") == "embedded-entry-block":
+            target_fields = node.get("data", {}).get("target", {}).get("fields", {})
+            body_index: str = target_fields.get("bodyIndex", "")
+            if body_index:
+                return body_index
+            # Fall back to the richText or body subtree of the embedded entry.
+            subtree = target_fields.get("richText") or target_fields.get("body")
+            return self._richtext_to_text(subtree)
         return "".join(
             self._richtext_to_text(child) for child in node.get("content", [])
         )
+
+    def _body_text(self, fields: dict, key: str = "body") -> str:
+        """Return the plain-text content for a Contentful entry's body field.
+
+        Prefers the pre-computed ``bodyIndex`` string on *fields* (which already
+        includes flattened table/chart content) and falls back to
+        :meth:`_richtext_to_text` on the rich-text tree at *key*.
+        """
+        body_index: str = fields.get("bodyIndex", "")
+        if body_index:
+            return body_index
+        return self._richtext_to_text(fields.get(key))
 
     def _richtext_find_embedded_blocks(self, node: dict | None) -> list[dict]:
         """Return all ``embedded-entry-block`` nodes from a rich-text document."""

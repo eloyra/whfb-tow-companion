@@ -59,7 +59,7 @@ class FAQParser(BaseParser):
             slug: str = fields.get("slug", "")
             source: str = fields.get("source", "")
 
-            answer_text = self._richtext_to_text(fields.get("body"))
+            answer_text = self._body_text(fields)
 
             if not slug:
                 slug = self._name_to_slug(question[:60]) or f"faq-{idx}"
