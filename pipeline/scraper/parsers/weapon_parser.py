@@ -64,7 +64,7 @@ class WeaponParser(BaseParser):
             return result
 
         body_text = self._richtext_to_text(fields.get("body"))
-        description = fields.get("description", "")
+        description = self._richtext_to_text(fields.get("description")) or ""
         text = body_text or description
 
         page_ref: int | None = fields.get("pageReference")

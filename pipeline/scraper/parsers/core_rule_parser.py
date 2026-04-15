@@ -46,7 +46,7 @@ class CoreRuleParser(BaseParser):
             return result
 
         body_text = self._richtext_to_text(fields.get("body"))
-        description = fields.get("description", "")
+        description = self._richtext_to_text(fields.get("description")) or ""
         text = body_text or description
 
         page_ref: int | None = fields.get("pageReference")
@@ -57,9 +57,15 @@ class CoreRuleParser(BaseParser):
         if rule_types:
             section_slug = rule_types[0].get("fields", {}).get("slug", "")
         if not section_slug:
-            # Fall back to second-to-last URL path segment
-            parts = url.rstrip("/").split("/")
-            section_slug = parts[-2] if len(parts) >= 2 else ""
+            # Fall back to URL path segments (uses urlparse to avoid splitting the domain).
+            # /movement-in-detail           → section = "movement-in-detail" (this IS the section)
+            # /movement-in-detail/fly       → section = "movement-in-detail" (parent segment)
+            from urllib.parse import urlparse as _urlparse
+            path_parts = [p for p in _urlparse(url).path.strip("/").split("/") if p]
+            if len(path_parts) >= 2:
+                section_slug = path_parts[-2]
+            elif len(path_parts) == 1:
+                section_slug = path_parts[0]
 
         section_name = section_slug.replace("-", " ").title()
 
