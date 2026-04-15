@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from collections import defaultdict
 from pathlib import Path
 
@@ -45,6 +46,11 @@ from pipeline.scraper.parsers.unit_parser import UnitParser
 from pipeline.scraper.parsers.weapon_parser import WeaponParser
 
 logger = logging.getLogger(__name__)
+
+_NEXT_DATA_RE = re.compile(
+    r'<script\s+id="__NEXT_DATA__"\s+type="application/json">(.*?)</script>',
+    re.DOTALL,
+)
 
 # ---------------------------------------------------------------------------
 # Parser registry
@@ -87,6 +93,39 @@ _PARSED_DIR = Path("data/parsed")
 
 
 # ---------------------------------------------------------------------------
+# Content-aware routing helpers
+# ---------------------------------------------------------------------------
+
+
+def _body_has_embedded_magic_items(node: dict) -> bool:
+    """Return True if *node* or any descendant is an embedded-entry-block with magicItem data."""
+    if not isinstance(node, dict):
+        return False
+    if node.get("nodeType") == "embedded-entry-block" and "magicItem" in node.get("data", {}):
+        return True
+    return any(_body_has_embedded_magic_items(child) for child in node.get("content", []))
+
+
+def _has_embedded_magic_items(html: str) -> bool:
+    """Return True if the page body contains at least one embedded magicItem block."""
+    m = _NEXT_DATA_RE.search(html)
+    if not m:
+        return False
+    try:
+        data = json.loads(m.group(1))
+    except json.JSONDecodeError:
+        return False
+    body = (
+        data.get("props", {})
+        .get("pageProps", {})
+        .get("entry", {})
+        .get("fields", {})
+        .get("body", {})
+    )
+    return _body_has_embedded_magic_items(body)
+
+
+# ---------------------------------------------------------------------------
 # Public entry point
 # ---------------------------------------------------------------------------
 
@@ -115,8 +154,7 @@ def run_all_parsers() -> None:
 
     for entry in tqdm(manifest, desc="Parsing pages", unit="page"):
         page_type: str = entry.get("page_type", "")
-        parser = _PARSERS.get(page_type)
-        if parser is None:
+        if page_type not in _PARSERS:
             skipped += 1
             continue
 
@@ -128,6 +166,16 @@ def run_all_parsers() -> None:
 
         try:
             html = html_path.read_text(encoding="utf-8")
+
+            # magic_item pages in the /magic-items/ section are a mix of actual item
+            # list pages (embedded-entry-block with magicItem data) and rules/intro pages
+            # (plain rich text with no item blocks).  Route the latter to CoreRuleParser
+            # because the URL alone cannot distinguish them.
+            if page_type == "magic_item" and not _has_embedded_magic_items(html):
+                parser: BaseParser = _PARSERS["core_rule"]
+            else:
+                parser = _PARSERS[page_type]
+
             result: ParseResult = parser.parse(
                 html=html,
                 url=entry["url"],

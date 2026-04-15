@@ -3,14 +3,20 @@ Parser for lore-of-magic pages (``/the-lores-of-magic/{slug}``).
 
 Content type: ``rule`` with ``ruleType[0].fields.slug == "the-lores-of-magic"``.
 
-Individual spells are **not** separate pages on the wiki.  They are embedded
-inside the lore page body as Contentful ``embedded-entry-block`` nodes.  Each
-block's ``data.spell`` key holds an array of spell objects.
+Individual spells are **not** separate pages on the wiki.  Two encoding formats
+exist depending on whether the lore is a standard lore or a "renegade" variant:
+
+**Standard lores** embed spells as Contentful ``embedded-entry-block`` nodes
+inside the body.  Each block's ``data.spell`` key holds an array of spell objects.
+
+**Renegade lores** (e.g. ``lore-of-naggaroth-renegade``) do not use embedded
+blocks.  Spells are encoded directly in rich text as a repeating sequence of:
+``heading-2`` (spell name) → ``table`` (Type / Casting Value / Range rows) →
+one or more ``paragraph`` nodes (body text), separated by ``hr`` nodes.
 
 Data source: ``__NEXT_DATA__.props.pageProps.entry`` (Contentful ``rule``).
-Spell data: ``entry.fields.body`` → embedded-entry-block → ``data.spell[]``.
 
-Each spell object in the array has:
+Standard spell object fields (embedded format):
 - ``name``                 (str)      display name
 - ``slug``                 (str)      canonical id
 - ``order``                (int)      position in the lore (0 = signature spell)
@@ -28,6 +34,7 @@ Output edges: none (spells reference their lore via the ``lore_id`` attribute).
 from __future__ import annotations
 
 import logging
+import re
 
 from pipeline.constants import NodeType
 from pipeline.scraper.parsers.base_parser import BaseParser, ParseResult
@@ -60,7 +67,10 @@ class SpellParser(BaseParser):
 
         # Spells are embedded in the body as embedded-entry-block nodes.
         # Each block has data.spell = [spell_object, ...]
-        embedded_blocks = self._richtext_find_embedded_blocks(fields.get("body"))
+        body = fields.get("body")
+
+        # Strategy 1: standard lores — spells in embedded-entry-block nodes.
+        embedded_blocks = self._richtext_find_embedded_blocks(body)
         spells_found = 0
 
         for block in embedded_blocks:
@@ -75,14 +85,128 @@ class SpellParser(BaseParser):
                     result.nodes.append(node)
                     spells_found += 1
 
+        # Strategy 2: renegade lores — spells encoded as richtext heading-2/table/paragraph.
         if spells_found == 0:
-            logger.warning("SpellParser: no spells found in embedded blocks at %s", url)
+            for node in self._parse_spells_from_richtext(body, lore_slug, url, date, book):
+                result.nodes.append(node)
+                spells_found += 1
+
+        if spells_found == 0:
+            logger.warning("SpellParser: no spells found at %s", url)
 
         return result
 
     # ------------------------------------------------------------------
     # Helpers
     # ------------------------------------------------------------------
+
+    def _parse_spells_from_richtext(
+        self,
+        body: dict | None,
+        lore_slug: str,
+        url: str,
+        date: str,
+        book: str,
+    ) -> list[dict]:
+        """Parse spells from renegade lore pages where spells are encoded as rich text.
+
+        The pattern per spell is:
+            heading-2  → spell name
+            table      → stat rows (Type, Casting Value, Range, …)
+            paragraph+ → body text
+        Spells are separated by ``hr`` nodes.  Leading intro paragraphs are skipped.
+        """
+        if not isinstance(body, dict):
+            return []
+
+        content = body.get("content", [])
+        spells: list[dict] = []
+        order = 0
+        i = 0
+
+        while i < len(content):
+            node = content[i]
+            if node.get("nodeType") != "heading-2":
+                i += 1
+                continue
+
+            name = self._richtext_to_text(node).strip()
+            i += 1
+
+            # Optional table with spell stats immediately after the heading.
+            stats: dict[str, str] = {}
+            if i < len(content) and content[i].get("nodeType") == "table":
+                stats = self._parse_spell_stat_table(content[i])
+                i += 1
+
+            # Collect body paragraphs until the next heading-2, hr, or end.
+            body_parts: list[str] = []
+            while i < len(content) and content[i].get("nodeType") not in ("heading-2", "hr"):
+                text_chunk = self._richtext_to_text(content[i]).strip()
+                if text_chunk:
+                    body_parts.append(text_chunk)
+                i += 1
+            # Skip the hr separator if present.
+            if i < len(content) and content[i].get("nodeType") == "hr":
+                i += 1
+
+            spell_text = "\n".join(body_parts)
+            slug = self._name_to_slug(name)
+            if not name or not slug:
+                continue
+
+            casting_value, casting_value_override = self._parse_casting_value(
+                stats.get("Casting Value", "")
+            )
+
+            spells.append({
+                "node_type": NodeType.SPELL,
+                "id": slug,
+                "url": url,
+                "source_citation": self._make_source_citation(book),
+                "last_updated": date,
+                "lore_id": lore_slug,
+                "order": order,
+                "casting_value": casting_value,
+                "casting_value_override": casting_value_override,
+                "range": stats.get("Range") or None,
+                "spell_type": stats.get("Type") or None,
+                "name": name,
+                "text": spell_text,
+                "i18n": self._make_i18n(name=name, text=spell_text),
+            })
+            order += 1
+
+        return spells
+
+    def _parse_spell_stat_table(self, table_node: dict) -> dict[str, str]:
+        """Extract key-value pairs from a spell stats table."""
+        result: dict[str, str] = {}
+        for row in table_node.get("content", []):
+            if row.get("nodeType") != "table-row":
+                continue
+            cells = row.get("content", [])
+            if len(cells) < 2:
+                continue
+            key = self._richtext_to_text(cells[0]).strip()
+            value = self._richtext_to_text(cells[1]).strip()
+            if key:
+                result[key] = value
+        return result
+
+    def _parse_casting_value(self, raw: str) -> tuple[int | None, str | None]:
+        """Parse a casting value string into ``(int_value, override_string)``.
+
+        Returns ``(None, raw)`` when the value is non-numeric (e.g. "Special").
+        Returns ``(int, None)`` for normal numeric values like ``"7+"`` or ``"9+"``.
+        """
+        raw = raw.strip()
+        if not raw:
+            return None, None
+        m = re.match(r"^(\d+)", raw)
+        if m:
+            return int(m.group(1)), None
+        return None, raw
 
     def _parse_spell(
         self,

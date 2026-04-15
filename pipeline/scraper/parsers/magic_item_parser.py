@@ -34,7 +34,7 @@ import logging
 from pipeline.constants import NodeType
 from pipeline.scraper.parsers.base_parser import BaseParser, ParseResult
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)  # used for ISR/missing-name warnings above
 
 
 class MagicItemParser(BaseParser):
@@ -73,7 +73,6 @@ class MagicItemParser(BaseParser):
         # Magic items are embedded in the body as embedded-entry-block nodes.
         # Each block has data.magicItem = [item_object, ...]
         embedded_blocks = self._richtext_find_embedded_blocks(fields.get("body"))
-        items_found = 0
 
         for block in embedded_blocks:
             item_list = block.get("data", {}).get("magicItem")
@@ -85,10 +84,6 @@ class MagicItemParser(BaseParser):
                 node = self._parse_item(item_data, url, date, book, army_id)
                 if node:
                     result.nodes.append(node)
-                    items_found += 1
-
-        if items_found == 0:
-            logger.warning("MagicItemParser: no items found in embedded blocks at %s", url)
 
         return result
 
