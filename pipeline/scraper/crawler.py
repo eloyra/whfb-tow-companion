@@ -162,6 +162,7 @@ class Crawler:
         self._failures: list[_Failure] = []
         self._isr_retries: dict[str, int] = {}
         self._used_army_fallback: bool = False
+        self._seed_pages_processed: int = 0
         _RAW_DIR.mkdir(parents=True, exist_ok=True)
 
     # ------------------------------------------------------------------
@@ -269,6 +270,8 @@ class Crawler:
                 "fetched_at": fetched_at,
             })
             logger.debug("Saved [%s] %s → %s", page_type, url, html_path)
+        else:
+            self._seed_pages_processed += 1
 
         # Extract outbound links and enqueue new ones
         soup = BeautifulSoup(html, "lxml")
@@ -407,6 +410,8 @@ class Crawler:
         logger.info("CRAWL COMPLETE")
         logger.info("  Total fetch attempts : %d", total_attempts)
         logger.info("  Pages saved (OK)     : %d", n_ok)
+        logger.info("  Seed/Ref pages (OK)  : %d", self._seed_pages_processed)
+        logger.info("  ISR retries queued   : %d", sum(self._isr_retries.values()))
         logger.info("  Failures             : %d", n_fail)
 
         if self._used_army_fallback:
