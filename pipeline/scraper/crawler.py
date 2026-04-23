@@ -122,6 +122,7 @@ _RAW_DIR = Path("data/raw")
 # Failure record
 # ---------------------------------------------------------------------------
 
+
 class _Failure:
     """Structured record for a single fetch failure."""
 
@@ -137,7 +138,7 @@ class _Failure:
     ) -> None:
         self.url = url
         self.page_type = page_type
-        self.reason = reason          # "http_404" | "http_error" | "network" | "isr_exhausted"
+        self.reason = reason  # "http_404" | "http_error" | "network" | "isr_exhausted"
         self.status_code = status_code
         self.detail = detail
 
@@ -145,6 +146,7 @@ class _Failure:
 # ---------------------------------------------------------------------------
 # Crawler
 # ---------------------------------------------------------------------------
+
 
 class Crawler:
     """Crawl tow.whfb.app and persist raw HTML for all content pages.
@@ -241,7 +243,10 @@ class Crawler:
                 self._isr_retries[url] = retries + 1
                 logger.info(
                     "ISR fallback [%s] — scheduling retry %d/%d in %.0fs",
-                    url, retries + 1, _MAX_ISR_RETRIES, _ISR_RETRY_DELAY,
+                    url,
+                    retries + 1,
+                    _MAX_ISR_RETRIES,
+                    _ISR_RETRY_DELAY,
                 )
                 time.sleep(_ISR_RETRY_DELAY)
                 self._queue.append((url, page_type))
@@ -249,26 +254,31 @@ class Crawler:
                 logger.error(
                     "ISR fallback [%s] — GAVE UP after %d retries; "
                     "page was never pre-rendered. This URL will be missing from the graph.",
-                    url, _MAX_ISR_RETRIES,
+                    url,
+                    _MAX_ISR_RETRIES,
                 )
-                self._failures.append(_Failure(
-                    url=url,
-                    page_type=page_type,
-                    reason="isr_exhausted",
-                    detail=f"isFallback=true after {_MAX_ISR_RETRIES} retries",
-                ))
+                self._failures.append(
+                    _Failure(
+                        url=url,
+                        page_type=page_type,
+                        reason="isr_exhausted",
+                        detail=f"isFallback=true after {_MAX_ISR_RETRIES} retries",
+                    )
+                )
             return
 
         fetched_at = datetime.now(timezone.utc).isoformat()
 
         if page_type not in _SEED_ONLY_TYPES:
             html_path = self._save_html(html, url, page_type)
-            self._manifest.append({
-                "url": url,
-                "page_type": page_type,
-                "html_path": str(html_path),
-                "fetched_at": fetched_at,
-            })
+            self._manifest.append(
+                {
+                    "url": url,
+                    "page_type": page_type,
+                    "html_path": str(html_path),
+                    "fetched_at": fetched_at,
+                }
+            )
             logger.debug("Saved [%s] %s → %s", page_type, url, html_path)
         else:
             self._seed_pages_processed += 1
@@ -289,41 +299,67 @@ class Crawler:
             if status == 404:
                 logger.warning(
                     "404 NOT FOUND [%s] %s — this URL does not exist on the wiki",
-                    page_type, url,
+                    page_type,
+                    url,
                 )
-                self._failures.append(_Failure(
-                    url=url, page_type=page_type,
-                    reason="http_404", status_code=404,
-                ))
+                self._failures.append(
+                    _Failure(
+                        url=url,
+                        page_type=page_type,
+                        reason="http_404",
+                        status_code=404,
+                    )
+                )
             else:
                 logger.error(
                     "HTTP %s [%s] %s — %s",
-                    status, page_type, url, exc,
+                    status,
+                    page_type,
+                    url,
+                    exc,
                 )
-                self._failures.append(_Failure(
-                    url=url, page_type=page_type,
-                    reason="http_error", status_code=status,
-                    detail=str(exc),
-                ))
+                self._failures.append(
+                    _Failure(
+                        url=url,
+                        page_type=page_type,
+                        reason="http_error",
+                        status_code=status,
+                        detail=str(exc),
+                    )
+                )
             return None
         except requests.ConnectionError as exc:
             logger.error("CONNECTION ERROR [%s] %s — %s", page_type, url, exc)
-            self._failures.append(_Failure(
-                url=url, page_type=page_type,
-                reason="network", detail=str(exc),
-            ))
+            self._failures.append(
+                _Failure(
+                    url=url,
+                    page_type=page_type,
+                    reason="network",
+                    detail=str(exc),
+                )
+            )
             return None
         except requests.Timeout:
             logger.error("TIMEOUT [%s] %s — request timed out after retries", page_type, url)
-            self._failures.append(_Failure(
-                url=url, page_type=page_type, reason="network", detail="timeout",
-            ))
+            self._failures.append(
+                _Failure(
+                    url=url,
+                    page_type=page_type,
+                    reason="network",
+                    detail="timeout",
+                )
+            )
             return None
         except Exception as exc:
             logger.error("UNEXPECTED ERROR [%s] %s — %s", page_type, url, exc, exc_info=True)
-            self._failures.append(_Failure(
-                url=url, page_type=page_type, reason="unexpected", detail=str(exc),
-            ))
+            self._failures.append(
+                _Failure(
+                    url=url,
+                    page_type=page_type,
+                    reason="unexpected",
+                    detail=str(exc),
+                )
+            )
             return None
 
     def _extract_links(self, soup: BeautifulSoup, base_url: str, page_type: str) -> bool:
@@ -427,7 +463,8 @@ class Crawler:
         if isr_exhausted:
             logger.error(
                 "  ISR exhausted        : %d page(s) never rendered after %d retries:",
-                len(isr_exhausted), _MAX_ISR_RETRIES,
+                len(isr_exhausted),
+                _MAX_ISR_RETRIES,
             )
             for f in isr_exhausted:
                 logger.error("    [isr_exhausted] [%s] %s", f.page_type, f.url)
@@ -444,12 +481,16 @@ class Crawler:
         http_errors = by_reason.get("http_error", [])
         if http_errors:
             logger.error(
-                "  HTTP errors (non-404): %d URL(s):", len(http_errors),
+                "  HTTP errors (non-404): %d URL(s):",
+                len(http_errors),
             )
             for f in http_errors:
                 logger.error(
                     "    [HTTP %s] [%s] %s — %s",
-                    f.status_code, f.page_type, f.url, f.detail,
+                    f.status_code,
+                    f.page_type,
+                    f.url,
+                    f.detail,
                 )
 
         network_errors = by_reason.get("network", [])

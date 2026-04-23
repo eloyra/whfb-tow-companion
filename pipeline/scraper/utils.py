@@ -99,6 +99,7 @@ def fetch(url: str) -> str:
 # URL helpers
 # ---------------------------------------------------------------------------
 
+
 def canonicalize_url(url: str, base: str = BASE_URL) -> str:
     """Resolve relative *url* against *base*, then normalise it.
 
@@ -173,7 +174,7 @@ _PAGE_TYPE_PATTERNS: list[tuple[re.Pattern[str], str]] = [
     (re.compile(r"^/faq/?$"), "faq"),
     (re.compile(r"^/faq/[^/]+$"), "faq"),
     (re.compile(r"^/errata/?$"), "errata"),
-    (re.compile(r"^/special-rules/[^/]+$"), "rule"),
+    (re.compile(r"^/special-rules/[^/]+$"), "special_rule"),
     (re.compile(r"^/troop-types-in-detail/[^/]+$"), "troop_type"),
     (re.compile(r"^/magic-items/[^/]+$"), "magic_item"),
     (re.compile(r"^/the-lores-of-magic/[^/]+$"), "spell"),

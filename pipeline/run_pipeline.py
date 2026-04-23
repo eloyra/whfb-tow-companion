@@ -50,10 +50,10 @@ def run_translate() -> None:
 
 
 STAGE_FN = {
-    "scrape":    run_scrape,
-    "parse":     run_parse,
-    "graph":     run_graph,
-    "embed":     run_embed,
+    "scrape": run_scrape,
+    "parse": run_parse,
+    "graph": run_graph,
+    "embed": run_embed,
     "translate": run_translate,
 }
 

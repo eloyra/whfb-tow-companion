@@ -1,4 +1,4 @@
-.PHONY: help install scrape parse build-graph embed translate pipeline serve ui test test-unit test-integration lint
+.PHONY: help install scrape parse build-graph embed translate pipeline serve ui test test-unit test-integration lint lint-fix format
 
 help:  ## Show available commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
@@ -14,10 +14,10 @@ scrape:  ## Crawl tow.whfb.app and save raw HTML to data/raw/
 parse:  ## Parse raw HTML into structured JSON (data/parsed/)
 	python -m pipeline.run_pipeline --stage parse
 
-build-graph:  ## Build NetworkX graph from parsed JSON (data/graph/)
+build-graph:  ## Load parsed JSON into Neo4j, apply constraints and indexes (data/graph/)
 	python -m pipeline.run_pipeline --stage graph
 
-embed:  ## Generate embeddings and populate vector store (data/embeddings/)
+embed:  ## Generate embeddings and write to Neo4j node properties
 	python -m pipeline.run_pipeline --stage embed
 
 translate:  ## Add/update translations for all supported languages
@@ -45,8 +45,12 @@ test-unit:  ## Run unit tests only
 test-integration:  ## Run integration tests only
 	pytest tests/integration/ -v
 
+format:  ## Auto-format with ruff
+	ruff format .
+
 lint:  ## Run ruff linter
 	ruff check .
 
-lint-fix:  ## Run ruff linter with autofix
+lint-fix:  ## Format then run ruff linter with autofix
+	ruff format .
 	ruff check . --fix

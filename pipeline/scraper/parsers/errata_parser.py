@@ -33,7 +33,8 @@ from pipeline.scraper.parsers.base_parser import BaseParser, ParseResult
 
 logger = logging.getLogger(__name__)
 
-_SOURCE_VERSION_RE = re.compile(r"Version\s+([\d.]+)", re.IGNORECASE)
+# Matches: "Official … FAQ & Errata – Version 1.5.2"
+_SOURCE_RE = re.compile(r"^(.*?)\s*[-–—]\s*Version\s+([\d.]+)", re.IGNORECASE)
 # Matches "Page 47 – Fear", "Page 47 - Fear", etc.
 _PAGE_PREFIX_RE = re.compile(r"^Page\s+\d+\s*[-–—]\s*", re.IGNORECASE)
 
@@ -66,10 +67,9 @@ class ErrataParser(BaseParser):
             if not slug:
                 slug = self._name_to_slug(raw_name[:60]) or f"errata-{idx:03d}"
 
-            rule_name = _PAGE_PREFIX_RE.sub("", raw_name).strip()
-
-            version = _extract_version(source)
+            source_document, version = _parse_source(source)
             book = f"Errata {version}" if version else "Errata"
+            rule_name: str = _PAGE_PREFIX_RE.sub("", raw_name).strip()
 
             node = {
                 "node_type": NodeType.ERRATA,
@@ -77,12 +77,15 @@ class ErrataParser(BaseParser):
                 "url": url,
                 "source_citation": self._make_source_citation(book),
                 "last_updated": date,
-                "rule_name": rule_name,
-                "original_text": "",
+                "source_document": source_document,
+                "source_version": version,
+                "name": rule_name,
+                "original_text": None,  # additive errata: no original text to correct
                 "corrected_text": corrected_text,
                 "i18n": {
                     "en": {
-                        "original_text": "",
+                        "name": rule_name,
+                        "original_text": None,
                         "corrected_text": corrected_text,
                     },
                     "es": {},
@@ -97,6 +100,9 @@ class ErrataParser(BaseParser):
         return result
 
 
-def _extract_version(source: str) -> str | None:
-    m = _SOURCE_VERSION_RE.search(source)
-    return m.group(1) if m else None
+def _parse_source(source: str) -> tuple[str | None, str | None]:
+    """Return ``(source_document, version)`` from a Contentful source attribution string."""
+    m = _SOURCE_RE.match(source.strip())
+    if m:
+        return m.group(1).strip() or None, m.group(2).strip()
+    return source.strip() or None, None

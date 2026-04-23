@@ -31,7 +31,7 @@ from __future__ import annotations
 
 import logging
 
-from pipeline.constants import NodeType
+from pipeline.constants import MAGIC_ITEM_TYPE_MAP, NodeType
 from pipeline.scraper.parsers.base_parser import BaseParser, ParseResult
 
 logger = logging.getLogger(__name__)  # used for ISR/missing-name warnings above
@@ -108,15 +108,26 @@ class MagicItemParser(BaseParser):
         body_text = self._body_text(data)
         text = description_text or body_text
 
+        raw_type: str = data.get("type") or ""
+        item_type: str | None = MAGIC_ITEM_TYPE_MAP.get(raw_type) or (
+            raw_type.lower().replace(" ", "_") if raw_type else None
+        )
+
+        # costOverride is a text field (e.g. "Special") that supersedes the numeric cost.
+        cost: int | None = data.get("cost")
+        if data.get("costOverride"):
+            cost = None
+
         return {
             "node_type": NodeType.MAGIC_ITEM,
             "id": slug,
             "url": url,
             "source_citation": self._make_source_citation(book),
             "last_updated": date,
-            "item_type": data.get("type") or None,
-            "points_cost": data.get("cost"),
+            "item_type": item_type,
+            "points_cost": cost,
             "army_id": army_id,
+            "is_single_use": None,  # not present in Contentful data model
             "name": name,
             "text": text,
             "i18n": self._make_i18n(name=name, text=text),

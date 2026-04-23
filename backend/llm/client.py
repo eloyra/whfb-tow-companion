@@ -20,12 +20,15 @@ def get_llm_client() -> LLMClient:
 
     if provider == "openai":
         from backend.llm._openai import OpenAIClient
+
         return OpenAIClient()
     elif provider == "anthropic":
         from backend.llm._anthropic import AnthropicClient
+
         return AnthropicClient()
     elif provider == "local":
         from backend.llm._local import LocalClient
+
         return LocalClient()
     else:
         raise ValueError(f"Unknown LLM provider: {provider}")

@@ -28,10 +28,10 @@ logger = logging.getLogger(__name__)
 
 # Mapping from rulesByType section slug to EdgeType
 _SECTION_EDGE: dict[str, str] = {
-    "special-rules":            EdgeType.HAS_RULE,
-    "weapons-of-war":           EdgeType.HAS_WEAPON,
-    "the-lores-of-magic":       EdgeType.USES_LORE,
-    "magic-items":              EdgeType.CAN_TAKE_ITEM,
+    "special-rules": EdgeType.HAS_RULE,
+    "weapons-of-war": EdgeType.HAS_WEAPON,
+    "the-lores-of-magic": EdgeType.USES_LORE,
+    "magic-items": EdgeType.CAN_TAKE_ITEM,
     "magic-items-and-abilities": EdgeType.CAN_TAKE_ITEM,
 }
 
@@ -90,8 +90,6 @@ class ArmyParser(BaseParser):
             for unit_entry in section.get("units", []):
                 unit_slug = unit_entry.get("fields", {}).get("slug")
                 if unit_slug:
-                    result.edges.append(
-                        self._make_edge(unit_slug, army_slug, EdgeType.BELONGS_TO)
-                    )
+                    result.edges.append(self._make_edge(unit_slug, army_slug, EdgeType.BELONGS_TO))
 
         return result

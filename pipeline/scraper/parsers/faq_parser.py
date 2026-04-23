@@ -33,7 +33,7 @@ from pipeline.scraper.parsers.base_parser import BaseParser, ParseResult
 
 logger = logging.getLogger(__name__)
 
-_SOURCE_VERSION_RE = re.compile(r"Version\s+([\d.]+)", re.IGNORECASE)
+_SOURCE_RE = re.compile(r"^(.*?)\s*[-–—]\s*Version\s+([\d.]+)", re.IGNORECASE)
 
 
 class FAQParser(BaseParser):
@@ -64,7 +64,7 @@ class FAQParser(BaseParser):
             if not slug:
                 slug = self._name_to_slug(question[:60]) or f"faq-{idx}"
 
-            version = _extract_version(source)
+            source_document, version = _parse_source(source)
             book = f"FAQ {version}" if version else "FAQ"
 
             node = {
@@ -73,10 +73,14 @@ class FAQParser(BaseParser):
                 "url": url,
                 "source_citation": self._make_source_citation(book),
                 "last_updated": date,
+                "name": question,
+                "topic": None,  # not present in Contentful data model
+                "source_document": source_document,
+                "source_version": version,
                 "question": question,
                 "answer": answer_text,
                 "i18n": {
-                    "en": {"question": question, "answer": answer_text},
+                    "en": {"name": question, "question": question, "answer": answer_text},
                     "es": {},
                 },
             }
@@ -89,6 +93,9 @@ class FAQParser(BaseParser):
         return result
 
 
-def _extract_version(source: str) -> str | None:
-    m = _SOURCE_VERSION_RE.search(source)
-    return m.group(1) if m else None
+def _parse_source(source: str) -> tuple[str | None, str | None]:
+    """Return ``(source_document, version)`` from a Contentful source attribution string."""
+    m = _SOURCE_RE.match(source.strip())
+    if m:
+        return m.group(1).strip() or None, m.group(2).strip()
+    return source.strip() or None, None

@@ -25,15 +25,14 @@ tow.whfb.app (wiki)
 pipeline/           ← data pipeline (run once, or on wiki updates)
   scraper/          ← crawl wiki HTML
   parsers/          ← extract structured data from HTML
-  graph/            ← build NetworkX knowledge graph
-  embeddings/       ← generate vectors, populate ChromaDB
+  graph/            ← build Neo4j knowledge graph
+  embeddings/       ← generate vectors, write to Neo4j node properties
   i18n/             ← add translations to graph nodes
       │
       ▼
 data/
   parsed/           ← intermediate JSON (nodes + edges)
-  graph/            ← serialized NetworkX graph (.graphml)
-  embeddings/       ← ChromaDB vector store
+  graph/            ← Cypher DDL, import scripts, index definitions
       │
       ▼
 backend/            ← FastAPI serving the GraphRAG pipeline
@@ -78,8 +77,9 @@ Full schema is in `docs/schema/knowledge_graph_schema.md`. Summary:
 ### Node types
 - `Army` — faction (19 total)
 - `Unit` — unit, character, or mount with stat profile
-- `Rule` — special rule (universal / army-specific / unique)
+- `SpecialRule` — special rule (universal / army-specific / unique)
 - `CoreRule` — rulebook mechanics (movement, shooting, combat phases, etc.)
+- `Document` — orientation/etiquette wiki pages; vector-retrievable but graph-isolated
 - `TroopType` — troop type definitions (Heavy Cavalry, Regular Infantry, etc.)
 - `Weapon` — weapons, armour, equipment
 - `Spell` — individual spells from magic lores
@@ -108,9 +108,9 @@ Clarification: `CLARIFIES`, `AMENDS`
 | Component | Technology | Notes |
 |---|---|---|
 | Scraping | `requests` + `beautifulsoup4` | Static HTML, no JS rendering needed |
-| Graph | `networkx` (DiGraph) | May migrate to Neo4j if scale requires |
+| Graph | Neo4j Community Edition 5.x | Docker; Cypher DDL in `pipeline/graph/`; vector index built-in (HNSW) |
 | Embeddings | `sentence-transformers` | `paraphrase-multilingual-mpnet-base-v2` |
-| Vector store | `chromadb` | Local by default |
+| Vector store | Neo4j vector index | Colocated with graph — no separate ChromaDB needed |
 | LLM | Configurable via `LLM_PROVIDER` env var | OpenAI / Anthropic / local (Ollama) |
 | Orchestration | `langchain` / `langgraph` | TBD during RAG phase |
 | Backend API | `fastapi` + `uvicorn` | |
@@ -132,7 +132,9 @@ OPENAI_API_KEY
 ANTHROPIC_API_KEY
 LOCAL_LLM_BASE_URL  e.g. http://localhost:11434 for Ollama
 EMBEDDING_MODEL     paraphrase-multilingual-mpnet-base-v2
-VECTOR_STORE_PATH   data/embeddings/chroma
+NEO4J_URI           bolt://localhost:7687
+NEO4J_USER          neo4j
+NEO4J_PASSWORD      changeme
 SCRAPE_DELAY_SECONDS  1.0 (be polite to the wiki)
 SCRAPE_BASE_URL     https://tow.whfb.app
 API_HOST            0.0.0.0

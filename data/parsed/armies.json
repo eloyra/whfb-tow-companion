@@ -1,0 +1,306 @@
+[
+  {
+    "id": "beastmen-brayherds",
+    "url": "https://tow.whfb.app/army/beastmen-brayherds",
+    "source_citation": {
+      "book": "Beastmen Brayherds",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Beastmen Brayherds",
+    "i18n": {
+      "en": {
+        "name": "Beastmen Brayherds"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "chaos-dwarfs",
+    "url": "https://tow.whfb.app/army/chaos-dwarfs",
+    "source_citation": {
+      "book": "Chaos Dwarfs",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Chaos Dwarfs",
+    "i18n": {
+      "en": {
+        "name": "Chaos Dwarfs"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "daemons-of-chaos",
+    "url": "https://tow.whfb.app/army/daemons-of-chaos",
+    "source_citation": {
+      "book": "Daemons of Chaos",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Daemons of Chaos",
+    "i18n": {
+      "en": {
+        "name": "Daemons of Chaos"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "dark-elves",
+    "url": "https://tow.whfb.app/army/dark-elves",
+    "source_citation": {
+      "book": "Dark Elves",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Dark Elves",
+    "i18n": {
+      "en": {
+        "name": "Dark Elves"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "dwarfen-mountain-holds",
+    "url": "https://tow.whfb.app/army/dwarfen-mountain-holds",
+    "source_citation": {
+      "book": "Dwarfen Mountain Holds",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Dwarfen Mountain Holds",
+    "i18n": {
+      "en": {
+        "name": "Dwarfen Mountain Holds"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "empire-of-man",
+    "url": "https://tow.whfb.app/army/empire-of-man",
+    "source_citation": {
+      "book": "Empire of Man",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Empire of Man",
+    "i18n": {
+      "en": {
+        "name": "Empire of Man"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "grand-cathay",
+    "url": "https://tow.whfb.app/army/grand-cathay",
+    "source_citation": {
+      "book": "Grand Cathay",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Grand Cathay",
+    "i18n": {
+      "en": {
+        "name": "Grand Cathay"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "high-elf-realms",
+    "url": "https://tow.whfb.app/army/high-elf-realms",
+    "source_citation": {
+      "book": "High Elf Realms",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "High Elf Realms",
+    "i18n": {
+      "en": {
+        "name": "High Elf Realms"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "kingdom-of-bretonnia",
+    "url": "https://tow.whfb.app/army/kingdom-of-bretonnia",
+    "source_citation": {
+      "book": "Kingdom of Bretonnia",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Kingdom of Bretonnia",
+    "i18n": {
+      "en": {
+        "name": "Kingdom of Bretonnia"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "lizardmen",
+    "url": "https://tow.whfb.app/army/lizardmen",
+    "source_citation": {
+      "book": "Lizardmen",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Lizardmen",
+    "i18n": {
+      "en": {
+        "name": "Lizardmen"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "ogre-kingdoms",
+    "url": "https://tow.whfb.app/army/ogre-kingdoms",
+    "source_citation": {
+      "book": "Ogre Kingdoms",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Ogre Kingdoms",
+    "i18n": {
+      "en": {
+        "name": "Ogre Kingdoms"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "orc-and-goblin-tribes",
+    "url": "https://tow.whfb.app/army/orc-and-goblin-tribes",
+    "source_citation": {
+      "book": "Orc & Goblin Tribes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Orc & Goblin Tribes",
+    "i18n": {
+      "en": {
+        "name": "Orc & Goblin Tribes"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "realms-of-men",
+    "url": "https://tow.whfb.app/army/realms-of-men",
+    "source_citation": {
+      "book": "Realms of Men",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Realms of Men",
+    "i18n": {
+      "en": {
+        "name": "Realms of Men"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "regiments-of-renown",
+    "url": "https://tow.whfb.app/army/regiments-of-renown",
+    "source_citation": {
+      "book": "Regiments of Renown",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Regiments of Renown",
+    "i18n": {
+      "en": {
+        "name": "Regiments of Renown"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "skaven",
+    "url": "https://tow.whfb.app/army/skaven",
+    "source_citation": {
+      "book": "Skaven",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Skaven",
+    "i18n": {
+      "en": {
+        "name": "Skaven"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "tomb-kings-of-khemri",
+    "url": "https://tow.whfb.app/army/tomb-kings-of-khemri",
+    "source_citation": {
+      "book": "Tomb Kings of Khemri",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Tomb Kings of Khemri",
+    "i18n": {
+      "en": {
+        "name": "Tomb Kings of Khemri"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "vampire-counts",
+    "url": "https://tow.whfb.app/army/vampire-counts",
+    "source_citation": {
+      "book": "Vampire Counts",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Vampire Counts",
+    "i18n": {
+      "en": {
+        "name": "Vampire Counts"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "warriors-of-chaos",
+    "url": "https://tow.whfb.app/army/warriors-of-chaos",
+    "source_citation": {
+      "book": "Warriors of Chaos",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Warriors of Chaos",
+    "i18n": {
+      "en": {
+        "name": "Warriors of Chaos"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "wood-elf-realms",
+    "url": "https://tow.whfb.app/army/wood-elf-realms",
+    "source_citation": {
+      "book": "Wood Elf Realms",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "name": "Wood Elf Realms",
+    "i18n": {
+      "en": {
+        "name": "Wood Elf Realms"
+      },
+      "es": {}
+    }
+  }
+]

@@ -6,9 +6,9 @@ A conversational assistant for Warhammer: The Old World built with GraphRAG (Gra
 
 ## Architecture
 
-- **Knowledge graph:** NetworkX — nodes = rules/units/abilities, edges = explicit (hyperlinks) and implicit (semantic references)
+- **Knowledge graph:** Neo4j Community Edition 5.x — nodes = rules/units/abilities, edges = explicit (hyperlinks, membership) and semantic (references, clarifications)
 - **Embeddings:** `paraphrase-multilingual-mpnet-base-v2` (multilingual, single vector space)
-- **Vector store:** ChromaDB
+- **Vector store:** Neo4j vector index (colocated with graph)
 - **LLM:** Configurable — OpenAI / Anthropic / local (Ollama)
 - **Orchestration:** LangChain / LangGraph
 - **Backend:** FastAPI

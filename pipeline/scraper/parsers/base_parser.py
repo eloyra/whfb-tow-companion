@@ -129,9 +129,7 @@ class BaseParser(ABC):
             # Fall back to the richText or body subtree of the embedded entry.
             subtree = target_fields.get("richText") or target_fields.get("body")
             return self._richtext_to_text(subtree)
-        return "".join(
-            self._richtext_to_text(child) for child in node.get("content", [])
-        )
+        return "".join(self._richtext_to_text(child) for child in node.get("content", []))
 
     def _body_text(self, fields: dict, key: str = "body") -> str:
         """Return the plain-text content for a Contentful entry's body field.
@@ -235,9 +233,7 @@ class BaseParser(ABC):
             en["text"] = text
         return {"en": en, "es": {}}
 
-    def _make_edge(
-        self, src: str, dst: str, relation: str, properties: dict | None = None
-    ) -> dict:
+    def _make_edge(self, src: str, dst: str, relation: str, properties: dict | None = None) -> dict:
         return {"src": src, "dst": dst, "relation": relation, "properties": properties or {}}
 
     def _make_source_citation(self, book: str, page: int | None = None) -> dict:
@@ -249,6 +245,7 @@ class BaseParser(ABC):
 
     def _slug(self, url: str) -> str:
         from urllib.parse import urlparse
+
         path = urlparse(url).path.strip("/")
         return path.split("/")[-1] if path else "unknown"
 
@@ -257,14 +254,23 @@ class BaseParser(ABC):
 
     def _richtext_entry_links(self, node: dict | None) -> list[str]:
         """Return slugs from all entry-hyperlink / embedded-entry-inline nodes."""
+        return [slug for slug, _ in self._richtext_entry_links_typed(node)]
+
+    def _richtext_entry_links_typed(self, node: dict | None) -> list[tuple[str, str]]:
+        """Return ``(slug, contentType)`` pairs from entry-hyperlink nodes.
+
+        Useful when the caller needs to branch on whether the linked entry is an
+        ``armyListEntry`` (mount), ``rule`` (weapon/rule), etc.
+        """
         if not isinstance(node, dict):
             return []
-        results: list[str] = []
+        results: list[tuple[str, str]] = []
         if node.get("nodeType") in ("entry-hyperlink", "embedded-entry-inline"):
             target = node.get("data", {}).get("target", {})
             slug = target.get("fields", {}).get("slug")
+            ct = target.get("sys", {}).get("contentType", {}).get("sys", {}).get("id", "")
             if slug:
-                results.append(slug)
+                results.append((slug, ct))
         for child in node.get("content", []):
-            results.extend(self._richtext_entry_links(child))
+            results.extend(self._richtext_entry_links_typed(child))
         return results

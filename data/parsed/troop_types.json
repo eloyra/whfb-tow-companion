@@ -1,0 +1,882 @@
+[
+  {
+    "id": "categories-of-troop-type",
+    "url": "https://tow.whfb.app/troop-types-in-detail/categories-of-troop-type",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 188
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Categories of Troop Type",
+    "text": "There are five main categories of troop type, each of which is further divided into sub-categories. For example, particularly large infantry fall into the monstrous infantry sub-category of infantry. In such cases, when the rules refer to infantry models or units, monstrous infantry must also follow those rules unless an exception is stated for monstrous infantry. A model's troop type also determines the minimum number of such models a rank must contain to claim a Rank Bonus, the maximum Rank Bonus a unit of such models is able to claim, and the Unit Strength of such a model, as shown in the sections that follow. In most cases it will be fairly obvious which main category of troop type a model falls into. Sub-categories are more complex and exist to help better understand the exact role of a unit in battle and to better reflect this in games through the use of different rules.",
+    "i18n": {
+      "en": {
+        "name": "Categories of Troop Type",
+        "text": "There are five main categories of troop type, each of which is further divided into sub-categories. For example, particularly large infantry fall into the monstrous infantry sub-category of infantry. In such cases, when the rules refer to infantry models or units, monstrous infantry must also follow those rules unless an exception is stated for monstrous infantry. A model's troop type also determines the minimum number of such models a rank must contain to claim a Rank Bonus, the maximum Rank Bonus a unit of such models is able to claim, and the Unit Strength of such a model, as shown in the sections that follow. In most cases it will be fairly obvious which main category of troop type a model falls into. Sub-categories are more complex and exist to help better understand the exact role of a unit in battle and to better reflect this in games through the use of different rules."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "characters-troop-types",
+    "url": "https://tow.whfb.app/troop-types-in-detail/characters-troop-types",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 188
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Characters (Troop Types)",
+    "text": "Some models will have the word 'Character' in brackets after their troop type, indicating that the model is a character. This section does not cover characters in detail. Instead, and because characters are such a powerful and important part of Warhammer: the Old World, they have a section all to themselves.",
+    "i18n": {
+      "en": {
+        "name": "Characters (Troop Types)",
+        "text": "Some models will have the word 'Character' in brackets after their troop type, indicating that the model is a character. This section does not cover characters in detail. Instead, and because characters are such a powerful and important part of Warhammer: the Old World, they have a section all to themselves."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "troop-type-tables",
+    "url": "https://tow.whfb.app/troop-types-in-detail/troop-type-tables",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 189
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Troop Type Tables",
+    "text": "Each of the following categories is accompanied by a table containing a summary of the important information needed for that troop type: Models Per Rank This is the minimum number required to claim a Rank Bonus. Ranks can contain more models or fewer models, as you wish, but in order for a rank to count towards Rank Bonus, it must contain at least this many models. Maximum Rank Bonus This is the maximum Rank Bonus a unit can claim. In some cases this can be increased by special rules and other effects. Unit Strength Sometimes, you may be required to work out the 'Unit Strength' of a unit. There are a number of reasons you might need to know this, for example, to determine if one of your units is outnumbered by an enemy, and if they are, by how much. Simply counting the number of models does not account for the sheer power and destructive ability of large and ferocious creatures. Unit Strength represents this well. To determine Unit Strength, simply count the number of models currently in the unit and multiply this by the Unit Strength per model as shown on the Troop Type table.",
+    "i18n": {
+      "en": {
+        "name": "Troop Type Tables",
+        "text": "Each of the following categories is accompanied by a table containing a summary of the important information needed for that troop type: Models Per Rank This is the minimum number required to claim a Rank Bonus. Ranks can contain more models or fewer models, as you wish, but in order for a rank to count towards Rank Bonus, it must contain at least this many models. Maximum Rank Bonus This is the maximum Rank Bonus a unit can claim. In some cases this can be increased by special rules and other effects. Unit Strength Sometimes, you may be required to work out the 'Unit Strength' of a unit. There are a number of reasons you might need to know this, for example, to determine if one of your units is outnumbered by an enemy, and if they are, by how much. Simply counting the number of models does not account for the sheer power and destructive ability of large and ferocious creatures. Unit Strength represents this well. To determine Unit Strength, simply count the number of models currently in the unit and multiply this by the Unit Strength per model as shown on the Troop Type table."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "infantry",
+    "url": "https://tow.whfb.app/troop-types-in-detail/infantry",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 190
+    },
+    "last_updated": "2026-04-15",
+    "category": "infantry",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Infantry",
+    "text": "Infantry includes all units of foot troops and forms the backbone of most armies. Infantry is split into four sub-categories, some of which are subject to their own rules: Regular Infantry Heavy Infantry Monstrous Infantry Swarms ",
+    "i18n": {
+      "en": {
+        "name": "Infantry",
+        "text": "Infantry includes all units of foot troops and forms the backbone of most armies. Infantry is split into four sub-categories, some of which are subject to their own rules: Regular Infantry Heavy Infantry Monstrous Infantry Swarms "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "regular-infantry",
+    "url": "https://tow.whfb.app/troop-types-in-detail/regular-infantry",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 190
+    },
+    "last_updated": "2026-04-15",
+    "category": "infantry",
+    "min_models_for_rank_bonus": 5,
+    "max_rank_bonus": 2,
+    "unit_strength_per_model": "1",
+    "name": "Regular Infantry",
+    "text": "This sub-category covers all the roughly human-sized warriors of the Warhammer world, be they Men, Elves, Dwarfs, Orcs, Zombies and so on. Regular infantry will normally form the core of your Warhammer army, the troops upon which you rely to get the job done. Regular infantry can be expected to adopt almost any formation to fulfil any role. Due to their ubiquity, the basic rules of Warhammer: the Old World are written around regular infantry, so no additional rules apply to this troop type. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Regular Infantry 5 +2 1 Press of Battle Massed Infantry Parry ",
+    "i18n": {
+      "en": {
+        "name": "Regular Infantry",
+        "text": "This sub-category covers all the roughly human-sized warriors of the Warhammer world, be they Men, Elves, Dwarfs, Orcs, Zombies and so on. Regular infantry will normally form the core of your Warhammer army, the troops upon which you rely to get the job done. Regular infantry can be expected to adopt almost any formation to fulfil any role. Due to their ubiquity, the basic rules of Warhammer: the Old World are written around regular infantry, so no additional rules apply to this troop type. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Regular Infantry 5 +2 1 Press of Battle Massed Infantry Parry "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "press-of-battle",
+    "url": "https://tow.whfb.app/troop-types-in-detail/press-of-battle",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 190
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Press of Battle",
+    "text": "In the heat of battle, orderly ranks become a swirling melee. Except during a turn in which it charged, the fighting rank of a unit that has this rule and is arrayed in combat order is not one, but two ranks deep. In other words, models that are directly behind and in base contact with models in the units actual fighting rank are also considered to be within its fighting rank.",
+    "i18n": {
+      "en": {
+        "name": "Press of Battle",
+        "text": "In the heat of battle, orderly ranks become a swirling melee. Except during a turn in which it charged, the fighting rank of a unit that has this rule and is arrayed in combat order is not one, but two ranks deep. In other words, models that are directly behind and in base contact with models in the units actual fighting rank are also considered to be within its fighting rank."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "massed-infantry",
+    "url": "https://tow.whfb.app/troop-types-in-detail/massed-infantry",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 190
+    },
+    "last_updated": "2026-04-15",
+    "category": "infantry",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Massed Infantry",
+    "text": "Numbers alone can sometimes overcome the foe. When determining combat results, if one side has a higher Unit Strength than the other and includes one or more units with this rule, that side may claim a bonus of +1 combat result point.",
+    "i18n": {
+      "en": {
+        "name": "Massed Infantry",
+        "text": "Numbers alone can sometimes overcome the foe. When determining combat results, if one side has a higher Unit Strength than the other and includes one or more units with this rule, that side may claim a bonus of +1 combat result point."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "parry",
+    "url": "https://tow.whfb.app/troop-types-in-detail/parry",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 190
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Parry",
+    "text": "With sword and shield, warriors attempt to deflect enemy attacks. Whilst engaged in close combat, a model with this rule that is equipped with and chooses to use a hand weapon and shield improves its armour value by 1, to a maximum of 3+.",
+    "i18n": {
+      "en": {
+        "name": "Parry",
+        "text": "With sword and shield, warriors attempt to deflect enemy attacks. Whilst engaged in close combat, a model with this rule that is equipped with and chooses to use a hand weapon and shield improves its armour value by 1, to a maximum of 3+."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "heavy-infantry",
+    "url": "https://tow.whfb.app/troop-types-in-detail/heavy-infantry",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 190
+    },
+    "last_updated": "2026-04-15",
+    "category": "infantry",
+    "min_models_for_rank_bonus": 4,
+    "max_rank_bonus": 2,
+    "unit_strength_per_model": "1",
+    "name": "Heavy Infantry",
+    "text": "This sub-category covers the many warriors that are larger than the average man, but not monstrously large, and the heavily armed or armoured elites that the rank and file aspire towards and that generals turn to as bodyguards and more. Close Order formations of heavy infantry can usually be found where the fighting is thickest. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Heavy Infantry 4 +2 1 Steady in the Ranks Press of Battle Massed Infantry Parry ",
+    "i18n": {
+      "en": {
+        "name": "Heavy Infantry",
+        "text": "This sub-category covers the many warriors that are larger than the average man, but not monstrously large, and the heavily armed or armoured elites that the rank and file aspire towards and that generals turn to as bodyguards and more. Close Order formations of heavy infantry can usually be found where the fighting is thickest. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Heavy Infantry 4 +2 1 Steady in the Ranks Press of Battle Massed Infantry Parry "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "steady-in-the-ranks",
+    "url": "https://tow.whfb.app/troop-types-in-detail/steady-in-the-ranks",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 190
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Steady in the Ranks",
+    "text": "Due to their solid stature, heavy armour and often elite nature, heavy infantry are rarely concerned by inferior numbers. To represent this, a unit of heavy infantry arrayed in either Close Order or Open Order formation does not become Disrupted when engaged in its flank or rear unless the enemy unit has a Unit Strength of ten or more.",
+    "i18n": {
+      "en": {
+        "name": "Steady in the Ranks",
+        "text": "Due to their solid stature, heavy armour and often elite nature, heavy infantry are rarely concerned by inferior numbers. To represent this, a unit of heavy infantry arrayed in either Close Order or Open Order formation does not become Disrupted when engaged in its flank or rear unless the enemy unit has a Unit Strength of ten or more."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "monstrous-infantry",
+    "url": "https://tow.whfb.app/troop-types-in-detail/monstrous-infantry",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 191
+    },
+    "last_updated": "2026-04-15",
+    "category": "infantry",
+    "min_models_for_rank_bonus": 3,
+    "max_rank_bonus": 2,
+    "unit_strength_per_model": "3",
+    "name": "Monstrous Infantry",
+    "text": "The monstrous infantry sub-category covers things like Trolls, Ogres and Minotaurs – creatures that are (roughly) man-shaped and fight on foot, but that are two or three times the size of regular or heavy infantry. Monstrous creatures vary wildly, from Ogres who fight as mercenaries all across the Old World, to Trolls, who shamble to war in search of food and fight together in irregular formations. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Monstrous Infantry 3 +2 3 Clumsy ",
+    "i18n": {
+      "en": {
+        "name": "Monstrous Infantry",
+        "text": "The monstrous infantry sub-category covers things like Trolls, Ogres and Minotaurs – creatures that are (roughly) man-shaped and fight on foot, but that are two or three times the size of regular or heavy infantry. Monstrous creatures vary wildly, from Ogres who fight as mercenaries all across the Old World, to Trolls, who shamble to war in search of food and fight together in irregular formations. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Monstrous Infantry 3 +2 3 Clumsy "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "clumsy",
+    "url": "https://tow.whfb.app/troop-types-in-detail/clumsy",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 191
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Clumsy",
+    "text": "A unit with this rule can only be joined by a character that also has this rule. Smaller characters are unwilling to risk being trampled.",
+    "i18n": {
+      "en": {
+        "name": "Clumsy",
+        "text": "A unit with this rule can only be joined by a character that also has this rule. Smaller characters are unwilling to risk being trampled."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "swarms",
+    "url": "https://tow.whfb.app/troop-types-in-detail/swarms",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 191
+    },
+    "last_updated": "2026-04-15",
+    "category": "swarm",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": "3",
+    "name": "Swarms",
+    "text": "Swarms are seething masses of small creatures, such as rats, snakes or insects, summoned to the battlefield by magical means or herded there by beast masters and handlers to be set loose upon the enemy. Individually, the critters in a swarm pose little threat, but their sheer weight of numbers more than compensates for their size. Swarms are made of a number of bases. Each base includes many creatures, but counts as a single model. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Swarms - - 3 Insignificant No One Cares Undisciplined ",
+    "i18n": {
+      "en": {
+        "name": "Swarms",
+        "text": "Swarms are seething masses of small creatures, such as rats, snakes or insects, summoned to the battlefield by magical means or herded there by beast masters and handlers to be set loose upon the enemy. Individually, the critters in a swarm pose little threat, but their sheer weight of numbers more than compensates for their size. Swarms are made of a number of bases. Each base includes many creatures, but counts as a single model. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Swarms - - 3 Insignificant No One Cares Undisciplined "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "insignificant",
+    "url": "https://tow.whfb.app/troop-types-in-detail/insignificant",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 191
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Insignificant",
+    "text": "Swarms consist of small and insignificant creatures. As such, a line of sight can be drawn across a swarm as if it wasn't there. In addition, swarms are ignored when attempting to target enemy characters.",
+    "i18n": {
+      "en": {
+        "name": "Insignificant",
+        "text": "Swarms consist of small and insignificant creatures. As such, a line of sight can be drawn across a swarm as if it wasn't there. In addition, swarms are ignored when attempting to target enemy characters."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "no-one-cares",
+    "url": "https://tow.whfb.app/troop-types-in-detail/no-one-cares",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 191
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "No One Cares",
+    "text": "No one really cares about swarms. Swarms never cause Panic in friendly units, regardless of what happens to them.",
+    "i18n": {
+      "en": {
+        "name": "No One Cares",
+        "text": "No one really cares about swarms. Swarms never cause Panic in friendly units, regardless of what happens to them."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "undisciplined",
+    "url": "https://tow.whfb.app/troop-types-in-detail/undisciplined",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 191
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Undisciplined",
+    "text": "A unit with this rule cannot use the Inspiring Presence rule of the army's General nor the \"Hold your Ground\" rule of a Battle Standard.",
+    "i18n": {
+      "en": {
+        "name": "Undisciplined",
+        "text": "A unit with this rule cannot use the Inspiring Presence rule of the army's General nor the \"Hold your Ground\" rule of a Battle Standard."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "cavalry",
+    "url": "https://tow.whfb.app/troop-types-in-detail/cavalry",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 192
+    },
+    "last_updated": "2026-04-15",
+    "category": "cavalry",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Cavalry",
+    "text": "The term cavalry refers to any riders mounted on war beasts – commonly warhorses or similar creatures. It can also include war beasts on their own as packs of animals which will often function in a manner more similar to cavalry than infantry. Cavalry is split into four sub-categories: Light Cavalry  Heavy Cavalry  Monstrous Cavalry  War Beasts ",
+    "i18n": {
+      "en": {
+        "name": "Cavalry",
+        "text": "The term cavalry refers to any riders mounted on war beasts – commonly warhorses or similar creatures. It can also include war beasts on their own as packs of animals which will often function in a manner more similar to cavalry than infantry. Cavalry is split into four sub-categories: Light Cavalry  Heavy Cavalry  Monstrous Cavalry  War Beasts "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "light-cavalry",
+    "url": "https://tow.whfb.app/troop-types-in-detail/light-cavalry",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 192
+    },
+    "last_updated": "2026-04-15",
+    "category": "cavalry",
+    "min_models_for_rank_bonus": 5,
+    "max_rank_bonus": 1,
+    "unit_strength_per_model": "2",
+    "name": "Light Cavalry",
+    "text": "Be they mounted on swift steeds, savage wolves, giant spiders or daemonic beasts, light cavalry are fast moving riders that range far and wide, encircling the foe. Such riders excel as scouts and outriders as well as warriors, and will often send word of enemy movement back to their commanders before launching lightning-fast strikes intended to demoralise the foe. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Light Cavalry 5 +1 2 Split Profile (Cavalry) Cavalry Support ",
+    "i18n": {
+      "en": {
+        "name": "Light Cavalry",
+        "text": "Be they mounted on swift steeds, savage wolves, giant spiders or daemonic beasts, light cavalry are fast moving riders that range far and wide, encircling the foe. Such riders excel as scouts and outriders as well as warriors, and will often send word of enemy movement back to their commanders before launching lightning-fast strikes intended to demoralise the foe. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Light Cavalry 5 +1 2 Split Profile (Cavalry) Cavalry Support "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "split-profile-cavalry",
+    "url": "https://tow.whfb.app/troop-types-in-detail/split-profile-cavalry",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 192
+    },
+    "last_updated": "2026-04-15",
+    "category": "cavalry",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Split Profile (Cavalry)",
+    "text": "Most cavalry models (but by no means all) consist of not one, but two models – rider and mount, together making a single model. To represent this, many cavalry models have a split profile. In game terms, this works as follows: Unless noted otherwise, any special rules that apply to one element (rider or mount) apply to the other as well. The rider and mount each use their own Weapon Skill, Ballistic Skill, Strength, Initiative and Attacks characteristics, and their own weapons. In combat, all enemy rolls To Hit are made against the rider's Weapon Skill. Impact Hits and/or Stomp Attacks use the mount's Strength. When this model makes an Armour Save roll, it uses the rider's armour value. If the rider is reduced to zero Wounds, the model as a whole is removed from play. ",
+    "i18n": {
+      "en": {
+        "name": "Split Profile (Cavalry)",
+        "text": "Most cavalry models (but by no means all) consist of not one, but two models – rider and mount, together making a single model. To represent this, many cavalry models have a split profile. In game terms, this works as follows: Unless noted otherwise, any special rules that apply to one element (rider or mount) apply to the other as well. The rider and mount each use their own Weapon Skill, Ballistic Skill, Strength, Initiative and Attacks characteristics, and their own weapons. In combat, all enemy rolls To Hit are made against the rider's Weapon Skill. Impact Hits and/or Stomp Attacks use the mount's Strength. When this model makes an Armour Save roll, it uses the rider's armour value. If the rider is reduced to zero Wounds, the model as a whole is removed from play. "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "cavalry-support",
+    "url": "https://tow.whfb.app/troop-types-in-detail/cavalry-support",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 192
+    },
+    "last_updated": "2026-04-15",
+    "category": "cavalry",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Cavalry Support",
+    "text": "Whilst a rider may be able to reach above a comrade to strike at the foe, their mount cannot. Should a cavalry model be able to make a supporting attack, only the rider can attack, not the mount.",
+    "i18n": {
+      "en": {
+        "name": "Cavalry Support",
+        "text": "Whilst a rider may be able to reach above a comrade to strike at the foe, their mount cannot. Should a cavalry model be able to make a supporting attack, only the rider can attack, not the mount."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "heavy-cavalry",
+    "url": "https://tow.whfb.app/troop-types-in-detail/heavy-cavalry",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 193
+    },
+    "last_updated": "2026-04-15",
+    "category": "cavalry",
+    "min_models_for_rank_bonus": 4,
+    "max_rank_bonus": 1,
+    "unit_strength_per_model": "2",
+    "name": "Heavy Cavalry",
+    "text": "Across the battlefields of the Old World, the thunderous charge of heavy cavalry turns the bowels of even the bravest infantryman to water. Heavy cavalry are the heavily armed and armoured knights of the Old World's armies, warrior elites mounted atop mighty warhorses, bellowing boars and cold-blooded reptiles that charge fearlessly into the fray time and time again. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Heavy Cavalry 4 +1 2 Split Profile (Cavalry) Cavalry Support ",
+    "i18n": {
+      "en": {
+        "name": "Heavy Cavalry",
+        "text": "Across the battlefields of the Old World, the thunderous charge of heavy cavalry turns the bowels of even the bravest infantryman to water. Heavy cavalry are the heavily armed and armoured knights of the Old World's armies, warrior elites mounted atop mighty warhorses, bellowing boars and cold-blooded reptiles that charge fearlessly into the fray time and time again. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Heavy Cavalry 4 +1 2 Split Profile (Cavalry) Cavalry Support "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "monstrous-cavalry",
+    "url": "https://tow.whfb.app/troop-types-in-detail/monstrous-cavalry",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 193
+    },
+    "last_updated": "2026-04-15",
+    "category": "cavalry",
+    "min_models_for_rank_bonus": 3,
+    "max_rank_bonus": 1,
+    "unit_strength_per_model": "3",
+    "name": "Monstrous Cavalry",
+    "text": "Just as horse-sized beasts can be pressed into service as mounts, so too can their monstrous cousins. Monstrous cavalry are rare, as most such creatures are so strong-willed that great patience (or violence) is needed to break them to the saddle. This combination of mass and stubborn muscle makes monstrous cavalry a much-feared sight upon the battlefields of the Warhammer world. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Monstrous Cavalry 3 +1 3 Split Profile (Cavalry) Clumsy ",
+    "i18n": {
+      "en": {
+        "name": "Monstrous Cavalry",
+        "text": "Just as horse-sized beasts can be pressed into service as mounts, so too can their monstrous cousins. Monstrous cavalry are rare, as most such creatures are so strong-willed that great patience (or violence) is needed to break them to the saddle. This combination of mass and stubborn muscle makes monstrous cavalry a much-feared sight upon the battlefields of the Warhammer world. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Monstrous Cavalry 3 +1 3 Split Profile (Cavalry) Clumsy "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "war-beasts",
+    "url": "https://tow.whfb.app/troop-types-in-detail/war-beasts",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "category": "beast",
+    "min_models_for_rank_bonus": 5,
+    "max_rank_bonus": 1,
+    "unit_strength_per_model": "1",
+    "name": "War Beasts",
+    "text": "Some armies employ hunting animals, such as hounds or wolves. Whilst not particularly intelligent, such creatures can be formidable foes in close combat, and cover ground at an incredible rate. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules War Beasts 5 +1 1 Undisciplined ",
+    "i18n": {
+      "en": {
+        "name": "War Beasts",
+        "text": "Some armies employ hunting animals, such as hounds or wolves. Whilst not particularly intelligent, such creatures can be formidable foes in close combat, and cover ground at an incredible rate. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules War Beasts 5 +1 1 Undisciplined "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "chariots",
+    "url": "https://tow.whfb.app/troop-types-in-detail/chariots",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 194
+    },
+    "last_updated": "2026-04-15",
+    "category": "chariot",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Chariots",
+    "text": "A chariot is usually a wheeled war vehicle drawn into battle by beasts of some kind and crewed by heavily armed and armoured warriors. This category can also include large objects, such as mobile altars, that are pushed along or carried. Chariots are split into two sub-categories: Light Chariots Heavy Chariots ",
+    "i18n": {
+      "en": {
+        "name": "Chariots",
+        "text": "A chariot is usually a wheeled war vehicle drawn into battle by beasts of some kind and crewed by heavily armed and armoured warriors. This category can also include large objects, such as mobile altars, that are pushed along or carried. Chariots are split into two sub-categories: Light Chariots Heavy Chariots "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "light-chariots",
+    "url": "https://tow.whfb.app/troop-types-in-detail/light-chariots",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 194
+    },
+    "last_updated": "2026-04-15",
+    "category": "chariot",
+    "min_models_for_rank_bonus": 3,
+    "max_rank_bonus": 1,
+    "unit_strength_per_model": "3",
+    "name": "Light Chariots",
+    "text": "Fast moving and lightly made, light chariots are often used as mobile platforms from which skilled warriors rain missiles on the enemy, or from which noble heroes shout challenges to the foe. They are often deployed in units and, much like light cavalry, they will harass the flanks of the enemy before closing in for the kill. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Light Chariots 3 +1 3 Split Profile (Chariots) Iron Shod Wheels Churning Wheels Firing Platform ",
+    "i18n": {
+      "en": {
+        "name": "Light Chariots",
+        "text": "Fast moving and lightly made, light chariots are often used as mobile platforms from which skilled warriors rain missiles on the enemy, or from which noble heroes shout challenges to the foe. They are often deployed in units and, much like light cavalry, they will harass the flanks of the enemy before closing in for the kill. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Light Chariots 3 +1 3 Split Profile (Chariots) Iron Shod Wheels Churning Wheels Firing Platform "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "split-profile-chariots",
+    "url": "https://tow.whfb.app/troop-types-in-detail/split-profile-chariots",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 194
+    },
+    "last_updated": "2026-04-15",
+    "category": "chariot",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Split Profile (Chariots)",
+    "text": "A chariot consists of several models – the chariot itself, the crew and (usually) the beasts that draw it – together making a single model. To represent this, a chariot model has a split profile. In game terms, this works as follows: Unless noted otherwise, any special rules that apply to one element (chariot, crew or beasts) apply to the others as well. This model uses the Movement characteristic of the beasts that draw it or, if there are no beasts, of the chariot itself. The crew and beasts each use their own Weapon Skill, Ballistic Skill, Strength, Initiative and Attacks characteristics, and their own weapons. In combat, all enemy rolls To Hit are made against the crew's Weapon Skill. Impact Hits and/or Stomp Attacks use the chariot's Strength. If the chariot is reduced to zero Wounds, the model as a whole is removed from play. ",
+    "i18n": {
+      "en": {
+        "name": "Split Profile (Chariots)",
+        "text": "A chariot consists of several models – the chariot itself, the crew and (usually) the beasts that draw it – together making a single model. To represent this, a chariot model has a split profile. In game terms, this works as follows: Unless noted otherwise, any special rules that apply to one element (chariot, crew or beasts) apply to the others as well. This model uses the Movement characteristic of the beasts that draw it or, if there are no beasts, of the chariot itself. The crew and beasts each use their own Weapon Skill, Ballistic Skill, Strength, Initiative and Attacks characteristics, and their own weapons. In combat, all enemy rolls To Hit are made against the crew's Weapon Skill. Impact Hits and/or Stomp Attacks use the chariot's Strength. If the chariot is reduced to zero Wounds, the model as a whole is removed from play. "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "iron-shod-wheels",
+    "url": "https://tow.whfb.app/troop-types-in-detail/iron-shod-wheels",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 194
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Iron Shod Wheels",
+    "text": "Chariots are not designed for use in terrain. This model treats all difficult terrain as dangerous terrain and treats all linear obstacles as impassable terrain. In addition, if this model rolls a 1 when making a Dangerous Terrain test, it loses D3 Wounds.",
+    "i18n": {
+      "en": {
+        "name": "Iron Shod Wheels",
+        "text": "Chariots are not designed for use in terrain. This model treats all difficult terrain as dangerous terrain and treats all linear obstacles as impassable terrain. In addition, if this model rolls a 1 when making a Dangerous Terrain test, it loses D3 Wounds."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "churning-wheels",
+    "url": "https://tow.whfb.app/troop-types-in-detail/churning-wheels",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 194
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Churning Wheels",
+    "text": "A unit with this rule can only be joined by a character that also has this rule. Other characters are unwilling to risk falling beneath the unit's wheels.",
+    "i18n": {
+      "en": {
+        "name": "Churning Wheels",
+        "text": "A unit with this rule can only be joined by a character that also has this rule. Other characters are unwilling to risk falling beneath the unit's wheels."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "firing-platform",
+    "url": "https://tow.whfb.app/troop-types-in-detail/firing-platform",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 194
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Firing Platform",
+    "text": "From the cab of a chariot, warriors can shoot in all directions. For the purposes of shooting and casting spells, this model has a 360° vision arc.",
+    "i18n": {
+      "en": {
+        "name": "Firing Platform",
+        "text": "From the cab of a chariot, warriors can shoot in all directions. For the purposes of shooting and casting spells, this model has a 360° vision arc."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "heavy-chariots",
+    "url": "https://tow.whfb.app/troop-types-in-detail/heavy-chariots",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 195
+    },
+    "last_updated": "2026-04-15",
+    "category": "chariot",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": "5",
+    "name": "Heavy Chariots",
+    "text": "Built for strength and durability, heavy chariots deliver crushing charges deep into the ranks of the enemy. Where light chariots move quickly and harass the foe, heavy chariots move slowly, gradually building their speed before crashing like the fist of an angry god into the quaking battle lines of the opposing army. Often, the charge of a heavy chariot will cause the serried ranks of the enemy to buckle and crumple as scythed wheels hew through limbs and armoured beasts trample all before them. The survivors of such a charge fare no better, for heavy chariots are invariably crewed by mighty warriors that use the armoured cab of their vehicle as a platform from which to slay their enemies with brutal efficiency. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Heavy Chariots - - 5 Split Profile (Chariots) Scythed Wheels Lumbering Iron Shod Wheels Firing Platform ",
+    "i18n": {
+      "en": {
+        "name": "Heavy Chariots",
+        "text": "Built for strength and durability, heavy chariots deliver crushing charges deep into the ranks of the enemy. Where light chariots move quickly and harass the foe, heavy chariots move slowly, gradually building their speed before crashing like the fist of an angry god into the quaking battle lines of the opposing army. Often, the charge of a heavy chariot will cause the serried ranks of the enemy to buckle and crumple as scythed wheels hew through limbs and armoured beasts trample all before them. The survivors of such a charge fare no better, for heavy chariots are invariably crewed by mighty warriors that use the armoured cab of their vehicle as a platform from which to slay their enemies with brutal efficiency. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Heavy Chariots - - 5 Split Profile (Chariots) Scythed Wheels Lumbering Iron Shod Wheels Firing Platform "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "scythed-wheels",
+    "url": "https://tow.whfb.app/troop-types-in-detail/scythed-wheels",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 195
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Scythed Wheels",
+    "text": "Built to wreak destruction, heavy chariots are adorned with sharpened spikes and scything blades, the better to cut down the foe. Any Impact Hits caused by a heavy chariot have an Armour Piercing characteristic of -2.",
+    "i18n": {
+      "en": {
+        "name": "Scythed Wheels",
+        "text": "Built to wreak destruction, heavy chariots are adorned with sharpened spikes and scything blades, the better to cut down the foe. Any Impact Hits caused by a heavy chariot have an Armour Piercing characteristic of -2."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "lumbering",
+    "url": "https://tow.whfb.app/troop-types-in-detail/lumbering",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 195
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Lumbering",
+    "text": "Perhaps due to their large size, their weight, or a combination of skittish draft animals and slow turning wheels, models with this rule are not especially manoeuvrable. To represent this, a Lumbering model is considered to be, and follows all of the rules for, a Close Order formation, even when included in your army as a single model. However, even the largest single model enjoys slightly more manoeuvrability than a tightly formed regiment of many models. Therefore, after moving, unless it charged, marched or fled, a Lumbering model may pivot about its centre to change its facing by up to 90°. Finally, a Lumbering model cannot join a unit or be joined by a character.",
+    "i18n": {
+      "en": {
+        "name": "Lumbering",
+        "text": "Perhaps due to their large size, their weight, or a combination of skittish draft animals and slow turning wheels, models with this rule are not especially manoeuvrable. To represent this, a Lumbering model is considered to be, and follows all of the rules for, a Close Order formation, even when included in your army as a single model. However, even the largest single model enjoys slightly more manoeuvrability than a tightly formed regiment of many models. Therefore, after moving, unless it charged, marched or fled, a Lumbering model may pivot about its centre to change its facing by up to 90°. Finally, a Lumbering model cannot join a unit or be joined by a character."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "monsters",
+    "url": "https://tow.whfb.app/troop-types-in-detail/monsters",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 196
+    },
+    "last_updated": "2026-04-15",
+    "category": "monster",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Monsters",
+    "text": "Creatures so large and powerful that they normally do not form into units, but roam the battlefield on their own. In spite of this, due to their size, they function as Close Order units, rather than as Skirmishers. Monsters are split into two sub-categories: Monstrous Creatures Behemoths ",
+    "i18n": {
+      "en": {
+        "name": "Monsters",
+        "text": "Creatures so large and powerful that they normally do not form into units, but roam the battlefield on their own. In spite of this, due to their size, they function as Close Order units, rather than as Skirmishers. Monsters are split into two sub-categories: Monstrous Creatures Behemoths "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "monstrous-creatures",
+    "url": "https://tow.whfb.app/troop-types-in-detail/monstrous-creatures",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 196
+    },
+    "last_updated": "2026-04-15",
+    "category": "monster",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": "As Starting Wounds",
+    "name": "Monstrous Creatures",
+    "text": "There are many mighty and wondrous creatures in the Warhammer world that, whilst not large enough to shake the earth with their tread, are considerably larger than monstrous infantry or monstrous cavalry. Such beasts are referred to as 'monstrous creatures' and they are formidable foes. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Monstrous Creatures - - As Starting Wounds Ridden Monster Lumbering ",
+    "i18n": {
+      "en": {
+        "name": "Monstrous Creatures",
+        "text": "There are many mighty and wondrous creatures in the Warhammer world that, whilst not large enough to shake the earth with their tread, are considerably larger than monstrous infantry or monstrous cavalry. Such beasts are referred to as 'monstrous creatures' and they are formidable foes. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Monstrous Creatures - - As Starting Wounds Ridden Monster Lumbering "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "behemoths",
+    "url": "https://tow.whfb.app/troop-types-in-detail/behemoths",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 196
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": "As Starting Wounds",
+    "name": "Behemoths",
+    "text": "Behemoths are the largest beings in the Warhammer world. This category includes such terrors as mighty Dragons, be they noble or corrupted; Greater Daemons of Chaos, the most accursed of the Dark Gods' servants; towering Giants; lumbering constructs of science and sorcery, and far more besides. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Behemoths - - As Starting Wounds Ridden Monster Lumbering Thunderstomp ",
+    "i18n": {
+      "en": {
+        "name": "Behemoths",
+        "text": "Behemoths are the largest beings in the Warhammer world. This category includes such terrors as mighty Dragons, be they noble or corrupted; Greater Daemons of Chaos, the most accursed of the Dark Gods' servants; towering Giants; lumbering constructs of science and sorcery, and far more besides. Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules Behemoths - - As Starting Wounds Ridden Monster Lumbering Thunderstomp "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "thunderstomp",
+    "url": "https://tow.whfb.app/troop-types-in-detail/thunderstomp",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 196
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Thunderstomp",
+    "text": "Colossal feet and gigantic hooves do damage beyond imagining when they kick and stomp upon the enemy. Any Stomp Attacks made by a behemoth have an Armour Piercing characteristic of -2. However, this rule cannot be used against another monster (monstrous creatures or behemoth) – they are simply too big to be stomped on effectively.",
+    "i18n": {
+      "en": {
+        "name": "Thunderstomp",
+        "text": "Colossal feet and gigantic hooves do damage beyond imagining when they kick and stomp upon the enemy. Any Stomp Attacks made by a behemoth have an Armour Piercing characteristic of -2. However, this rule cannot be used against another monster (monstrous creatures or behemoth) – they are simply too big to be stomped on effectively."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "war-machines",
+    "url": "https://tow.whfb.app/troop-types-in-detail/war-machines",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 197
+    },
+    "last_updated": "2026-04-15",
+    "category": "war_machine",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": "As Starting Wounds",
+    "name": "War Machines",
+    "text": "War machines such as cannon and bolt throwers are powerful weapons on the field of battle, able to pulverise whole regiments, breach stone walls or even slay fearsome monsters with a single, well-placed shot. The most commonly seen types of war machine are dealt with as weapons in greater detail in their own section. War machines in general as a category of troop type have the following rules: Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules War Machines - - As Starting Wounds Split Profile (War Machine) \"We're Not Paid to Fight\" Weapon of War ",
+    "i18n": {
+      "en": {
+        "name": "War Machines",
+        "text": "War machines such as cannon and bolt throwers are powerful weapons on the field of battle, able to pulverise whole regiments, breach stone walls or even slay fearsome monsters with a single, well-placed shot. The most commonly seen types of war machine are dealt with as weapons in greater detail in their own section. War machines in general as a category of troop type have the following rules: Troop Type Models per Rank Maximum Rank Bonus Unit Strength per Model Special Rules War Machines - - As Starting Wounds Split Profile (War Machine) \"We're Not Paid to Fight\" Weapon of War "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "split-profile-war-machine",
+    "url": "https://tow.whfb.app/troop-types-in-detail/split-profile-war-machine",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 197
+    },
+    "last_updated": "2026-04-15",
+    "category": "war_machine",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Split Profile (War Machine)",
+    "text": "A war machine consists of several models – the war machine itself and the crew that operate it, together making a single model. To represent this, a war machine model has a split profile. In game terms, this works as follows: This model is treated as a single model and, unless noted otherwise, any special rules that apply to one element (war machine or crew) apply to the other as well. In combat, use the Toughness and Wounds characteristics of the crew. When not in combat, use the Toughness and Wounds characteristics of the war machine. For each Wound the crew loses, it suffers a -1 modifier to its Attacks characteristic. When this model makes an Armour Save roll, it uses the crew's armour value. If either the crew or the war machine is reduced to zero Wounds, the model as a whole is removed from play. ",
+    "i18n": {
+      "en": {
+        "name": "Split Profile (War Machine)",
+        "text": "A war machine consists of several models – the war machine itself and the crew that operate it, together making a single model. To represent this, a war machine model has a split profile. In game terms, this works as follows: This model is treated as a single model and, unless noted otherwise, any special rules that apply to one element (war machine or crew) apply to the other as well. In combat, use the Toughness and Wounds characteristics of the crew. When not in combat, use the Toughness and Wounds characteristics of the war machine. For each Wound the crew loses, it suffers a -1 modifier to its Attacks characteristic. When this model makes an Armour Save roll, it uses the crew's armour value. If either the crew or the war machine is reduced to zero Wounds, the model as a whole is removed from play. "
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "were-not-paid-to-fight",
+    "url": "https://tow.whfb.app/troop-types-in-detail/were-not-paid-to-fight",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 197
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "\"We're Not Paid to Fight\"",
+    "text": "Should a war machine ever Break and flee from combat, its crew will abandon it to be wrecked by the enemy and beat a hasty retreat. Treat the model as having been completely destroyed and remove it from play. Note that a war machine that loses a round of combat may Fall Back in Good Order or Give Ground as normal.",
+    "i18n": {
+      "en": {
+        "name": "\"We're Not Paid to Fight\"",
+        "text": "Should a war machine ever Break and flee from combat, its crew will abandon it to be wrecked by the enemy and beat a hasty retreat. Treat the model as having been completely destroyed and remove it from play. Note that a war machine that loses a round of combat may Fall Back in Good Order or Give Ground as normal."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "weapon-of-war",
+    "url": "https://tow.whfb.app/troop-types-in-detail/weapon-of-war",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": 197
+    },
+    "last_updated": "2026-04-15",
+    "category": "unknown",
+    "min_models_for_rank_bonus": null,
+    "max_rank_bonus": null,
+    "unit_strength_per_model": null,
+    "name": "Weapon of War",
+    "text": "War machines are built to be strong and durable rather than for speed and, as such, they are slow and cumbersome to move once erected. To represent this, war machines cannot march, declare a charge or make a pursuit move. Additionally, war machines suffer a -1 modifier to the result of any Flee roll they make (to a minimum of 1). However, a war machine can freely pivot about its centre immediately before shooting (the better to face the enemy) and may make a follow up move as normal. Should a war machine pivot, it does not count as having moved.",
+    "i18n": {
+      "en": {
+        "name": "Weapon of War",
+        "text": "War machines are built to be strong and durable rather than for speed and, as such, they are slow and cumbersome to move once erected. To represent this, war machines cannot march, declare a charge or make a pursuit move. Additionally, war machines suffer a -1 modifier to the result of any Flee roll they make (to a minimum of 1). However, a war machine can freely pivot about its centre immediately before shooting (the better to face the enemy) and may make a follow up move as normal. Should a war machine pivot, it does not count as having moved."
+      },
+      "es": {}
+    }
+  }
+]

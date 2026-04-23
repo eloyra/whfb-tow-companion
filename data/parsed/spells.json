@@ -1,0 +1,3593 @@
+[
+  {
+    "id": "hammerhand",
+    "url": "https://tow.whfb.app/the-lores-of-magic/battle-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "battle-magic",
+    "lore_number": 1,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Hammerhand",
+    "text": "As the Battle Mage chants an invocation, their fists become like hammers, falling upon their foes with great and terrible power.",
+    "i18n": {
+      "en": {
+        "name": "Hammerhand",
+        "text": "As the Battle Mage chants an invocation, their fists become like hammers, falling upon their foes with great and terrible power."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "fireball",
+    "url": "https://tow.whfb.app/the-lores-of-magic/battle-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "battle-magic",
+    "lore_number": 2,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "24\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Fireball",
+    "text": "With a snap of the fingers, the Battle Mage summons forth a roiling ball of magical flame and hurls it at a nearby foe.",
+    "i18n": {
+      "en": {
+        "name": "Fireball",
+        "text": "With a snap of the fingers, the Battle Mage summons forth a roiling ball of magical flame and hurls it at a nearby foe."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "curse-of-arrow-attraction",
+    "url": "https://tow.whfb.app/the-lores-of-magic/battle-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "battle-magic",
+    "lore_number": 3,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "21\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Curse of Arrow Attraction",
+    "text": "With a cry and a flourish, the Battle Mage curses an enemy, causing missiles to seek them out with almost sentient awareness.",
+    "i18n": {
+      "en": {
+        "name": "Curse of Arrow Attraction",
+        "text": "With a cry and a flourish, the Battle Mage curses an enemy, causing missiles to seek them out with almost sentient awareness."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "pillar-of-fire",
+    "url": "https://tow.whfb.app/the-lores-of-magic/battle-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "battle-magic",
+    "lore_number": 4,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Pillar of Fire",
+    "text": "The Battle Mage conjures a fireball which quickly grows to become a towering pillar. Loosed from their grasp, it advances towards the enemy.",
+    "i18n": {
+      "en": {
+        "name": "Pillar of Fire",
+        "text": "The Battle Mage conjures a fireball which quickly grows to become a towering pillar. Loosed from their grasp, it advances towards the enemy."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "arcane-urgency",
+    "url": "https://tow.whfb.app/the-lores-of-magic/battle-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "battle-magic",
+    "lore_number": 5,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Arcane Urgency",
+    "text": "As the Battle Mage's allies march, time around them slows, allowing them to cover great distance in the blink of an eye.",
+    "i18n": {
+      "en": {
+        "name": "Arcane Urgency",
+        "text": "As the Battle Mage's allies march, time around them slows, allowing them to cover great distance in the blink of an eye."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "oaken-shield",
+    "url": "https://tow.whfb.app/the-lores-of-magic/battle-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "battle-magic",
+    "lore_number": 6,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Oaken Shield",
+    "text": "The Battle Mage summons a mighty spectral oak around themselves and their allies, protecting them from the weapons of their enemies.",
+    "i18n": {
+      "en": {
+        "name": "Oaken Shield",
+        "text": "The Battle Mage summons a mighty spectral oak around themselves and their allies, protecting them from the weapons of their enemies."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "curse-of-cowardly-flight",
+    "url": "https://tow.whfb.app/the-lores-of-magic/battle-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "battle-magic",
+    "lore_number": 7,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Curse of Cowardly Flight",
+    "text": "As the war drums beat, the Battle Mage reaches into the minds of the enemy, tapping into their fears and weakening their intestinal fortitude.",
+    "i18n": {
+      "en": {
+        "name": "Curse of Cowardly Flight",
+        "text": "As the war drums beat, the Battle Mage reaches into the minds of the enemy, tapping into their fears and weakening their intestinal fortitude."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "the-summoning",
+    "url": "https://tow.whfb.app/the-lores-of-magic/daemonology",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "daemonology",
+    "lore_number": 1,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "The Summoning",
+    "text": "From the Realm of Chaos, the Daemonologist summons forth daemonic beasts to strike at their foes.",
+    "i18n": {
+      "en": {
+        "name": "The Summoning",
+        "text": "From the Realm of Chaos, the Daemonologist summons forth daemonic beasts to strike at their foes."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "steed-of-shadows",
+    "url": "https://tow.whfb.app/the-lores-of-magic/daemonology",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "daemonology",
+    "lore_number": 2,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Steed of Shadows",
+    "text": "Coal-black daemonic steeds materialise from the air, bearing warriors aloft on wings of shadow.",
+    "i18n": {
+      "en": {
+        "name": "Steed of Shadows",
+        "text": "Coal-black daemonic steeds materialise from the air, bearing warriors aloft on wings of shadow."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "gathering-darkness",
+    "url": "https://tow.whfb.app/the-lores-of-magic/daemonology",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "daemonology",
+    "lore_number": 3,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Gathering Darkness",
+    "text": "At the Daemonologist's command, strange forms gather about the foe, their whispered taunts draining the enemy's courage.",
+    "i18n": {
+      "en": {
+        "name": "Gathering Darkness",
+        "text": "At the Daemonologist's command, strange forms gather about the foe, their whispered taunts draining the enemy's courage."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "daemonic-familiars",
+    "url": "https://tow.whfb.app/the-lores-of-magic/daemonology",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "daemonology",
+    "lore_number": 4,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Daemonic Familiars",
+    "text": "The Daemonologist's many familiars fall upon the foe, slashing and biting with incorporeal claws and teeth.",
+    "i18n": {
+      "en": {
+        "name": "Daemonic Familiars",
+        "text": "The Daemonologist's many familiars fall upon the foe, slashing and biting with incorporeal claws and teeth."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "daemonic-vessel",
+    "url": "https://tow.whfb.app/the-lores-of-magic/daemonology",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "daemonology",
+    "lore_number": 5,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Daemonic Vessel",
+    "text": "At the Daemonologist's bidding, otherworldly entities rush forth to take possession of their allies, filling their bodies with unnatural ferocity.",
+    "i18n": {
+      "en": {
+        "name": "Daemonic Vessel",
+        "text": "At the Daemonologist's bidding, otherworldly entities rush forth to take possession of their allies, filling their bodies with unnatural ferocity."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "vortex-of-chaos",
+    "url": "https://tow.whfb.app/the-lores-of-magic/daemonology",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "daemonology",
+    "lore_number": 6,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Vortex of Chaos",
+    "text": "A swirling tear in reality opens, through which daemonic beasts grasp at those that venture too close.",
+    "i18n": {
+      "en": {
+        "name": "Vortex of Chaos",
+        "text": "A swirling tear in reality opens, through which daemonic beasts grasp at those that venture too close."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "daemonic-vigour",
+    "url": "https://tow.whfb.app/the-lores-of-magic/daemonology",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "daemonology",
+    "lore_number": 7,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Daemonic Vigour",
+    "text": "As the Daemonologist mutters verses aloud from a proscribed text, their allies fill with a daemonic vitality.",
+    "i18n": {
+      "en": {
+        "name": "Daemonic Vigour",
+        "text": "As the Daemonologist mutters verses aloud from a proscribed text, their allies fill with a daemonic vitality."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "doombolt",
+    "url": "https://tow.whfb.app/the-lores-of-magic/dark-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "dark-magic",
+    "lore_number": 1,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "24\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Doombolt",
+    "text": "At the Dark Mage's bidding, a bolt of black lightning tears from the heavens and stabs at the earth.",
+    "i18n": {
+      "en": {
+        "name": "Doombolt",
+        "text": "At the Dark Mage's bidding, a bolt of black lightning tears from the heavens and stabs at the earth."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "word-of-pain",
+    "url": "https://tow.whfb.app/the-lores-of-magic/dark-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "dark-magic",
+    "lore_number": 2,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Word of Pain",
+    "text": "The Dark Mage chants incomprehensible syllables, each more torturous than the last.",
+    "i18n": {
+      "en": {
+        "name": "Word of Pain",
+        "text": "The Dark Mage chants incomprehensible syllables, each more torturous than the last."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "stream-of-corruption",
+    "url": "https://tow.whfb.app/the-lores-of-magic/dark-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "dark-magic",
+    "lore_number": 3,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Stream of Corruption",
+    "text": "From the fingertips of the Dark Mage corrupted magic flows, flaying the flesh of the enemy.",
+    "i18n": {
+      "en": {
+        "name": "Stream of Corruption",
+        "text": "From the fingertips of the Dark Mage corrupted magic flows, flaying the flesh of the enemy."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "infernal-gateway",
+    "url": "https://tow.whfb.app/the-lores-of-magic/dark-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "dark-magic",
+    "lore_number": 4,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Infernal Gateway",
+    "text": "The Dark Mage reveals a hidden passageway through the Realm of Chaos.",
+    "i18n": {
+      "en": {
+        "name": "Infernal Gateway",
+        "text": "The Dark Mage reveals a hidden passageway through the Realm of Chaos."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "phantasmagoria",
+    "url": "https://tow.whfb.app/the-lores-of-magic/dark-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "dark-magic",
+    "lore_number": 5,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Phantasmagoria",
+    "text": "Dark visions beset the enemy ranks, driving warriors into blind panic or suicidal rage.",
+    "i18n": {
+      "en": {
+        "name": "Phantasmagoria",
+        "text": "Dark visions beset the enemy ranks, driving warriors into blind panic or suicidal rage."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "battle-lust",
+    "url": "https://tow.whfb.app/the-lores-of-magic/dark-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "dark-magic",
+    "lore_number": 6,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Battle Lust",
+    "text": "The builds within those near to the Dark Mage, filling them with a terrible lust for bloodshed.",
+    "i18n": {
+      "en": {
+        "name": "Battle Lust",
+        "text": "The builds within those near to the Dark Mage, filling them with a terrible lust for bloodshed."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "soul-eater",
+    "url": "https://tow.whfb.app/the-lores-of-magic/dark-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "dark-magic",
+    "lore_number": 7,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Soul Eater",
+    "text": "The Dark Mage reaches out a taloned hand to tear at the very soul of their enemy.",
+    "i18n": {
+      "en": {
+        "name": "Soul Eater",
+        "text": "The Dark Mage reaches out a taloned hand to tear at the very soul of their enemy."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "storm-call",
+    "url": "https://tow.whfb.app/the-lores-of-magic/elementalism",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "elementalism",
+    "lore_number": 1,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Storm Call",
+    "text": "The Elementalist channels the fury of a storm towards their foes, causing strong winds and icy rains to batter against them.",
+    "i18n": {
+      "en": {
+        "name": "Storm Call",
+        "text": "The Elementalist channels the fury of a storm towards their foes, causing strong winds and icy rains to batter against them."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "flaming-sword",
+    "url": "https://tow.whfb.app/the-lores-of-magic/elementalism",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "elementalism",
+    "lore_number": 2,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Flaming Sword",
+    "text": "With a simple gesture, the Elementalist summons a great, flaming sword with which to strike at their enemies.",
+    "i18n": {
+      "en": {
+        "name": "Flaming Sword",
+        "text": "With a simple gesture, the Elementalist summons a great, flaming sword with which to strike at their enemies."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "plague-of-rust",
+    "url": "https://tow.whfb.app/the-lores-of-magic/elementalism",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "elementalism",
+    "lore_number": 3,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "21\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Plague of Rust",
+    "text": "As the Elementalist utters a curse, the armour of the enemy loses its lustre, corroding and crumbling from their bodies.",
+    "i18n": {
+      "en": {
+        "name": "Plague of Rust",
+        "text": "As the Elementalist utters a curse, the armour of the enemy loses its lustre, corroding and crumbling from their bodies."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "summon-elemental-spirit",
+    "url": "https://tow.whfb.app/the-lores-of-magic/elementalism",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "elementalism",
+    "lore_number": 4,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Summon Elemental Spirit",
+    "text": "The Elementalist summons forth a powerful spirit of earth, wind, water or fire to do their bidding.",
+    "i18n": {
+      "en": {
+        "name": "Summon Elemental Spirit",
+        "text": "The Elementalist summons forth a powerful spirit of earth, wind, water or fire to do their bidding."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "earthen-ramparts",
+    "url": "https://tow.whfb.app/the-lores-of-magic/elementalism",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "elementalism",
+    "lore_number": 5,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Earthen Ramparts",
+    "text": "At the Elementalist's summoning, mighty earthen ramparts rise up about their allies.",
+    "i18n": {
+      "en": {
+        "name": "Earthen Ramparts",
+        "text": "At the Elementalist's summoning, mighty earthen ramparts rise up about their allies."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "wind-blast",
+    "url": "https://tow.whfb.app/the-lores-of-magic/elementalism",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "elementalism",
+    "lore_number": 6,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Wind Blast",
+    "text": "A mighty wind rips enemy warriors from their regiments, dashing them against the hard earth.",
+    "i18n": {
+      "en": {
+        "name": "Wind Blast",
+        "text": "A mighty wind rips enemy warriors from their regiments, dashing them against the hard earth."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "travel-mystical-pathway",
+    "url": "https://tow.whfb.app/the-lores-of-magic/elementalism",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "elementalism",
+    "lore_number": 7,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "9\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Travel Mystical Pathway",
+    "text": "Tapping into the power of the Geomantic Web, the Elementalist opens a portal through which their allies can travel.",
+    "i18n": {
+      "en": {
+        "name": "Travel Mystical Pathway",
+        "text": "Tapping into the power of the Geomantic Web, the Elementalist opens a portal through which their allies can travel."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "drain-magic",
+    "url": "https://tow.whfb.app/the-lores-of-magic/high-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "high-magic",
+    "lore_number": 1,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Drain Magic",
+    "text": "As the High Mage draws the Winds of Magic to themselves, other Wizards find themselves struggling to access their powers.",
+    "i18n": {
+      "en": {
+        "name": "Drain Magic",
+        "text": "As the High Mage draws the Winds of Magic to themselves, other Wizards find themselves struggling to access their powers."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "walk-between-worlds",
+    "url": "https://tow.whfb.app/the-lores-of-magic/high-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "high-magic",
+    "lore_number": 2,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Walk Between Worlds",
+    "text": "The High Mage causes their allies to drift in and out of reality, enabling them to pass through terrain as if it was not there.",
+    "i18n": {
+      "en": {
+        "name": "Walk Between Worlds",
+        "text": "The High Mage causes their allies to drift in and out of reality, enabling them to pass through terrain as if it was not there."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "fiery-convocation",
+    "url": "https://tow.whfb.app/the-lores-of-magic/high-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "high-magic",
+    "lore_number": 3,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Fiery Convocation",
+    "text": "At the High Mage's bidding, a roiling storm of fire erupts within the midst of the enemy line.",
+    "i18n": {
+      "en": {
+        "name": "Fiery Convocation",
+        "text": "At the High Mage's bidding, a roiling storm of fire erupts within the midst of the enemy line."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "tempest",
+    "url": "https://tow.whfb.app/the-lores-of-magic/high-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "high-magic",
+    "lore_number": 4,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Tempest",
+    "text": "The High Mage summons forth a tempest of rain and sleet, the centre of which is all but impenetrable.",
+    "i18n": {
+      "en": {
+        "name": "Tempest",
+        "text": "The High Mage summons forth a tempest of rain and sleet, the centre of which is all but impenetrable."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "corporeal-unmaking",
+    "url": "https://tow.whfb.app/the-lores-of-magic/high-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "high-magic",
+    "lore_number": 5,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Corporeal Unmaking",
+    "text": "The physical forms of the High Mage's enemies begin to unravel, turning to dust on the wind.",
+    "i18n": {
+      "en": {
+        "name": "Corporeal Unmaking",
+        "text": "The physical forms of the High Mage's enemies begin to unravel, turning to dust on the wind."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "fury-of-khaine",
+    "url": "https://tow.whfb.app/the-lores-of-magic/high-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "high-magic",
+    "lore_number": 6,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Fury of Khaine",
+    "text": "The High Mage beseeches Khaine, God of Murder, to bestow his fury on the High Mage's allies.",
+    "i18n": {
+      "en": {
+        "name": "Fury of Khaine",
+        "text": "The High Mage beseeches Khaine, God of Murder, to bestow his fury on the High Mage's allies."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "shield-of-saphery",
+    "url": "https://tow.whfb.app/the-lores-of-magic/high-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "high-magic",
+    "lore_number": 7,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Shield of Saphery",
+    "text": "White light bursts forth from the High Mage's outstretched hands, clinging to armour and arcing overhead to form a protective barrier around their allies.",
+    "i18n": {
+      "en": {
+        "name": "Shield of Saphery",
+        "text": "White light bursts forth from the High Mage's outstretched hands, clinging to armour and arcing overhead to form a protective barrier around their allies."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "glittering-robe",
+    "url": "https://tow.whfb.app/the-lores-of-magic/illusion",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "illusion",
+    "lore_number": 1,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Glittering Robe",
+    "text": "Shimmering light radiates from the Illusionist's garb, dazzling and confounding the enemy.",
+    "i18n": {
+      "en": {
+        "name": "Glittering Robe",
+        "text": "Shimmering light radiates from the Illusionist's garb, dazzling and confounding the enemy."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "mind-razor",
+    "url": "https://tow.whfb.app/the-lores-of-magic/illusion",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "illusion",
+    "lore_number": 2,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Mind Razor",
+    "text": "Torturous illusion grips the enemy. Only those with the strongest of wills can resist.",
+    "i18n": {
+      "en": {
+        "name": "Mind Razor",
+        "text": "Torturous illusion grips the enemy. Only those with the strongest of wills can resist."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "shimmering-dragon",
+    "url": "https://tow.whfb.app/the-lores-of-magic/illusion",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "illusion",
+    "lore_number": 3,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Shimmering Dragon",
+    "text": "An incorporeal Dragon materialises over the battlefield, stooping low to bear aloft a mighty champion.",
+    "i18n": {
+      "en": {
+        "name": "Shimmering Dragon",
+        "text": "An incorporeal Dragon materialises over the battlefield, stooping low to bear aloft a mighty champion."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "column-of-crystal",
+    "url": "https://tow.whfb.app/the-lores-of-magic/illusion",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "illusion",
+    "lore_number": 4,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "9\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Column of Crystal",
+    "text": "The Illusionist conjures forth an illusory column of crystal. All that see it believe it to be utterly impenetrable.",
+    "i18n": {
+      "en": {
+        "name": "Column of Crystal",
+        "text": "The Illusionist conjures forth an illusory column of crystal. All that see it believe it to be utterly impenetrable."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "confounding-convocation",
+    "url": "https://tow.whfb.app/the-lores-of-magic/illusion",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "illusion",
+    "lore_number": 5,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "9\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Confounding Convocation",
+    "text": "The enemy is bombarded by wild and disorienting images and dancing lights that render them all but blind to the world around them.",
+    "i18n": {
+      "en": {
+        "name": "Confounding Convocation",
+        "text": "The enemy is bombarded by wild and disorienting images and dancing lights that render them all but blind to the world around them."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "spectral-doppelganger",
+    "url": "https://tow.whfb.app/the-lores-of-magic/illusion",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "illusion",
+    "lore_number": 6,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Spectral Doppelganger",
+    "text": "Like the surface of a mirror struck a mighty blow, the Illusionist's image fractures, revealing myriad doppelganger likenesses.",
+    "i18n": {
+      "en": {
+        "name": "Spectral Doppelganger",
+        "text": "Like the surface of a mirror struck a mighty blow, the Illusionist's image fractures, revealing myriad doppelganger likenesses."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "miasmic-mirage",
+    "url": "https://tow.whfb.app/the-lores-of-magic/illusion",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "illusion",
+    "lore_number": 7,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Miasmic Mirage",
+    "text": "Around the feet of the enemy, the earth itself shifts and blurs, causing warriors to trip and stumble upon half-imagined obstacles.",
+    "i18n": {
+      "en": {
+        "name": "Miasmic Mirage",
+        "text": "Around the feet of the enemy, the earth itself shifts and blurs, causing warriors to trip and stumble upon half-imagined obstacles."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "the-dwellers-below",
+    "url": "https://tow.whfb.app/the-lores-of-magic/necromancy",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "necromancy",
+    "lore_number": 1,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "The Dwellers Below",
+    "text": "Beneath the enemy the cold dirt parts, revealing spectral hands that reach to grasp at the foe and pull them into the underworld.",
+    "i18n": {
+      "en": {
+        "name": "The Dwellers Below",
+        "text": "Beneath the enemy the cold dirt parts, revealing spectral hands that reach to grasp at the foe and pull them into the underworld."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "deathly-cabal",
+    "url": "https://tow.whfb.app/the-lores-of-magic/necromancy",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "necromancy",
+    "lore_number": 2,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Deathly Cabal",
+    "text": "From beyond the veil of death, unquiet spirits gather protectively around the Necromancer, their presence causing the foe to recoil in fear and dread.",
+    "i18n": {
+      "en": {
+        "name": "Deathly Cabal",
+        "text": "From beyond the veil of death, unquiet spirits gather protectively around the Necromancer, their presence causing the foe to recoil in fear and dread."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "unquiet-spirits",
+    "url": "https://tow.whfb.app/the-lores-of-magic/necromancy",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "necromancy",
+    "lore_number": 3,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Unquiet Spirits",
+    "text": "Evil spirits gather around the enemy, their spectral talons creeping beneath armour to tear at flesh.",
+    "i18n": {
+      "en": {
+        "name": "Unquiet Spirits",
+        "text": "Evil spirits gather around the enemy, their spectral talons creeping beneath armour to tear at flesh."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "spiritual-vortex",
+    "url": "https://tow.whfb.app/the-lores-of-magic/necromancy",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "necromancy",
+    "lore_number": 4,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Spiritual Vortex",
+    "text": "The Necromancer gestures and dark energy swirls, opening a vortex into the realm of Morr, god of death.",
+    "i18n": {
+      "en": {
+        "name": "Spiritual Vortex",
+        "text": "The Necromancer gestures and dark energy swirls, opening a vortex into the realm of Morr, god of death."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "curse-of-years",
+    "url": "https://tow.whfb.app/the-lores-of-magic/necromancy",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "necromancy",
+    "lore_number": 5,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Curse of Years",
+    "text": "As dead things draw near, they feed hungrily upon the vital energy of the living, ageing them rapidly.",
+    "i18n": {
+      "en": {
+        "name": "Curse of Years",
+        "text": "As dead things draw near, they feed hungrily upon the vital energy of the living, ageing them rapidly."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "spectral-steed",
+    "url": "https://tow.whfb.app/the-lores-of-magic/necromancy",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "necromancy",
+    "lore_number": 6,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Spectral Steed",
+    "text": "As the Necromancer chants words of dark power, a ghostly steed forms from the night air.",
+    "i18n": {
+      "en": {
+        "name": "Spectral Steed",
+        "text": "As the Necromancer chants words of dark power, a ghostly steed forms from the night air."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "spirit-leech",
+    "url": "https://tow.whfb.app/the-lores-of-magic/necromancy",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "necromancy",
+    "lore_number": 7,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Spirit Leech",
+    "text": "Chill winds gust and long shadows gather, sapping the enemy's will and sowing seeds of dread.",
+    "i18n": {
+      "en": {
+        "name": "Spirit Leech",
+        "text": "Chill winds gust and long shadows gather, sapping the enemy's will and sowing seeds of dread."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "fist-of-gork-or-mork",
+    "url": "https://tow.whfb.app/the-lores-of-magic/waaagh-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "waaagh-magic",
+    "lore_number": 1,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Fist of Gork (or Mork)",
+    "text": "In response to the Shaman's frantic hopping and gesticulating, a great green fist materialises from the air and wallops the foe!",
+    "i18n": {
+      "en": {
+        "name": "Fist of Gork (or Mork)",
+        "text": "In response to the Shaman's frantic hopping and gesticulating, a great green fist materialises from the air and wallops the foe!"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "vindictive-glare",
+    "url": "https://tow.whfb.app/the-lores-of-magic/waaagh-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "waaagh-magic",
+    "lore_number": 2,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "21\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Vindictive Glare",
+    "text": "Their brows furrowed and their teeth clenched, the Shaman's glare is so intense that their enemies visibly wither.",
+    "i18n": {
+      "en": {
+        "name": "Vindictive Glare",
+        "text": "Their brows furrowed and their teeth clenched, the Shaman's glare is so intense that their enemies visibly wither."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "hand-of-mork-or-gork",
+    "url": "https://tow.whfb.app/the-lores-of-magic/waaagh-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "waaagh-magic",
+    "lore_number": 3,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Hand of Mork (or Gork)",
+    "text": "A huge green hand appears from above and, with great care, flicks a hero across the battlefield.",
+    "i18n": {
+      "en": {
+        "name": "Hand of Mork (or Gork)",
+        "text": "A huge green hand appears from above and, with great care, flicks a hero across the battlefield."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "bad-moon-rizin",
+    "url": "https://tow.whfb.app/the-lores-of-magic/waaagh-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "waaagh-magic",
+    "lore_number": 4,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Bad Moon Rizin'",
+    "text": "The Shaman summons a great pale moon above the battlefield. Trembling under its baleful gaze, the enemy can barely lift their weapons!",
+    "i18n": {
+      "en": {
+        "name": "Bad Moon Rizin'",
+        "text": "The Shaman summons a great pale moon above the battlefield. Trembling under its baleful gaze, the enemy can barely lift their weapons!"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "evil-sun-shinin",
+    "url": "https://tow.whfb.app/the-lores-of-magic/waaagh-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "waaagh-magic",
+    "lore_number": 5,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Evil Sun Shinin'",
+    "text": "The sun is out and there's an enemy army over there – it's a great day for a battle! 'Ave at it Boyz!",
+    "i18n": {
+      "en": {
+        "name": "Evil Sun Shinin'",
+        "text": "The sun is out and there's an enemy army over there – it's a great day for a battle! 'Ave at it Boyz!"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "ere-we-go",
+    "url": "https://tow.whfb.app/the-lores-of-magic/waaagh-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "waaagh-magic",
+    "lore_number": 6,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "'Ere We Go!",
+    "text": "The Shaman begins a simple chant which is quickly and enthusiastically taken up by their friends.",
+    "i18n": {
+      "en": {
+        "name": "'Ere We Go!",
+        "text": "The Shaman begins a simple chant which is quickly and enthusiastically taken up by their friends."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "foot-of-gork-or-mork",
+    "url": "https://tow.whfb.app/the-lores-of-magic/waaagh-magic",
+    "source_citation": {
+      "book": "Rulebook",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "waaagh-magic",
+    "lore_number": 7,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Foot of Gork (or Mork)",
+    "text": "There's a massive green foot on the battlefield and it seems to be moving!",
+    "i18n": {
+      "en": {
+        "name": "Foot of Gork (or Mork)",
+        "text": "There's a massive green foot on the battlefield and it seems to be moving!"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "tree-singing",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-athel-loren",
+    "source_citation": {
+      "book": "Forces of Fantasy",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-athel-loren",
+    "lore_number": 1,
+    "casting_value": null,
+    "casting_value_override": "7+/9+",
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Tree Singing",
+    "text": "The melodious song of the Wizard rouses the forest spirits, awakening them from their deep slumber. In moments, fresh growth bursts from the fertile earth, reaching rapidly towards the heavens above.",
+    "i18n": {
+      "en": {
+        "name": "Tree Singing",
+        "text": "The melodious song of the Wizard rouses the forest spirits, awakening them from their deep slumber. In moments, fresh growth bursts from the fertile earth, reaching rapidly towards the heavens above."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "forest-walker",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-athel-loren",
+    "source_citation": {
+      "book": "Forces of Fantasy",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-athel-loren",
+    "lore_number": 2,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "24\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Forest Walker",
+    "text": "At the Wizard's bidding a hidden gateway into the Eternal Realms reveals itself. Beyond this lies a series of vaulted chambers, each leading to a similar portal; some nearby, other many leagues away.",
+    "i18n": {
+      "en": {
+        "name": "Forest Walker",
+        "text": "At the Wizard's bidding a hidden gateway into the Eternal Realms reveals itself. Beyond this lies a series of vaulted chambers, each leading to a similar portal; some nearby, other many leagues away."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "flock-of-doom-wood-elves",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-athel-loren",
+    "source_citation": {
+      "book": "Forces of Fantasy",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-athel-loren",
+    "lore_number": 3,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Flock of Doom (Wood Elves)",
+    "text": "With a mighty bellow, the Wizard summons forth a great flock of hawks and shrikes to strike at their enemies and drive them from their forest realm.",
+    "i18n": {
+      "en": {
+        "name": "Flock of Doom (Wood Elves)",
+        "text": "With a mighty bellow, the Wizard summons forth a great flock of hawks and shrikes to strike at their enemies and drive them from their forest realm."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "viletide",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-beasts",
+    "source_citation": {
+      "book": "Ravening Hordes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-beasts",
+    "lore_number": 1,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Viletide",
+    "text": "The Shaman calls to the creeping things that nest in the decaying undergrowth, creating a vile wave of spiders, centipedes and slugbeetles that swarm over the foe.",
+    "i18n": {
+      "en": {
+        "name": "Viletide",
+        "text": "The Shaman calls to the creeping things that nest in the decaying undergrowth, creating a vile wave of spiders, centipedes and slugbeetles that swarm over the foe."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "devolve",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-beasts",
+    "source_citation": {
+      "book": "Ravening Hordes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-beasts",
+    "lore_number": 2,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Devolve",
+    "text": "Delving into their enemies' minds, the Shaman magnifies the savage and animalistic parts of their psyche until they are no more than growling beasts.",
+    "i18n": {
+      "en": {
+        "name": "Devolve",
+        "text": "Delving into their enemies' minds, the Shaman magnifies the savage and animalistic parts of their psyche until they are no more than growling beasts."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "mantle-of-ghorok",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-beasts",
+    "source_citation": {
+      "book": "Ravening Hordes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-beasts",
+    "lore_number": 3,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Mantle of Ghorok",
+    "text": "Ghorok was a legendary Minotaur, ferocious as a storm. When possessed by his spirit-mantle, a Shaman becomes a terror on the battlefield, though to summon his rage is not without risk.",
+    "i18n": {
+      "en": {
+        "name": "Mantle of Ghorok",
+        "text": "Ghorok was a legendary Minotaur, ferocious as a storm. When possessed by his spirit-mantle, a Shaman becomes a terror on the battlefield, though to summon his rage is not without risk."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "winds-of-chaos",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-chaos",
+    "source_citation": {
+      "book": "Ravening Hordes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-chaos",
+    "lore_number": 1,
+    "casting_value": null,
+    "casting_value_override": "7+/9+",
+    "casting_value_boosted": null,
+    "range": "21\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Winds of Chaos",
+    "text": "A cold and vicious gale blows from the Northern Wastes, carrying with it the laughter of Dark Gods.",
+    "i18n": {
+      "en": {
+        "name": "Winds of Chaos",
+        "text": "A cold and vicious gale blows from the Northern Wastes, carrying with it the laughter of Dark Gods."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "acquiescence",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-chaos",
+    "source_citation": {
+      "book": "Ravening Hordes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-chaos",
+    "lore_number": 2,
+    "casting_value": 6,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Acquiescence",
+    "text": "The enemy is humbled by the beauty of Slaanesh, letting their weapons fall limply to their sides.",
+    "i18n": {
+      "en": {
+        "name": "Acquiescence",
+        "text": "The enemy is humbled by the beauty of Slaanesh, letting their weapons fall limply to their sides."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "fleshy-abundance",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-chaos",
+    "source_citation": {
+      "book": "Ravening Hordes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-chaos",
+    "lore_number": 3,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Fleshy Abundance",
+    "text": "Great wobbling mounds of fat spill out from beneath the armour of the Sorcerer and their comrades.",
+    "i18n": {
+      "en": {
+        "name": "Fleshy Abundance",
+        "text": "Great wobbling mounds of fat spill out from beneath the armour of the Sorcerer and their comrades."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "blue-fire",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-chaos",
+    "source_citation": {
+      "book": "Ravening Hordes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-chaos",
+    "lore_number": 4,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Blue Fire",
+    "text": "As the Sorcerer's hands draw strange runes in the air, their enemies are consumed by blue flames.",
+    "i18n": {
+      "en": {
+        "name": "Blue Fire",
+        "text": "As the Sorcerer's hands draw strange runes in the air, their enemies are consumed by blue flames."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "plague-wind",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-daemons-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-daemons-renegade",
+    "lore_number": 0,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Plague Wind",
+    "text": "Daemons of Nurgle only. Remains in Play. Place a small (3\") blast template so that its central hole is within 12\" of the caster. Whilst in play, the template is treated as dangerous terrain. The template scatters D6\" during every Start of Turn sub-phase. Any unit (friend or foe, but not including Daemons of Nurgle) that moves through the template, or that the template moves over suffers a -1 modifier to its Toughness characteristic for the remainder of the turn.",
+    "i18n": {
+      "en": {
+        "name": "Plague Wind",
+        "text": "Daemons of Nurgle only. Remains in Play. Place a small (3\") blast template so that its central hole is within 12\" of the caster. Whilst in play, the template is treated as dangerous terrain. The template scatters D6\" during every Start of Turn sub-phase. Any unit (friend or foe, but not including Daemons of Nurgle) that moves through the template, or that the template moves over suffers a -1 modifier to its Toughness characteristic for the remainder of the turn."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "cacophonic-hymn",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-daemons-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-daemons-renegade",
+    "lore_number": 1,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Cacophonic Hymn",
+    "text": "Daemons of Slaanesh only. Remains in Play. If this spell is cast, the effects of any enchantment spell previously cast on the target unit immediately expire. In addition, whilst this spell is in play, the target unit becomes subject to the Stupidity special rule.",
+    "i18n": {
+      "en": {
+        "name": "Cacophonic Hymn",
+        "text": "Daemons of Slaanesh only. Remains in Play. If this spell is cast, the effects of any enchantment spell previously cast on the target unit immediately expire. In addition, whilst this spell is in play, the target unit becomes subject to the Stupidity special rule."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "pink-fire",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-daemons-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-daemons-renegade",
+    "lore_number": 2,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Pink Fire",
+    "text": "Daemons of Tzeentch only. The target enemy unit suffers D3+3 Strength 3 hits, each with an AP of - and with the Flaming Attacks special rule.",
+    "i18n": {
+      "en": {
+        "name": "Pink Fire",
+        "text": "Daemons of Tzeentch only. The target enemy unit suffers D3+3 Strength 3 hits, each with an AP of - and with the Flaming Attacks special rule."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "gift-of-mutation",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-daemons-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-daemons-renegade",
+    "lore_number": 3,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Gift of Mutation",
+    "text": "Daemons of Tzeentch only. If this spell is cast with a casting result of 8 or more, the target enemy unit suffers a -D3 modifier to one of the following characteristics (to a minimum of 1, chosen by the casting player). If this spell is cast with a casting result of 12 or more, the target enemy unit suffers a -D3 modifier to two of the following characteristics (to a minimum of 1, chosen by the casting player). This spell lasts until your next Start of Turn sub-phase:\nWeapon SkillStrengthToughness",
+    "i18n": {
+      "en": {
+        "name": "Gift of Mutation",
+        "text": "Daemons of Tzeentch only. If this spell is cast with a casting result of 8 or more, the target enemy unit suffers a -D3 modifier to one of the following characteristics (to a minimum of 1, chosen by the casting player). If this spell is cast with a casting result of 12 or more, the target enemy unit suffers a -D3 modifier to two of the following characteristics (to a minimum of 1, chosen by the casting player). This spell lasts until your next Start of Turn sub-phase:\nWeapon SkillStrengthToughness"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "brain-bursta",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-gork",
+    "source_citation": {
+      "book": "Ravening Hordes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-gork",
+    "lore_number": 1,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Brain Bursta",
+    "text": "Channelling the violence of their peers, the Shaman projects it against their enemies in a brain-bursting wave.",
+    "i18n": {
+      "en": {
+        "name": "Brain Bursta",
+        "text": "Channelling the violence of their peers, the Shaman projects it against their enemies in a brain-bursting wave."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "gaze-of-gork",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-gork",
+    "source_citation": {
+      "book": "Ravening Hordes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-gork",
+    "lore_number": 2,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "5D6\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Gaze of Gork",
+    "text": "Gork gives the Shaman the ability to project beams of coruscating energy from their eyes, burning massive holes through everything they look at.",
+    "i18n": {
+      "en": {
+        "name": "Gaze of Gork",
+        "text": "Gork gives the Shaman the ability to project beams of coruscating energy from their eyes, burning massive holes through everything they look at."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "curse-of-hashut",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-hashut-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-hashut-renegade",
+    "lore_number": 0,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Curse of Hashut",
+    "text": "This spell can only target enemy characters. However, it may target any enemy character that is within range and that the caster can draw a line of sight to, regardless of the usual rules for targeting characters, and may even target an enemy character that has joined a unit or that is engaged in combat.\nThe target enemy character must immediately make a Toughness test. If this test is passed, it suffers D3 Strength 2 hits, each with an AP of -. If, however, this test is failed, it suffers D3+2 Strength 5 hits, with no armour or Regeneration saves permitted (Ward saves can be attempted as normal).",
+    "i18n": {
+      "en": {
+        "name": "Curse of Hashut",
+        "text": "This spell can only target enemy characters. However, it may target any enemy character that is within range and that the caster can draw a line of sight to, regardless of the usual rules for targeting characters, and may even target an enemy character that has joined a unit or that is engaged in combat.\nThe target enemy character must immediately make a Toughness test. If this test is passed, it suffers D3 Strength 2 hits, each with an AP of -. If, however, this test is failed, it suffers D3+2 Strength 5 hits, with no armour or Regeneration saves permitted (Ward saves can be attempted as normal)."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "storm-of-ash",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-hashut-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-hashut-renegade",
+    "lore_number": 1,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Storm of Ash",
+    "text": "Until your next Start of Turn sub-phase, all enemy units suffer a -1 modifier to any rolls To Hit made whilst within 9\" of the caster's model (rolls of a natural 6 are unaffected).",
+    "i18n": {
+      "en": {
+        "name": "Storm of Ash",
+        "text": "Until your next Start of Turn sub-phase, all enemy units suffer a -1 modifier to any rolls To Hit made whilst within 9\" of the caster's model (rolls of a natural 6 are unaffected)."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "flames-of-hashut",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-hashut-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-hashut-renegade",
+    "lore_number": 2,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Flames of Hashut",
+    "text": "A single enemy unit the caster is engaged in combat with suffers D3+1 Strength 4 hits, each with an AP of -1. These hits have the Flaming Attacks special rule.",
+    "i18n": {
+      "en": {
+        "name": "Flames of Hashut",
+        "text": "A single enemy unit the caster is engaged in combat with suffers D3+1 Strength 4 hits, each with an AP of -1. These hits have the Flaming Attacks special rule."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "apotheosis",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-lustria-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-lustria-renegade",
+    "lore_number": 0,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "24\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Apotheosis",
+    "text": "This spell can only target friendly characters whose troop type is infantry or cavalry, but may target characters engaged in combat. If this spell is cast with a casting result of 8 or more, the target friendly model immediately regains D3 lost Wounds. If this spell is cast with a casting result of 10 or more, the target friendly model immediately regains D3+1 lost Wounds.\nIn addition, the target friendly character gains the Fear special rule. If they already have the Fear special rule, they instead gain the Terror special rule.",
+    "i18n": {
+      "en": {
+        "name": "Apotheosis",
+        "text": "This spell can only target friendly characters whose troop type is infantry or cavalry, but may target characters engaged in combat. If this spell is cast with a casting result of 8 or more, the target friendly model immediately regains D3 lost Wounds. If this spell is cast with a casting result of 10 or more, the target friendly model immediately regains D3+1 lost Wounds.\nIn addition, the target friendly character gains the Fear special rule. If they already have the Fear special rule, they instead gain the Terror special rule."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "monsoon",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-lustria-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-lustria-renegade",
+    "lore_number": 1,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Monsoon",
+    "text": "Remains in Play. Place a large (5\") blast template so that its central hole is within 15\" of the caster. Whilst in play, the template is treated as dangerous terrain over which no line of sight can be drawn. The template scatters D6\" during every Start of Turn sub-phase. Any enemy for there move though the template becomes 'drenched' for the remainder of the game.\nA drenched unit suffers a -1 To Hit modifier during the Shooting phase. A drenched model whose troop type is 'war machine' must roll a D6 before shooting. On a roll of 1, the model fails to shoot this turn.",
+    "i18n": {
+      "en": {
+        "name": "Monsoon",
+        "text": "Remains in Play. Place a large (5\") blast template so that its central hole is within 15\" of the caster. Whilst in play, the template is treated as dangerous terrain over which no line of sight can be drawn. The template scatters D6\" during every Start of Turn sub-phase. Any enemy for there move though the template becomes 'drenched' for the remainder of the game.\nA drenched unit suffers a -1 To Hit modifier during the Shooting phase. A drenched model whose troop type is 'war machine' must roll a D6 before shooting. On a roll of 1, the model fails to shoot this turn."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "morks-curse",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-mork",
+    "source_citation": {
+      "book": "Ravening Hordes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-mork",
+    "lore_number": 3,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Mork’s Curse",
+    "text": "The Shaman points a bony finger at the enemy and utters a curse. Almost immediately, buckles begin to break and rivets pop, causing armour plates to slip.",
+    "i18n": {
+      "en": {
+        "name": "Mork’s Curse",
+        "text": "The Shaman points a bony finger at the enemy and utters a curse. Almost immediately, buckles begin to break and rivets pop, causing armour plates to slip."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "itchy-nuisance",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-mork",
+    "source_citation": {
+      "book": "Ravening Hordes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-mork",
+    "lore_number": 4,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Itchy Nuisance",
+    "text": "The Shaman begins vigorously scratching and cackling maniacally, their antics causing their enemies to feel uncomfortably hot and itchy.",
+    "i18n": {
+      "en": {
+        "name": "Itchy Nuisance",
+        "text": "The Shaman begins vigorously scratching and cackling maniacally, their antics causing their enemies to feel uncomfortably hot and itchy."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "cursing-word",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-naggaroth-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-naggaroth-renegade",
+    "lore_number": 0,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Cursing Word",
+    "text": "Remains in Play. Whilst this spell is in play, the target enemy unit suffers a -1 modifier to either its Weapon skill characteristic, or its Ballistic Skill characteristic (chosen by the casting Wizard’s controlling player, to minimum of 1). If this spell is cast, the effects of any other Hex previously cast on the target unit immediately expire.",
+    "i18n": {
+      "en": {
+        "name": "Cursing Word",
+        "text": "Remains in Play. Whilst this spell is in play, the target enemy unit suffers a -1 modifier to either its Weapon skill characteristic, or its Ballistic Skill characteristic (chosen by the casting Wizard’s controlling player, to minimum of 1). If this spell is cast, the effects of any other Hex previously cast on the target unit immediately expire."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "black-horror",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-naggaroth-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-naggaroth-renegade",
+    "lore_number": 1,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Black Horror",
+    "text": "Remains in Play. Place a large (5\") blast template so that its central hole is within 18\" of the caster. Whilst in play, the template is treated as difficult terrain. The template scatters 2D6\" during every Start of Turn sub-phase. Any enemy unit that moves through the template, or that the template moves over must immediately make D6 Strength tests. For each test that is failed, the unit loses a single Wound.",
+    "i18n": {
+      "en": {
+        "name": "Black Horror",
+        "text": "Remains in Play. Place a large (5\") blast template so that its central hole is within 18\" of the caster. Whilst in play, the template is treated as difficult terrain. The template scatters 2D6\" during every Start of Turn sub-phase. Any enemy unit that moves through the template, or that the template moves over must immediately make D6 Strength tests. For each test that is failed, the unit loses a single Wound."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "djafs-incantation-of-cursed-blades",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-nehekhara",
+    "source_citation": {
+      "book": "Ravening Hordes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-nehekhara",
+    "lore_number": 1,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Djaf's Incantation of Cursed Blades",
+    "text": "As the Liche Priest utters this ancient mantra, the weapons of the Nehekharan warriors gathered about them become imbued with the essence of Djaf, the jackal-headed god of the dead, who hungers for the souls of the living above all things.",
+    "i18n": {
+      "en": {
+        "name": "Djaf's Incantation of Cursed Blades",
+        "text": "As the Liche Priest utters this ancient mantra, the weapons of the Nehekharan warriors gathered about them become imbued with the essence of Djaf, the jackal-headed god of the dead, who hungers for the souls of the living above all things."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "khsars-incantation-of-the-desert-wind",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-nehekhara",
+    "source_citation": {
+      "book": "Ravening Hordes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-nehekhara",
+    "lore_number": 2,
+    "casting_value": null,
+    "casting_value_override": "6+/10+",
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Khsar's Incantation of the Desert Wind",
+    "text": "Harnessing the power of Khsar, god of the desert winds, the Liche Priest summons forth a sandstorm that engulfs the undying warriors of Nehekhara and carries them across the battlefield.",
+    "i18n": {
+      "en": {
+        "name": "Khsar's Incantation of the Desert Wind",
+        "text": "Harnessing the power of Khsar, god of the desert winds, the Liche Priest summons forth a sandstorm that engulfs the undying warriors of Nehekhara and carries them across the battlefield."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "usekhps-incantation-of-desiccation",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-nehekhara",
+    "source_citation": {
+      "book": "Ravening Hordes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-nehekhara",
+    "lore_number": 3,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Usekhp's Incantation of Desiccation",
+    "text": "As the Liche Priest intones the curse of desiccation every syllable strips the moisture from their victims' bodies, sapping their strength and vitality.",
+    "i18n": {
+      "en": {
+        "name": "Usekhp's Incantation of Desiccation",
+        "text": "As the Liche Priest intones the curse of desiccation every syllable strips the moisture from their victims' bodies, sapping their strength and vitality."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "primordial-gloom",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-primal-magic",
+    "source_citation": {
+      "book": "Arcane Journal: Beastmen Brayherds",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-primal-magic",
+    "lore_number": 0,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Primordial Gloom",
+    "text": "As the Bray-Shaman bellows praise to the gods, the sky above darkens and the soil underfoot swarms with unclean creatures.",
+    "i18n": {
+      "en": {
+        "name": "Primordial Gloom",
+        "text": "As the Bray-Shaman bellows praise to the gods, the sky above darkens and the soil underfoot swarms with unclean creatures."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "fury-of-the-beast",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-primal-magic",
+    "source_citation": {
+      "book": "Arcane Journal: Beastmen Brayherds",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-primal-magic",
+    "lore_number": 0,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Fury of the Beast",
+    "text": "Driven by the Bray-Shaman's invocations, the Children of Chaos flow like a tide of violence over the enemy.",
+    "i18n": {
+      "en": {
+        "name": "Fury of the Beast",
+        "text": "Driven by the Bray-Shaman's invocations, the Children of Chaos flow like a tide of violence over the enemy."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "call-of-the-wild",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-primal-magic",
+    "source_citation": {
+      "book": "Arcane Journal: Beastmen Brayherds",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-primal-magic",
+    "lore_number": 0,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Call of the Wild",
+    "text": "Filled with primal energy, the Children of Chaos move across the battlefield with unwholesome vigour.",
+    "i18n": {
+      "en": {
+        "name": "Call of the Wild",
+        "text": "Filled with primal energy, the Children of Chaos move across the battlefield with unwholesome vigour."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "strangleroot",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-primal-magic",
+    "source_citation": {
+      "book": "Arcane Journal: Beastmen Brayherds",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-primal-magic",
+    "lore_number": 0,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "4D6\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Strangleroot",
+    "text": "The Bray-Shaman gestures towards the foe, summoning twisted and blackened roots to grasp and strangle its enemies.",
+    "i18n": {
+      "en": {
+        "name": "Strangleroot",
+        "text": "The Bray-Shaman gestures towards the foe, summoning twisted and blackened roots to grasp and strangle its enemies."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "in-the-gloaming-wildwood",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-primal-magic",
+    "source_citation": {
+      "book": "Arcane Journal: Beastmen Brayherds",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-primal-magic",
+    "lore_number": 0,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "In the Gloaming Wildwood",
+    "text": "The words of half-forgotten folk tales fill the enemy's minds, instilling them with a childlike fear of the dark forests.",
+    "i18n": {
+      "en": {
+        "name": "In the Gloaming Wildwood",
+        "text": "The words of half-forgotten folk tales fill the enemy's minds, instilling them with a childlike fear of the dark forests."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "neath-the-shaden-wodespan",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-primal-magic",
+    "source_citation": {
+      "book": "Arcane Journal: Beastmen Brayherds",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-primal-magic",
+    "lore_number": 0,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "'Neath The Shaden Wodespan",
+    "text": "Spectral forests loom above the battlefield, spreading creeping shadows that fill the enemy with dread.",
+    "i18n": {
+      "en": {
+        "name": "'Neath The Shaden Wodespan",
+        "text": "Spectral forests loom above the battlefield, spreading creeping shadows that fill the enemy with dread."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "flock-of-doom-beastmen",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-primal-magic",
+    "source_citation": {
+      "book": "Arcane Journal: Beastmen Brayherds",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-primal-magic",
+    "lore_number": 0,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Flock of Doom (Beastmen)",
+    "text": "Summoned by the Bray-Shaman's cries, a flock of carrion birds descends upon the foe, striking at eyes and tearing through flesh.",
+    "i18n": {
+      "en": {
+        "name": "Flock of Doom (Beastmen)",
+        "text": "Summoned by the Bray-Shaman's cries, a flock of carrion birds descends upon the foe, striking at eyes and tearing through flesh."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "hand-of-khaine",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-saphery",
+    "source_citation": {
+      "book": "Forces of Fantasy",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-saphery",
+    "lore_number": 1,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Hand of Khaine",
+    "text": "With a simple gesture, white light bursts forth from the Mage's outstretched hand, banishing the life force of the foe.",
+    "i18n": {
+      "en": {
+        "name": "Hand of Khaine",
+        "text": "With a simple gesture, white light bursts forth from the Mage's outstretched hand, banishing the life force of the foe."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "courage-of-aenarion",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-saphery",
+    "source_citation": {
+      "book": "Forces of Fantasy",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-saphery",
+    "lore_number": 2,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Courage of Aenarion",
+    "text": "The High Elf Mage draws upon the Winds of Magic to conjure glorious images of Aenarion in the minds of their allies. So inspired, already brave warriors are filled with the unbreakable courage of the first Phoenix King.",
+    "i18n": {
+      "en": {
+        "name": "Courage of Aenarion",
+        "text": "The High Elf Mage draws upon the Winds of Magic to conjure glorious images of Aenarion in the minds of their allies. So inspired, already brave warriors are filled with the unbreakable courage of the first Phoenix King."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "vauls-unmaking",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-saphery",
+    "source_citation": {
+      "book": "Forces of Fantasy",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-saphery",
+    "lore_number": 3,
+    "casting_value": 11,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Vaul's Unmaking",
+    "text": "Glowing swords grow dim, blood-warm chalices cool and enchanted scrolls crumble into dust, their magical energies drained as the Mage turns the fury of Vaul's forge upon the magical trappings of the enemy.",
+    "i18n": {
+      "en": {
+        "name": "Vaul's Unmaking",
+        "text": "Glowing swords grow dim, blood-warm chalices cool and enchanted scrolls crumble into dust, their magical energies drained as the Mage turns the fury of Vaul's forge upon the magical trappings of the enemy."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "toothcracker",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-great-maw-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-great-maw-renegade",
+    "lore_number": 0,
+    "casting_value": 6,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Toothcracker",
+    "text": "If this spell is cast with a casting result of 7 or more, the target friendly unit gains a +1 modifier to its Toughness characteristic (to a maximum of 10). If this spell is cast with a casting result of 10 or more, the target friendly unit gains a +2 modifier to its Toughness characteristic (to a maximum of 10). This spell lasts until the end of this turn.",
+    "i18n": {
+      "en": {
+        "name": "Toothcracker",
+        "text": "If this spell is cast with a casting result of 7 or more, the target friendly unit gains a +1 modifier to its Toughness characteristic (to a maximum of 10). If this spell is cast with a casting result of 10 or more, the target friendly unit gains a +2 modifier to its Toughness characteristic (to a maximum of 10). This spell lasts until the end of this turn."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "trollguts",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-great-maw-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-great-maw-renegade",
+    "lore_number": 1,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Trollguts",
+    "text": "If this spell is cast with a casting result of 8 or more, the target friendly unit gains the Regeneration (6+) special rule. If this spell is cast with a casting result of 11 or more, the target friendly unit gains the Regeneration (5+) special rule. This spell lasts until your next Start of Turn sub-phase.",
+    "i18n": {
+      "en": {
+        "name": "Trollguts",
+        "text": "If this spell is cast with a casting result of 8 or more, the target friendly unit gains the Regeneration (6+) special rule. If this spell is cast with a casting result of 11 or more, the target friendly unit gains the Regeneration (5+) special rule. This spell lasts until your next Start of Turn sub-phase."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "skitterleap",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-horned-rat-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-horned-rat-renegade",
+    "lore_number": 0,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Skitterleap",
+    "text": "This spell can only target friendly characters whose Troop Type is infantry, but may target characters engaged in combat. You may immediately remove the target friendly character from the battlefield and replace it anywhere completely within 24\" of its original location, but not within 6\" of any enemy models. The target cannot move again during this Movement phase.\nNote that this spell allows a character to leave combat.",
+    "i18n": {
+      "en": {
+        "name": "Skitterleap",
+        "text": "This spell can only target friendly characters whose Troop Type is infantry, but may target characters engaged in combat. You may immediately remove the target friendly character from the battlefield and replace it anywhere completely within 24\" of its original location, but not within 6\" of any enemy models. The target cannot move again during this Movement phase.\nNote that this spell allows a character to leave combat."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "warp-lightning",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-horned-rat-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-horned-rat-renegade",
+    "lore_number": 1,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Warp Lightning",
+    "text": "The target enemy unit suffers D3+1 Strength 5 hits, each with an AP of -3.",
+    "i18n": {
+      "en": {
+        "name": "Warp Lightning",
+        "text": "The target enemy unit suffers D3+1 Strength 5 hits, each with an AP of -3."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "cloud-of-corruption",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-horned-rat-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-horned-rat-renegade",
+    "lore_number": 2,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "9\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Cloud of Corruption",
+    "text": "Remains in Play. Place a small (3\") blast template so that its central hole is within 9\" of the caster. Whilst in play, the template is treated as dangerous terrain over which no line of sight can be drawn. Whilst within 3\" of one or more of these templates, enemy units suffer a -1 modifier to their Toughness characteristic (to a minimum of one).",
+    "i18n": {
+      "en": {
+        "name": "Cloud of Corruption",
+        "text": "Remains in Play. Place a small (3\") blast template so that its central hole is within 9\" of the caster. Whilst in play, the template is treated as dangerous terrain over which no line of sight can be drawn. Whilst within 3\" of one or more of these templates, enemy units suffer a -1 modifier to their Toughness characteristic (to a minimum of one)."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "the-ladys-gift",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-lady",
+    "source_citation": {
+      "book": "Forces of Fantasy",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-lady",
+    "lore_number": 1,
+    "casting_value": null,
+    "casting_value_override": "7+/10+",
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "The Lady's Gift",
+    "text": "As the Damsel prays solemnly to the Lady of the Lake, silvery light emanates from her most ardent followers, knitting their wounds and gilding their armour.",
+    "i18n": {
+      "en": {
+        "name": "The Lady's Gift",
+        "text": "As the Damsel prays solemnly to the Lady of the Lake, silvery light emanates from her most ardent followers, knitting their wounds and gilding their armour."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "burning-gaze",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-lady",
+    "source_citation": {
+      "book": "Forces of Fantasy",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-lady",
+    "lore_number": 2,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "5D6\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Burning Gaze",
+    "text": "Beams of cleansing white light flow from the Damsel's eyes, searing all traces of evil from her sight.",
+    "i18n": {
+      "en": {
+        "name": "Burning Gaze",
+        "text": "Beams of cleansing white light flow from the Damsel's eyes, searing all traces of evil from her sight."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "the-ladys-wrath",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-lady",
+    "source_citation": {
+      "book": "Forces of Fantasy",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-lady",
+    "lore_number": 3,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "The Lady's Wrath",
+    "text": "Enraged to see the lands of fair Bretonnia invaded by enemies, the Damsel invokes the wrath of the Lady of the Lake, strengthening the sword arms of her companions.",
+    "i18n": {
+      "en": {
+        "name": "The Lady's Wrath",
+        "text": "Enraged to see the lands of fair Bretonnia invaded by enemies, the Damsel invokes the wrath of the Lady of the Lake, strengthening the sword arms of her companions."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "maelstrom-of-chaos",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-shadowlands",
+    "source_citation": {
+      "book": "Arcane Journal: The Razing of Westerland",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-shadowlands",
+    "lore_number": 1,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Maelstrom of Chaos",
+    "text": "The Sorcerer intones words of the Dark Tongue, summoning the breath of the gods from the dark skies above and gathering it about them before unleashing it upon their enemies.",
+    "i18n": {
+      "en": {
+        "name": "Maelstrom of Chaos",
+        "text": "The Sorcerer intones words of the Dark Tongue, summoning the breath of the gods from the dark skies above and gathering it about them before unleashing it upon their enemies."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "blackened-bolts",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-shadowlands",
+    "source_citation": {
+      "book": "Arcane Journal: The Razing of Westerland",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-shadowlands",
+    "lore_number": 2,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Blackened Bolts",
+    "text": "With a gesture, the Sorcerer turns the tendrils of shadow that crawl about them into bolts of dark lightning.",
+    "i18n": {
+      "en": {
+        "name": "Blackened Bolts",
+        "text": "With a gesture, the Sorcerer turns the tendrils of shadow that crawl about them into bolts of dark lightning."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "veil-of-gloom",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-shadowlands",
+    "source_citation": {
+      "book": "Arcane Journal: The Razing of Westerland",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-shadowlands",
+    "lore_number": 3,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Veil of Gloom",
+    "text": "Shrouded by the lingering darkness of the Shadowlands, the Sorcerer summons the breath of the gods to dissipate the enemy's attacks.",
+    "i18n": {
+      "en": {
+        "name": "Veil of Gloom",
+        "text": "Shrouded by the lingering darkness of the Shadowlands, the Sorcerer summons the breath of the gods to dissipate the enemy's attacks."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "vortex-of-darkness",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-shadowlands",
+    "source_citation": {
+      "book": "Arcane Journal: The Razing of Westerland",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-shadowlands",
+    "lore_number": 4,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Vortex of Darkness",
+    "text": "A swirling tornado of screaming souls and inky-darkness rends and tears at those it passes, shredding flesh and spirit alike.",
+    "i18n": {
+      "en": {
+        "name": "Vortex of Darkness",
+        "text": "A swirling tornado of screaming souls and inky-darkness rends and tears at those it passes, shredding flesh and spirit alike."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "shadowed-assailants",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-shadowlands",
+    "source_citation": {
+      "book": "Arcane Journal: The Razing of Westerland",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-shadowlands",
+    "lore_number": 5,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Shadowed Assailants",
+    "text": "At the Sorcerer's command, the enemy's own shadows turn upon them, clawing at flesh with talons of darkness.",
+    "i18n": {
+      "en": {
+        "name": "Shadowed Assailants",
+        "text": "At the Sorcerer's command, the enemy's own shadows turn upon them, clawing at flesh with talons of darkness."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "crawling-mists",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-shadowlands",
+    "source_citation": {
+      "book": "Arcane Journal: The Razing of Westerland",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-shadowlands",
+    "lore_number": 6,
+    "casting_value": 6,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Crawling Mists",
+    "text": "The Sorcerer manipulates the cloying fog of the Shadowlands to cloak the movements of their allies and hasten their advance.",
+    "i18n": {
+      "en": {
+        "name": "Crawling Mists",
+        "text": "The Sorcerer manipulates the cloying fog of the Shadowlands to cloak the movements of their allies and hasten their advance."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "chains-of-darkness",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-shadowlands",
+    "source_citation": {
+      "book": "Arcane Journal: The Razing of Westerland",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-shadowlands",
+    "lore_number": 7,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Chains of Darkness",
+    "text": "Shadowy ichor materialises about the foe, solidifying into blackened shackles that weigh heavy upon their limbs.",
+    "i18n": {
+      "en": {
+        "name": "Chains of Darkness",
+        "text": "Shadowy ichor materialises about the foe, solidifying into blackened shackles that weigh heavy upon their limbs."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "durthus-wrath",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-wilds",
+    "source_citation": {
+      "book": "Arcane Journal: Wood Elf Realms",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-wilds",
+    "lore_number": 1,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Durthu's Wrath",
+    "text": "Having witnessed untold destruction within his homeland, Durthu's rage echoes through Athel Loren and can be drawn upon by those who act in harmony with the forest.",
+    "i18n": {
+      "en": {
+        "name": "Durthu's Wrath",
+        "text": "Having witnessed untold destruction within his homeland, Durthu's rage echoes through Athel Loren and can be drawn upon by those who act in harmony with the forest."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "hidden-pathways",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-wilds",
+    "source_citation": {
+      "book": "Arcane Journal: Wood Elf Realms",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-wilds",
+    "lore_number": 1,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Hidden Pathways",
+    "text": "The forests of Athel Loren can be compelled to hurry the passage of those who act with its best interests at heart.",
+    "i18n": {
+      "en": {
+        "name": "Hidden Pathways",
+        "text": "The forests of Athel Loren can be compelled to hurry the passage of those who act with its best interests at heart."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "ariels-blessing",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-wilds",
+    "source_citation": {
+      "book": "Arcane Journal: Wood Elf Realms",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-wilds",
+    "lore_number": 1,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "10\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Ariel's Blessing",
+    "text": "Channelling the power of the Mage Queen herself, the caster surrounds their allies in a healing golden light.",
+    "i18n": {
+      "en": {
+        "name": "Ariel's Blessing",
+        "text": "Channelling the power of the Mage Queen herself, the caster surrounds their allies in a healing golden light."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "spiteful-torrent",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-wilds",
+    "source_citation": {
+      "book": "Arcane Journal: Wood Elf Realms",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-wilds",
+    "lore_number": 1,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Spiteful Torrent",
+    "text": "Swarms of Spites and forest insects erupt from the casters' staff, racing across the battlefield as a writhing mass that bites and stings all within reach.",
+    "i18n": {
+      "en": {
+        "name": "Spiteful Torrent",
+        "text": "Swarms of Spites and forest insects erupt from the casters' staff, racing across the battlefield as a writhing mass that bites and stings all within reach."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "fury-of-athel-loren",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-wilds",
+    "source_citation": {
+      "book": "Arcane Journal: Wood Elf Realms",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-wilds",
+    "lore_number": 1,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Fury of Athel Loren",
+    "text": "The caster summons forth writhing vines and briars from the ground to slash and strangle those who seek to harm Athel Loren and its inhabitants.",
+    "i18n": {
+      "en": {
+        "name": "Fury of Athel Loren",
+        "text": "The caster summons forth writhing vines and briars from the ground to slash and strangle those who seek to harm Athel Loren and its inhabitants."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "sapping-blight",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-wilds",
+    "source_citation": {
+      "book": "Arcane Journal: Wood Elf Realms",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-wilds",
+    "lore_number": 1,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Sapping Blight",
+    "text": "As roots draw water from the earth, so too can the mages of Athel Loren sap the lifeforce from their foes.",
+    "i18n": {
+      "en": {
+        "name": "Sapping Blight",
+        "text": "As roots draw water from the earth, so too can the mages of Athel Loren sap the lifeforce from their foes."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "swirling-mists",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-wilds",
+    "source_citation": {
+      "book": "Arcane Journal: Wood Elf Realms",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-the-wilds",
+    "lore_number": 1,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Swirling Mists",
+    "text": "The beguiling mist that has turned about many travellers can be called upon to shroud the forces of Athel Loren from prying eyes.",
+    "i18n": {
+      "en": {
+        "name": "Swirling Mists",
+        "text": "The beguiling mist that has turned about many travellers can be called upon to shroud the forces of Athel Loren from prying eyes."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "big-smartz",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-troll-magic",
+    "source_citation": {
+      "book": "Arcane Journal: Orc & Goblin Tribes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-troll-magic",
+    "lore_number": 1,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Big Smartz",
+    "text": "Gesturing lazily with a crooked staff, the caster enhances and sharpens the minds of those nearby, giving them a clearer look upon the world.",
+    "i18n": {
+      "en": {
+        "name": "Big Smartz",
+        "text": "Gesturing lazily with a crooked staff, the caster enhances and sharpens the minds of those nearby, giving them a clearer look upon the world."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "acidic-bile",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-troll-magic",
+    "source_citation": {
+      "book": "Arcane Journal: Orc & Goblin Tribes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-troll-magic",
+    "lore_number": 2,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "10\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Acidic Bile",
+    "text": "Spitting a guttural incantation, the caster launches a ball of sickly green and yellow Troll vomit toward the enemy, scorching flesh and dissolving armour.",
+    "i18n": {
+      "en": {
+        "name": "Acidic Bile",
+        "text": "Spitting a guttural incantation, the caster launches a ball of sickly green and yellow Troll vomit toward the enemy, scorching flesh and dissolving armour."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "troll-brainz",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-troll-magic",
+    "source_citation": {
+      "book": "Arcane Journal: Orc & Goblin Tribes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-troll-magic",
+    "lore_number": 3,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Troll Brainz",
+    "text": "Under the beguiling influence of this crude magic, even the most experienced warriors can quickly find themselves hopelessly confused and at a loss for what to do.",
+    "i18n": {
+      "en": {
+        "name": "Troll Brainz",
+        "text": "Under the beguiling influence of this crude magic, even the most experienced warriors can quickly find themselves hopelessly confused and at a loss for what to do."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "ravenous-recourse",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-troll-magic",
+    "source_citation": {
+      "book": "Arcane Journal: Orc & Goblin Tribes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-troll-magic",
+    "lore_number": 4,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Ravenous Recourse",
+    "text": "Through arcane means or by simply being reminded how hungry they are, the assembled Trolls race forward with a sudden burst of vigour.",
+    "i18n": {
+      "en": {
+        "name": "Ravenous Recourse",
+        "text": "Through arcane means or by simply being reminded how hungry they are, the assembled Trolls race forward with a sudden burst of vigour."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "foetid-whirlpool",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-troll-magic",
+    "source_citation": {
+      "book": "Arcane Journal: Orc & Goblin Tribes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-troll-magic",
+    "lore_number": 5,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Foetid Whirlpool",
+    "text": "A deluge of foul swamp water and unmentionable waste is spun into a swirling tornado and unleashed onto the battlefield.",
+    "i18n": {
+      "en": {
+        "name": "Foetid Whirlpool",
+        "text": "A deluge of foul swamp water and unmentionable waste is spun into a swirling tornado and unleashed onto the battlefield."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "torrent-of-filth",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-troll-magic",
+    "source_citation": {
+      "book": "Arcane Journal: Orc & Goblin Tribes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-troll-magic",
+    "lore_number": 6,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Torrent of Filth",
+    "text": "With an almighty belch, the caster heaves a stream of burning bile across their foes as the battlelines clash.",
+    "i18n": {
+      "en": {
+        "name": "Torrent of Filth",
+        "text": "With an almighty belch, the caster heaves a stream of burning bile across their foes as the battlelines clash."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "rapid-regeneration",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-troll-magic",
+    "source_citation": {
+      "book": "Arcane Journal: Orc & Goblin Tribes",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-troll-magic",
+    "lore_number": 7,
+    "casting_value": 8,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Rapid Regeneration",
+    "text": "Drawing on the regenerative properties of theTrolls, the caster channels that enhanced healing towards those in harm's way.",
+    "i18n": {
+      "en": {
+        "name": "Rapid Regeneration",
+        "text": "Drawing on the regenerative properties of theTrolls, the caster channels that enhanced healing towards those in harm's way."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "vanhals-danse-macabre",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-undeath",
+    "source_citation": {
+      "book": "Vampire Counts",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-undeath",
+    "lore_number": 1,
+    "casting_value": null,
+    "casting_value_override": "8+/12+",
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Vanhal's Danse Macabre",
+    "text": "Filled with magical energy, the Undead jerk forwards on the attack with tireless and unnatural speed.",
+    "i18n": {
+      "en": {
+        "name": "Vanhal's Danse Macabre",
+        "text": "Filled with magical energy, the Undead jerk forwards on the attack with tireless and unnatural speed."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "hellish-vigour",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-undeath-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-undeath-renegade",
+    "lore_number": 1,
+    "casting_value": 6,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Hellish Vigour",
+    "text": "If this spell is cast with a casting result of 6 or more, a single friendly unit that has the Necromantic Undead special rule and is within the caster's Command range gains the Reserve Move special rule. If this spell is cast with a casting result of 10 or more, every friendly unit that has the Necromantic Undead special rule and is within the caster's Command range gains the Reserve Move special rule. This spell lasts until the end of this turn.",
+    "i18n": {
+      "en": {
+        "name": "Hellish Vigour",
+        "text": "If this spell is cast with a casting result of 6 or more, a single friendly unit that has the Necromantic Undead special rule and is within the caster's Command range gains the Reserve Move special rule. If this spell is cast with a casting result of 10 or more, every friendly unit that has the Necromantic Undead special rule and is within the caster's Command range gains the Reserve Move special rule. This spell lasts until the end of this turn."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "raise-dead",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-undeath-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-undeath-renegade",
+    "lore_number": 2,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Raise Dead",
+    "text": "Place a unit of 2D3 Risen Zombies on the battlefield anywhere completely within 12\" of this model, but not within 1\" of any enemy models. This unit cannot declare a charge during the turn in which it was raised:\nTroop Type: Regular Infantry\nBase Size: 25 x 25 mm\nUnit Size: 2-6\nEquipment: Hand weapons\nSpecial Rules: Necromantic Undead, Regeneration (6+), Skirmishers, The Newly Dead\nNote that Risen Zombies are not worth any Victory Points.",
+    "i18n": {
+      "en": {
+        "name": "Raise Dead",
+        "text": "Place a unit of 2D3 Risen Zombies on the battlefield anywhere completely within 12\" of this model, but not within 1\" of any enemy models. This unit cannot declare a charge during the turn in which it was raised:\nTroop Type: Regular Infantry\nBase Size: 25 x 25 mm\nUnit Size: 2-6\nEquipment: Hand weapons\nSpecial Rules: Necromantic Undead, Regeneration (6+), Skirmishers, The Newly Dead\nNote that Risen Zombies are not worth any Victory Points."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "constellation-of-the-dragon",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-yang",
+    "source_citation": {
+      "book": "Arcane Journal: Armies of Grand Cathay",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-yang",
+    "lore_number": 1,
+    "casting_value": null,
+    "casting_value_override": "7+/11+",
+    "casting_value_boosted": null,
+    "range": "18\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Constellation of the Dragon",
+    "text": "Blazing starlight leaps from the Wizard's fingertips, dancing and forming a simulacrum of the constellation of the Dragon Emperor above the battlefield.",
+    "i18n": {
+      "en": {
+        "name": "Constellation of the Dragon",
+        "text": "Blazing starlight leaps from the Wizard's fingertips, dancing and forming a simulacrum of the constellation of the Dragon Emperor above the battlefield."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "great-bastion",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-yang",
+    "source_citation": {
+      "book": "Arcane Journal: Armies of Grand Cathay",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-yang",
+    "lore_number": 2,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Great Bastion",
+    "text": "With a word of power from the Wizard, the earth cracks and buckles as it is transformed into ramparts upon which gleaming battlements burn with celestial flame.",
+    "i18n": {
+      "en": {
+        "name": "Great Bastion",
+        "text": "With a word of power from the Wizard, the earth cracks and buckles as it is transformed into ramparts upon which gleaming battlements burn with celestial flame."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "might-of-heaven-and-earth",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-yang",
+    "source_citation": {
+      "book": "Arcane Journal: Armies of Grand Cathay",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-yang",
+    "lore_number": 3,
+    "casting_value": null,
+    "casting_value_override": "9+/12+",
+    "casting_value_boosted": null,
+    "range": "Self",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Might of Heaven & Earth",
+    "text": "Calling upon the elemental energies of earth and heaven, the Wizard and those around them become imbued with the pure power of the Yang.",
+    "i18n": {
+      "en": {
+        "name": "Might of Heaven & Earth",
+        "text": "Calling upon the elemental energies of earth and heaven, the Wizard and those around them become imbued with the pure power of the Yang."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "spirits-of-wind-and-shadow",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-yin",
+    "source_citation": {
+      "book": "Arcane Journal: Armies of Grand Cathay",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-yin",
+    "lore_number": 1,
+    "casting_value": 10,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Spirits of Wind & Shadow",
+    "text": "Elemental spirits descend upon the foe, enveloping them in a whirlwind of flickering shapes and ghostly gales.As they try to advance, those afflicted find themselves waylaid by the grasping talons of unseen spirits and buffeted by spectral winds.",
+    "i18n": {
+      "en": {
+        "name": "Spirits of Wind & Shadow",
+        "text": "Elemental spirits descend upon the foe, enveloping them in a whirlwind of flickering shapes and ghostly gales.As they try to advance, those afflicted find themselves waylaid by the grasping talons of unseen spirits and buffeted by spectral winds."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "accursed-mirror",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-yin",
+    "source_citation": {
+      "book": "Arcane Journal: Armies of Grand Cathay",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-yin",
+    "lore_number": 2,
+    "casting_value": 9,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "15\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Accursed Mirror",
+    "text": "The Wizard creates a magical barrier of shifting darkness and howling wind around the enemy. This barrier snatches the enemy's missiles from the air and swallows the tips of their spears, instantly turning the lethal power of these weapons back upon their bearers.",
+    "i18n": {
+      "en": {
+        "name": "Accursed Mirror",
+        "text": "The Wizard creates a magical barrier of shifting darkness and howling wind around the enemy. This barrier snatches the enemy's missiles from the air and swallows the tips of their spears, instantly turning the lethal power of these weapons back upon their bearers."
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "ancestral-warriors",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-yin",
+    "source_citation": {
+      "book": "Arcane Journal: Armies of Grand Cathay",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-yin",
+    "lore_number": 3,
+    "casting_value": null,
+    "casting_value_override": "7+/11+",
+    "casting_value_boosted": null,
+    "range": "Combat",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Ancestral Warriors",
+    "text": "TK",
+    "i18n": {
+      "en": {
+        "name": "Ancestral Warriors",
+        "text": "TK"
+      },
+      "es": {}
+    }
+  },
+  {
+    "id": "vanhal-s-danse-macabre",
+    "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-undeath-renegade",
+    "source_citation": {
+      "book": "The Renegade Legacy Pack",
+      "page": null
+    },
+    "last_updated": "2026-04-15",
+    "lore_id": "lore-of-undeath-renegade",
+    "lore_number": 0,
+    "casting_value": 7,
+    "casting_value_override": null,
+    "casting_value_boosted": null,
+    "range": "12\"",
+    "spell_type": null,
+    "duration": null,
+    "target": null,
+    "name": "Vanhal's Danse Macabre",
+    "text": "If this spell is cast with a casting result of 7 or more, the target friendly unit gains a +D3 modifier to one of the following characteristics (to a maximum of 10). If this spell is cast with a casting result of 11 or more, the target friendly unit gains a +D3 modifier to two of the following characteristics (to a maximum of 10). This spell lasts until your next Start of Turn sub-phase.\nMovementWeapon SkillInitiative",
+    "i18n": {
+      "en": {
+        "name": "Vanhal's Danse Macabre",
+        "text": "If this spell is cast with a casting result of 7 or more, the target friendly unit gains a +D3 modifier to one of the following characteristics (to a maximum of 10). If this spell is cast with a casting result of 11 or more, the target friendly unit gains a +D3 modifier to two of the following characteristics (to a maximum of 10). This spell lasts until your next Start of Turn sub-phase.\nMovementWeapon SkillInitiative"
+      },
+      "es": {}
+    }
+  }
+]

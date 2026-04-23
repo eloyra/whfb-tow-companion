@@ -9,8 +9,9 @@ to ``data/parsed/``.
 Output files:
     data/parsed/armies.json
     data/parsed/units.json
-    data/parsed/rules.json
+    data/parsed/special_rules.json
     data/parsed/core_rules.json
+    data/parsed/documents.json
     data/parsed/troop_types.json
     data/parsed/weapons.json
     data/parsed/spells.json
@@ -61,8 +62,8 @@ _NEXT_DATA_RE = re.compile(
 _PARSERS: dict[str, BaseParser] = {
     "army": ArmyParser(),
     "unit": UnitParser(),
-    "rule": RuleParser(),
-    "troop_type": RuleParser(),   # RuleParser handles both rule + troop_type
+    "special_rule": RuleParser(),
+    "troop_type": RuleParser(),  # RuleParser handles both special_rule + troop_type
     "core_rule": CoreRuleParser(),
     "spell": SpellParser(),
     "magic_item": MagicItemParser(),
@@ -78,8 +79,10 @@ _PARSERS: dict[str, BaseParser] = {
 _NODE_TYPE_TO_FILE: dict[str, str] = {
     "army": "armies.json",
     "unit": "units.json",
-    "rule": "rules.json",
+    "lore": "lores.json",
+    "special_rule": "special_rules.json",
     "core_rule": "core_rules.json",
+    "document": "documents.json",
     "troop_type": "troop_types.json",
     "weapon": "weapons.json",
     "spell": "spells.json",
@@ -139,9 +142,7 @@ def run_all_parsers() -> None:
     """
     manifest_path = _RAW_DIR / "manifest.json"
     if not manifest_path.exists():
-        raise FileNotFoundError(
-            f"Manifest not found at {manifest_path}. Run 'make scrape' first."
-        )
+        raise FileNotFoundError(f"Manifest not found at {manifest_path}. Run 'make scrape' first.")
 
     with manifest_path.open(encoding="utf-8") as fh:
         manifest: list[dict] = json.load(fh)
@@ -193,6 +194,40 @@ def run_all_parsers() -> None:
 
         all_edges.extend(result.edges)
 
+    # --- Deduplicate nodes by (node_type, id) ---
+    # Some pages (e.g. /faq contains all entries; /faq/<section> repeats a subset;
+    # some spells/magic-items appear in multiple embedded pages).  Last occurrence
+    # wins — section-specific pages come after the index page and carry richer context.
+    total_before_dedup = sum(len(v) for v in nodes_by_type.values())
+    deduped_by_type: dict[str, list[dict]] = {}
+    for node_type, nodes in nodes_by_type.items():
+        seen: dict[str, dict] = {}
+        for node in nodes:
+            nid = node.get("id")
+            if nid:
+                seen[nid] = node  # last wins
+            else:
+                seen[id(node)] = node  # no id — keep as-is
+        deduped_by_type[node_type] = list(seen.values())
+    total_after_dedup = sum(len(v) for v in deduped_by_type.values())
+    if total_before_dedup != total_after_dedup:
+        logger.info(
+            "Deduplicated %d duplicate nodes → %d unique",
+            total_before_dedup - total_after_dedup,
+            total_after_dedup,
+        )
+    nodes_by_type = deduped_by_type
+
+    # --- Filter dangling edges ---
+    # Remove edges whose dst has no corresponding node to keep the graph valid.
+    known_ids: set[str] = {
+        node["id"] for nodes in nodes_by_type.values() for node in nodes if "id" in node
+    }
+    filtered_edges = [e for e in all_edges if e.get("dst") in known_ids]
+    dropped = len(all_edges) - len(filtered_edges)
+    if dropped:
+        logger.info("Dropped %d edges with no matching dst node", dropped)
+
     # --- Write output files ---
     _PARSED_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -203,8 +238,8 @@ def run_all_parsers() -> None:
         logger.info("Written %d %s nodes → %s", len(nodes), node_type, out_path)
 
     edges_path = _PARSED_DIR / "edges.json"
-    _write_json(edges_path, all_edges)
-    logger.info("Written %d edges → %s", len(all_edges), edges_path)
+    _write_json(edges_path, filtered_edges)
+    logger.info("Written %d edges → %s", len(filtered_edges), edges_path)
 
     total_nodes = sum(len(v) for v in nodes_by_type.values())
     logger.info(

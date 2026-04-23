@@ -27,16 +27,65 @@ from pipeline.scraper.parsers.base_parser import BaseParser, ParseResult
 
 logger = logging.getLogger(__name__)
 
+# Slugs that are unambiguously armour/equipment regardless of text keywords.
+_ARMOUR_SLUGS: frozenset[str] = frozenset(
+    {
+        "light-armour",
+        "heavy-armour",
+        "full-plate-armour",
+        "dragon-armour",
+        "chaos-armour",
+        "gromril-armour",
+        "ithilmar-armour",
+        "shield",
+        "buckler",
+        "barding",
+        "dragon-scale-helm",
+        "helmet",
+    }
+)
+
+# Slugs that are unambiguously war machines (missile profile but special class).
+_WAR_MACHINE_SLUGS: frozenset[str] = frozenset(
+    {
+        "cannon",
+        "mortar",
+        "rock-lobber",
+        "bolt-thrower",
+        "stone-thrower",
+        "hellblaster-volley-gun",
+        "steam-tank",
+        "organ-gun",
+    }
+)
+
 # Keyword → weapon_class mapping (checked in order; first match wins).
+# Armour/shield keywords intentionally removed — they match too broadly on
+# weapon descriptions (e.g. "ignores armour saves", "sword and shield").
 _CLASS_HINTS: list[tuple[re.Pattern, str]] = [
-    (re.compile(r"\barmou?r\b|\bshield\b|\bhelmet\b|\bmail\b", re.I), "armour"),
-    (re.compile(r"\bmissile\b|\bbow\b|\bcrossbow\b|\bpistol\b|\brifle\b|\bthrown\b", re.I), "missile"),
-    (re.compile(r"\bsword\b|\baxe\b|\bhalberd\b|\blance\b|\bspear\b|\bweapon\b", re.I), "melee"),
+    (
+        re.compile(
+            r"\bmissile\b|\bbow\b|\bcrossbow\b|\bpistol\b|\brifle\b|\bthrown\b|\bblowpipe\b", re.I
+        ),
+        "missile",
+    ),
+    (
+        re.compile(
+            r"\bsword\b|\baxe\b|\bhalberd\b|\blance\b|\bspear\b|\bflail\b|\bmace\b|\bhammer\b|\bgreat.weapon\b|\bweapon\b",
+            re.I,
+        ),
+        "melee",
+    ),
+    (re.compile(r"\barmou?r\b|\bshield\b|\bhelmet\b|\bmail\b|\bbarding\b", re.I), "armour"),
 ]
 
 
 def _infer_weapon_class(slug: str, name: str, text: str) -> str:
-    combined = (slug + " " + name + " " + text).lower()
+    if slug in _ARMOUR_SLUGS:
+        return "armour"
+    if slug in _WAR_MACHINE_SLUGS:
+        return "war_machine"
+    combined = (slug + " " + name).lower()  # name+slug only — text is too noisy
     for pattern, cls in _CLASS_HINTS:
         if pattern.search(combined):
             return cls
@@ -69,7 +118,9 @@ class WeaponParser(BaseParser):
 
         page_ref: int | None = fields.get("pageReference")
         association: list[dict] = fields.get("association") or []
-        book = association[0].get("fields", {}).get("name", "Rulebook") if association else "Rulebook"
+        book = (
+            association[0].get("fields", {}).get("name", "Rulebook") if association else "Rulebook"
+        )
 
         weapon_class = _infer_weapon_class(slug, name, text)
 
@@ -80,6 +131,17 @@ class WeaponParser(BaseParser):
             "source_citation": self._make_source_citation(book, page_ref),
             "last_updated": date,
             "weapon_class": weapon_class,
+            # Structured profile fields — not present in Contentful data model;
+            # values are only in the body text and require a separate enrichment pass.
+            "range": None,
+            "strength": None,
+            "ap": None,
+            "special_rules": [],
+            "armour_value": None,
+            "shots": None,
+            "template_type": None,
+            "is_indirect": None,
+            "bounce": None,
             "name": name,
             "text": text,
             "i18n": self._make_i18n(name=name, text=text),
