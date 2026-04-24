@@ -2,685 +2,343 @@
   {
     "id": "spells-and-spell-generation",
     "url": "https://tow.whfb.app/the-lores-of-magic/spells-and-spell-generation",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 319
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 319,
     "last_updated": "2026-04-15",
     "name": "Spells & Spell Generation",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Spells & Spell Generation",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "spell-categories-lores",
     "url": "https://tow.whfb.app/the-lores-of-magic/spell-categories-lores",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 319
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 319,
     "last_updated": "2026-04-15",
     "name": "Spell Categories (Lores)",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Spell Categories (Lores)",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "battle-magic",
     "url": "https://tow.whfb.app/the-lores-of-magic/battle-magic",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 320
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 320,
     "last_updated": "2026-04-15",
     "name": "Battle Magic",
-    "text": "In the heat of battle, mighty Wizards summon columns of fire to burn through the enemy. In the deadly swirl of melee combat, powerful warrior mages smite their foes with fists that fall like hammers. In the Old World and beyond, Battle Magic is one of the most widely practised magical arts, for here battle is the one constant in life.",
-    "i18n": {
-      "en": {
-        "name": "Battle Magic",
-        "text": "In the heat of battle, mighty Wizards summon columns of fire to burn through the enemy. In the deadly swirl of melee combat, powerful warrior mages smite their foes with fists that fall like hammers. In the Old World and beyond, Battle Magic is one of the most widely practised magical arts, for here battle is the one constant in life."
-      },
-      "es": {}
-    }
+    "text": "In the heat of battle, mighty Wizards summon columns of fire to burn through the enemy. In the deadly swirl of melee combat, powerful warrior mages smite their foes with fists that fall like hammers. In the Old World and beyond, Battle Magic is one of the most widely practised magical arts, for here battle is the one constant in life."
   },
   {
     "id": "daemonology",
     "url": "https://tow.whfb.app/the-lores-of-magic/daemonology",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 322
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 322,
     "last_updated": "2026-04-15",
     "name": "Daemonology",
-    "text": "Those that make study of the Realm of Chaos – that twisted and warped nether world in which the Ruinous Powers reside – are known as Daemonologists. These cursed souls are drawn to their study in the vain hope of gaining mastery over the daemonic denizens of that realm and turning their power back against the Chaos gods. Seldom are such noble intentions realised, for those that converse with Daemons are inevitably corrupted by their whispered lies.",
-    "i18n": {
-      "en": {
-        "name": "Daemonology",
-        "text": "Those that make study of the Realm of Chaos – that twisted and warped nether world in which the Ruinous Powers reside – are known as Daemonologists. These cursed souls are drawn to their study in the vain hope of gaining mastery over the daemonic denizens of that realm and turning their power back against the Chaos gods. Seldom are such noble intentions realised, for those that converse with Daemons are inevitably corrupted by their whispered lies."
-      },
-      "es": {}
-    }
+    "text": "Those that make study of the Realm of Chaos – that twisted and warped nether world in which the Ruinous Powers reside – are known as Daemonologists. These cursed souls are drawn to their study in the vain hope of gaining mastery over the daemonic denizens of that realm and turning their power back against the Chaos gods. Seldom are such noble intentions realised, for those that converse with Daemons are inevitably corrupted by their whispered lies."
   },
   {
     "id": "dark-magic",
     "url": "https://tow.whfb.app/the-lores-of-magic/dark-magic",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 324
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 324,
     "last_updated": "2026-04-15",
     "name": "Dark Magic",
-    "text": "Once, only pure magic flowed into the world. Whole and unsullied, it was a natural force under the control of a race of god-like beings. With the coming of Chaos, this was to change as a darker, more unstable form of magic was unleashed into the mortal realm, one which refused to be chained by the hand of any mere mortal.",
-    "i18n": {
-      "en": {
-        "name": "Dark Magic",
-        "text": "Once, only pure magic flowed into the world. Whole and unsullied, it was a natural force under the control of a race of god-like beings. With the coming of Chaos, this was to change as a darker, more unstable form of magic was unleashed into the mortal realm, one which refused to be chained by the hand of any mere mortal."
-      },
-      "es": {}
-    }
+    "text": "Once, only pure magic flowed into the world. Whole and unsullied, it was a natural force under the control of a race of god-like beings. With the coming of Chaos, this was to change as a darker, more unstable form of magic was unleashed into the mortal realm, one which refused to be chained by the hand of any mere mortal."
   },
   {
     "id": "elementalism",
     "url": "https://tow.whfb.app/the-lores-of-magic/elementalism",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 326
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 326,
     "last_updated": "2026-04-15",
     "name": "Elementalism",
-    "text": "All across the Old World there dwell Wizards able to bend the Winds of Magic to their will to such an extent that they can harness the power of the elements themselves to do their bidding. Such mages summon gale force winds and torrential rains from the heavens, raise earthen ramparts, and even call forth elemental spirits to do their bidding.",
-    "i18n": {
-      "en": {
-        "name": "Elementalism",
-        "text": "All across the Old World there dwell Wizards able to bend the Winds of Magic to their will to such an extent that they can harness the power of the elements themselves to do their bidding. Such mages summon gale force winds and torrential rains from the heavens, raise earthen ramparts, and even call forth elemental spirits to do their bidding."
-      },
-      "es": {}
-    }
+    "text": "All across the Old World there dwell Wizards able to bend the Winds of Magic to their will to such an extent that they can harness the power of the elements themselves to do their bidding. Such mages summon gale force winds and torrential rains from the heavens, raise earthen ramparts, and even call forth elemental spirits to do their bidding."
   },
   {
     "id": "high-magic",
     "url": "https://tow.whfb.app/the-lores-of-magic/high-magic",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 328
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 328,
     "last_updated": "2026-04-15",
     "name": "High Magic",
-    "text": "In its purest form, magic glistens like a silver haze that fills the air, visible in and around all things to those gifted with the mage-sight. It is a wondrous thing, there to be manipulated by those with the talent and the learning. With long decades of study, a mage can manipulate pure magic to perform almost any deed imaginable, but the work is exhausting and the rituals complex.",
-    "i18n": {
-      "en": {
-        "name": "High Magic",
-        "text": "In its purest form, magic glistens like a silver haze that fills the air, visible in and around all things to those gifted with the mage-sight. It is a wondrous thing, there to be manipulated by those with the talent and the learning. With long decades of study, a mage can manipulate pure magic to perform almost any deed imaginable, but the work is exhausting and the rituals complex."
-      },
-      "es": {}
-    }
+    "text": "In its purest form, magic glistens like a silver haze that fills the air, visible in and around all things to those gifted with the mage-sight. It is a wondrous thing, there to be manipulated by those with the talent and the learning. With long decades of study, a mage can manipulate pure magic to perform almost any deed imaginable, but the work is exhausting and the rituals complex."
   },
   {
     "id": "illusion",
     "url": "https://tow.whfb.app/the-lores-of-magic/illusion",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 330
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 330,
     "last_updated": "2026-04-15",
     "name": "Illusion",
-    "text": "The art of Illusion is a strange Lore of Magic. Where most Wizards wield their arcane might to change the world around them in direct fashion, Illusionists prefer to change the world in subtle ways, hiding their power to control minds and emotions behind the façade of stagecraft and trickery. For an Illusionist, it is the glamour and splendour of the casting itself, the use of magical power to confound and confuse, that is the aim of their conjuring.",
-    "i18n": {
-      "en": {
-        "name": "Illusion",
-        "text": "The art of Illusion is a strange Lore of Magic. Where most Wizards wield their arcane might to change the world around them in direct fashion, Illusionists prefer to change the world in subtle ways, hiding their power to control minds and emotions behind the façade of stagecraft and trickery. For an Illusionist, it is the glamour and splendour of the casting itself, the use of magical power to confound and confuse, that is the aim of their conjuring."
-      },
-      "es": {}
-    }
+    "text": "The art of Illusion is a strange Lore of Magic. Where most Wizards wield their arcane might to change the world around them in direct fashion, Illusionists prefer to change the world in subtle ways, hiding their power to control minds and emotions behind the façade of stagecraft and trickery. For an Illusionist, it is the glamour and splendour of the casting itself, the use of magical power to confound and confuse, that is the aim of their conjuring."
   },
   {
     "id": "necromancy",
     "url": "https://tow.whfb.app/the-lores-of-magic/necromancy",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 332
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 332,
     "last_updated": "2026-04-15",
     "name": "Necromancy",
-    "text": "Of all the mages that study the Lores of Magic, those that practise the art of Necromancy are the most shunned and reviled, yet simultaneously often the most sought after. Necromancy is the study of death, and of more than death – Necromancy is the means by which those trapped within the mortal coil can penetrate through the shroud of death into Morr's dark realm, to commune with the spirits of the departed and witness the wisdom of ancestors.",
-    "i18n": {
-      "en": {
-        "name": "Necromancy",
-        "text": "Of all the mages that study the Lores of Magic, those that practise the art of Necromancy are the most shunned and reviled, yet simultaneously often the most sought after. Necromancy is the study of death, and of more than death – Necromancy is the means by which those trapped within the mortal coil can penetrate through the shroud of death into Morr's dark realm, to commune with the spirits of the departed and witness the wisdom of ancestors."
-      },
-      "es": {}
-    }
+    "text": "Of all the mages that study the Lores of Magic, those that practise the art of Necromancy are the most shunned and reviled, yet simultaneously often the most sought after. Necromancy is the study of death, and of more than death – Necromancy is the means by which those trapped within the mortal coil can penetrate through the shroud of death into Morr's dark realm, to commune with the spirits of the departed and witness the wisdom of ancestors."
   },
   {
     "id": "waaagh-magic",
     "url": "https://tow.whfb.app/the-lores-of-magic/waaagh-magic",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 334
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 334,
     "last_updated": "2026-04-15",
     "name": "Waaagh! Magic",
-    "text": "When Orc and Goblin tribes march to war (as they are given to do with alarming regularity), they are accompanied by powerful shamans. These 'Weirdboy' and 'Oddgit' shamans, as Orcs and Goblins call them, are each a living conduit to Gork and Mork, the primitive gods of their kind, and each can wield such arcane might that even the most learned of Elven mages would have to be impressed.",
-    "i18n": {
-      "en": {
-        "name": "Waaagh! Magic",
-        "text": "When Orc and Goblin tribes march to war (as they are given to do with alarming regularity), they are accompanied by powerful shamans. These 'Weirdboy' and 'Oddgit' shamans, as Orcs and Goblins call them, are each a living conduit to Gork and Mork, the primitive gods of their kind, and each can wield such arcane might that even the most learned of Elven mages would have to be impressed."
-      },
-      "es": {}
-    }
+    "text": "When Orc and Goblin tribes march to war (as they are given to do with alarming regularity), they are accompanied by powerful shamans. These 'Weirdboy' and 'Oddgit' shamans, as Orcs and Goblins call them, are each a living conduit to Gork and Mork, the primitive gods of their kind, and each can wield such arcane might that even the most learned of Elven mages would have to be impressed."
   },
   {
     "id": "lore-of-athel-loren",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-athel-loren",
-    "source_citation": {
-      "book": "Forces of Fantasy",
-      "page": 146
-    },
+    "source_citation_book": "Forces of Fantasy",
+    "source_citation_page": 146,
     "last_updated": "2026-04-15",
     "name": "Lore of Athel Loren",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Athel Loren",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-beasts",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-beasts",
-    "source_citation": {
-      "book": "Ravening Hordes",
-      "page": 117
-    },
+    "source_citation_book": "Ravening Hordes",
+    "source_citation_page": 117,
     "last_updated": "2026-04-15",
     "name": "Lore of Beasts",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Beasts",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-chaos",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-chaos",
-    "source_citation": {
-      "book": "Ravening Hordes",
-      "page": 83
-    },
+    "source_citation_book": "Ravening Hordes",
+    "source_citation_page": 83,
     "last_updated": "2026-04-15",
     "name": "Lore of Chaos",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Chaos",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-daemons",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-daemons",
-    "source_citation": {
-      "book": "Daemons of Chaos",
-      "page": 34
-    },
+    "source_citation_book": "Daemons of Chaos",
+    "source_citation_page": 34,
     "last_updated": "2026-04-15",
     "name": "Lore of Daemons",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Daemons",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-gork",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-gork",
-    "source_citation": {
-      "book": "Ravening Hordes",
-      "page": 47
-    },
+    "source_citation_book": "Ravening Hordes",
+    "source_citation_page": 47,
     "last_updated": "2026-04-15",
     "name": "Lore of Gork",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Gork",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-hashut",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-hashut",
-    "source_citation": {
-      "book": "Chaos Dwarfs",
-      "page": 21
-    },
+    "source_citation_book": "Chaos Dwarfs",
+    "source_citation_page": 21,
     "last_updated": "2026-04-15",
     "name": "Lore of Hashut",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Hashut",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-lustria",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-lustria",
-    "source_citation": {
-      "book": "Lizardmen",
-      "page": 21
-    },
+    "source_citation_book": "Lizardmen",
+    "source_citation_page": 21,
     "last_updated": "2026-04-15",
     "name": "Lore of Lustria",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Lustria",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-mork",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-mork",
-    "source_citation": {
-      "book": "Ravening Hordes",
-      "page": 47
-    },
+    "source_citation_book": "Ravening Hordes",
+    "source_citation_page": 47,
     "last_updated": "2026-04-15",
     "name": "Lore of Mork",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Mork",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-naggaroth",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-naggaroth",
-    "source_citation": {
-      "book": "Dark Elves",
-      "page": 26
-    },
+    "source_citation_book": "Dark Elves",
+    "source_citation_page": 26,
     "last_updated": "2026-04-15",
     "name": "Lore of Naggaroth",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Naggaroth",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-nehekhara",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-nehekhara",
-    "source_citation": {
-      "book": "Ravening Hordes",
-      "page": 155
-    },
+    "source_citation_book": "Ravening Hordes",
+    "source_citation_page": 155,
     "last_updated": "2026-04-15",
     "name": "Lore of Nehekhara",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Nehekhara",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-primal-magic",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-primal-magic",
-    "source_citation": {
-      "book": "Arcane Journal: Beastmen Brayherds",
-      "page": 44
-    },
+    "source_citation_book": "Arcane Journal: Beastmen Brayherds",
+    "source_citation_page": 44,
     "last_updated": "2026-04-15",
     "name": "Lore of Primal Magic",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Primal Magic",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-saphery",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-saphery",
-    "source_citation": {
-      "book": "Forces of Fantasy",
-      "page": 186
-    },
+    "source_citation_book": "Forces of Fantasy",
+    "source_citation_page": 186,
     "last_updated": "2026-04-15",
     "name": "Lore of Saphery",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Saphery",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-the-great-maw",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-great-maw",
-    "source_citation": {
-      "book": "Ogre Kingdoms",
-      "page": 25
-    },
+    "source_citation_book": "Ogre Kingdoms",
+    "source_citation_page": 25,
     "last_updated": "2026-04-15",
     "name": "Lore of the Great Maw",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of the Great Maw",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-the-horned-rat",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-horned-rat",
-    "source_citation": {
-      "book": "Skaven",
-      "page": 24
-    },
+    "source_citation_book": "Skaven",
+    "source_citation_page": 24,
     "last_updated": "2026-04-15",
     "name": "Lore of the Horned Rat",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of the Horned Rat",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-the-lady",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-lady",
-    "source_citation": {
-      "book": "Forces of Fantasy",
-      "page": 109
-    },
+    "source_citation_book": "Forces of Fantasy",
+    "source_citation_page": 109,
     "last_updated": "2026-04-15",
     "name": "Lore of the Lady",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of the Lady",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-the-shadowlands",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-shadowlands",
-    "source_citation": {
-      "book": "Arcane Journal: The Razing of Westerland",
-      "page": 44
-    },
+    "source_citation_book": "Arcane Journal: The Razing of Westerland",
+    "source_citation_page": 44,
     "last_updated": "2026-04-15",
     "name": "Lore of the Shadowlands",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of the Shadowlands",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-the-wilds",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-wilds",
-    "source_citation": {
-      "book": "Arcane Journal: Wood Elf Realms",
-      "page": 44
-    },
+    "source_citation_book": "Arcane Journal: Wood Elf Realms",
+    "source_citation_page": 44,
     "last_updated": "2026-04-15",
     "name": "Lore of the Wilds",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of the Wilds",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-troll-magic",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-troll-magic",
-    "source_citation": {
-      "book": "Arcane Journal: Orc & Goblin Tribes",
-      "page": 44
-    },
+    "source_citation_book": "Arcane Journal: Orc & Goblin Tribes",
+    "source_citation_page": 44,
     "last_updated": "2026-04-15",
     "name": "Lore of Troll Magic",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Troll Magic",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-undeath",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-undeath",
-    "source_citation": {
-      "book": "Vampire Counts",
-      "page": 29
-    },
+    "source_citation_book": "Vampire Counts",
+    "source_citation_page": 29,
     "last_updated": "2026-04-15",
     "name": "Lore of Undeath",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Undeath",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-yang",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-yang",
-    "source_citation": {
-      "book": "Arcane Journal: Armies of Grand Cathay",
-      "page": 46
-    },
+    "source_citation_book": "Arcane Journal: Armies of Grand Cathay",
+    "source_citation_page": 46,
     "last_updated": "2026-04-15",
     "name": "Lore of Yang",
-    "text": "In the teaching of Feng Shi sorcery, the Winds of Magic are divided into two groups: Yin and Yang. Through long years of study, Yang Mages learn to control the tumultuous blustering of the Winds of Magic. As masters of the elements and the heavens, they wield magic that is bright, vibrant and extremely powerful.",
-    "i18n": {
-      "en": {
-        "name": "Lore of Yang",
-        "text": "In the teaching of Feng Shi sorcery, the Winds of Magic are divided into two groups: Yin and Yang. Through long years of study, Yang Mages learn to control the tumultuous blustering of the Winds of Magic. As masters of the elements and the heavens, they wield magic that is bright, vibrant and extremely powerful."
-      },
-      "es": {}
-    }
+    "text": "In the teaching of Feng Shi sorcery, the Winds of Magic are divided into two groups: Yin and Yang. Through long years of study, Yang Mages learn to control the tumultuous blustering of the Winds of Magic. As masters of the elements and the heavens, they wield magic that is bright, vibrant and extremely powerful."
   },
   {
     "id": "lore-of-yin",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-yin",
-    "source_citation": {
-      "book": "Arcane Journal: Armies of Grand Cathay",
-      "page": 47
-    },
+    "source_citation_book": "Arcane Journal: Armies of Grand Cathay",
+    "source_citation_page": 47,
     "last_updated": "2026-04-15",
     "name": "Lore of Yin",
-    "text": "Those that study the art of Yin magic wield dark and dangerous powers. They twist together the Winds of Magic to craft potent spells of brutal force, spells that can twist nature and upend the natural order of the world. At their command, the very light retreats, replaced by dark shadows from which elemental creatures creep to do their bidding.",
-    "i18n": {
-      "en": {
-        "name": "Lore of Yin",
-        "text": "Those that study the art of Yin magic wield dark and dangerous powers. They twist together the Winds of Magic to craft potent spells of brutal force, spells that can twist nature and upend the natural order of the world. At their command, the very light retreats, replaced by dark shadows from which elemental creatures creep to do their bidding."
-      },
-      "es": {}
-    }
+    "text": "Those that study the art of Yin magic wield dark and dangerous powers. They twist together the Winds of Magic to craft potent spells of brutal force, spells that can twist nature and upend the natural order of the world. At their command, the very light retreats, replaced by dark shadows from which elemental creatures creep to do their bidding."
   },
   {
     "id": "lore-of-daemons-renegade",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-daemons-renegade",
-    "source_citation": {
-      "book": "The Renegade Legacy Pack",
-      "page": 11
-    },
+    "source_citation_book": "The Renegade Legacy Pack",
+    "source_citation_page": 11,
     "last_updated": "2026-04-15",
     "name": "Lore of Daemons (Renegade)",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Daemons (Renegade)",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-hashut-renegade",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-hashut-renegade",
-    "source_citation": {
-      "book": "The Renegade Legacy Pack",
-      "page": 8
-    },
+    "source_citation_book": "The Renegade Legacy Pack",
+    "source_citation_page": 8,
     "last_updated": "2026-04-15",
     "name": "Lore of Hashut (Renegade)",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Hashut (Renegade)",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-lustria-renegade",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-lustria-renegade",
-    "source_citation": {
-      "book": "The Renegade Legacy Pack",
-      "page": 14
-    },
+    "source_citation_book": "The Renegade Legacy Pack",
+    "source_citation_page": 14,
     "last_updated": "2026-04-15",
     "name": "Lore of Lustria (Renegade)",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Lustria (Renegade)",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-naggaroth-renegade",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-naggaroth-renegade",
-    "source_citation": {
-      "book": "The Renegade Legacy Pack",
-      "page": 23
-    },
+    "source_citation_book": "The Renegade Legacy Pack",
+    "source_citation_page": 23,
     "last_updated": "2026-04-15",
     "name": "Lore of Naggaroth (Renegade)",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Naggaroth (Renegade)",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-the-great-maw-renegade",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-great-maw-renegade",
-    "source_citation": {
-      "book": "The Renegade Legacy Pack",
-      "page": 17
-    },
+    "source_citation_book": "The Renegade Legacy Pack",
+    "source_citation_page": 17,
     "last_updated": "2026-04-15",
     "name": "Lore of the Great Maw (Renegade)",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of the Great Maw (Renegade)",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-the-horned-rat-renegade",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-the-horned-rat-renegade",
-    "source_citation": {
-      "book": "The Renegade Legacy Pack",
-      "page": 20
-    },
+    "source_citation_book": "The Renegade Legacy Pack",
+    "source_citation_page": 20,
     "last_updated": "2026-04-15",
     "name": "Lore of the Horned Rat (Renegade)",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of the Horned Rat (Renegade)",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   },
   {
     "id": "lore-of-undeath-renegade",
     "url": "https://tow.whfb.app/the-lores-of-magic/lore-of-undeath-renegade",
-    "source_citation": {
-      "book": "The Renegade Legacy Pack",
-      "page": 21
-    },
+    "source_citation_book": "The Renegade Legacy Pack",
+    "source_citation_page": 21,
     "last_updated": "2026-04-15",
     "name": "Lore of Undeath (Renegade)",
-    "text": "",
-    "i18n": {
-      "en": {
-        "name": "Lore of Undeath (Renegade)",
-        "text": ""
-      },
-      "es": {}
-    }
+    "text": ""
   }
 ]

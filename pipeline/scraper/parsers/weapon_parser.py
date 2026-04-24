@@ -128,7 +128,7 @@ class WeaponParser(BaseParser):
             "node_type": NodeType.WEAPON,
             "id": slug,
             "url": url,
-            "source_citation": self._make_source_citation(book, page_ref),
+            **self._make_source_citation(book, page_ref),
             "last_updated": date,
             "weapon_class": weapon_class,
             # Structured profile fields — not present in Contentful data model;
@@ -144,7 +144,7 @@ class WeaponParser(BaseParser):
             "bounce": None,
             "name": name,
             "text": text,
-            "i18n": self._make_i18n(name=name, text=text),
+            **self._make_i18n(name=name, text=text),
         }
         result.nodes.append(node)
 

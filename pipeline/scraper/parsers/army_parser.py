@@ -65,10 +65,10 @@ class ArmyParser(BaseParser):
             "node_type": NodeType.ARMY,
             "id": army_slug,
             "url": url,
-            "source_citation": self._make_source_citation(army_name),
+            **self._make_source_citation(army_name),
             "last_updated": date,
             "name": army_name,
-            "i18n": self._make_i18n(name=army_name),
+            **self._make_i18n(name=army_name),
         }
         result.nodes.append(army_node)
 

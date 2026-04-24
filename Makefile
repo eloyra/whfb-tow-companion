@@ -6,6 +6,23 @@ help:  ## Show available commands
 install:  ## Install all dependencies (requires uv)
 	uv sync --all-extras
 
+# ── Neo4j ─────────────────────────────────────────────────────────────────────
+
+neo4j-up:  ## Start Neo4j container (waits for healthcheck)
+	docker compose -f docker/docker-compose.yml up -d
+	@echo "Waiting for Neo4j to be ready..."
+	@until docker inspect --format='{{.State.Health.Status}}' whfb-neo4j 2>/dev/null | grep -q healthy; do sleep 2; done
+	@echo "Neo4j is ready at http://localhost:7474"
+
+neo4j-down:  ## Stop Neo4j container (data volume preserved)
+	docker compose -f docker/docker-compose.yml down
+
+neo4j-reset:  ## Stop Neo4j and wipe the data volume (DESTRUCTIVE)
+	docker compose -f docker/docker-compose.yml down -v
+
+neo4j-logs:  ## Tail Neo4j container logs
+	docker compose -f docker/docker-compose.yml logs -f neo4j
+
 # ── Pipeline ──────────────────────────────────────────────────────────────────
 
 scrape:  ## Crawl tow.whfb.app and save raw HTML to data/raw/

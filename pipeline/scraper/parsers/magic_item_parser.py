@@ -122,7 +122,7 @@ class MagicItemParser(BaseParser):
             "node_type": NodeType.MAGIC_ITEM,
             "id": slug,
             "url": url,
-            "source_citation": self._make_source_citation(book),
+            **self._make_source_citation(book),
             "last_updated": date,
             "item_type": item_type,
             "points_cost": cost,
@@ -130,5 +130,5 @@ class MagicItemParser(BaseParser):
             "is_single_use": None,  # not present in Contentful data model
             "name": name,
             "text": text,
-            "i18n": self._make_i18n(name=name, text=text),
+            **self._make_i18n(name=name, text=text),
         }

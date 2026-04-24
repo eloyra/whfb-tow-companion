@@ -75,21 +75,14 @@ class ErrataParser(BaseParser):
                 "node_type": NodeType.ERRATA,
                 "id": slug,
                 "url": url,
-                "source_citation": self._make_source_citation(book),
+                **self._make_source_citation(book),
                 "last_updated": date,
                 "source_document": source_document,
                 "source_version": version,
                 "name": rule_name,
                 "original_text": None,  # additive errata: no original text to correct
                 "corrected_text": corrected_text,
-                "i18n": {
-                    "en": {
-                        "name": rule_name,
-                        "original_text": None,
-                        "corrected_text": corrected_text,
-                    },
-                    "es": {},
-                },
+                **self._make_i18n(name=rule_name),
             }
             result.nodes.append(node)
 

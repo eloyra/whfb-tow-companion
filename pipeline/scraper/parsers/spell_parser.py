@@ -70,11 +70,11 @@ class SpellParser(BaseParser):
             "node_type": NodeType.LORE,
             "id": lore_slug,
             "url": url,
-            "source_citation": self._make_source_citation(book, page_ref),
+            **self._make_source_citation(book, page_ref),
             "last_updated": date,
             "name": lore_name,
             "text": lore_description,
-            "i18n": self._make_i18n(name=lore_name, text=lore_description),
+            **self._make_i18n(name=lore_name, text=lore_description),
         }
         result.nodes.append(lore_node)
 
@@ -148,7 +148,7 @@ class SpellParser(BaseParser):
             "node_type": NodeType.SPELL,
             "id": slug,
             "url": url,
-            "source_citation": self._make_source_citation(book),
+            **self._make_source_citation(book),
             "last_updated": date,
             "lore_id": lore_slug,
             "lore_number": lore_number,
@@ -161,7 +161,7 @@ class SpellParser(BaseParser):
             "target": None,  # not in Contentful
             "name": name,
             "text": text,
-            "i18n": self._make_i18n(name=name, text=text),
+            **self._make_i18n(name=name, text=text),
         }
 
     def _parse_spells_from_richtext(
@@ -218,7 +218,7 @@ class SpellParser(BaseParser):
                     "node_type": NodeType.SPELL,
                     "id": slug,
                     "url": url,
-                    "source_citation": self._make_source_citation(book),
+                    **self._make_source_citation(book),
                     "last_updated": date,
                     "lore_id": lore_slug,
                     "lore_number": order,
@@ -231,7 +231,7 @@ class SpellParser(BaseParser):
                     "target": None,
                     "name": name,
                     "text": spell_text,
-                    "i18n": self._make_i18n(name=name, text=spell_text),
+                    **self._make_i18n(name=name, text=spell_text),
                 }
             )
             order += 1

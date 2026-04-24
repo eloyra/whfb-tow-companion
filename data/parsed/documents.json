@@ -2,815 +2,482 @@
   {
     "id": "muster-your-forces",
     "url": "https://tow.whfb.app/overview-of-the-game/muster-your-forces",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 91
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 91,
     "last_updated": "2026-04-15",
     "section": "Overview Of The Game",
     "section_id": "overview-of-the-game",
     "prev_page_url": null,
     "next_page_url": "/overview-of-the-game/choose-scenario",
     "name": "Muster Your Forces!",
-    "text": "To play a game of Warhammer: the Old World, each player will need an army to command, so the first thing to do is assemble your forces. You can simply use all the models in your collection, but most players use points values and army lists to ensure their forces are evenly matched for a closely fought battle. This system is explained in the Warhammer Armies.",
-    "i18n": {
-      "en": {
-        "name": "Muster Your Forces!",
-        "text": "To play a game of Warhammer: the Old World, each player will need an army to command, so the first thing to do is assemble your forces. You can simply use all the models in your collection, but most players use points values and army lists to ensure their forces are evenly matched for a closely fought battle. This system is explained in the Warhammer Armies."
-      },
-      "es": {}
-    }
+    "text": "To play a game of Warhammer: the Old World, each player will need an army to command, so the first thing to do is assemble your forces. You can simply use all the models in your collection, but most players use points values and army lists to ensure their forces are evenly matched for a closely fought battle. This system is explained in the Warhammer Armies."
   },
   {
     "id": "choose-scenario",
     "url": "https://tow.whfb.app/overview-of-the-game/choose-scenario",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 91
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 91,
     "last_updated": "2026-04-15",
     "section": "Overview Of The Game",
     "section_id": "overview-of-the-game",
     "prev_page_url": "/overview-of-the-game/muster-your-forces",
     "next_page_url": "/overview-of-the-game/set-up-the-battlefield",
     "name": "Choose Scenario",
-    "text": "The Warhammer Battles section presents six pitched battles. Each of these explains how to play a slightly different type of battle, ranging from a straightforward clash of forces to a fight in a mountain pass or the defence of a watchtower. Players can roll a dice to decide which pitched battle they will play or simply choose one.",
-    "i18n": {
-      "en": {
-        "name": "Choose Scenario",
-        "text": "The Warhammer Battles section presents six pitched battles. Each of these explains how to play a slightly different type of battle, ranging from a straightforward clash of forces to a fight in a mountain pass or the defence of a watchtower. Players can roll a dice to decide which pitched battle they will play or simply choose one."
-      },
-      "es": {}
-    }
+    "text": "The Warhammer Battles section presents six pitched battles. Each of these explains how to play a slightly different type of battle, ranging from a straightforward clash of forces to a fight in a mountain pass or the defence of a watchtower. Players can roll a dice to decide which pitched battle they will play or simply choose one."
   },
   {
     "id": "set-up-the-battlefield",
     "url": "https://tow.whfb.app/overview-of-the-game/set-up-the-battlefield",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 91
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 91,
     "last_updated": "2026-04-15",
     "section": "Overview Of The Game",
     "section_id": "overview-of-the-game",
     "prev_page_url": "/overview-of-the-game/choose-scenario",
     "next_page_url": "/overview-of-the-game/deploy-armies",
     "name": "Set up the Battlefield",
-    "text": "Next, you will need a battlefield, which can be set up on any flat surface, be it the kitchen table, the floor or a dedicated wargames table. The players set up terrain for their armies to fight over, representing woods, fortified watchtowers and other features that make up the landscape of the Warhammer world. How to do this is covered in the Warhammer Battles section.",
-    "i18n": {
-      "en": {
-        "name": "Set up the Battlefield",
-        "text": "Next, you will need a battlefield, which can be set up on any flat surface, be it the kitchen table, the floor or a dedicated wargames table. The players set up terrain for their armies to fight over, representing woods, fortified watchtowers and other features that make up the landscape of the Warhammer world. How to do this is covered in the Warhammer Battles section."
-      },
-      "es": {}
-    }
+    "text": "Next, you will need a battlefield, which can be set up on any flat surface, be it the kitchen table, the floor or a dedicated wargames table. The players set up terrain for their armies to fight over, representing woods, fortified watchtowers and other features that make up the landscape of the Warhammer world. How to do this is covered in the Warhammer Battles section."
   },
   {
     "id": "deploy-armies",
     "url": "https://tow.whfb.app/overview-of-the-game/deploy-armies",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 91
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 91,
     "last_updated": "2026-04-15",
     "section": "Overview Of The Game",
     "section_id": "overview-of-the-game",
     "prev_page_url": "/overview-of-the-game/set-up-the-battlefield",
     "next_page_url": "/overview-of-the-game/to-battle",
     "name": "Deploy Armies",
-    "text": "The rival armies are deployed facing each other across the battlefield, ready to fight. Details of how to deploy can be found in the Warhammer Battles section. Each of the pitched battle scenarios includes a map showing where on the battlefield each player can place their models, and tells which side will take the first turn of the game.",
-    "i18n": {
-      "en": {
-        "name": "Deploy Armies",
-        "text": "The rival armies are deployed facing each other across the battlefield, ready to fight. Details of how to deploy can be found in the Warhammer Battles section. Each of the pitched battle scenarios includes a map showing where on the battlefield each player can place their models, and tells which side will take the first turn of the game."
-      },
-      "es": {}
-    }
+    "text": "The rival armies are deployed facing each other across the battlefield, ready to fight. Details of how to deploy can be found in the Warhammer Battles section. Each of the pitched battle scenarios includes a map showing where on the battlefield each player can place their models, and tells which side will take the first turn of the game."
   },
   {
     "id": "to-battle",
     "url": "https://tow.whfb.app/overview-of-the-game/to-battle",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 91
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 91,
     "last_updated": "2026-04-15",
     "section": "Overview Of The Game",
     "section_id": "overview-of-the-game",
     "prev_page_url": "/overview-of-the-game/deploy-armies",
     "next_page_url": "/overview-of-the-game/aftermath",
     "name": "To Battle!",
-    "text": "The players fight out the battle, each taking turns in which their army will move, shoot, wield mighty magic and fight vicious combat. All of this is done using the rules that follow. These rules start with basic rules that apply to all models and cover the standard sequence of moving, shooting, fighting and more. Each pitched battle also explains how many rounds to play before the game ends.",
-    "i18n": {
-      "en": {
-        "name": "To Battle!",
-        "text": "The players fight out the battle, each taking turns in which their army will move, shoot, wield mighty magic and fight vicious combat. All of this is done using the rules that follow. These rules start with basic rules that apply to all models and cover the standard sequence of moving, shooting, fighting and more. Each pitched battle also explains how many rounds to play before the game ends."
-      },
-      "es": {}
-    }
+    "text": "The players fight out the battle, each taking turns in which their army will move, shoot, wield mighty magic and fight vicious combat. All of this is done using the rules that follow. These rules start with basic rules that apply to all models and cover the standard sequence of moving, shooting, fighting and more. Each pitched battle also explains how many rounds to play before the game ends."
   },
   {
     "id": "aftermath",
     "url": "https://tow.whfb.app/overview-of-the-game/aftermath",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 91
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 91,
     "last_updated": "2026-04-15",
     "section": "Overview Of The Game",
     "section_id": "overview-of-the-game",
     "prev_page_url": "/overview-of-the-game/to-battle",
     "next_page_url": null,
     "name": "Aftermath",
-    "text": "In the aftermath of the battle, the players must work out which side stands victorious. Each pitched battle explains how to work out who has won the game. In most cases, the victor is the side that has destroyed more of the enemy and so it is often obvious who has won, as the enemy army lies in tatters – dead or fleeing! Other battles are decided by claiming objectives, such as seizing enemy banners or capturing a watchtower. Whatever the outcome, only a rematch will give you the chance for further glory or sweet revenge.",
-    "i18n": {
-      "en": {
-        "name": "Aftermath",
-        "text": "In the aftermath of the battle, the players must work out which side stands victorious. Each pitched battle explains how to work out who has won the game. In most cases, the victor is the side that has destroyed more of the enemy and so it is often obvious who has won, as the enemy army lies in tatters – dead or fleeing! Other battles are decided by claiming objectives, such as seizing enemy banners or capturing a watchtower. Whatever the outcome, only a rematch will give you the chance for further glory or sweet revenge."
-      },
-      "es": {}
-    }
+    "text": "In the aftermath of the battle, the players must work out which side stands victorious. Each pitched battle explains how to work out who has won the game. In most cases, the victor is the side that has destroyed more of the enemy and so it is often obvious who has won, as the enemy army lies in tatters – dead or fleeing! Other battles are decided by claiming objectives, such as seizing enemy banners or capturing a watchtower. Whatever the outcome, only a rematch will give you the chance for further glory or sweet revenge."
   },
   {
     "id": "take-backs-and-changing-ones-mind",
     "url": "https://tow.whfb.app/general-principles/take-backs-and-changing-ones-mind",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 92
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 92,
     "last_updated": "2026-04-15",
     "section": "General Principles",
     "section_id": "general-principles",
     "prev_page_url": null,
     "next_page_url": "/general-principles/moving-through-units",
     "name": "Take-backs & Changing One's Mind",
-    "text": "It is not uncommon for players of any game to occasionally second guess themselves, saying they are about to do something before immediately changing their mind. Players should be tolerant of this in their opponents, as they will likely do it themselves. However, once dice have been rolled for any reason, or a move committed to and made, players must abide by their decision; they can no longer go back and change anything that came before the dice roll or the act of moving!",
-    "i18n": {
-      "en": {
-        "name": "Take-backs & Changing One's Mind",
-        "text": "It is not uncommon for players of any game to occasionally second guess themselves, saying they are about to do something before immediately changing their mind. Players should be tolerant of this in their opponents, as they will likely do it themselves. However, once dice have been rolled for any reason, or a move committed to and made, players must abide by their decision; they can no longer go back and change anything that came before the dice roll or the act of moving!"
-      },
-      "es": {}
-    }
+    "text": "It is not uncommon for players of any game to occasionally second guess themselves, saying they are about to do something before immediately changing their mind. Players should be tolerant of this in their opponents, as they will likely do it themselves. However, once dice have been rolled for any reason, or a move committed to and made, players must abide by their decision; they can no longer go back and change anything that came before the dice roll or the act of moving!"
   },
   {
     "id": "the-most-important-rule",
     "url": "https://tow.whfb.app/general-principles/the-most-important-rule",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 93
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 93,
     "last_updated": "2026-04-15",
     "section": "General Principles",
     "section_id": "general-principles",
     "prev_page_url": "/general-principles/re-rolls",
     "next_page_url": "/general-principles/templates",
     "name": "The Most Important Rule",
-    "text": "Warhammer: the Old World is a complex game and, as such, players will occasionally disagree in their interpretation of the rules. Should disagreements arise, players are encouraged to look up the rule(s) in question, reach an agreement and move on. Should this prove impossible, a roll-off should determine whose interpretation will apply for the remainder of the game. What matters more than any rule is that players enjoy their game and that rivalries remain friendly!",
-    "i18n": {
-      "en": {
-        "name": "The Most Important Rule",
-        "text": "Warhammer: the Old World is a complex game and, as such, players will occasionally disagree in their interpretation of the rules. Should disagreements arise, players are encouraged to look up the rule(s) in question, reach an agreement and move on. Should this prove impossible, a roll-off should determine whose interpretation will apply for the remainder of the game. What matters more than any rule is that players enjoy their game and that rivalries remain friendly!"
-      },
-      "es": {}
-    }
+    "text": "Warhammer: the Old World is a complex game and, as such, players will occasionally disagree in their interpretation of the rules. Should disagreements arise, players are encouraged to look up the rule(s) in question, reach an agreement and move on. Should this prove impossible, a roll-off should determine whose interpretation will apply for the remainder of the game. What matters more than any rule is that players enjoy their game and that rivalries remain friendly!"
   },
   {
     "id": "unusual-situations",
     "url": "https://tow.whfb.app/general-principles/unusual-situations",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": null
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": null,
     "last_updated": "2026-04-15",
     "section": "General Principles",
     "section_id": "general-principles",
     "prev_page_url": "/general-principles/scatter",
     "next_page_url": null,
     "name": "Unusual Situations",
-    "text": "This rule does not appear in the rulebook but is included in the Warhammer: The Old World FAQ & Errata - Version 1.3 and is worth repeating here. Warhammer: the Old World is a complex game of manoeuvre and counter manoeuvre between tightly formed battle lines of densely packed infantry and cavalry. It is to be expected that unusual situations will arise. To deal with these, we encourage players to resolve uncertainties in a way that keeps the game flowing, or to seek the opinion of an impartial third party (at an organised event players should always defer to the ruling of such an official, as is right and honourable – only the most dastardly rapscallion would argue with such an exemplar of the hobby). If such resolution is impossible, the simplest solution is to rule that the unit cannot do the thing, by which we mean it cannot make the move, cannot take the shot, and so forth. As stated The Most Important Rule, what matters more than any rule is that players enjoy their game and that rivalries remain friendly!",
-    "i18n": {
-      "en": {
-        "name": "Unusual Situations",
-        "text": "This rule does not appear in the rulebook but is included in the Warhammer: The Old World FAQ & Errata - Version 1.3 and is worth repeating here. Warhammer: the Old World is a complex game of manoeuvre and counter manoeuvre between tightly formed battle lines of densely packed infantry and cavalry. It is to be expected that unusual situations will arise. To deal with these, we encourage players to resolve uncertainties in a way that keeps the game flowing, or to seek the opinion of an impartial third party (at an organised event players should always defer to the ruling of such an official, as is right and honourable – only the most dastardly rapscallion would argue with such an exemplar of the hobby). If such resolution is impossible, the simplest solution is to rule that the unit cannot do the thing, by which we mean it cannot make the move, cannot take the shot, and so forth. As stated The Most Important Rule, what matters more than any rule is that players enjoy their game and that rivalries remain friendly!"
-      },
-      "es": {}
-    }
+    "text": "This rule does not appear in the rulebook but is included in the Warhammer: The Old World FAQ & Errata - Version 1.3 and is worth repeating here. Warhammer: the Old World is a complex game of manoeuvre and counter manoeuvre between tightly formed battle lines of densely packed infantry and cavalry. It is to be expected that unusual situations will arise. To deal with these, we encourage players to resolve uncertainties in a way that keeps the game flowing, or to seek the opinion of an impartial third party (at an organised event players should always defer to the ruling of such an official, as is right and honourable – only the most dastardly rapscallion would argue with such an exemplar of the hobby). If such resolution is impossible, the simplest solution is to rule that the unit cannot do the thing, by which we mean it cannot make the move, cannot take the shot, and so forth. As stated The Most Important Rule, what matters more than any rule is that players enjoy their game and that rivalries remain friendly!"
   },
   {
     "id": "setting-up-your-battlefield",
     "url": "https://tow.whfb.app/warhammer-battles/setting-up-your-battlefield",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 285
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 285,
     "last_updated": "2026-04-15",
     "section": "Warhammer Battles",
     "section_id": "warhammer-battles",
     "prev_page_url": "/warhammer-battles/prepare-for-battle",
     "next_page_url": "/warhammer-battles/size-of-battlefield",
     "name": "Setting up your Battlefield",
-    "text": "With your armies selected and the type of game you want to play decided, the next thing you will need to do is to set up a suitable battlefield using the terrain in your collection.",
-    "i18n": {
-      "en": {
-        "name": "Setting up your Battlefield",
-        "text": "With your armies selected and the type of game you want to play decided, the next thing you will need to do is to set up a suitable battlefield using the terrain in your collection."
-      },
-      "es": {}
-    }
+    "text": "With your armies selected and the type of game you want to play decided, the next thing you will need to do is to set up a suitable battlefield using the terrain in your collection."
   },
   {
     "id": "size-of-battlefield",
     "url": "https://tow.whfb.app/warhammer-battles/size-of-battlefield",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 285
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 285,
     "last_updated": "2026-04-15",
     "section": "Warhammer Battles",
     "section_id": "warhammer-battles",
     "prev_page_url": "/warhammer-battles/setting-up-your-battlefield",
     "next_page_url": "/warhammer-battles/placing-terrain-warhammer-battles",
     "name": "Size of Battlefield",
-    "text": "For the average game of between 2,000 and 3,000 points, a battlefield measuring 48\"x72\" upon a flat, stable surface is normal. However, players may find the size of their battlefield limited by the space available. If you are unable to set up a battlefield measuring 48\"x72\", refer to the table below for the minimum recommended size at different points values: Size of Game Minimum Size of Battlefield Up to 1,000 points 30\"x44\" 1,001 to 3,000 points 44\"x60\" 3,001 points and above 44\"x90\"  ",
-    "i18n": {
-      "en": {
-        "name": "Size of Battlefield",
-        "text": "For the average game of between 2,000 and 3,000 points, a battlefield measuring 48\"x72\" upon a flat, stable surface is normal. However, players may find the size of their battlefield limited by the space available. If you are unable to set up a battlefield measuring 48\"x72\", refer to the table below for the minimum recommended size at different points values: Size of Game Minimum Size of Battlefield Up to 1,000 points 30\"x44\" 1,001 to 3,000 points 44\"x60\" 3,001 points and above 44\"x90\"  "
-      },
-      "es": {}
-    }
+    "text": "For the average game of between 2,000 and 3,000 points, a battlefield measuring 48\"x72\" upon a flat, stable surface is normal. However, players may find the size of their battlefield limited by the space available. If you are unable to set up a battlefield measuring 48\"x72\", refer to the table below for the minimum recommended size at different points values: Size of Game Minimum Size of Battlefield Up to 1,000 points 30\"x44\" 1,001 to 3,000 points 44\"x60\" 3,001 points and above 44\"x90\"  "
   },
   {
     "id": "first-turn",
     "url": "https://tow.whfb.app/warhammer-battles/first-turn",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 286
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 286,
     "last_updated": "2026-04-15",
     "section": "Warhammer Battles",
     "section_id": "warhammer-battles",
     "prev_page_url": "/warhammer-battles/reserves",
     "next_page_url": "/warhammer-battles/game-length-warhammer-battles",
     "name": "First Turn",
-    "text": "How to determine which player takes the first turn is detailed in each scenario. In most scenarios, the winner of a roll-off chooses who takes the first turn.",
-    "i18n": {
-      "en": {
-        "name": "First Turn",
-        "text": "How to determine which player takes the first turn is detailed in each scenario. In most scenarios, the winner of a roll-off chooses who takes the first turn."
-      },
-      "es": {}
-    }
+    "text": "How to determine which player takes the first turn is detailed in each scenario. In most scenarios, the winner of a roll-off chooses who takes the first turn."
   },
   {
     "id": "game-length-warhammer-battles",
     "url": "https://tow.whfb.app/warhammer-battles/game-length-warhammer-battles",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 286
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 286,
     "last_updated": "2026-04-15",
     "section": "Warhammer Battles",
     "section_id": "warhammer-battles",
     "prev_page_url": "/warhammer-battles/first-turn",
     "next_page_url": "/warhammer-battles/conceding",
     "name": "Game Length (Warhammer Battles)",
-    "text": "Most games last for six rounds. Some last a variable number of rounds – where this is the case, the details will be given in the scenario.",
-    "i18n": {
-      "en": {
-        "name": "Game Length (Warhammer Battles)",
-        "text": "Most games last for six rounds. Some last a variable number of rounds – where this is the case, the details will be given in the scenario."
-      },
-      "es": {}
-    }
+    "text": "Most games last for six rounds. Some last a variable number of rounds – where this is the case, the details will be given in the scenario."
   },
   {
     "id": "conceding",
     "url": "https://tow.whfb.app/warhammer-battles/conceding",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 286
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 286,
     "last_updated": "2026-04-15",
     "section": "Warhammer Battles",
     "section_id": "warhammer-battles",
     "prev_page_url": "/warhammer-battles/game-length-warhammer-battles",
     "next_page_url": "/warhammer-battles/time-limit",
     "name": "Conceding",
-    "text": "If one player concedes the battle, the game ends and victory goes to their opponent, who is awarded all of the available Victory Points.",
-    "i18n": {
-      "en": {
-        "name": "Conceding",
-        "text": "If one player concedes the battle, the game ends and victory goes to their opponent, who is awarded all of the available Victory Points."
-      },
-      "es": {}
-    }
+    "text": "If one player concedes the battle, the game ends and victory goes to their opponent, who is awarded all of the available Victory Points."
   },
   {
     "id": "time-limit",
     "url": "https://tow.whfb.app/warhammer-battles/time-limit",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 286
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 286,
     "last_updated": "2026-04-15",
     "section": "Warhammer Battles",
     "section_id": "warhammer-battles",
     "prev_page_url": "/warhammer-battles/conceding",
     "next_page_url": "/warhammer-battles/victory-points-warhammer-battles",
     "name": "Time Limit",
-    "text": "A game of Warhammer: the Old World can take several hours, not including time spent in conversation and making cups of tea. To manage this, some players set a time limit. Once this is reached, the active player finishes the current phase of their turn and the game ends.",
-    "i18n": {
-      "en": {
-        "name": "Time Limit",
-        "text": "A game of Warhammer: the Old World can take several hours, not including time spent in conversation and making cups of tea. To manage this, some players set a time limit. Once this is reached, the active player finishes the current phase of their turn and the game ends."
-      },
-      "es": {}
-    }
+    "text": "A game of Warhammer: the Old World can take several hours, not including time spent in conversation and making cups of tea. To manage this, some players set a time limit. Once this is reached, the active player finishes the current phase of their turn and the game ends."
   },
   {
     "id": "pitched-battles",
     "url": "https://tow.whfb.app/warhammer-battles/pitched-battles",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 287
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 287,
     "last_updated": "2026-04-15",
     "section": "Warhammer Battles",
     "section_id": "warhammer-battles",
     "prev_page_url": "/warhammer-battles/special-features-warhammer-battles",
     "next_page_url": "/warhammer-battles/historical-recreation",
     "name": "Pitched Battles",
-    "text": "The pitched battle scenarios presented in the following sections are designed for armies of roughly the same size. In each scenario, the situation in which the armies clash gives neither side a particular advantage as they are each designed to give both sides an equal chance of winning and have few, if any, scenario special rules.",
-    "i18n": {
-      "en": {
-        "name": "Pitched Battles",
-        "text": "The pitched battle scenarios presented in the following sections are designed for armies of roughly the same size. In each scenario, the situation in which the armies clash gives neither side a particular advantage as they are each designed to give both sides an equal chance of winning and have few, if any, scenario special rules."
-      },
-      "es": {}
-    }
+    "text": "The pitched battle scenarios presented in the following sections are designed for armies of roughly the same size. In each scenario, the situation in which the armies clash gives neither side a particular advantage as they are each designed to give both sides an equal chance of winning and have few, if any, scenario special rules."
   },
   {
     "id": "historical-recreation",
     "url": "https://tow.whfb.app/warhammer-battles/historical-recreation",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 287
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 287,
     "last_updated": "2026-04-15",
     "section": "Warhammer Battles",
     "section_id": "warhammer-battles",
     "prev_page_url": "/warhammer-battles/pitched-battles",
     "next_page_url": "/warhammer-battles/choosing-a-pitched-battle-scenario",
     "name": "Historical Recreation",
-    "text": "As mentioned previously, each pitched battle scenario includes guidance to recreate the historical battle that inspired it. In addition, the introduction to each scenario gives a brief description of the battle, telling why it was fought and the outcome. Here you will learn which armies to use along with suggestions of certain models or units to include in order to represent historical figures or famous regiments. They may also specify certain terrain features to include, or present special rules to use, the better to reflect the unique circumstances of that battle. These rules are intended for players who want to explore a more narrative style of play and should be treated as ideas to explore freely, rather than as strict rules which must be adhered to. The challenge of such games is simple – were you the general on that fateful day, would the history books record a different outcome?",
-    "i18n": {
-      "en": {
-        "name": "Historical Recreation",
-        "text": "As mentioned previously, each pitched battle scenario includes guidance to recreate the historical battle that inspired it. In addition, the introduction to each scenario gives a brief description of the battle, telling why it was fought and the outcome. Here you will learn which armies to use along with suggestions of certain models or units to include in order to represent historical figures or famous regiments. They may also specify certain terrain features to include, or present special rules to use, the better to reflect the unique circumstances of that battle. These rules are intended for players who want to explore a more narrative style of play and should be treated as ideas to explore freely, rather than as strict rules which must be adhered to. The challenge of such games is simple – were you the general on that fateful day, would the history books record a different outcome?"
-      },
-      "es": {}
-    }
+    "text": "As mentioned previously, each pitched battle scenario includes guidance to recreate the historical battle that inspired it. In addition, the introduction to each scenario gives a brief description of the battle, telling why it was fought and the outcome. Here you will learn which armies to use along with suggestions of certain models or units to include in order to represent historical figures or famous regiments. They may also specify certain terrain features to include, or present special rules to use, the better to reflect the unique circumstances of that battle. These rules are intended for players who want to explore a more narrative style of play and should be treated as ideas to explore freely, rather than as strict rules which must be adhered to. The challenge of such games is simple – were you the general on that fateful day, would the history books record a different outcome?"
   },
   {
     "id": "choosing-a-pitched-battle-scenario",
     "url": "https://tow.whfb.app/warhammer-battles/choosing-a-pitched-battle-scenario",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 287
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 287,
     "last_updated": "2026-04-15",
     "section": "Warhammer Battles",
     "section_id": "warhammer-battles",
     "prev_page_url": "/warhammer-battles/historical-recreation",
     "next_page_url": "/warhammer-battles/open-battle",
     "name": "Choosing a Pitched Battle Scenario",
-    "text": "There are two methods players can use to decide a pitched battle scenario prior to a game. The first method is for the players to simply discuss the matter and agree which scenario to use. This gives the maximum amount of choice and ensures that you don't end up with a scenario that neither player particularly wants to play. The second method is to choose randomly, by rolling a D6 and consulting the Pitched Battle table shown below: D6 Scenario 1 Open Battle 2 Break Point 3 Flank Attack 4 Meeting Engagement 5 Mountain Pass 6 Command & Control  ",
-    "i18n": {
-      "en": {
-        "name": "Choosing a Pitched Battle Scenario",
-        "text": "There are two methods players can use to decide a pitched battle scenario prior to a game. The first method is for the players to simply discuss the matter and agree which scenario to use. This gives the maximum amount of choice and ensures that you don't end up with a scenario that neither player particularly wants to play. The second method is to choose randomly, by rolling a D6 and consulting the Pitched Battle table shown below: D6 Scenario 1 Open Battle 2 Break Point 3 Flank Attack 4 Meeting Engagement 5 Mountain Pass 6 Command & Control  "
-      },
-      "es": {}
-    }
+    "text": "There are two methods players can use to decide a pitched battle scenario prior to a game. The first method is for the players to simply discuss the matter and agree which scenario to use. This gives the maximum amount of choice and ensures that you don't end up with a scenario that neither player particularly wants to play. The second method is to choose randomly, by rolling a D6 and consulting the Pitched Battle table shown below: D6 Scenario 1 Open Battle 2 Break Point 3 Flank Attack 4 Meeting Engagement 5 Mountain Pass 6 Command & Control  "
   },
   {
     "id": "what-is-a-narrative-battle",
     "url": "https://tow.whfb.app/narrative-battles/what-is-a-narrative-battle",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 302
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 302,
     "last_updated": "2026-04-15",
     "section": "Narrative Battles",
     "section_id": "narrative-battles",
     "prev_page_url": null,
     "next_page_url": "/narrative-battles/historical-recreations",
     "name": "What is a Narrative Battle?",
-    "text": "The term 'narrative battle' describes any battle that allows players to explore the background by adding new rules to the game or by foregoing rules that seem restrictive in the circumstances. Of course, there is nothing wrong with simply fighting a battle for the sake of it – the game is there to be enjoyed in all its forms, and it can be argued that any game has a degree of narrative behind it as almost all players will imagine the action unfolding in cinematic scope within their mind's eye. A narrative battle is one that expands upon this, drawing both players into a shared story. This can be done in a number of ways – by adding a story that sets the backdrop for the forthcoming battle, by adding scenario special rules or victory conditions (be they drawn from another scenario or source, or be they especially written by the players) that make the characters, armies or environment better evoke the story. In this way the battle itself completes the 'tale' begun by the scenario.",
-    "i18n": {
-      "en": {
-        "name": "What is a Narrative Battle?",
-        "text": "The term 'narrative battle' describes any battle that allows players to explore the background by adding new rules to the game or by foregoing rules that seem restrictive in the circumstances. Of course, there is nothing wrong with simply fighting a battle for the sake of it – the game is there to be enjoyed in all its forms, and it can be argued that any game has a degree of narrative behind it as almost all players will imagine the action unfolding in cinematic scope within their mind's eye. A narrative battle is one that expands upon this, drawing both players into a shared story. This can be done in a number of ways – by adding a story that sets the backdrop for the forthcoming battle, by adding scenario special rules or victory conditions (be they drawn from another scenario or source, or be they especially written by the players) that make the characters, armies or environment better evoke the story. In this way the battle itself completes the 'tale' begun by the scenario."
-      },
-      "es": {}
-    }
+    "text": "The term 'narrative battle' describes any battle that allows players to explore the background by adding new rules to the game or by foregoing rules that seem restrictive in the circumstances. Of course, there is nothing wrong with simply fighting a battle for the sake of it – the game is there to be enjoyed in all its forms, and it can be argued that any game has a degree of narrative behind it as almost all players will imagine the action unfolding in cinematic scope within their mind's eye. A narrative battle is one that expands upon this, drawing both players into a shared story. This can be done in a number of ways – by adding a story that sets the backdrop for the forthcoming battle, by adding scenario special rules or victory conditions (be they drawn from another scenario or source, or be they especially written by the players) that make the characters, armies or environment better evoke the story. In this way the battle itself completes the 'tale' begun by the scenario."
   },
   {
     "id": "historical-recreations",
     "url": "https://tow.whfb.app/narrative-battles/historical-recreations",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 302
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 302,
     "last_updated": "2026-04-15",
     "section": "Narrative Battles",
     "section_id": "narrative-battles",
     "prev_page_url": "/narrative-battles/what-is-a-narrative-battle",
     "next_page_url": "/narrative-battles/custom-scenarios",
     "name": "Historical Recreations",
-    "text": "The simplest examples of a narrative battle are the historical recreations presented in the pitched battle scenarios. By simply following the guidance given there, by using appropriate armies and terrain, you can attempt to recreate that historic event.",
-    "i18n": {
-      "en": {
-        "name": "Historical Recreations",
-        "text": "The simplest examples of a narrative battle are the historical recreations presented in the pitched battle scenarios. By simply following the guidance given there, by using appropriate armies and terrain, you can attempt to recreate that historic event."
-      },
-      "es": {}
-    }
+    "text": "The simplest examples of a narrative battle are the historical recreations presented in the pitched battle scenarios. By simply following the guidance given there, by using appropriate armies and terrain, you can attempt to recreate that historic event."
   },
   {
     "id": "narrative-scenarios",
     "url": "https://tow.whfb.app/narrative-battles/narrative-scenarios",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 302
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 302,
     "last_updated": "2026-04-15",
     "section": "Narrative Battles",
     "section_id": "narrative-battles",
     "prev_page_url": "/narrative-battles/custom-scenarios",
     "next_page_url": "/narrative-battles/open-play",
     "name": "Narrative Scenarios",
-    "text": "There are many examples of narrative scenarios to be found in Warhammer: the Old World supplements. These provide unique deployment maps and maps of terrain to recreate, along with special rules to use. Narrative scenarios tend to be created along the lines of historical recreations, giving guidance as to the forces to use in order to represent the battle the scenario describes. But, as with the pitched battle scenarios, narrative scenarios can be played with any combination of armies.",
-    "i18n": {
-      "en": {
-        "name": "Narrative Scenarios",
-        "text": "There are many examples of narrative scenarios to be found in Warhammer: the Old World supplements. These provide unique deployment maps and maps of terrain to recreate, along with special rules to use. Narrative scenarios tend to be created along the lines of historical recreations, giving guidance as to the forces to use in order to represent the battle the scenario describes. But, as with the pitched battle scenarios, narrative scenarios can be played with any combination of armies."
-      },
-      "es": {}
-    }
+    "text": "There are many examples of narrative scenarios to be found in Warhammer: the Old World supplements. These provide unique deployment maps and maps of terrain to recreate, along with special rules to use. Narrative scenarios tend to be created along the lines of historical recreations, giving guidance as to the forces to use in order to represent the battle the scenario describes. But, as with the pitched battle scenarios, narrative scenarios can be played with any combination of armies."
   },
   {
     "id": "open-play",
     "url": "https://tow.whfb.app/narrative-battles/open-play",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 303
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 303,
     "last_updated": "2026-04-15",
     "section": "Narrative Battles",
     "section_id": "narrative-battles",
     "prev_page_url": "/narrative-battles/narrative-scenarios",
     "next_page_url": "/narrative-battles/armies-of-imagination",
     "name": "Open Play",
-    "text": "A term used often in conjunction with narrative battles is 'open play', but what does it mean? Open play means many things, but in essence it refers to the philosophy wherein players treat the rules as a guideline to be aided by, rather than a set of constrictions to restrict them.",
-    "i18n": {
-      "en": {
-        "name": "Open Play",
-        "text": "A term used often in conjunction with narrative battles is 'open play', but what does it mean? Open play means many things, but in essence it refers to the philosophy wherein players treat the rules as a guideline to be aided by, rather than a set of constrictions to restrict them."
-      },
-      "es": {}
-    }
+    "text": "A term used often in conjunction with narrative battles is 'open play', but what does it mean? Open play means many things, but in essence it refers to the philosophy wherein players treat the rules as a guideline to be aided by, rather than a set of constrictions to restrict them."
   },
   {
     "id": "armies-of-imagination",
     "url": "https://tow.whfb.app/narrative-battles/armies-of-imagination",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 303
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 303,
     "last_updated": "2026-04-15",
     "section": "Narrative Battles",
     "section_id": "narrative-battles",
     "prev_page_url": "/narrative-battles/open-play",
     "next_page_url": "/narrative-battles/think-of-them-more-as-guidelines",
     "name": "Armies of Imagination",
-    "text": "One key aspect of open play is that it grants the freedom to forego certain army composition rules in pursuit of the narrative. At its most simple, players will often ignore percentages and other restrictions when creating their armies, choosing instead to write a muster list that best fits the narrative. Taking it further, some players will ignore points values altogether, and instead field opposing armies created purely to fit into their story. Of course, ignoring such rules can lead to an imbalanced match-up, and this thought may be unappealing to some players. This is perfectly acceptable and any group of players is encouraged to use the suggestions given here, or not, as they see fit. However, these imbalances can often prove part of the charm of a narrative battle, and can invariably be countered by special rules and objectives. Ignoring points values might lead to an army being outnumbered ten to one, for example, and that army might reasonably be expected to suffer a crushing defeat and terrible losses. But the challenge of the game might be to hold out until turn four – perhaps that will grant a vital messenger sufficient time to escape, carrying word of the size of the invading army, and thus the terrible defeat can be claimed as a victory (of sorts).",
-    "i18n": {
-      "en": {
-        "name": "Armies of Imagination",
-        "text": "One key aspect of open play is that it grants the freedom to forego certain army composition rules in pursuit of the narrative. At its most simple, players will often ignore percentages and other restrictions when creating their armies, choosing instead to write a muster list that best fits the narrative. Taking it further, some players will ignore points values altogether, and instead field opposing armies created purely to fit into their story. Of course, ignoring such rules can lead to an imbalanced match-up, and this thought may be unappealing to some players. This is perfectly acceptable and any group of players is encouraged to use the suggestions given here, or not, as they see fit. However, these imbalances can often prove part of the charm of a narrative battle, and can invariably be countered by special rules and objectives. Ignoring points values might lead to an army being outnumbered ten to one, for example, and that army might reasonably be expected to suffer a crushing defeat and terrible losses. But the challenge of the game might be to hold out until turn four – perhaps that will grant a vital messenger sufficient time to escape, carrying word of the size of the invading army, and thus the terrible defeat can be claimed as a victory (of sorts)."
-      },
-      "es": {}
-    }
+    "text": "One key aspect of open play is that it grants the freedom to forego certain army composition rules in pursuit of the narrative. At its most simple, players will often ignore percentages and other restrictions when creating their armies, choosing instead to write a muster list that best fits the narrative. Taking it further, some players will ignore points values altogether, and instead field opposing armies created purely to fit into their story. Of course, ignoring such rules can lead to an imbalanced match-up, and this thought may be unappealing to some players. This is perfectly acceptable and any group of players is encouraged to use the suggestions given here, or not, as they see fit. However, these imbalances can often prove part of the charm of a narrative battle, and can invariably be countered by special rules and objectives. Ignoring points values might lead to an army being outnumbered ten to one, for example, and that army might reasonably be expected to suffer a crushing defeat and terrible losses. But the challenge of the game might be to hold out until turn four – perhaps that will grant a vital messenger sufficient time to escape, carrying word of the size of the invading army, and thus the terrible defeat can be claimed as a victory (of sorts)."
   },
   {
     "id": "think-of-them-more-as-guidelines",
     "url": "https://tow.whfb.app/narrative-battles/think-of-them-more-as-guidelines",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 303
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 303,
     "last_updated": "2026-04-15",
     "section": "Narrative Battles",
     "section_id": "narrative-battles",
     "prev_page_url": "/narrative-battles/armies-of-imagination",
     "next_page_url": "/narrative-battles/the-games-master",
     "name": "\"Think Of Them More As Guidelines\"",
-    "text": "Another key aspect of open play is that it gives players permission to change a rule if doing so will improve the experience in the moment. For example, a vital unit might unexpectedly lose combat and Break, causing the game to end suddenly and unsatisfyingly. Of course, such is the way of things and there is no altering that. However, sometimes players encountering such an event might agree to alter the outcome of the Break test, perhaps allowing the defeated unit to instead Fall Back in Good Order. Doing so might extend the game and, more importantly, might feel like the more correct outcome in the circumstances. By way of another example, imagine a battle fought under the gloom of twilight. In such conditions, shooting may reasonably be expected to be less effective. To evoke this, players may add a rule, perhaps agreeing that all long range shooting suffers an additional -1 To Hit modifier, or perhaps agreeing that the Range characteristic of all missile weapons should be reduced. Whatever the case, players – especially good friends who know one another well – are encouraged to make amendments to the rules before or during a game if doing so will help to enforce the narrative. Provided both players are having fun and are in agreement, such amendments and alterations can lead to some truly memorable moments.",
-    "i18n": {
-      "en": {
-        "name": "\"Think Of Them More As Guidelines\"",
-        "text": "Another key aspect of open play is that it gives players permission to change a rule if doing so will improve the experience in the moment. For example, a vital unit might unexpectedly lose combat and Break, causing the game to end suddenly and unsatisfyingly. Of course, such is the way of things and there is no altering that. However, sometimes players encountering such an event might agree to alter the outcome of the Break test, perhaps allowing the defeated unit to instead Fall Back in Good Order. Doing so might extend the game and, more importantly, might feel like the more correct outcome in the circumstances. By way of another example, imagine a battle fought under the gloom of twilight. In such conditions, shooting may reasonably be expected to be less effective. To evoke this, players may add a rule, perhaps agreeing that all long range shooting suffers an additional -1 To Hit modifier, or perhaps agreeing that the Range characteristic of all missile weapons should be reduced. Whatever the case, players – especially good friends who know one another well – are encouraged to make amendments to the rules before or during a game if doing so will help to enforce the narrative. Provided both players are having fun and are in agreement, such amendments and alterations can lead to some truly memorable moments."
-      },
-      "es": {}
-    }
+    "text": "Another key aspect of open play is that it gives players permission to change a rule if doing so will improve the experience in the moment. For example, a vital unit might unexpectedly lose combat and Break, causing the game to end suddenly and unsatisfyingly. Of course, such is the way of things and there is no altering that. However, sometimes players encountering such an event might agree to alter the outcome of the Break test, perhaps allowing the defeated unit to instead Fall Back in Good Order. Doing so might extend the game and, more importantly, might feel like the more correct outcome in the circumstances. By way of another example, imagine a battle fought under the gloom of twilight. In such conditions, shooting may reasonably be expected to be less effective. To evoke this, players may add a rule, perhaps agreeing that all long range shooting suffers an additional -1 To Hit modifier, or perhaps agreeing that the Range characteristic of all missile weapons should be reduced. Whatever the case, players – especially good friends who know one another well – are encouraged to make amendments to the rules before or during a game if doing so will help to enforce the narrative. Provided both players are having fun and are in agreement, such amendments and alterations can lead to some truly memorable moments."
   },
   {
     "id": "the-games-master",
     "url": "https://tow.whfb.app/narrative-battles/the-games-master",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 304
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 304,
     "last_updated": "2026-04-15",
     "section": "Narrative Battles",
     "section_id": "narrative-battles",
     "prev_page_url": "/narrative-battles/think-of-them-more-as-guidelines",
     "next_page_url": "/narrative-battles/the-role-of-a-gm",
     "name": "The Games Master",
-    "text": "One of the best ways to introduce new rules or ideas and to run a narrative scenario is with the help of a Games Master. A Games Master (or GM for short) is an optional third player who takes a role somewhere between that of a narrator and of an impartial arbitrator of the rules, who presides over and runs a particular battle. The GM helps the players by setting up the scenario and interpreting and amending – or even making up – the rules as needed.",
-    "i18n": {
-      "en": {
-        "name": "The Games Master",
-        "text": "One of the best ways to introduce new rules or ideas and to run a narrative scenario is with the help of a Games Master. A Games Master (or GM for short) is an optional third player who takes a role somewhere between that of a narrator and of an impartial arbitrator of the rules, who presides over and runs a particular battle. The GM helps the players by setting up the scenario and interpreting and amending – or even making up – the rules as needed."
-      },
-      "es": {}
-    }
+    "text": "One of the best ways to introduce new rules or ideas and to run a narrative scenario is with the help of a Games Master. A Games Master (or GM for short) is an optional third player who takes a role somewhere between that of a narrator and of an impartial arbitrator of the rules, who presides over and runs a particular battle. The GM helps the players by setting up the scenario and interpreting and amending – or even making up – the rules as needed."
   },
   {
     "id": "the-role-of-a-gm",
     "url": "https://tow.whfb.app/narrative-battles/the-role-of-a-gm",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 304
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 304,
     "last_updated": "2026-04-15",
     "section": "Narrative Battles",
     "section_id": "narrative-battles",
     "prev_page_url": "/narrative-battles/the-games-master",
     "next_page_url": "/narrative-battles/forging-a-narrative",
     "name": "The Role of a GM",
-    "text": "The role a Games Master takes will vary from group to group. It may be a blend of all the points that follow or be something else entirely, as the players and their games require. An Unbiased Observer The role of GM can be to simply observe the game and offer an impartial opinion on any uncertainties that arise. Players can share secrets with the GM, such as the predetermined point that reinforcements will arrive from, or where Scouts are deployed in hiding. With a GM's help, entire armies can even be deployed in secret. A Narrator & Storyteller Some groups will be fortunate enough to include a member gifted in storytelling and the creation of unique scenarios. This can be utilised by allowing the individual, acting as GM, to set the scene and talk the players through the action as it unfolds. Should the game take an unexpected turn, a skilled GM can either alter the narrative to accommodate this, or gently nudge the action back onto the intended track. An Arbiter of the Rules For many, the role of GM is of someone who forges and re-forges the rules throughout a game to maintain the flow of the action. When taken in conjunction with the telling of an unfolding story, this can result in many unusual events happening, creating some truly memorable moments. An Impartial Third Player Imagine a group of skirmishers moving through a wood have disturbed the lair of a terrible beast, or the noise of a battle in an underground realm has awoken a slumbering Dragon. In such cases, these wandering monsters can be controlled by the GM. There may even be a third force involved in the game somehow, controlled by the GM. Fate's Representative Sometimes, a battle might need nudging along in a certain direction, and if the game is part of a campaign, this might be especially important. In such cases, a GM might choose to help one of the players in small ways, or to hinder another. Ideally, this should only be done when the action requires it. The presence of a GM can add many extra levels to your games, and players are encouraged to give it a try – no one knows until they do just how much fun the role can be or who will be best at it.",
-    "i18n": {
-      "en": {
-        "name": "The Role of a GM",
-        "text": "The role a Games Master takes will vary from group to group. It may be a blend of all the points that follow or be something else entirely, as the players and their games require. An Unbiased Observer The role of GM can be to simply observe the game and offer an impartial opinion on any uncertainties that arise. Players can share secrets with the GM, such as the predetermined point that reinforcements will arrive from, or where Scouts are deployed in hiding. With a GM's help, entire armies can even be deployed in secret. A Narrator & Storyteller Some groups will be fortunate enough to include a member gifted in storytelling and the creation of unique scenarios. This can be utilised by allowing the individual, acting as GM, to set the scene and talk the players through the action as it unfolds. Should the game take an unexpected turn, a skilled GM can either alter the narrative to accommodate this, or gently nudge the action back onto the intended track. An Arbiter of the Rules For many, the role of GM is of someone who forges and re-forges the rules throughout a game to maintain the flow of the action. When taken in conjunction with the telling of an unfolding story, this can result in many unusual events happening, creating some truly memorable moments. An Impartial Third Player Imagine a group of skirmishers moving through a wood have disturbed the lair of a terrible beast, or the noise of a battle in an underground realm has awoken a slumbering Dragon. In such cases, these wandering monsters can be controlled by the GM. There may even be a third force involved in the game somehow, controlled by the GM. Fate's Representative Sometimes, a battle might need nudging along in a certain direction, and if the game is part of a campaign, this might be especially important. In such cases, a GM might choose to help one of the players in small ways, or to hinder another. Ideally, this should only be done when the action requires it. The presence of a GM can add many extra levels to your games, and players are encouraged to give it a try – no one knows until they do just how much fun the role can be or who will be best at it."
-      },
-      "es": {}
-    }
+    "text": "The role a Games Master takes will vary from group to group. It may be a blend of all the points that follow or be something else entirely, as the players and their games require. An Unbiased Observer The role of GM can be to simply observe the game and offer an impartial opinion on any uncertainties that arise. Players can share secrets with the GM, such as the predetermined point that reinforcements will arrive from, or where Scouts are deployed in hiding. With a GM's help, entire armies can even be deployed in secret. A Narrator & Storyteller Some groups will be fortunate enough to include a member gifted in storytelling and the creation of unique scenarios. This can be utilised by allowing the individual, acting as GM, to set the scene and talk the players through the action as it unfolds. Should the game take an unexpected turn, a skilled GM can either alter the narrative to accommodate this, or gently nudge the action back onto the intended track. An Arbiter of the Rules For many, the role of GM is of someone who forges and re-forges the rules throughout a game to maintain the flow of the action. When taken in conjunction with the telling of an unfolding story, this can result in many unusual events happening, creating some truly memorable moments. An Impartial Third Player Imagine a group of skirmishers moving through a wood have disturbed the lair of a terrible beast, or the noise of a battle in an underground realm has awoken a slumbering Dragon. In such cases, these wandering monsters can be controlled by the GM. There may even be a third force involved in the game somehow, controlled by the GM. Fate's Representative Sometimes, a battle might need nudging along in a certain direction, and if the game is part of a campaign, this might be especially important. In such cases, a GM might choose to help one of the players in small ways, or to hinder another. Ideally, this should only be done when the action requires it. The presence of a GM can add many extra levels to your games, and players are encouraged to give it a try – no one knows until they do just how much fun the role can be or who will be best at it."
   },
   {
     "id": "forging-a-narrative",
     "url": "https://tow.whfb.app/narrative-battles/forging-a-narrative",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 305
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 305,
     "last_updated": "2026-04-15",
     "section": "Narrative Battles",
     "section_id": "narrative-battles",
     "prev_page_url": "/narrative-battles/the-role-of-a-gm",
     "next_page_url": "/narrative-battles/narrative-locations",
     "name": "Forging a Narrative",
-    "text": "One enjoyable aspect of narrative battles is the creation of scenarios that help tell tales of the noble and ignoble adventures of the armies in your collection. Creating a scenario can be as simple as mixing and matching elements of different published scenarios. Alternatively, you may wish to go further still, creating your own deployment maps and victory conditions. But what of the story itself? Why are these armies meeting to do battle and where is this battle taking place? The following sections offer some suggestions for the two most important aspects of any narrative scenario: the location and the motive.",
-    "i18n": {
-      "en": {
-        "name": "Forging a Narrative",
-        "text": "One enjoyable aspect of narrative battles is the creation of scenarios that help tell tales of the noble and ignoble adventures of the armies in your collection. Creating a scenario can be as simple as mixing and matching elements of different published scenarios. Alternatively, you may wish to go further still, creating your own deployment maps and victory conditions. But what of the story itself? Why are these armies meeting to do battle and where is this battle taking place? The following sections offer some suggestions for the two most important aspects of any narrative scenario: the location and the motive."
-      },
-      "es": {}
-    }
+    "text": "One enjoyable aspect of narrative battles is the creation of scenarios that help tell tales of the noble and ignoble adventures of the armies in your collection. Creating a scenario can be as simple as mixing and matching elements of different published scenarios. Alternatively, you may wish to go further still, creating your own deployment maps and victory conditions. But what of the story itself? Why are these armies meeting to do battle and where is this battle taking place? The following sections offer some suggestions for the two most important aspects of any narrative scenario: the location and the motive."
   },
   {
     "id": "narrative-locations",
     "url": "https://tow.whfb.app/narrative-battles/narrative-locations",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 305
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 305,
     "last_updated": "2026-04-15",
     "section": "Narrative Battles",
     "section_id": "narrative-battles",
     "prev_page_url": "/narrative-battles/forging-a-narrative",
     "next_page_url": "/narrative-battles/narrative-motives",
     "name": "Narrative Locations",
-    "text": "The table below suggests six locations in which a battle could be fought. Using these, you can create a thematic battlefield that offers unique challenges. It is also possible (even encouraged) to combine these ideas in different ways: D6 Result 1 Riverbank: One side of the battlefield (short or long) can be treated as impassable terrain, representing the fast flowing waters. Perhaps two adjacent edges could be impassable terrain, representing the battle taking place where the river bends. Such a battlefield might feature areas of difficult or dangerous terrain, representing the muddy banks. 2 Forest Glade: The battlefield might be ringed around its edge with woods. The dense wood might cause reserves to get lost in the forest and arrive at randomly determined locations. The same may be true of units that pursue the enemy off the battlefield – they may become lost and not return immediately, if at all. 3 Mountain Fastness: The battlefield should be long and narrow, and at least two of its edges treated as impassable terrain. The rest of the battlefield might be populated with difficult and dangerous terrain in the form of rocky ground. If the ground is steep, the entire battlefield could count as sloping away from one edge, giving an advantage to the side that controls it. 4 Underground Cavern: An underground battle might be a tense and claustrophobic affair fought on a smaller than average battlefield with one or two points of access. Flying creatures are unlikely to be of much use, and war machines of certain types might prove ineffective. In fact, in the dark all missile weapons might be of limited use. 5 Marshland: The majority of the battlefield can be treated as difficult terrain, with the only areas of open ground being low hills that rise from the mire. Cavalry and monsters may find such a battlefield especially difficult. Banks of mist might drift through the air, obscuring line of sight before dispersing, making units unsure where exactly the enemy is. 6 Desert Dunes: A desert battlefield need not be sparse. Hills can represent the shifting dunes; rock formations and ruins can dot the landscape. The heat might sap the strength of heavily armoured units, slowing them down. The glare of the sun might interfere with shooting, whilst unexpected winds and sandstorms can halt all movement and drive away flying creatures.  ",
-    "i18n": {
-      "en": {
-        "name": "Narrative Locations",
-        "text": "The table below suggests six locations in which a battle could be fought. Using these, you can create a thematic battlefield that offers unique challenges. It is also possible (even encouraged) to combine these ideas in different ways: D6 Result 1 Riverbank: One side of the battlefield (short or long) can be treated as impassable terrain, representing the fast flowing waters. Perhaps two adjacent edges could be impassable terrain, representing the battle taking place where the river bends. Such a battlefield might feature areas of difficult or dangerous terrain, representing the muddy banks. 2 Forest Glade: The battlefield might be ringed around its edge with woods. The dense wood might cause reserves to get lost in the forest and arrive at randomly determined locations. The same may be true of units that pursue the enemy off the battlefield – they may become lost and not return immediately, if at all. 3 Mountain Fastness: The battlefield should be long and narrow, and at least two of its edges treated as impassable terrain. The rest of the battlefield might be populated with difficult and dangerous terrain in the form of rocky ground. If the ground is steep, the entire battlefield could count as sloping away from one edge, giving an advantage to the side that controls it. 4 Underground Cavern: An underground battle might be a tense and claustrophobic affair fought on a smaller than average battlefield with one or two points of access. Flying creatures are unlikely to be of much use, and war machines of certain types might prove ineffective. In fact, in the dark all missile weapons might be of limited use. 5 Marshland: The majority of the battlefield can be treated as difficult terrain, with the only areas of open ground being low hills that rise from the mire. Cavalry and monsters may find such a battlefield especially difficult. Banks of mist might drift through the air, obscuring line of sight before dispersing, making units unsure where exactly the enemy is. 6 Desert Dunes: A desert battlefield need not be sparse. Hills can represent the shifting dunes; rock formations and ruins can dot the landscape. The heat might sap the strength of heavily armoured units, slowing them down. The glare of the sun might interfere with shooting, whilst unexpected winds and sandstorms can halt all movement and drive away flying creatures.  "
-      },
-      "es": {}
-    }
+    "text": "The table below suggests six locations in which a battle could be fought. Using these, you can create a thematic battlefield that offers unique challenges. It is also possible (even encouraged) to combine these ideas in different ways: D6 Result 1 Riverbank: One side of the battlefield (short or long) can be treated as impassable terrain, representing the fast flowing waters. Perhaps two adjacent edges could be impassable terrain, representing the battle taking place where the river bends. Such a battlefield might feature areas of difficult or dangerous terrain, representing the muddy banks. 2 Forest Glade: The battlefield might be ringed around its edge with woods. The dense wood might cause reserves to get lost in the forest and arrive at randomly determined locations. The same may be true of units that pursue the enemy off the battlefield – they may become lost and not return immediately, if at all. 3 Mountain Fastness: The battlefield should be long and narrow, and at least two of its edges treated as impassable terrain. The rest of the battlefield might be populated with difficult and dangerous terrain in the form of rocky ground. If the ground is steep, the entire battlefield could count as sloping away from one edge, giving an advantage to the side that controls it. 4 Underground Cavern: An underground battle might be a tense and claustrophobic affair fought on a smaller than average battlefield with one or two points of access. Flying creatures are unlikely to be of much use, and war machines of certain types might prove ineffective. In fact, in the dark all missile weapons might be of limited use. 5 Marshland: The majority of the battlefield can be treated as difficult terrain, with the only areas of open ground being low hills that rise from the mire. Cavalry and monsters may find such a battlefield especially difficult. Banks of mist might drift through the air, obscuring line of sight before dispersing, making units unsure where exactly the enemy is. 6 Desert Dunes: A desert battlefield need not be sparse. Hills can represent the shifting dunes; rock formations and ruins can dot the landscape. The heat might sap the strength of heavily armoured units, slowing them down. The glare of the sun might interfere with shooting, whilst unexpected winds and sandstorms can halt all movement and drive away flying creatures.  "
   },
   {
     "id": "narrative-motives",
     "url": "https://tow.whfb.app/narrative-battles/narrative-motives",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 306
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 306,
     "last_updated": "2026-04-15",
     "section": "Narrative Battles",
     "section_id": "narrative-battles",
     "prev_page_url": "/narrative-battles/narrative-locations",
     "next_page_url": "/narrative-battles/linked-battles",
     "name": "Narrative Motives",
-    "text": "The Narrative Motives table presents six reasons why two armies are meeting in conflict. When creating a narrative for the battle, the motive is extremely important. When combined with the location, you are able to say almost everything that needs to be said about the story behind the battle. All that remains is to learn the composition of the armies and the outcome – and these are things best revealed by playing the game. Using the suggestions given here and combining them with the Narrative Locations table, you can create a scenario that gives a battle a true sense of significance: D6 Result 1 Border Dispute: Disagreements over the exact location of a border are common and they can be sparked by almost anything. Such disputes can quickly lead to bloodshed; their outcome can see borders move and cause tremendous upheaval. On the tabletop, a border dispute can be represented very simply with one army trying to drive its rival off and claim victory. 2 Lost Riches: The world contains many tremendous riches, and sometimes new wealth is discovered or lost wealth unearthed. In game terms, this could be represented by placing several objectives around the battlefield, each representing a cache of buried riches or a natural deposit of precious stones or metals. The winning player would be the one whose army controls the most objectives at the battle’s end. 3 Nowhere to Run: Tales of desperate last stands by beleaguered armies are the stuff of legend. On the tabletop, an army might be unable to retreat, forced to deploy on the banks of a mighty river or against an impassable cliff face, where it must fight to the death. Alternatively, an army might deploy in the centre of the battlefield, surrounded by its enemy. 4 Access Rights: Many battles have been fought for control of a stretch of road or river, a bridge or a ford, and many armies have found themselves ambushed en route to their destination. In a game, this might be represented by deploying one army in a narrow column that stretches across the table, with the enemy deployed to either side. 5 Conquer New Lands: As armies are defeated, their lands are left undefended, presenting vulnerable targets for rivals. Such contests for the control of land can be represented by dividing the battlefield into four quarters, each of which can be controlled by the side that has the most units completely within it. At the end of the battle, the side that controls the most quarters is victorious. 6 Property Damage: Treasured monuments, important buildings and sacred sites all present valuable targets for an enemy bent upon destruction. On the tabletop, this can be represented by placing a special feature at the centre of the battlefield which the armies fight to control. Alternatively, a special feature can be placed in a well-defended position, with one army attempting to wrest control of the feature from the enemy.  ",
-    "i18n": {
-      "en": {
-        "name": "Narrative Motives",
-        "text": "The Narrative Motives table presents six reasons why two armies are meeting in conflict. When creating a narrative for the battle, the motive is extremely important. When combined with the location, you are able to say almost everything that needs to be said about the story behind the battle. All that remains is to learn the composition of the armies and the outcome – and these are things best revealed by playing the game. Using the suggestions given here and combining them with the Narrative Locations table, you can create a scenario that gives a battle a true sense of significance: D6 Result 1 Border Dispute: Disagreements over the exact location of a border are common and they can be sparked by almost anything. Such disputes can quickly lead to bloodshed; their outcome can see borders move and cause tremendous upheaval. On the tabletop, a border dispute can be represented very simply with one army trying to drive its rival off and claim victory. 2 Lost Riches: The world contains many tremendous riches, and sometimes new wealth is discovered or lost wealth unearthed. In game terms, this could be represented by placing several objectives around the battlefield, each representing a cache of buried riches or a natural deposit of precious stones or metals. The winning player would be the one whose army controls the most objectives at the battle’s end. 3 Nowhere to Run: Tales of desperate last stands by beleaguered armies are the stuff of legend. On the tabletop, an army might be unable to retreat, forced to deploy on the banks of a mighty river or against an impassable cliff face, where it must fight to the death. Alternatively, an army might deploy in the centre of the battlefield, surrounded by its enemy. 4 Access Rights: Many battles have been fought for control of a stretch of road or river, a bridge or a ford, and many armies have found themselves ambushed en route to their destination. In a game, this might be represented by deploying one army in a narrow column that stretches across the table, with the enemy deployed to either side. 5 Conquer New Lands: As armies are defeated, their lands are left undefended, presenting vulnerable targets for rivals. Such contests for the control of land can be represented by dividing the battlefield into four quarters, each of which can be controlled by the side that has the most units completely within it. At the end of the battle, the side that controls the most quarters is victorious. 6 Property Damage: Treasured monuments, important buildings and sacred sites all present valuable targets for an enemy bent upon destruction. On the tabletop, this can be represented by placing a special feature at the centre of the battlefield which the armies fight to control. Alternatively, a special feature can be placed in a well-defended position, with one army attempting to wrest control of the feature from the enemy.  "
-      },
-      "es": {}
-    }
+    "text": "The Narrative Motives table presents six reasons why two armies are meeting in conflict. When creating a narrative for the battle, the motive is extremely important. When combined with the location, you are able to say almost everything that needs to be said about the story behind the battle. All that remains is to learn the composition of the armies and the outcome – and these are things best revealed by playing the game. Using the suggestions given here and combining them with the Narrative Locations table, you can create a scenario that gives a battle a true sense of significance: D6 Result 1 Border Dispute: Disagreements over the exact location of a border are common and they can be sparked by almost anything. Such disputes can quickly lead to bloodshed; their outcome can see borders move and cause tremendous upheaval. On the tabletop, a border dispute can be represented very simply with one army trying to drive its rival off and claim victory. 2 Lost Riches: The world contains many tremendous riches, and sometimes new wealth is discovered or lost wealth unearthed. In game terms, this could be represented by placing several objectives around the battlefield, each representing a cache of buried riches or a natural deposit of precious stones or metals. The winning player would be the one whose army controls the most objectives at the battle’s end. 3 Nowhere to Run: Tales of desperate last stands by beleaguered armies are the stuff of legend. On the tabletop, an army might be unable to retreat, forced to deploy on the banks of a mighty river or against an impassable cliff face, where it must fight to the death. Alternatively, an army might deploy in the centre of the battlefield, surrounded by its enemy. 4 Access Rights: Many battles have been fought for control of a stretch of road or river, a bridge or a ford, and many armies have found themselves ambushed en route to their destination. In a game, this might be represented by deploying one army in a narrow column that stretches across the table, with the enemy deployed to either side. 5 Conquer New Lands: As armies are defeated, their lands are left undefended, presenting vulnerable targets for rivals. Such contests for the control of land can be represented by dividing the battlefield into four quarters, each of which can be controlled by the side that has the most units completely within it. At the end of the battle, the side that controls the most quarters is victorious. 6 Property Damage: Treasured monuments, important buildings and sacred sites all present valuable targets for an enemy bent upon destruction. On the tabletop, this can be represented by placing a special feature at the centre of the battlefield which the armies fight to control. Alternatively, a special feature can be placed in a well-defended position, with one army attempting to wrest control of the feature from the enemy.  "
   },
   {
     "id": "linked-battles",
     "url": "https://tow.whfb.app/narrative-battles/linked-battles",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 307
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 307,
     "last_updated": "2026-04-15",
     "section": "Narrative Battles",
     "section_id": "narrative-battles",
     "prev_page_url": "/narrative-battles/narrative-motives",
     "next_page_url": "/narrative-battles/campaign-narrative",
     "name": "Linked Battles",
-    "text": "A battle is rarely an isolated event, but instead a single climactic confrontation fought as part of a wider conflict. By linking a series of battles together, it is possible to string a few evenings' worth of games into an ongoing and interconnected narrative that unfolds into a saga worthy of entering the annals of Warhammer history. The idea of linking games together is that the outcome of one battle directly affects the events of the next, making for tactically challenging battles with an exciting and unfolding story. Such linked games encourage players to rethink strategies and consider the big picture of their ongoing battles. It becomes possible to lose a battle, but win the war by keeping the ultimate victory in mind. The games create a natural story arc, and before long the players will have great grudges to settle and vows of redemption to honour. In addition to exploring the narrative elements, it allows for an occasional change of pace as players can use smaller or larger forces than they habitually do and explore different scenarios.",
-    "i18n": {
-      "en": {
-        "name": "Linked Battles",
-        "text": "A battle is rarely an isolated event, but instead a single climactic confrontation fought as part of a wider conflict. By linking a series of battles together, it is possible to string a few evenings' worth of games into an ongoing and interconnected narrative that unfolds into a saga worthy of entering the annals of Warhammer history. The idea of linking games together is that the outcome of one battle directly affects the events of the next, making for tactically challenging battles with an exciting and unfolding story. Such linked games encourage players to rethink strategies and consider the big picture of their ongoing battles. It becomes possible to lose a battle, but win the war by keeping the ultimate victory in mind. The games create a natural story arc, and before long the players will have great grudges to settle and vows of redemption to honour. In addition to exploring the narrative elements, it allows for an occasional change of pace as players can use smaller or larger forces than they habitually do and explore different scenarios."
-      },
-      "es": {}
-    }
+    "text": "A battle is rarely an isolated event, but instead a single climactic confrontation fought as part of a wider conflict. By linking a series of battles together, it is possible to string a few evenings' worth of games into an ongoing and interconnected narrative that unfolds into a saga worthy of entering the annals of Warhammer history. The idea of linking games together is that the outcome of one battle directly affects the events of the next, making for tactically challenging battles with an exciting and unfolding story. Such linked games encourage players to rethink strategies and consider the big picture of their ongoing battles. It becomes possible to lose a battle, but win the war by keeping the ultimate victory in mind. The games create a natural story arc, and before long the players will have great grudges to settle and vows of redemption to honour. In addition to exploring the narrative elements, it allows for an occasional change of pace as players can use smaller or larger forces than they habitually do and explore different scenarios."
   },
   {
     "id": "campaign-narrative",
     "url": "https://tow.whfb.app/narrative-battles/campaign-narrative",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 307
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 307,
     "last_updated": "2026-04-15",
     "section": "Narrative Battles",
     "section_id": "narrative-battles",
     "prev_page_url": "/narrative-battles/linked-battles",
     "next_page_url": "/narrative-battles/the-dark-monolith",
     "name": "Campaign Narrative",
-    "text": "Readers must by now have realised that there are strong and binding ties between narrative battles and campaign battles, and vice versa. Indeed, a series of linked, narrative battles can very much be considered a campaign. How the players go about answering the questions posed when forging the narrative, and the many others that are certain to arise as that narrative unfolds, informs how these games can progress to become something greater. The GM in a Campaign The role of a games master in campaign play can also be important. During a campaign, the GM will likely be the person that keeps any maps updated and keeps track of the participants. They are able to wield their power over the narrative on a larger scale as well, steering each step of the campaign towards the end goal, one battle at a time.",
-    "i18n": {
-      "en": {
-        "name": "Campaign Narrative",
-        "text": "Readers must by now have realised that there are strong and binding ties between narrative battles and campaign battles, and vice versa. Indeed, a series of linked, narrative battles can very much be considered a campaign. How the players go about answering the questions posed when forging the narrative, and the many others that are certain to arise as that narrative unfolds, informs how these games can progress to become something greater. The GM in a Campaign The role of a games master in campaign play can also be important. During a campaign, the GM will likely be the person that keeps any maps updated and keeps track of the participants. They are able to wield their power over the narrative on a larger scale as well, steering each step of the campaign towards the end goal, one battle at a time."
-      },
-      "es": {}
-    }
+    "text": "Readers must by now have realised that there are strong and binding ties between narrative battles and campaign battles, and vice versa. Indeed, a series of linked, narrative battles can very much be considered a campaign. How the players go about answering the questions posed when forging the narrative, and the many others that are certain to arise as that narrative unfolds, informs how these games can progress to become something greater. The GM in a Campaign The role of a games master in campaign play can also be important. During a campaign, the GM will likely be the person that keeps any maps updated and keeps track of the participants. They are able to wield their power over the narrative on a larger scale as well, steering each step of the campaign towards the end goal, one battle at a time."
   },
   {
     "id": "the-dark-monolith",
     "url": "https://tow.whfb.app/narrative-battles/the-dark-monolith",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 307
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 307,
     "last_updated": "2026-04-15",
     "section": "Narrative Battles",
     "section_id": "narrative-battles",
     "prev_page_url": "/narrative-battles/campaign-narrative",
     "next_page_url": "/narrative-battles/first-linked-battle",
     "name": "The Dark Monolith",
-    "text": "The following sections present an example of three linked, narrative scenarios. In the first, two rival forces encounter one another unexpectedly whilst searching for the same monument to darkness. In the second, they battle once more for control of the monolith, each enduring the losses inflicted during the previous encounter. In the final scenario, the force that holds the monolith must fight bitterly to defend its prize against enemy reinforcements. This is a simple premise, and much of the detail is left blank, leaving players to decide upon the armies that take part and upon the end goals of each player. Is the goal to destroy the monolith, or to use it for evil? Where do the battles take place? Deep within the Forest of Shadows, or upon the frozen steppes of Kislev? How large are the armies? Are they small patrols roaming the wilderness, or mighty war hosts gathered by powerful lords? These are questions for the players to answer. How they do so is part of the fun. Note that each of the scenarios presented here can be played in isolation should you wish.",
-    "i18n": {
-      "en": {
-        "name": "The Dark Monolith",
-        "text": "The following sections present an example of three linked, narrative scenarios. In the first, two rival forces encounter one another unexpectedly whilst searching for the same monument to darkness. In the second, they battle once more for control of the monolith, each enduring the losses inflicted during the previous encounter. In the final scenario, the force that holds the monolith must fight bitterly to defend its prize against enemy reinforcements. This is a simple premise, and much of the detail is left blank, leaving players to decide upon the armies that take part and upon the end goals of each player. Is the goal to destroy the monolith, or to use it for evil? Where do the battles take place? Deep within the Forest of Shadows, or upon the frozen steppes of Kislev? How large are the armies? Are they small patrols roaming the wilderness, or mighty war hosts gathered by powerful lords? These are questions for the players to answer. How they do so is part of the fun. Note that each of the scenarios presented here can be played in isolation should you wish."
-      },
-      "es": {}
-    }
+    "text": "The following sections present an example of three linked, narrative scenarios. In the first, two rival forces encounter one another unexpectedly whilst searching for the same monument to darkness. In the second, they battle once more for control of the monolith, each enduring the losses inflicted during the previous encounter. In the final scenario, the force that holds the monolith must fight bitterly to defend its prize against enemy reinforcements. This is a simple premise, and much of the detail is left blank, leaving players to decide upon the armies that take part and upon the end goals of each player. Is the goal to destroy the monolith, or to use it for evil? Where do the battles take place? Deep within the Forest of Shadows, or upon the frozen steppes of Kislev? How large are the armies? Are they small patrols roaming the wilderness, or mighty war hosts gathered by powerful lords? These are questions for the players to answer. How they do so is part of the fun. Note that each of the scenarios presented here can be played in isolation should you wish."
   },
   {
     "id": "organising-an-event",
     "url": "https://tow.whfb.app/matched-play/organising-an-event",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 8
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 8,
     "last_updated": "2026-04-15",
     "section": "Matched Play",
     "section_id": "matched-play",
     "prev_page_url": null,
     "next_page_url": "/matched-play/roles-and-responsibilties",
     "name": "Organising An Event",
-    "text": "The following sections present advice for anyone planning a matched play event for Warhammer: the Old World. This section covers such things as the roles and responsibilities of those involved with the running of the event, the pairing of players, recommended scoring and much more.",
-    "i18n": {
-      "en": {
-        "name": "Organising An Event",
-        "text": "The following sections present advice for anyone planning a matched play event for Warhammer: the Old World. This section covers such things as the roles and responsibilities of those involved with the running of the event, the pairing of players, recommended scoring and much more."
-      },
-      "es": {}
-    }
+    "text": "The following sections present advice for anyone planning a matched play event for Warhammer: the Old World. This section covers such things as the roles and responsibilities of those involved with the running of the event, the pairing of players, recommended scoring and much more."
   },
   {
     "id": "roles-and-responsibilties",
     "url": "https://tow.whfb.app/matched-play/roles-and-responsibilties",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 8
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 8,
     "last_updated": "2026-04-15",
     "section": "Matched Play",
     "section_id": "matched-play",
     "prev_page_url": "/matched-play/organising-an-event",
     "next_page_url": "/matched-play/universal-rules",
     "name": "Roles & Responsibilties",
-    "text": "When it comes to organising and running a Warhammer: the Old World matched play event, making sure that everyone involved is aware of their responsibilities helps to ensure that things run smoothly and, most importantly, ensures that everyone has a good time! Organiser Every event needs an organiser, the person responsible for the planning and execution of the event itself. It will be their responsibility to think of things like the gaming space, accessibility for players getting to and from the venue, terrain for the tables, appointing any referees, scorekeepers and spare players, as well as being available both before the event and on the day to answer any questions that might come up. The organiser is in charge on the day, and all players and attendees must accept that the organiser has the final say and, though this should not have to happen, the right to penalise, expel or disqualify anyone for breaking the rules or behaving in an unsuitable fashion. It is also the organisers responsibility to check every player's muster lists, ensuring that they have been built to the correct specifications and there are no obvious errors. Often, the organiser can serve as the referee and/or scorekeeper if they wish; though in larger events it is best to delegate these roles to other people. Scorekeeper Any matched play event will need someone to act as the scorekeeper, which again is often the organiser at smaller events. The scorekeeper is responsible for ensuring the results of every game from each round are collected and to rank the players after each round is complete. The scorekeeper is also responsible for pairing players up each round, making sure event attendees know who they are playing against and on which table they are playing. Referee Every event will need a referee, a role that can easily be fulfilled by the organiser at smaller events, but that, at larger events, should be delegated to others. It is the job of the referees) to enforce the rules of the game should the need arise, to answer any rules questions that players might have and to resolve any disputes in a calm and impartial manner. Accordingly, a referee should have a strong knowledge of the game's rules, and have a copy of the Warhammer: the Old World rulebook to hand, as well as copies of Ravening Hordes, Forces of Fantasy and any relevant Arcane Journals, as well as any other supplements or errata. During the course of a matched play event, a referees ruling is final and all players must honour the rulings of a referee. Participation Part of the fun of organising a matched play event lies in participating. However, at larger events it is advisable that not everyone involved with organisation take part. Questions can arise at any time and it is sensible to have a referee available to answer questions in a timely manner. Spare Player Should circumstances conspire to prevent a player's attendance, having a spare player on hand - someone able to step in and play a game against an attendee who might otherwise be stranded with no opponent - can prove invaluable. A spare player should not endeavour to win the event and cannot win any awards, but should provide their opponents with challenging and engaging battles. If necessary, a referee, scorekeeper or the organiser can step in as a spare player, but it is advisable to have someone else ready to step in, the better to allow the organisation team to attend to their duties. The Attendees It can be odd to think of those attending a matched play event as having a role, but theirs is amongst the most important. Without attendees there can be no event! Each attendee is responsible for bringing their own miniatures, dice, rulebooks and other gaming aids. It is also expected that attendees will accept all of the tournament's rules, and familiarise themselves with the event's rulepack before attending.",
-    "i18n": {
-      "en": {
-        "name": "Roles & Responsibilties",
-        "text": "When it comes to organising and running a Warhammer: the Old World matched play event, making sure that everyone involved is aware of their responsibilities helps to ensure that things run smoothly and, most importantly, ensures that everyone has a good time! Organiser Every event needs an organiser, the person responsible for the planning and execution of the event itself. It will be their responsibility to think of things like the gaming space, accessibility for players getting to and from the venue, terrain for the tables, appointing any referees, scorekeepers and spare players, as well as being available both before the event and on the day to answer any questions that might come up. The organiser is in charge on the day, and all players and attendees must accept that the organiser has the final say and, though this should not have to happen, the right to penalise, expel or disqualify anyone for breaking the rules or behaving in an unsuitable fashion. It is also the organisers responsibility to check every player's muster lists, ensuring that they have been built to the correct specifications and there are no obvious errors. Often, the organiser can serve as the referee and/or scorekeeper if they wish; though in larger events it is best to delegate these roles to other people. Scorekeeper Any matched play event will need someone to act as the scorekeeper, which again is often the organiser at smaller events. The scorekeeper is responsible for ensuring the results of every game from each round are collected and to rank the players after each round is complete. The scorekeeper is also responsible for pairing players up each round, making sure event attendees know who they are playing against and on which table they are playing. Referee Every event will need a referee, a role that can easily be fulfilled by the organiser at smaller events, but that, at larger events, should be delegated to others. It is the job of the referees) to enforce the rules of the game should the need arise, to answer any rules questions that players might have and to resolve any disputes in a calm and impartial manner. Accordingly, a referee should have a strong knowledge of the game's rules, and have a copy of the Warhammer: the Old World rulebook to hand, as well as copies of Ravening Hordes, Forces of Fantasy and any relevant Arcane Journals, as well as any other supplements or errata. During the course of a matched play event, a referees ruling is final and all players must honour the rulings of a referee. Participation Part of the fun of organising a matched play event lies in participating. However, at larger events it is advisable that not everyone involved with organisation take part. Questions can arise at any time and it is sensible to have a referee available to answer questions in a timely manner. Spare Player Should circumstances conspire to prevent a player's attendance, having a spare player on hand - someone able to step in and play a game against an attendee who might otherwise be stranded with no opponent - can prove invaluable. A spare player should not endeavour to win the event and cannot win any awards, but should provide their opponents with challenging and engaging battles. If necessary, a referee, scorekeeper or the organiser can step in as a spare player, but it is advisable to have someone else ready to step in, the better to allow the organisation team to attend to their duties. The Attendees It can be odd to think of those attending a matched play event as having a role, but theirs is amongst the most important. Without attendees there can be no event! Each attendee is responsible for bringing their own miniatures, dice, rulebooks and other gaming aids. It is also expected that attendees will accept all of the tournament's rules, and familiarise themselves with the event's rulepack before attending."
-      },
-      "es": {}
-    }
+    "text": "When it comes to organising and running a Warhammer: the Old World matched play event, making sure that everyone involved is aware of their responsibilities helps to ensure that things run smoothly and, most importantly, ensures that everyone has a good time! Organiser Every event needs an organiser, the person responsible for the planning and execution of the event itself. It will be their responsibility to think of things like the gaming space, accessibility for players getting to and from the venue, terrain for the tables, appointing any referees, scorekeepers and spare players, as well as being available both before the event and on the day to answer any questions that might come up. The organiser is in charge on the day, and all players and attendees must accept that the organiser has the final say and, though this should not have to happen, the right to penalise, expel or disqualify anyone for breaking the rules or behaving in an unsuitable fashion. It is also the organisers responsibility to check every player's muster lists, ensuring that they have been built to the correct specifications and there are no obvious errors. Often, the organiser can serve as the referee and/or scorekeeper if they wish; though in larger events it is best to delegate these roles to other people. Scorekeeper Any matched play event will need someone to act as the scorekeeper, which again is often the organiser at smaller events. The scorekeeper is responsible for ensuring the results of every game from each round are collected and to rank the players after each round is complete. The scorekeeper is also responsible for pairing players up each round, making sure event attendees know who they are playing against and on which table they are playing. Referee Every event will need a referee, a role that can easily be fulfilled by the organiser at smaller events, but that, at larger events, should be delegated to others. It is the job of the referees) to enforce the rules of the game should the need arise, to answer any rules questions that players might have and to resolve any disputes in a calm and impartial manner. Accordingly, a referee should have a strong knowledge of the game's rules, and have a copy of the Warhammer: the Old World rulebook to hand, as well as copies of Ravening Hordes, Forces of Fantasy and any relevant Arcane Journals, as well as any other supplements or errata. During the course of a matched play event, a referees ruling is final and all players must honour the rulings of a referee. Participation Part of the fun of organising a matched play event lies in participating. However, at larger events it is advisable that not everyone involved with organisation take part. Questions can arise at any time and it is sensible to have a referee available to answer questions in a timely manner. Spare Player Should circumstances conspire to prevent a player's attendance, having a spare player on hand - someone able to step in and play a game against an attendee who might otherwise be stranded with no opponent - can prove invaluable. A spare player should not endeavour to win the event and cannot win any awards, but should provide their opponents with challenging and engaging battles. If necessary, a referee, scorekeeper or the organiser can step in as a spare player, but it is advisable to have someone else ready to step in, the better to allow the organisation team to attend to their duties. The Attendees It can be odd to think of those attending a matched play event as having a role, but theirs is amongst the most important. Without attendees there can be no event! Each attendee is responsible for bringing their own miniatures, dice, rulebooks and other gaming aids. It is also expected that attendees will accept all of the tournament's rules, and familiarise themselves with the event's rulepack before attending."
   },
   {
     "id": "the-pairing-of-players",
     "url": "https://tow.whfb.app/matched-play/the-pairing-of-players",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 12
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 12,
     "last_updated": "2026-04-15",
     "section": "Matched Play",
     "section_id": "matched-play",
     "prev_page_url": "/matched-play/scoring-and-tiebreakers",
     "next_page_url": "/matched-play/army-composition",
     "name": "The Pairing of Players",
-    "text": "Organising players into pairs is of vital importance and, after the first round, the organiser of a matched play event should endeavour to pair together players who have been enjoying similar levels of success. Whilst the organiser of a matched play event is free to use any pairing system they wish, the methods detailed on the following pages are recommended. The First Round For the first round, players can be paired together randomly. If there is an odd number of players, then one player will either need to be paired with the spare player or be given a 'Bye' (see below). Spare Player If a player has been paired up with the spare player, they will play a game as normal and record the results as they would for any other game. When pairing subsequent rounds, the spare player should be left out and should always play the player at the bottom of the standings. If this player has already played against the spare player, simply pair the next lowest ranked player against the spare player instead. Byes Sometimes it may not be possible to provide a spare player for your event. In this case, the player that would normally be paired with the spare player (as described above) will instead receive a Bye. A Bye counts as having won a Crushing Victory, and the player counts as having won a number of VP equal to the size of the games being played. Concession Should a player ever have to concede a game, their opponent is considered to have won a Crushing Victory, and the player counts as having won a number of VP equal to the size of the games being played. Subsequent Rounds In subsequent rounds, the player who is highest in the standings will be matched against the player who is second in the rankings, whilst the player in third place will be matched against the player in fourth place. From there, the player who is fifth in the standings will be matched against the player who is sixth in the standings, and so on until all players have an opponent. If drawing a round in this way results in two players that have already faced one another being drawn to face one another again, the lowest ranked of the two players will swap places with the highest ranked player on the table below them. This system should be used for all rounds after the first, including the final round with but one exception - in the final round, players on the top tables (as determined by the organiser, but usually the tables on which the top 10% of the players are playing) should not swap opponents if they draw someone they have already played against; the two are clearly so equally matched that destiny has set them across from one another one last time! Table Rank Player 1 1 2 Connor Jonathan 2 3 4 Dave Danny 3 5 6 Becky Rob In this example draw, Dave and Danny have already played one another in a previous round and therefore cannot play again. As Danny is the lower ranked of the two, he will swap with the highest ranked player on the table shown here - which in this case, is Becky.",
-    "i18n": {
-      "en": {
-        "name": "The Pairing of Players",
-        "text": "Organising players into pairs is of vital importance and, after the first round, the organiser of a matched play event should endeavour to pair together players who have been enjoying similar levels of success. Whilst the organiser of a matched play event is free to use any pairing system they wish, the methods detailed on the following pages are recommended. The First Round For the first round, players can be paired together randomly. If there is an odd number of players, then one player will either need to be paired with the spare player or be given a 'Bye' (see below). Spare Player If a player has been paired up with the spare player, they will play a game as normal and record the results as they would for any other game. When pairing subsequent rounds, the spare player should be left out and should always play the player at the bottom of the standings. If this player has already played against the spare player, simply pair the next lowest ranked player against the spare player instead. Byes Sometimes it may not be possible to provide a spare player for your event. In this case, the player that would normally be paired with the spare player (as described above) will instead receive a Bye. A Bye counts as having won a Crushing Victory, and the player counts as having won a number of VP equal to the size of the games being played. Concession Should a player ever have to concede a game, their opponent is considered to have won a Crushing Victory, and the player counts as having won a number of VP equal to the size of the games being played. Subsequent Rounds In subsequent rounds, the player who is highest in the standings will be matched against the player who is second in the rankings, whilst the player in third place will be matched against the player in fourth place. From there, the player who is fifth in the standings will be matched against the player who is sixth in the standings, and so on until all players have an opponent. If drawing a round in this way results in two players that have already faced one another being drawn to face one another again, the lowest ranked of the two players will swap places with the highest ranked player on the table below them. This system should be used for all rounds after the first, including the final round with but one exception - in the final round, players on the top tables (as determined by the organiser, but usually the tables on which the top 10% of the players are playing) should not swap opponents if they draw someone they have already played against; the two are clearly so equally matched that destiny has set them across from one another one last time! Table Rank Player 1 1 2 Connor Jonathan 2 3 4 Dave Danny 3 5 6 Becky Rob In this example draw, Dave and Danny have already played one another in a previous round and therefore cannot play again. As Danny is the lower ranked of the two, he will swap with the highest ranked player on the table shown here - which in this case, is Becky."
-      },
-      "es": {}
-    }
+    "text": "Organising players into pairs is of vital importance and, after the first round, the organiser of a matched play event should endeavour to pair together players who have been enjoying similar levels of success. Whilst the organiser of a matched play event is free to use any pairing system they wish, the methods detailed on the following pages are recommended. The First Round For the first round, players can be paired together randomly. If there is an odd number of players, then one player will either need to be paired with the spare player or be given a 'Bye' (see below). Spare Player If a player has been paired up with the spare player, they will play a game as normal and record the results as they would for any other game. When pairing subsequent rounds, the spare player should be left out and should always play the player at the bottom of the standings. If this player has already played against the spare player, simply pair the next lowest ranked player against the spare player instead. Byes Sometimes it may not be possible to provide a spare player for your event. In this case, the player that would normally be paired with the spare player (as described above) will instead receive a Bye. A Bye counts as having won a Crushing Victory, and the player counts as having won a number of VP equal to the size of the games being played. Concession Should a player ever have to concede a game, their opponent is considered to have won a Crushing Victory, and the player counts as having won a number of VP equal to the size of the games being played. Subsequent Rounds In subsequent rounds, the player who is highest in the standings will be matched against the player who is second in the rankings, whilst the player in third place will be matched against the player in fourth place. From there, the player who is fifth in the standings will be matched against the player who is sixth in the standings, and so on until all players have an opponent. If drawing a round in this way results in two players that have already faced one another being drawn to face one another again, the lowest ranked of the two players will swap places with the highest ranked player on the table below them. This system should be used for all rounds after the first, including the final round with but one exception - in the final round, players on the top tables (as determined by the organiser, but usually the tables on which the top 10% of the players are playing) should not swap opponents if they draw someone they have already played against; the two are clearly so equally matched that destiny has set them across from one another one last time! Table Rank Player 1 1 2 Connor Jonathan 2 3 4 Dave Danny 3 5 6 Becky Rob In this example draw, Dave and Danny have already played one another in a previous round and therefore cannot play again. As Danny is the lower ranked of the two, he will swap with the highest ranked player on the table shown here - which in this case, is Becky."
   },
   {
     "id": "an-alliance-of-warlords",
     "url": "https://tow.whfb.app/matched-play/an-alliance-of-warlords",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 42
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 42,
     "last_updated": "2026-04-15",
     "section": "Matched Play",
     "section_id": "matched-play",
     "prev_page_url": "/matched-play/doubles-scenario-3-the-old-outpost",
     "next_page_url": "/matched-play/team-events",
     "name": "An Alliance of Warlords",
-    "text": "For many players, being able to revel in the excitement of an event with friends and comrades is one of the best aspects of attending a Warhammer: the Old World event. It is for this reason that team events are often touted as peoples favourite events to attend.",
-    "i18n": {
-      "en": {
-        "name": "An Alliance of Warlords",
-        "text": "For many players, being able to revel in the excitement of an event with friends and comrades is one of the best aspects of attending a Warhammer: the Old World event. It is for this reason that team events are often touted as peoples favourite events to attend."
-      },
-      "es": {}
-    }
+    "text": "For many players, being able to revel in the excitement of an event with friends and comrades is one of the best aspects of attending a Warhammer: the Old World event. It is for this reason that team events are often touted as peoples favourite events to attend."
   },
   {
     "id": "gather-your-allies",
     "url": "https://tow.whfb.app/matched-play/gather-your-allies",
-    "source_citation": {
-      "book": "Rulebook",
-      "page": 42
-    },
+    "source_citation_book": "Rulebook",
+    "source_citation_page": 42,
     "last_updated": "2026-04-15",
     "section": "Matched Play",
     "section_id": "matched-play",
     "prev_page_url": "/matched-play/team-events",
     "next_page_url": "/matched-play/muster-for-war",
     "name": "Gather Your Allies",
-    "text": "Throughout the tumultuous history of the Old World, there are countless stories of people coming together in times of great hardship and struggle, finding victory through their united efforts and unwavering loyalty to one another. As such, finding a group of like-minded friends, be they champions of good or notorious villains, is the first step on your team event journey! Team Size Anyone wishing to organise a team event will need to decide how many players each team will contain and convey that information to hopeful attendees. Teams can be whatever size the organiser wishes; some team events may require teams as small as three players, whilst a much larger one may ask for teams of eight or even nine players! Organisers are free to decide what size of team is best for their event, but we find that teams of four work best. For ease, the format presented here will assume that teams consist of four players each. If you wish to run an event with more or fewer than four players in each team, you will need to adapt some of the rules that follow to accommodate those numbers. Nominating a Team Captain It is the role of a team captain to ensure their team has all the information needed before and during the event. The team captain will be responsible for such things as organising list submission, collecting together and handing results to the scorekeeper at the end of each round, and passing on any information from the organiser to the rest of their team. It is usually best for the most organised member of the team, or the person with the most experience of matched play events, to take on this responsibility, as it will often ensure that things run nice and smoothly!",
-    "i18n": {
-      "en": {
-        "name": "Gather Your Allies",
-        "text": "Throughout the tumultuous history of the Old World, there are countless stories of people coming together in times of great hardship and struggle, finding victory through their united efforts and unwavering loyalty to one another. As such, finding a group of like-minded friends, be they champions of good or notorious villains, is the first step on your team event journey! Team Size Anyone wishing to organise a team event will need to decide how many players each team will contain and convey that information to hopeful attendees. Teams can be whatever size the organiser wishes; some team events may require teams as small as three players, whilst a much larger one may ask for teams of eight or even nine players! Organisers are free to decide what size of team is best for their event, but we find that teams of four work best. For ease, the format presented here will assume that teams consist of four players each. If you wish to run an event with more or fewer than four players in each team, you will need to adapt some of the rules that follow to accommodate those numbers. Nominating a Team Captain It is the role of a team captain to ensure their team has all the information needed before and during the event. The team captain will be responsible for such things as organising list submission, collecting together and handing results to the scorekeeper at the end of each round, and passing on any information from the organiser to the rest of their team. It is usually best for the most organised member of the team, or the person with the most experience of matched play events, to take on this responsibility, as it will often ensure that things run nice and smoothly!"
-      },
-      "es": {}
-    }
+    "text": "Throughout the tumultuous history of the Old World, there are countless stories of people coming together in times of great hardship and struggle, finding victory through their united efforts and unwavering loyalty to one another. As such, finding a group of like-minded friends, be they champions of good or notorious villains, is the first step on your team event journey! Team Size Anyone wishing to organise a team event will need to decide how many players each team will contain and convey that information to hopeful attendees. Teams can be whatever size the organiser wishes; some team events may require teams as small as three players, whilst a much larger one may ask for teams of eight or even nine players! Organisers are free to decide what size of team is best for their event, but we find that teams of four work best. For ease, the format presented here will assume that teams consist of four players each. If you wish to run an event with more or fewer than four players in each team, you will need to adapt some of the rules that follow to accommodate those numbers. Nominating a Team Captain It is the role of a team captain to ensure their team has all the information needed before and during the event. The team captain will be responsible for such things as organising list submission, collecting together and handing results to the scorekeeper at the end of each round, and passing on any information from the organiser to the rest of their team. It is usually best for the most organised member of the team, or the person with the most experience of matched play events, to take on this responsibility, as it will often ensure that things run nice and smoothly!"
   }
 ]

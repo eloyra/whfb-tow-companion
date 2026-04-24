@@ -2,8 +2,9 @@
 
 | Field       | Value                          |
 |-------------|--------------------------------|
-| **Status**  | Amended (bridging section superseded 2026-04-14) |
+| **Status**  | Amended (bridging section superseded 2026-04-14; graph-safe shapes added 2026-04-24) |
 | **Date**    | 2026-04-14                     |
+| **Amended** | 2026-04-24                     |
 | **Deciders**| Project author                 |
 | **Tags**    | pipeline, parsers, graph-builder, data-format |
 
@@ -31,15 +32,18 @@ This ADR documents the exact contract between the parse stage and the graph buil
 | File | Node type | Notes |
 |------|-----------|-------|
 | `armies.json` | `Army` | One object per army page |
-| `units.json` | `Unit` | Includes `profiles[]` field (see amendment below) |
-| `rules.json` | `Rule` | Universal and army-specific special rules |
+| `units.json` | `Unit` | Profiles extracted to `profiles.json`; all nested maps flattened |
+| `profiles.json` | `Profile` | Stat sub-profiles (rider/mount/champion); see amendment 2026-04-24 |
+| `special_rules.json` | `SpecialRule` | Universal and army-specific special rules |
 | `core_rules.json` | `CoreRule` | Rulebook mechanics pages |
 | `troop_types.json` | `TroopType` | `/troop-types-in-detail/` pages |
 | `weapons.json` | `Weapon` | `/weapons-of-war/` pages |
 | `spells.json` | `Spell` | Extracted from lore pages (multiple per page) |
+| `lores.json` | `Lore` | Magic lore pages |
 | `magic_items.json` | `MagicItem` | Extracted from magic-items pages |
 | `faqs.json` | `FAQ` | Q&A entries |
 | `errata.json` | `Errata` | Correction entries |
+| `documents.json` | `Document` | Orientation / etiquette wiki pages |
 | `edges.json` | *(edges)* | All directed edges across all node types |
 
 Every file is a JSON array.  An empty array is valid (no content of that type was found).
@@ -124,6 +128,82 @@ This design was rejected once the actual data source was confirmed.
   JavaScript-rendered component), `UnitParser` would silently produce units
   with empty `profiles: []`.  The crawler already logs warnings for empty
   parsed results, providing a detection mechanism.
+
+---
+
+---
+
+## Amendment — Parse-time normalisation for graph-safe shapes (2026-04-24)
+
+### Problem
+
+Neo4j node properties must be scalars or lists of scalars.  The original parse
+output contained nested maps (`source_citation`, `base_size_mm`, `unit_size`,
+`profiles`) and a raw `i18n` dict.  Attempting to `SET n += row` with such a
+record fails at load time with a Neo4j type-constraint error.
+
+### Decision
+
+All schema normalisation is the **parsers' responsibility**, not the loader's.
+The loader is a pure MERGE stage — it sets node properties directly from the
+parsed record without any transformation.
+
+Specifically:
+
+#### Scalar-map flattening
+
+Nested maps are replaced by scalar columns using `**` spread syntax in every
+parser:
+
+| Original key | Replacement columns |
+|---|---|
+| `source_citation: {book, page}` | `source_citation_book`, `source_citation_page` |
+| `base_size_mm: {width, depth}` | `base_width_mm`, `base_depth_mm` |
+| `unit_size: {min, max}` | `unit_size_min`, `unit_size_max` |
+
+These transforms live in `BaseParser._make_source_citation()`,
+`BaseParser._parse_base_size()`, and `BaseParser._parse_unit_size()` and are
+called via `**self._make_source_citation(...)` spread in every parser's node
+constructor.
+
+#### i18n → per-language scalar columns
+
+The raw `i18n` dict is dropped from all node records.  Non-English translations
+are stored as `{field}_{lang}` columns (e.g. `name_es`, `text_es`).  English
+fields are canonical and remain top-level.
+
+`BaseParser._make_i18n()` currently returns `{}` because the translate stage
+has not run yet; it will be populated when `make translate` fills Spanish
+columns.  Frontend code reads `coalesce(n.name_es, n.name)` to display the
+correct language.
+
+#### Profiles as first-class nodes
+
+`profiles[]` is removed from `Unit` records.  For each profile in `unitProfile`,
+`UnitParser` emits:
+
+- A `Profile` node record (in `profiles.json`) with:
+  - `id`: `{unit-slug}#{profile-name-slug}`
+  - All nine stat columns (`M`, `WS`, `BS`, `S`, `T`, `W`, `I`, `A`, `Ld`) as
+    scalars (`int | None`)
+  - `order`: integer position in the original profile array
+- A `HAS_PROFILE` edge from the unit to the profile node, with `order` as an
+  edge property.
+
+This enables Cypher stat queries like:
+```cypher
+MATCH (u:Unit)-[:HAS_PROFILE]->(p:Profile) WHERE p.WS >= 5 AND p.A >= 3
+RETURN u.name, p.name, p.WS, p.A
+```
+
+### Consequences
+
+- The loader (`pipeline/graph/loader.py`) stays at ~30 lines: UNWIND + MERGE +
+  `SET n += row`, with no conditional logic.
+- Any parse-time transform bug produces incorrect data in `data/parsed/`; a
+  re-run of `make parse` fixes it without touching the graph layer.
+- `profiles.json` is a new required output file; the coordinator routes records
+  with `node_type="profile"` to it.
 
 ---
 

@@ -71,7 +71,7 @@ class FAQParser(BaseParser):
                 "node_type": NodeType.FAQ,
                 "id": slug,
                 "url": url,
-                "source_citation": self._make_source_citation(book),
+                **self._make_source_citation(book),
                 "last_updated": date,
                 "name": question,
                 "topic": None,  # not present in Contentful data model
@@ -79,10 +79,7 @@ class FAQParser(BaseParser):
                 "source_version": version,
                 "question": question,
                 "answer": answer_text,
-                "i18n": {
-                    "en": {"name": question, "question": question, "answer": answer_text},
-                    "es": {},
-                },
+                **self._make_i18n(name=question),
             }
             result.nodes.append(node)
 

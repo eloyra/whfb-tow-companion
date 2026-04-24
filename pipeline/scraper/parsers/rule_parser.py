@@ -100,7 +100,7 @@ class RuleParser(BaseParser):
                 "node_type": NodeType.TROOP_TYPE,
                 "id": slug,
                 "url": url,
-                "source_citation": self._make_source_citation(book, page_ref),
+                **self._make_source_citation(book, page_ref),
                 "last_updated": date,
                 "category": _infer_category(slug, name),
                 "min_models_for_rank_bonus": seed.get("min_models_for_rank_bonus"),
@@ -108,7 +108,7 @@ class RuleParser(BaseParser):
                 "unit_strength_per_model": seed.get("unit_strength_per_model"),
                 "name": name,
                 "text": text,
-                "i18n": self._make_i18n(name=name, text=text),
+                **self._make_i18n(name=name, text=text),
             }
         else:
             rule_scope, army_id = _rule_scope(association)
@@ -116,13 +116,13 @@ class RuleParser(BaseParser):
                 "node_type": NodeType.SPECIAL_RULE,
                 "id": slug,
                 "url": url,
-                "source_citation": self._make_source_citation(book, page_ref),
+                **self._make_source_citation(book, page_ref),
                 "last_updated": date,
                 "rule_scope": rule_scope,
                 "army_id": army_id,
                 "name": name,
                 "text": text,
-                "i18n": self._make_i18n(name=name, text=text),
+                **self._make_i18n(name=name, text=text),
             }
         result.nodes.append(node)
 

@@ -145,6 +145,7 @@ MAGIC_ITEM_TYPE_MAP: dict[str, str] = {
 class NodeType:
     ARMY = "army"
     UNIT = "unit"
+    PROFILE = "profile"
     LORE = "lore"
     SPECIAL_RULE = "special_rule"
     CORE_RULE = "core_rule"
@@ -231,6 +232,7 @@ class EdgeType:
     # Structural
     BELONGS_TO = "BELONGS_TO"
     HAS_TYPE = "HAS_TYPE"
+    HAS_PROFILE = "HAS_PROFILE"
     HAS_RULE = "HAS_RULE"
     HAS_OPTIONAL_RULE = "HAS_OPTIONAL_RULE"
     HAS_WEAPON = "HAS_WEAPON"
@@ -245,3 +247,43 @@ class EdgeType:
     # Clarification
     CLARIFIES = "CLARIFIES"
     AMENDS = "AMENDS"
+
+
+# ---------------------------------------------------------------------------
+# Graph label mapping and embedding configuration
+# ---------------------------------------------------------------------------
+
+NODE_TYPE_TO_LABEL: dict[str, str] = {
+    NodeType.ARMY: "Army",
+    NodeType.UNIT: "Unit",
+    NodeType.PROFILE: "Profile",
+    NodeType.LORE: "Lore",
+    NodeType.SPECIAL_RULE: "SpecialRule",
+    NodeType.CORE_RULE: "CoreRule",
+    NodeType.DOCUMENT: "Document",
+    NodeType.TROOP_TYPE: "TroopType",
+    NodeType.WEAPON: "Weapon",
+    NodeType.SPELL: "Spell",
+    NodeType.MAGIC_ITEM: "MagicItem",
+    NodeType.FAQ: "FAQ",
+    NodeType.ERRATA: "Errata",
+}
+
+# Labels for which embeddings are generated (Profile excluded — embedded via parent Unit).
+EMBEDDABLE_LABELS: tuple[str, ...] = (
+    "SpecialRule",
+    "CoreRule",
+    "Document",
+    "TroopType",
+    "Spell",
+    "MagicItem",
+    "Lore",
+    "FAQ",
+    "Errata",
+    "Weapon",
+    "Unit",
+    "Army",
+)
+
+EMBEDDING_DIM: int = 768
+VECTOR_INDEX_SIMILARITY: str = "cosine"

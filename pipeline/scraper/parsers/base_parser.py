@@ -193,51 +193,61 @@ class BaseParser(ABC):
     # Unit-size / base-size helpers
     # ------------------------------------------------------------------
 
-    def _parse_base_size(self, raw: str) -> dict | None:
-        """Parse ``'30 x 60 mm'`` → ``{'width': 30, 'depth': 60}``."""
+    def _parse_base_size(self, raw: str) -> dict:
+        """Parse ``'30 x 60 mm'`` → ``{'base_width_mm': 30, 'base_depth_mm': 60}``.
+
+        Returns ``{'base_width_mm': None, 'base_depth_mm': None}`` when raw does not
+        match.  Always returns a flat dict safe for ``**`` spreading into a node record.
+        """
         m = re.search(r"(\d+)\s*[xX×]\s*(\d+)", raw)
         if m:
-            return {"width": int(m.group(1)), "depth": int(m.group(2))}
-        return None
+            return {"base_width_mm": int(m.group(1)), "base_depth_mm": int(m.group(2))}
+        return {"base_width_mm": None, "base_depth_mm": None}
 
     def _parse_unit_size(self, raw: str) -> dict:
-        """Parse unit size string into ``{'min': int, 'max': int | None}``.
+        """Parse unit size string into ``{'unit_size_min': int, 'unit_size_max': int | None}``.
 
         Examples: ``'5+'`` → ``{min:5, max:None}``, ``'20-40'`` → ``{min:20, max:40}``,
         ``'1'`` → ``{min:1, max:1}``.
+        Always returns a flat dict safe for ``**`` spreading into a node record.
         """
         raw = str(raw).strip()
         # Range: "20-40" or "20–40"
         m_range = re.search(r"(\d+)\s*[-–—]\s*(\d+)", raw)
         if m_range:
-            return {"min": int(m_range.group(1)), "max": int(m_range.group(2))}
+            return {"unit_size_min": int(m_range.group(1)), "unit_size_max": int(m_range.group(2))}
         # Single value with optional "+": "5+" or "1"
         m_single = re.search(r"(\d+)(\+)?", raw)
         if m_single:
             val = int(m_single.group(1))
             has_plus = bool(m_single.group(2))
-            return {"min": val, "max": None if has_plus else val}
-        return {"min": 1, "max": None}
+            return {"unit_size_min": val, "unit_size_max": None if has_plus else val}
+        return {"unit_size_min": 1, "unit_size_max": None}
 
     # ------------------------------------------------------------------
     # Schema helpers
     # ------------------------------------------------------------------
 
     def _make_i18n(self, *, name: str, text: str | None = None) -> dict:
-        """Build a minimal i18n dict with English canonical values.
+        """Return per-language translation scalars to spread into a node dict.
 
-        Spanish translations are added in the ``pipeline.i18n`` stage.
+        English fields are canonical and live at the top level of the node record.
+        Only non-English translations are returned here (e.g. ``name_es``, ``text_es``).
+        Until the translate stage populates them, Spanish dicts are empty, so this
+        returns ``{}``.  Spread with ``**self._make_i18n(...)`` in node constructors.
         """
-        en: dict = {"name": name}
-        if text is not None:
-            en["text"] = text
-        return {"en": en, "es": {}}
+        return {}
 
     def _make_edge(self, src: str, dst: str, relation: str, properties: dict | None = None) -> dict:
         return {"src": src, "dst": dst, "relation": relation, "properties": properties or {}}
 
     def _make_source_citation(self, book: str, page: int | None = None) -> dict:
-        return {"book": book, "page": page}
+        """Return flattened source-citation scalars to spread into a node dict.
+
+        Returns ``{'source_citation_book': book, 'source_citation_page': page}``.
+        Neo4j does not support map-typed node properties; this keeps all fields scalar.
+        """
+        return {"source_citation_book": book, "source_citation_page": page}
 
     def _date_only(self, fetched_at: str) -> str:
         """Return just the date portion of an ISO-8601 timestamp."""

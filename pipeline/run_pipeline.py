@@ -36,12 +36,16 @@ def run_parse() -> None:
 
 def run_graph() -> None:
     logger.info("Stage: graph")
-    # TODO: from pipeline.graph.builder import GraphBuilder; GraphBuilder().build()
+    from pipeline.graph.builder import GraphBuilder
+
+    GraphBuilder().build()
 
 
 def run_embed() -> None:
     logger.info("Stage: embed")
-    # TODO: from pipeline.embeddings.generator import EmbeddingGenerator; EmbeddingGenerator().run()
+    from pipeline.embeddings.generator import EmbeddingGenerator
+
+    EmbeddingGenerator().run()
 
 
 def run_translate() -> None:

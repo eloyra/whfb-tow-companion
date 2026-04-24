@@ -102,11 +102,12 @@ class UnitParser(BaseParser):
         # Intrinsic armour value (e.g. "4+" for monsters with scaly skin)
         av_intrinsic: str | None = fields.get("armourValue") or None
 
+        sc = self._make_source_citation(army_name or "Unknown Army")
         node = {
             "node_type": NodeType.UNIT,
             "id": slug,
             "url": url,
-            "source_citation": self._make_source_citation(army_name or "Unknown Army"),
+            **sc,
             "last_updated": date,
             "cost_points_per_model": fields.get("cost"),
             "unit_category": unit_category,
@@ -115,13 +116,41 @@ class UnitParser(BaseParser):
             "is_named_character": is_named_character,
             "wizard_level": wizard_level,
             "av_intrinsic": av_intrinsic,
-            "base_size_mm": self._parse_base_size(fields.get("baseSize", "")),
-            "unit_size": self._parse_unit_size(str(fields.get("unitSize", "1"))),
-            "profiles": profiles,
+            **self._parse_base_size(fields.get("baseSize", "")),
+            **self._parse_unit_size(str(fields.get("unitSize", "1"))),
             "name": name,
-            "i18n": self._make_i18n(name=name),
+            **self._make_i18n(name=name),
         }
         result.nodes.append(node)
+
+        # Emit :Profile child nodes + HAS_PROFILE edges.
+        # Profiles are first-class graph nodes so stats can be queried directly
+        # via Cypher (e.g. units with WS≥5 and A≥3 across any sub-profile).
+        for order, profile in enumerate(profiles):
+            profile_name = profile.get("name") or f"profile-{order}"
+            profile_id = f"{slug}#{self._name_to_slug(profile_name)}"
+            result.nodes.append(
+                {
+                    "node_type": NodeType.PROFILE,
+                    "id": profile_id,
+                    "url": url,
+                    **sc,
+                    "name": profile_name,
+                    "M": profile.get("M"),
+                    "WS": profile.get("WS"),
+                    "BS": profile.get("BS"),
+                    "S": profile.get("S"),
+                    "T": profile.get("T"),
+                    "W": profile.get("W"),
+                    "I": profile.get("I"),
+                    "A": profile.get("A"),
+                    "Ld": profile.get("Ld"),
+                    "order": order,
+                }
+            )
+            result.edges.append(
+                self._make_edge(slug, profile_id, EdgeType.HAS_PROFILE, {"order": order})
+            )
 
         # BELONGS_TO edges
         for army_slug in army_slugs:

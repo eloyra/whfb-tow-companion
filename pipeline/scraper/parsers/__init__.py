@@ -9,6 +9,7 @@ to ``data/parsed/``.
 Output files:
     data/parsed/armies.json
     data/parsed/units.json
+    data/parsed/profiles.json     ← stat-profile sub-nodes extracted from Unit pages
     data/parsed/special_rules.json
     data/parsed/core_rules.json
     data/parsed/documents.json
@@ -18,11 +19,13 @@ Output files:
     data/parsed/magic_items.json
     data/parsed/faqs.json
     data/parsed/errata.json
-    data/parsed/edges.json
+    data/parsed/edges.json        ← includes HAS_PROFILE edges
 
-Note: unit stat profiles (M/WS/BS/S/T/W/I/A/Ld) are present directly on each
-unit page and are parsed by ``UnitParser`` into the ``Unit`` node's ``profiles``
-field.  No separate bridging file is needed (see ADR-0004 for history).
+All node records are written in graph-safe flat form: no nested maps or
+lists-of-maps.  ``source_citation`` is split into ``source_citation_book`` /
+``source_citation_page`` scalars; ``base_size_mm`` into ``base_width_mm`` /
+``base_depth_mm``; ``unit_size`` into ``unit_size_min`` / ``unit_size_max``.
+Stat profiles are emitted as separate ``Profile`` records (see ADR-0004 amendment).
 """
 
 from __future__ import annotations
@@ -79,6 +82,7 @@ _PARSERS: dict[str, BaseParser] = {
 _NODE_TYPE_TO_FILE: dict[str, str] = {
     "army": "armies.json",
     "unit": "units.json",
+    "profile": "profiles.json",
     "lore": "lores.json",
     "special_rule": "special_rules.json",
     "core_rule": "core_rules.json",

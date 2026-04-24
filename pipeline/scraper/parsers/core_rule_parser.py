@@ -118,7 +118,7 @@ class CoreRuleParser(BaseParser):
             "node_type": node_type,
             "id": slug,
             "url": url,
-            "source_citation": self._make_source_citation("Rulebook", page_ref),
+            **self._make_source_citation("Rulebook", page_ref),
             "last_updated": date,
             "section": section_name,
             "section_id": section_slug,
@@ -126,7 +126,7 @@ class CoreRuleParser(BaseParser):
             "next_page_url": next_page_url,
             "name": name,
             "text": text,
-            "i18n": self._make_i18n(name=name, text=text),
+            **self._make_i18n(name=name, text=text),
         }
         result.nodes.append(node)
 
