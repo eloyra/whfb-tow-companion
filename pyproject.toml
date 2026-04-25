@@ -47,6 +47,7 @@ dev = [
     "ipykernel>=6.29.0",
     "jupyter>=1.0.0",
     "testcontainers[neo4j]>=4.0",
+    "langchain-ollama>=1.1.0",
 ]
 
 [tool.hatch.build.targets.wheel]
