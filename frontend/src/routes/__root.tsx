@@ -10,6 +10,7 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { ThemeProvider } from "next-themes";
 import type * as React from "react";
 import { useEffect } from "react";
+import { m } from "#/paraglide/messages";
 import { getLocale } from "#/paraglide/runtime";
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import TanstackQueryProvider from "../integrations/tanstack-query/root-provider";
@@ -38,7 +39,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "Old World Companion",
+        title: m.app_title(),
       },
     ],
     links: [
@@ -75,16 +76,13 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang={getLocale()} suppressHydrationWarning>
       <head>
-        <title>Old World Companion</title>
+        <title>{m.app_title()}</title>
         <HeadContent />
       </head>
 
       <body className="bg-background text-foreground" suppressHydrationWarning>
         <div id="global-loader">
           <div className="spinner mb-4"></div>
-          <h2 className="text-xl font-display font-bold">
-            Consulting the Archives...
-          </h2>
         </div>
 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
