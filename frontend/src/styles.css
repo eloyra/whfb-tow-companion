@@ -118,7 +118,7 @@ html, body, #app {
 
 body {
   margin: 0;
-  font-family: var(--font-sans);
+  font-family: var(--font-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
