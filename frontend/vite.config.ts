@@ -17,7 +17,6 @@ const config = defineConfig({
       outdir: './src/paraglide',
       strategy: ['url', 'baseLocale'],
     }),
-    nitro({ rollupConfig: { external: [/^@sentry\//] } }),
     tailwindcss(),
     tanstackStart(),
     viteReact({
@@ -25,6 +24,7 @@ const config = defineConfig({
         plugins: ['babel-plugin-react-compiler'],
       },
     }),
+    nitro({ rollupConfig: { external: [/^@sentry\//] } }),
   ],
 })
 

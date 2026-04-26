@@ -1,77 +1,110 @@
+import { TanStackDevtools } from "@tanstack/react-devtools";
+import type { QueryClient } from "@tanstack/react-query";
 import {
-  HeadContent,
-  Scripts,
   createRootRouteWithContext,
-} from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
-
-import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
-
-import { getLocale } from '#/paraglide/runtime'
-
-import appCss from '../styles.css?url'
-
-import type { QueryClient } from '@tanstack/react-query'
+  HeadContent,
+  Outlet,
+  Scripts,
+} from "@tanstack/react-router";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { ThemeProvider } from "next-themes";
+import type * as React from "react";
+import { useEffect } from "react";
+import { getLocale } from "#/paraglide/runtime";
+import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
+import TanstackQueryProvider from "../integrations/tanstack-query/root-provider";
+import appCss from "../styles.css?url";
 
 interface MyRouterContext {
-  queryClient: QueryClient
+  queryClient: QueryClient;
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
   beforeLoad: async () => {
     // Other redirect strategies are possible; see
     // https://github.com/TanStack/router/tree/main/examples/react/i18n-paraglide#offline-redirect
-    if (typeof document !== 'undefined') {
-      document.documentElement.setAttribute('lang', getLocale())
+    if (typeof document !== "undefined") {
+      document.documentElement.setAttribute("lang", getLocale());
     }
   },
 
   head: () => ({
     meta: [
       {
-        charSet: 'utf-8',
+        charSet: "utf-8",
       },
       {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
+        name: "viewport",
+        content: "width=device-width, initial-scale=1",
       },
       {
-        title: 'TanStack Start Starter',
+        title: "Old World Companion",
       },
     ],
     links: [
       {
-        rel: 'stylesheet',
+        rel: "stylesheet",
         href: appCss,
       },
     ],
   }),
+  component: RootComponent,
   shellComponent: RootDocument,
-})
+});
+
+function RootComponent() {
+  const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    const loader = document.getElementById("global-loader");
+
+    if (loader) {
+      loader.classList.add("loader-fade-out");
+      setTimeout(() => loader.remove(), 500);
+    }
+  }, []);
+
+  return (
+    <TanstackQueryProvider queryClient={queryClient}>
+      <Outlet />
+    </TanstackQueryProvider>
+  );
+}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={getLocale()}>
+    <html lang={getLocale()} suppressHydrationWarning>
       <head>
+        <title>Old World Companion</title>
         <HeadContent />
       </head>
-      <body>
-        {children}
-        <TanStackDevtools
-          config={{
-            position: 'bottom-right',
-          }}
-          plugins={[
-            {
-              name: 'Tanstack Router',
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-            TanStackQueryDevtools,
-          ]}
-        />
-        <Scripts />
+
+      <body className="bg-background text-foreground" suppressHydrationWarning>
+        <div id="global-loader">
+          <div className="spinner mb-4"></div>
+          <h2 className="text-xl font-display font-bold">
+            Consulting the Archives...
+          </h2>
+        </div>
+
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+
+          <TanStackDevtools
+            config={{
+              position: "bottom-right",
+            }}
+            plugins={[
+              {
+                name: "Tanstack Router",
+                render: <TanStackRouterDevtoolsPanel />,
+              },
+              TanStackQueryDevtools,
+            ]}
+          />
+          <Scripts />
+        </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
