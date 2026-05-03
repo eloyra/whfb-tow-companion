@@ -20,6 +20,7 @@ app.add_middleware(
     allow_origins=["*"],  # restrict in production
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["x-vercel-ai-ui-message-stream"],
 )
 
 app.include_router(chat.router, prefix="/chat", tags=["chat"])

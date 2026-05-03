@@ -1,48 +1,51 @@
-from typing import AsyncGenerator
+from typing import AsyncGenerator, Optional, List
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain_core.language_models.chat_models import BaseChatModel
+from backend.api.vercel_stream import VercelStream
 
 from backend.api.dependencies import get_llm
 
 router = APIRouter()
 
+class MessagePart(BaseModel):
+    type: str
+    text: str
+
 class Message(BaseModel):
     role: str
-    content: str
+    id: Optional[str] = None
+    parts: Optional[List[MessagePart]] = None
+
+    # 3. Add a helper property so your backend logic stays clean
+    @property
+    def text_content(self) -> str:
+        return "".join(part.text for part in self.parts if part.type == "text")
 
 class ChatRequest(BaseModel):
-    messages: list[Message]
-    language: str = "en"
-    conversation_id: str | None = None
+    messages: List[Message]
 
 @router.post("/")
 async def chat(
         request: ChatRequest,
         llm: BaseChatModel = Depends(get_llm)
 ) -> StreamingResponse:
-    # 1. Convert standard JSON messages to LangChain message objects
-    lc_messages = []
-
-    # System prompt to enforce the domain rules
-    lc_messages.append(
-        SystemMessage(content="You are a helpful assistant expert in Warhammer: The Old World.")
-    )
+    lc_messages = [SystemMessage(content="You are a helpful assistant expert in Warhammer: The Old World.")]
 
     for msg in request.messages:
         if msg.role == "user":
-            lc_messages.append(HumanMessage(content=msg.content))
+            lc_messages.append(HumanMessage(content=msg.text_content))
         elif msg.role == "assistant":
-            lc_messages.append(AIMessage(content=msg.content))
+            lc_messages.append(AIMessage(content=msg.text_content))
         elif msg.role == "system":
-            lc_messages.append(SystemMessage(content=msg.content))
+            lc_messages.append(SystemMessage(content=msg.text_content))
 
-    # 2. Asynchronous generator to stream the LLM response chunks
-    async def generate() -> AsyncGenerator[str, None]:
-        async for chunk in llm.astream(lc_messages):
-            yield chunk.content
+    vercel_sse_stream = VercelStream.stream_langchain(llm.astream(lc_messages))
 
-    # 3. Return the stream directly to the client
-    return StreamingResponse(generate(), media_type="text/plain")
+    return StreamingResponse(
+        vercel_sse_stream,
+        media_type="text/event-stream",
+        headers={"x-vercel-ai-ui-message-stream": "v1"}
+    )
