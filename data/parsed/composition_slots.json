@@ -1,0 +1,666 @@
+[
+  {
+    "id": "beastmen-brayherds#composition-list#characters",
+    "composition_list_id": "beastmen-brayherds#composition-list",
+    "army_id": "beastmen-brayherds",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "beastmen-brayherds#composition-list#core",
+    "composition_list_id": "beastmen-brayherds#composition-list",
+    "army_id": "beastmen-brayherds",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "beastmen-brayherds#composition-list#special",
+    "composition_list_id": "beastmen-brayherds#composition-list",
+    "army_id": "beastmen-brayherds",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "beastmen-brayherds#composition-list#rare",
+    "composition_list_id": "beastmen-brayherds#composition-list",
+    "army_id": "beastmen-brayherds",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "beastmen-brayherds#composition-list#mercenaries",
+    "composition_list_id": "beastmen-brayherds#composition-list",
+    "army_id": "beastmen-brayherds",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  },
+  {
+    "id": "chaos-dwarfs#composition-list#characters",
+    "composition_list_id": "chaos-dwarfs#composition-list",
+    "army_id": "chaos-dwarfs",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "chaos-dwarfs#composition-list#core",
+    "composition_list_id": "chaos-dwarfs#composition-list",
+    "army_id": "chaos-dwarfs",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "chaos-dwarfs#composition-list#special",
+    "composition_list_id": "chaos-dwarfs#composition-list",
+    "army_id": "chaos-dwarfs",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "chaos-dwarfs#composition-list#rare",
+    "composition_list_id": "chaos-dwarfs#composition-list",
+    "army_id": "chaos-dwarfs",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "chaos-dwarfs#composition-list#mercenaries",
+    "composition_list_id": "chaos-dwarfs#composition-list",
+    "army_id": "chaos-dwarfs",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  },
+  {
+    "id": "daemons-of-chaos#composition-list#characters",
+    "composition_list_id": "daemons-of-chaos#composition-list",
+    "army_id": "daemons-of-chaos",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "daemons-of-chaos#composition-list#core",
+    "composition_list_id": "daemons-of-chaos#composition-list",
+    "army_id": "daemons-of-chaos",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "daemons-of-chaos#composition-list#special",
+    "composition_list_id": "daemons-of-chaos#composition-list",
+    "army_id": "daemons-of-chaos",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "daemons-of-chaos#composition-list#rare",
+    "composition_list_id": "daemons-of-chaos#composition-list",
+    "army_id": "daemons-of-chaos",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "dark-elves#composition-list#characters",
+    "composition_list_id": "dark-elves#composition-list",
+    "army_id": "dark-elves",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "dark-elves#composition-list#core",
+    "composition_list_id": "dark-elves#composition-list",
+    "army_id": "dark-elves",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "dark-elves#composition-list#special",
+    "composition_list_id": "dark-elves#composition-list",
+    "army_id": "dark-elves",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "dark-elves#composition-list#rare",
+    "composition_list_id": "dark-elves#composition-list",
+    "army_id": "dark-elves",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "dark-elves#composition-list#mercenaries",
+    "composition_list_id": "dark-elves#composition-list",
+    "army_id": "dark-elves",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  },
+  {
+    "id": "dwarfen-mountain-holds#composition-list#characters",
+    "composition_list_id": "dwarfen-mountain-holds#composition-list",
+    "army_id": "dwarfen-mountain-holds",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "dwarfen-mountain-holds#composition-list#core",
+    "composition_list_id": "dwarfen-mountain-holds#composition-list",
+    "army_id": "dwarfen-mountain-holds",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "dwarfen-mountain-holds#composition-list#special",
+    "composition_list_id": "dwarfen-mountain-holds#composition-list",
+    "army_id": "dwarfen-mountain-holds",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "dwarfen-mountain-holds#composition-list#rare",
+    "composition_list_id": "dwarfen-mountain-holds#composition-list",
+    "army_id": "dwarfen-mountain-holds",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "dwarfen-mountain-holds#composition-list#mercenaries",
+    "composition_list_id": "dwarfen-mountain-holds#composition-list",
+    "army_id": "dwarfen-mountain-holds",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  },
+  {
+    "id": "empire-of-man#composition-list#characters",
+    "composition_list_id": "empire-of-man#composition-list",
+    "army_id": "empire-of-man",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "empire-of-man#composition-list#core",
+    "composition_list_id": "empire-of-man#composition-list",
+    "army_id": "empire-of-man",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "empire-of-man#composition-list#special",
+    "composition_list_id": "empire-of-man#composition-list",
+    "army_id": "empire-of-man",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "empire-of-man#composition-list#rare",
+    "composition_list_id": "empire-of-man#composition-list",
+    "army_id": "empire-of-man",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "empire-of-man#composition-list#mercenaries",
+    "composition_list_id": "empire-of-man#composition-list",
+    "army_id": "empire-of-man",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  },
+  {
+    "id": "grand-cathay#composition-list#characters",
+    "composition_list_id": "grand-cathay#composition-list",
+    "army_id": "grand-cathay",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "grand-cathay#composition-list#core",
+    "composition_list_id": "grand-cathay#composition-list",
+    "army_id": "grand-cathay",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "grand-cathay#composition-list#special",
+    "composition_list_id": "grand-cathay#composition-list",
+    "army_id": "grand-cathay",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "grand-cathay#composition-list#rare",
+    "composition_list_id": "grand-cathay#composition-list",
+    "army_id": "grand-cathay",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "grand-cathay#composition-list#mercenaries",
+    "composition_list_id": "grand-cathay#composition-list",
+    "army_id": "grand-cathay",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  },
+  {
+    "id": "high-elf-realms#composition-list#characters",
+    "composition_list_id": "high-elf-realms#composition-list",
+    "army_id": "high-elf-realms",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "high-elf-realms#composition-list#core",
+    "composition_list_id": "high-elf-realms#composition-list",
+    "army_id": "high-elf-realms",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "high-elf-realms#composition-list#special",
+    "composition_list_id": "high-elf-realms#composition-list",
+    "army_id": "high-elf-realms",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "high-elf-realms#composition-list#rare",
+    "composition_list_id": "high-elf-realms#composition-list",
+    "army_id": "high-elf-realms",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "high-elf-realms#composition-list#mercenaries",
+    "composition_list_id": "high-elf-realms#composition-list",
+    "army_id": "high-elf-realms",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  },
+  {
+    "id": "kingdom-of-bretonnia#composition-list#characters",
+    "composition_list_id": "kingdom-of-bretonnia#composition-list",
+    "army_id": "kingdom-of-bretonnia",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "kingdom-of-bretonnia#composition-list#core",
+    "composition_list_id": "kingdom-of-bretonnia#composition-list",
+    "army_id": "kingdom-of-bretonnia",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "kingdom-of-bretonnia#composition-list#special",
+    "composition_list_id": "kingdom-of-bretonnia#composition-list",
+    "army_id": "kingdom-of-bretonnia",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "kingdom-of-bretonnia#composition-list#rare",
+    "composition_list_id": "kingdom-of-bretonnia#composition-list",
+    "army_id": "kingdom-of-bretonnia",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "kingdom-of-bretonnia#composition-list#mercenaries",
+    "composition_list_id": "kingdom-of-bretonnia#composition-list",
+    "army_id": "kingdom-of-bretonnia",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  },
+  {
+    "id": "lizardmen#composition-list#characters",
+    "composition_list_id": "lizardmen#composition-list",
+    "army_id": "lizardmen",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "lizardmen#composition-list#core",
+    "composition_list_id": "lizardmen#composition-list",
+    "army_id": "lizardmen",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "lizardmen#composition-list#special",
+    "composition_list_id": "lizardmen#composition-list",
+    "army_id": "lizardmen",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "lizardmen#composition-list#rare",
+    "composition_list_id": "lizardmen#composition-list",
+    "army_id": "lizardmen",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "lizardmen#composition-list#mercenaries",
+    "composition_list_id": "lizardmen#composition-list",
+    "army_id": "lizardmen",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  },
+  {
+    "id": "ogre-kingdoms#composition-list#characters",
+    "composition_list_id": "ogre-kingdoms#composition-list",
+    "army_id": "ogre-kingdoms",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "ogre-kingdoms#composition-list#core",
+    "composition_list_id": "ogre-kingdoms#composition-list",
+    "army_id": "ogre-kingdoms",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "ogre-kingdoms#composition-list#special",
+    "composition_list_id": "ogre-kingdoms#composition-list",
+    "army_id": "ogre-kingdoms",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "ogre-kingdoms#composition-list#rare",
+    "composition_list_id": "ogre-kingdoms#composition-list",
+    "army_id": "ogre-kingdoms",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "ogre-kingdoms#composition-list#mercenaries",
+    "composition_list_id": "ogre-kingdoms#composition-list",
+    "army_id": "ogre-kingdoms",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  },
+  {
+    "id": "orc-and-goblin-tribes#composition-list#characters",
+    "composition_list_id": "orc-and-goblin-tribes#composition-list",
+    "army_id": "orc-and-goblin-tribes",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "orc-and-goblin-tribes#composition-list#core",
+    "composition_list_id": "orc-and-goblin-tribes#composition-list",
+    "army_id": "orc-and-goblin-tribes",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "orc-and-goblin-tribes#composition-list#special",
+    "composition_list_id": "orc-and-goblin-tribes#composition-list",
+    "army_id": "orc-and-goblin-tribes",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "orc-and-goblin-tribes#composition-list#rare",
+    "composition_list_id": "orc-and-goblin-tribes#composition-list",
+    "army_id": "orc-and-goblin-tribes",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "orc-and-goblin-tribes#composition-list#mercenaries",
+    "composition_list_id": "orc-and-goblin-tribes#composition-list",
+    "army_id": "orc-and-goblin-tribes",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  },
+  {
+    "id": "skaven#composition-list#characters",
+    "composition_list_id": "skaven#composition-list",
+    "army_id": "skaven",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "skaven#composition-list#core",
+    "composition_list_id": "skaven#composition-list",
+    "army_id": "skaven",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "skaven#composition-list#special",
+    "composition_list_id": "skaven#composition-list",
+    "army_id": "skaven",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "skaven#composition-list#rare",
+    "composition_list_id": "skaven#composition-list",
+    "army_id": "skaven",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "skaven#composition-list#mercenaries",
+    "composition_list_id": "skaven#composition-list",
+    "army_id": "skaven",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  },
+  {
+    "id": "tomb-kings-of-khemri#composition-list#characters",
+    "composition_list_id": "tomb-kings-of-khemri#composition-list",
+    "army_id": "tomb-kings-of-khemri",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "tomb-kings-of-khemri#composition-list#core",
+    "composition_list_id": "tomb-kings-of-khemri#composition-list",
+    "army_id": "tomb-kings-of-khemri",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "tomb-kings-of-khemri#composition-list#special",
+    "composition_list_id": "tomb-kings-of-khemri#composition-list",
+    "army_id": "tomb-kings-of-khemri",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "tomb-kings-of-khemri#composition-list#rare",
+    "composition_list_id": "tomb-kings-of-khemri#composition-list",
+    "army_id": "tomb-kings-of-khemri",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "tomb-kings-of-khemri#composition-list#mercenaries",
+    "composition_list_id": "tomb-kings-of-khemri#composition-list",
+    "army_id": "tomb-kings-of-khemri",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  },
+  {
+    "id": "vampire-counts#composition-list#characters",
+    "composition_list_id": "vampire-counts#composition-list",
+    "army_id": "vampire-counts",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "vampire-counts#composition-list#core",
+    "composition_list_id": "vampire-counts#composition-list",
+    "army_id": "vampire-counts",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "vampire-counts#composition-list#special",
+    "composition_list_id": "vampire-counts#composition-list",
+    "army_id": "vampire-counts",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "vampire-counts#composition-list#rare",
+    "composition_list_id": "vampire-counts#composition-list",
+    "army_id": "vampire-counts",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "warriors-of-chaos#composition-list#characters",
+    "composition_list_id": "warriors-of-chaos#composition-list",
+    "army_id": "warriors-of-chaos",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "warriors-of-chaos#composition-list#core",
+    "composition_list_id": "warriors-of-chaos#composition-list",
+    "army_id": "warriors-of-chaos",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "warriors-of-chaos#composition-list#special",
+    "composition_list_id": "warriors-of-chaos#composition-list",
+    "army_id": "warriors-of-chaos",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "warriors-of-chaos#composition-list#rare",
+    "composition_list_id": "warriors-of-chaos#composition-list",
+    "army_id": "warriors-of-chaos",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "warriors-of-chaos#composition-list#mercenaries",
+    "composition_list_id": "warriors-of-chaos#composition-list",
+    "army_id": "warriors-of-chaos",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  },
+  {
+    "id": "wood-elf-realms#composition-list#characters",
+    "composition_list_id": "wood-elf-realms#composition-list",
+    "army_id": "wood-elf-realms",
+    "slot_name": "Characters",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "wood-elf-realms#composition-list#core",
+    "composition_list_id": "wood-elf-realms#composition-list",
+    "army_id": "wood-elf-realms",
+    "slot_name": "Core",
+    "min_pct": 25,
+    "max_pct": null
+  },
+  {
+    "id": "wood-elf-realms#composition-list#special",
+    "composition_list_id": "wood-elf-realms#composition-list",
+    "army_id": "wood-elf-realms",
+    "slot_name": "Special",
+    "min_pct": null,
+    "max_pct": 50
+  },
+  {
+    "id": "wood-elf-realms#composition-list#rare",
+    "composition_list_id": "wood-elf-realms#composition-list",
+    "army_id": "wood-elf-realms",
+    "slot_name": "Rare",
+    "min_pct": null,
+    "max_pct": 25
+  },
+  {
+    "id": "wood-elf-realms#composition-list#mercenaries",
+    "composition_list_id": "wood-elf-realms#composition-list",
+    "army_id": "wood-elf-realms",
+    "slot_name": "Mercenaries",
+    "min_pct": null,
+    "max_pct": 20
+  }
+]

@@ -39,6 +39,9 @@ _FILE_TO_LABEL: dict[str, str] = {
     "magic_items.json": "MagicItem",
     "faqs.json": "FAQ",
     "errata.json": "Errata",
+    "upgrades.json": "Upgrade",
+    "composition_lists.json": "CompositionList",
+    "composition_slots.json": "CompositionSlot",
 }
 
 _REPORT_DIR = Path("data/graph")
@@ -56,6 +59,10 @@ def run_all(driver: neo4j.Driver, parsed_dir: Path = Path("data/parsed")) -> dic
     edge_counts, edge_drops, threshold_errors = _check_edge_counts(driver, parsed_dir, report)
     _check_orphan_detail(driver, parsed_dir, report)
     _check_dangling_troop_types(driver, report)
+    _check_upgrade_rule_add_ratio(driver, report)
+    _check_dangling_applies_to_profile(driver, report)
+    _check_armies_without_can_take_item(driver, report)
+    _check_items_without_army_id_unreachable(driver, report)
 
     report["duration_seconds"] = round(time.time() - start, 2)
     report["node_counts"] = node_counts
@@ -191,6 +198,94 @@ def _check_orphan_detail(
     if missing_src:
         logger.warning("Edges with missing src node: %d", len(missing_src))
     logger.info("Edges with missing dst node: %d", len(missing_dst))
+
+
+def _check_upgrade_rule_add_ratio(driver: neo4j.Driver, report: dict) -> None:
+    """Warn if rule_add upgrades exceed 30% — likely a missed classifier pattern.
+
+    weapon_add is excluded (those are correctly classified weapons promoted from rule_add
+    during the coordinator two-pass, not missed patterns).
+    """
+    with driver.session() as session:
+        total_rec = session.run("MATCH (u:Upgrade) RETURN count(u) AS c").single()
+        ra_rec = session.run(
+            "MATCH (u:Upgrade {upgrade_type: 'rule_add'}) RETURN count(u) AS c"
+        ).single()
+        total = total_rec["c"] if total_rec else 0
+        rule_add = ra_rec["c"] if ra_rec else 0
+
+    ratio = rule_add / total if total > 0 else 0.0
+    report["checks"]["upgrade_rule_add_count"] = rule_add
+    report["checks"]["upgrade_total_count"] = total
+    report["checks"]["upgrade_rule_add_ratio"] = round(ratio, 3)
+    msg = f"Upgrade rule_add: {rule_add}/{total} ({ratio:.1%})"
+    if ratio > 0.30:
+        report["warnings"].append(f"WARNING — {msg} — exceeds 30% threshold; inspect classifier")
+        logger.warning(msg)
+    else:
+        logger.info(msg)
+
+
+def _check_dangling_applies_to_profile(driver: neo4j.Driver, report: dict) -> None:
+    """Count Upgrade.applies_to_profile values that don't resolve to a Profile node."""
+    with driver.session() as session:
+        result = session.run(
+            """
+            MATCH (u:Upgrade)
+            WHERE u.applies_to_profile IS NOT NULL
+              AND NOT EXISTS { MATCH (p:Profile {id: u.applies_to_profile}) }
+            RETURN count(u) AS c
+            """
+        )
+        rec = result.single()
+        count = rec["c"] if rec else 0
+
+    report["checks"]["dangling_upgrade_applies_to_profile_count"] = count
+    if count > 0:
+        logger.warning("Upgrades with unresolved applies_to_profile: %d", count)
+    else:
+        logger.info("All Upgrade.applies_to_profile references resolve OK")
+
+
+def _check_armies_without_can_take_item(driver: neo4j.Driver, report: dict) -> None:
+    """Flag armies whose units have zero CAN_TAKE_ITEM edges (data anomaly)."""
+    with driver.session() as session:
+        result = session.run(
+            """
+            MATCH (a:Army)
+            WHERE NOT EXISTS { MATCH (a)<-[:BELONGS_TO]-(u:Unit)-[:CAN_TAKE_ITEM]->() }
+            RETURN count(a) AS c
+            """
+        )
+        rec = result.single()
+        count = rec["c"] if rec else 0
+
+    report["checks"]["armies_without_can_take_item_count"] = count
+    if count > 0:
+        logger.warning("Armies with no CAN_TAKE_ITEM edges on any unit: %d", count)
+    else:
+        logger.info("All armies have at least one CAN_TAKE_ITEM edge OK")
+
+
+def _check_items_without_army_id_unreachable(driver: neo4j.Driver, report: dict) -> None:
+    """Count MagicItems with army_id IS NULL that have no CAN_TAKE_ITEM edges."""
+    with driver.session() as session:
+        result = session.run(
+            """
+            MATCH (i:MagicItem)
+            WHERE i.army_id IS NULL
+              AND NOT EXISTS { MATCH ()-[:CAN_TAKE_ITEM]->(i) }
+            RETURN count(i) AS c
+            """
+        )
+        rec = result.single()
+        count = rec["c"] if rec else 0
+
+    report["checks"]["null_army_id_unreachable_item_count"] = count
+    if count > 0:
+        logger.warning("MagicItems with army_id=NULL and no CAN_TAKE_ITEM edges: %d", count)
+    else:
+        logger.info("All NULL army_id items reachable via CAN_TAKE_ITEM OK")
 
 
 def _check_dangling_troop_types(driver: neo4j.Driver, report: dict) -> None:

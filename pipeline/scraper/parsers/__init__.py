@@ -38,6 +38,8 @@ from pathlib import Path
 
 from tqdm import tqdm
 
+from pipeline.constants import EdgeType
+from pipeline.scraper.parsers.army_list_parser import ArmyListParser
 from pipeline.scraper.parsers.army_parser import ArmyParser
 from pipeline.scraper.parsers.base_parser import BaseParser, ParseResult
 from pipeline.scraper.parsers.core_rule_parser import CoreRuleParser
@@ -68,6 +70,7 @@ _PARSERS: dict[str, BaseParser] = {
     "special_rule": RuleParser(),
     "troop_type": RuleParser(),  # RuleParser handles both special_rule + troop_type
     "core_rule": CoreRuleParser(),
+    "army_list": ArmyListParser(),
     "spell": SpellParser(),
     "magic_item": MagicItemParser(),
     "weapon": WeaponParser(),
@@ -93,6 +96,9 @@ _NODE_TYPE_TO_FILE: dict[str, str] = {
     "magic_item": "magic_items.json",
     "faq": "faqs.json",
     "errata": "errata.json",
+    "upgrade": "upgrades.json",
+    "composition_list": "composition_lists.json",
+    "composition_slot": "composition_slots.json",
 }
 
 _RAW_DIR = Path("data/raw")
@@ -178,6 +184,8 @@ def run_all_parsers() -> None:
             # because the URL alone cannot distinguish them.
             if page_type == "magic_item" and not _has_embedded_magic_items(html):
                 parser: BaseParser = _PARSERS["core_rule"]
+            elif page_type == "core_rule" and entry["url"].rstrip("/").endswith("-army-list"):
+                parser = _PARSERS["army_list"]
             else:
                 parser = _PARSERS[page_type]
 
@@ -197,6 +205,41 @@ def run_all_parsers() -> None:
                 nodes_by_type[node_type].append(node)
 
         all_edges.extend(result.edges)
+
+    # --- Two-pass classifier: relabel provisional UNLOCKS_RULE edges ---
+    # Weapons and magic items are tagged as content-type "rule" in Contentful,
+    # so _options.py emits UNLOCKS_RULE for all rule-type links.  Now that all
+    # parsers have run we can build lookup sets and relabel correctly.
+    _weapon_slugs: set[str] = {n["id"] for n in nodes_by_type.get("weapon", []) if "id" in n}
+    _item_slugs: set[str] = {n["id"] for n in nodes_by_type.get("magic_item", []) if "id" in n}
+    for edge in all_edges:
+        if edge.get("relation") == EdgeType.UNLOCKS_RULE:
+            dst = edge.get("dst", "")
+            if dst in _weapon_slugs:
+                edge["relation"] = EdgeType.UNLOCKS_WEAPON
+            elif dst in _item_slugs:
+                edge["relation"] = EdgeType.UNLOCKS_ITEM
+            # else stays UNLOCKS_RULE
+    unlocks_relabeled = sum(
+        1
+        for e in all_edges
+        if e.get("relation") in (EdgeType.UNLOCKS_WEAPON, EdgeType.UNLOCKS_ITEM)
+    )
+    logger.info("Two-pass classifier: %d UNLOCKS_RULE edges relabeled", unlocks_relabeled)
+
+    # Refine rule_add upgrade_type: promote to weapon_add when the upgrade
+    # has at least one UNLOCKS_WEAPON or UNLOCKS_MOUNT edge.
+    _upgrades_with_weapon_edge: set[str] = {
+        e["src"]
+        for e in all_edges
+        if e.get("relation") in (EdgeType.UNLOCKS_WEAPON, EdgeType.UNLOCKS_MOUNT)
+    }
+    weapon_add_count = 0
+    for node in nodes_by_type.get("upgrade", []):
+        if node.get("upgrade_type") == "rule_add" and node.get("id") in _upgrades_with_weapon_edge:
+            node["upgrade_type"] = "weapon_add"
+            weapon_add_count += 1
+    logger.info("Two-pass classifier: %d rule_add upgrades promoted to weapon_add", weapon_add_count)
 
     # --- Deduplicate nodes by (node_type, id) ---
     # Some pages (e.g. /faq contains all entries; /faq/<section> repeats a subset;
@@ -231,6 +274,21 @@ def run_all_parsers() -> None:
     dropped = len(all_edges) - len(filtered_edges)
     if dropped:
         logger.info("Dropped %d edges with no matching dst node", dropped)
+
+    # --- Deduplicate edges by (src, dst, relation) ---
+    seen_edges: dict[tuple, dict] = {}
+    for e in filtered_edges:
+        key = (e.get("src"), e.get("dst"), e.get("relation"))
+        if key not in seen_edges:
+            seen_edges[key] = e
+    deduped_edges = list(seen_edges.values())
+    if len(deduped_edges) != len(filtered_edges):
+        logger.info(
+            "Deduplicated %d duplicate edges → %d unique",
+            len(filtered_edges) - len(deduped_edges),
+            len(deduped_edges),
+        )
+    filtered_edges = deduped_edges
 
     # --- Write output files ---
     _PARSED_DIR.mkdir(parents=True, exist_ok=True)

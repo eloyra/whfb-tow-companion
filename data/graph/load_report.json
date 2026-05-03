@@ -1,0 +1,124 @@
+{
+  "checks": {
+    "orphan_missing_src_count": 3,
+    "orphan_missing_dst_count": 0,
+    "orphan_missing_dst_sample": [],
+    "dangling_troop_type_id_count": 0,
+    "upgrade_rule_add_count": 427,
+    "upgrade_total_count": 2424,
+    "upgrade_rule_add_ratio": 0.176,
+    "dangling_upgrade_applies_to_profile_count": 0,
+    "armies_without_can_take_item_count": 1,
+    "null_army_id_unreachable_item_count": 11
+  },
+  "warnings": [],
+  "threshold_errors": [],
+  "duration_seconds": 0.4,
+  "node_counts": {
+    "Army": {
+      "expected": 19,
+      "actual": 19,
+      "delta": 0
+    },
+    "Unit": {
+      "expected": 574,
+      "actual": 574,
+      "delta": 0
+    },
+    "Profile": {
+      "expected": 945,
+      "actual": 945,
+      "delta": 0
+    },
+    "SpecialRule": {
+      "expected": 643,
+      "actual": 643,
+      "delta": 0
+    },
+    "CoreRule": {
+      "expected": 1536,
+      "actual": 1536,
+      "delta": 0
+    },
+    "Document": {
+      "expected": 37,
+      "actual": 37,
+      "delta": 0
+    },
+    "TroopType": {
+      "expected": 40,
+      "actual": 40,
+      "delta": 0
+    },
+    "Lore": {
+      "expected": 38,
+      "actual": 38,
+      "delta": 0
+    },
+    "Spell": {
+      "expected": 133,
+      "actual": 133,
+      "delta": 0
+    },
+    "Weapon": {
+      "expected": 264,
+      "actual": 264,
+      "delta": 0
+    },
+    "MagicItem": {
+      "expected": 698,
+      "actual": 698,
+      "delta": 0
+    },
+    "FAQ": {
+      "expected": 244,
+      "actual": 244,
+      "delta": 0
+    },
+    "Errata": {
+      "expected": 210,
+      "actual": 210,
+      "delta": 0
+    },
+    "Upgrade": {
+      "expected": 2424,
+      "actual": 2424,
+      "delta": 0
+    },
+    "CompositionList": {
+      "expected": 17,
+      "actual": 17,
+      "delta": 0
+    },
+    "CompositionSlot": {
+      "expected": 83,
+      "actual": 83,
+      "delta": 0
+    }
+  },
+  "edge_counts": {
+    "REFERENCES": 6437,
+    "PART_OF_SECTION": 77,
+    "BELONGS_TO_LORE": 303,
+    "HAS_RULE": 4399,
+    "HAS_WEAPON": 1607,
+    "USES_LORE": 234,
+    "BELONGS_TO": 595,
+    "CAN_TAKE_ITEM": 68091,
+    "HAS_LIST": 17,
+    "HAS_SLOT": 83,
+    "SLOT_ALLOWS": 543,
+    "ALLIED_WITH": 44,
+    "HAS_UPGRADE": 2433,
+    "HAS_PROFILE": 967,
+    "HAS_TYPE": 581,
+    "HAS_OPTIONAL_RULE": 1292,
+    "UNLOCKS_WEAPON": 824,
+    "UNLOCKS_RULE": 350,
+    "CAN_MOUNT": 288,
+    "UNLOCKS_MOUNT": 285,
+    "UNLOCKS_ITEM": 32,
+    "REPLACES_WEAPON": 69
+  },
+  "edge_drops": {}
+}

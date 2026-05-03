@@ -214,3 +214,70 @@ parent `:Unit` embedding text.
 - `docker/docker-compose.yml` — Neo4j container definition
 - ADR-0001 — graph database selection and GraphRAG architecture
 - ADR-0004 — parse output contract (scalar flattening amendment)
+
+---
+
+## Amendment — 2026-04-26 — Army-list knowledge extraction
+
+### New node labels
+
+| Label | Source | Key properties |
+|---|---|---|
+| `:Upgrade` | `data/parsed/upgrades.json` | `upgrade_type`, `points_cost`, `cost_unit`, `points_budget`, `mutex_group`, `applies_to_profile`, `availability_constraint`, `replaces_weapon_id`, `bsb_unlimited_magic_standard`, `order` |
+| `:CompositionList` | `data/parsed/composition_lists.json` | `army_id` |
+| `:CompositionSlot` | `data/parsed/composition_slots.json` | `army_id`, `slot_name`, `min_pct`, `max_pct`, `composition_list_id` |
+
+`:Upgrade` nodes are **not embedded** independently.  Their names and costs
+are included in their parent unit's embedding text under an "Upgrades:" segment.
+
+`:CompositionList` and `:CompositionSlot` are structural scaffolding for army
+composition rules; they are not embedded.
+
+### New edge families
+
+| Edge type | Src | Dst | Properties | Source |
+|---|---|---|---|---|
+| `HAS_UPGRADE` | `:Unit` | `:Upgrade` | — | parsed (`upgrades.json`) |
+| `UNLOCKS_RULE` | `:Upgrade` | `:SpecialRule` | — | parsed, classified at coordinator pass |
+| `UNLOCKS_WEAPON` | `:Upgrade` | `:Weapon` | — | relabeled from `UNLOCKS_RULE` in coordinator two-pass |
+| `UNLOCKS_ITEM` | `:Upgrade` | `:MagicItem` | — | relabeled from `UNLOCKS_RULE` in coordinator two-pass |
+| `UNLOCKS_MOUNT` | `:Upgrade` | `:Unit` | — | parsed (armyListEntry links) |
+| `REPLACES_WEAPON` | `:Upgrade` | `:Weapon` | — | parsed (weapon swap items) |
+| `HAS_LIST` | `:Army` | `:CompositionList` | — | parsed |
+| `HAS_SLOT` | `:CompositionList` | `:CompositionSlot` | — | parsed |
+| `SLOT_ALLOWS` | `:CompositionSlot` | `:Unit` | `max_count`, `per_points` | parsed |
+| `ALLIED_WITH` | `:Army` | `:Army` | `alliance_type` | parsed |
+| `CAN_TAKE_ITEM` | `:Unit` | `:MagicItem` | `budget`, `via_upgrade` | **derived** (post-load Cypher) |
+
+### Derived CAN_TAKE_ITEM policy
+
+`CAN_TAKE_ITEM` edges are not stored in `edges.json`.  They are materialised
+by `GraphBuilder._derive_can_take_item()` after all nodes and edges are loaded,
+using three idempotent MERGE passes:
+
+1. **magic_item_budget / command_bsb** — unit → all common/army-specific items
+   that are not `magic_standard` or `ability`, respecting `wizard_level >= 1`
+   for `arcane_item` access.
+2. **magic_standard_budget** — unit → `magic_standard` items in the same army
+   (or with `army_id IS NULL`).
+3. **vampiric_powers_budget / rune_budget** — unit → `ability` items belonging
+   to the same army.
+
+Edge properties: `r.budget` (integer, from `up.points_budget`) and
+`r.via_upgrade` (the upgrade node id that triggered creation).
+
+**Boundary:** prose-level restrictions ("may not take items from the same
+category more than once") are not enforced at the graph level.  They remain in
+`:MagicItem.text`.  The graph models structural eligibility only; fine-grained
+validation is the responsibility of the application layer.
+
+### Coordinator two-pass edge classifier
+
+The parse coordinator (`pipeline/scraper/parsers/__init__.py`) runs two passes
+after all parsers complete:
+
+- **Pass 1:** `UNLOCKS_RULE` edges whose `dst` id matches a known weapon slug
+  are relabeled `UNLOCKS_WEAPON`; those matching a magic item slug become
+  `UNLOCKS_ITEM`.
+- **Pass 2:** `rule_add` upgrade nodes that have at least one `UNLOCKS_WEAPON`
+  or `UNLOCKS_MOUNT` edge are promoted to `weapon_add`.

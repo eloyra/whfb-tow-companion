@@ -9,9 +9,8 @@ install:  ## Install all dependencies (requires uv)
 # ── Neo4j ─────────────────────────────────────────────────────────────────────
 
 neo4j-up:  ## Start Neo4j container (waits for healthcheck)
-	docker compose -f docker/docker-compose.yml up -d
-	@echo "Waiting for Neo4j to be ready..."
-	@until docker inspect --format='{{.State.Health.Status}}' whfb-neo4j 2>/dev/null | grep -q healthy; do sleep 2; done
+	@echo "Starting Neo4j and waiting for it to be healthy..."
+	docker compose -f docker/docker-compose.yml up -d --wait
 	@echo "Neo4j is ready at http://localhost:7474"
 
 neo4j-down:  ## Stop Neo4j container (data volume preserved)

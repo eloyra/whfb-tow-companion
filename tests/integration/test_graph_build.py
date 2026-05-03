@@ -64,26 +64,129 @@ _PROFILE = {"node_type": "profile", "id": "test-unit#warrior",
             "M": 4, "WS": 3, "BS": 3, "S": 3, "T": 3, "W": 1, "I": 3, "A": 1, "Ld": 7,
             "order": 0}
 
+# ---------------------------------------------------------------------------
+# Synthetic Upgrade nodes
+# ---------------------------------------------------------------------------
+
+_UPGRADE_BUDGET = {
+    "node_type": "upgrade", "id": "test-unit#upgrade-magic-item-budget-test-army",
+    "url": "https://example.com/unit/test-unit",
+    "name": "Magic Item Budget (100 pts)",
+    "description": "May take up to 100 points of magic items.",
+    "upgrade_type": "magic_item_budget",
+    "points_cost": None, "cost_unit": "budget", "points_budget": 100,
+    "mutex_group": None, "applies_to_profile": None,
+    "availability_constraint": None, "replaces_weapon_id": None,
+    "bsb_unlimited_magic_standard": None, "order": 0,
+    "source_citation_book": "Test Book", "source_citation_page": None,
+}
+
+# BSB upgrade for test-army (army 1)
+_UPGRADE_BSB = {
+    "node_type": "upgrade", "id": "test-unit#upgrade-bsb-test-army",
+    "url": "https://example.com/unit/test-unit",
+    "name": "Battle Standard Bearer",
+    "description": "A single Test Unit may be upgraded to Battle Standard Bearer (+25 points).",
+    "upgrade_type": "command_bsb",
+    "points_cost": 25, "cost_unit": "flat", "points_budget": None,
+    "mutex_group": None, "applies_to_profile": None,
+    "availability_constraint": None, "replaces_weapon_id": None,
+    "bsb_unlimited_magic_standard": True, "order": 1,
+    "source_citation_book": "test-army", "source_citation_page": None,
+}
+
+# BSB upgrade for test-army-2 — same character slug, different army
+# Tests that two distinct BSB upgrade IDs survive a build without merging into one.
+_UPGRADE_BSB_2 = {
+    "node_type": "upgrade", "id": "test-unit#upgrade-bsb-test-army-2",
+    "url": "https://example.com/unit/test-unit",
+    "name": "Battle Standard Bearer",
+    "description": "A single Test Unit may be upgraded to Battle Standard Bearer (+25 points).",
+    "upgrade_type": "command_bsb",
+    "points_cost": 25, "cost_unit": "flat", "points_budget": None,
+    "mutex_group": None, "applies_to_profile": None,
+    "availability_constraint": None, "replaces_weapon_id": None,
+    "bsb_unlimited_magic_standard": False, "order": 1,
+    "source_citation_book": "test-army-2", "source_citation_page": None,
+}
+
+# ---------------------------------------------------------------------------
+# Synthetic CompositionList / CompositionSlot nodes
+# ---------------------------------------------------------------------------
+
+_COMPOSITION_LIST = {
+    "node_type": "composition_list", "id": "test-army#composition-list",
+    "army_id": "test-army", "url": "https://example.com/army/test-army-army-list",
+}
+
+_COMPOSITION_SLOT = {
+    "node_type": "composition_slot", "id": "test-army#composition-list#core",
+    "composition_list_id": "test-army#composition-list",
+    "army_id": "test-army", "slot_name": "Core",
+    "min_pct": None, "max_pct": 50,
+}
+
+# ---------------------------------------------------------------------------
+# Synthetic MagicItem nodes (for CAN_TAKE_ITEM derivation)
+# ---------------------------------------------------------------------------
+
+# Common magic weapon — accessible via magic_item_budget / command_bsb
+_MAGIC_ITEM_COMMON = {
+    "node_type": "magic_item", "id": "sword-of-power", "name": "Sword of Power",
+    "item_type": "magic_weapon", "army_id": None, "cost": 50,
+    "text": "A powerful sword.", "url": "https://example.com/magic-items/sword-of-power",
+    "source_citation_book": "Test Book", "source_citation_page": None,
+}
+
+# Magic standard — excluded from magic_item_budget derivation
+_MAGIC_ITEM_STANDARD = {
+    "node_type": "magic_item", "id": "test-magic-standard", "name": "Test Magic Standard",
+    "item_type": "magic_standard", "army_id": None, "cost": 25,
+    "text": "A magic standard.", "url": "https://example.com/magic-items/test-magic-standard",
+    "source_citation_book": "Test Book", "source_citation_page": None,
+}
+
+# ---------------------------------------------------------------------------
+# Edges
+# ---------------------------------------------------------------------------
+
 _EDGES = [
     {"src": "test-unit", "dst": "test-army", "relation": "BELONGS_TO", "properties": {}},
     {"src": "test-unit", "dst": "regular-infantry", "relation": "HAS_TYPE", "properties": {}},
     {"src": "test-unit", "dst": "fear", "relation": "HAS_RULE", "properties": {}},
     {"src": "test-unit", "dst": "test-unit#warrior", "relation": "HAS_PROFILE",
      "properties": {"order": 0}},
+    # Upgrade edges
+    {"src": "test-unit", "dst": "test-unit#upgrade-magic-item-budget-test-army",
+     "relation": "HAS_UPGRADE", "properties": {}},
+    {"src": "test-unit", "dst": "test-unit#upgrade-bsb-test-army",
+     "relation": "HAS_UPGRADE", "properties": {}},
+    {"src": "test-unit", "dst": "test-unit#upgrade-bsb-test-army-2",
+     "relation": "HAS_UPGRADE", "properties": {}},
+    # Composition edges
+    {"src": "test-army", "dst": "test-army#composition-list",
+     "relation": "HAS_LIST", "properties": {}},
+    {"src": "test-army#composition-list", "dst": "test-army#composition-list#core",
+     "relation": "HAS_SLOT", "properties": {}},
+    {"src": "test-army#composition-list#core", "dst": "test-unit",
+     "relation": "SLOT_ALLOWS", "properties": {}},
 ]
 
 _NODE_FILES = {
     "armies.json": [_ARMY],
+    "composition_lists.json": [_COMPOSITION_LIST],
+    "composition_slots.json": [_COMPOSITION_SLOT],
     "troop_types.json": [_TROOP_TYPE],
     "units.json": [_UNIT],
     "profiles.json": [_PROFILE],
+    "upgrades.json": [_UPGRADE_BUDGET, _UPGRADE_BSB, _UPGRADE_BSB_2],
     "special_rules.json": [_RULE],
     "core_rules.json": [],
     "documents.json": [],
     "lores.json": [],
     "spells.json": [],
     "weapons.json": [],
-    "magic_items.json": [],
+    "magic_items.json": [_MAGIC_ITEM_COMMON, _MAGIC_ITEM_STANDARD],
     "faqs.json": [],
     "errata.json": [],
     "edges.json": _EDGES,
@@ -205,6 +308,108 @@ class TestGraphBuild:
         assert rec["smax"] == 20
         assert rec["book"] == "Test Book"
 
+    # ------------------------------------------------------------------
+    # Upgrade nodes
+    # ------------------------------------------------------------------
+
+    def test_upgrade_node_exists(self, driver, build_report) -> None:
+        with driver.session() as s:
+            rec = s.run(
+                "MATCH (n:Upgrade {id: 'test-unit#upgrade-magic-item-budget-test-army'}) "
+                "RETURN n.upgrade_type AS ut, n.points_budget AS pb"
+            ).single()
+        assert rec is not None
+        assert rec["ut"] == "magic_item_budget"
+        assert rec["pb"] == 100
+
+    def test_has_upgrade_edge(self, driver, build_report) -> None:
+        with driver.session() as s:
+            count = s.run(
+                "MATCH (u:Unit {id: 'test-unit'})-[:HAS_UPGRADE]->(up:Upgrade) "
+                "RETURN count(up) AS c"
+            ).single()["c"]
+        assert count == 3  # magic_item_budget + bsb-test-army + bsb-test-army-2
+
+    # ------------------------------------------------------------------
+    # CompositionList / CompositionSlot
+    # ------------------------------------------------------------------
+
+    def test_composition_list_node(self, driver, build_report) -> None:
+        with driver.session() as s:
+            rec = s.run(
+                "MATCH (n:CompositionList {id: 'test-army#composition-list'}) "
+                "RETURN n.army_id AS aid"
+            ).single()
+        assert rec is not None
+        assert rec["aid"] == "test-army"
+
+    def test_composition_slot_node(self, driver, build_report) -> None:
+        with driver.session() as s:
+            rec = s.run(
+                "MATCH (n:CompositionSlot {id: 'test-army#composition-list#core'}) "
+                "RETURN n.slot_name AS sn, n.max_pct AS mp"
+            ).single()
+        assert rec is not None
+        assert rec["sn"] == "Core"
+        assert rec["mp"] == 50
+
+    def test_has_list_and_slot_edges(self, driver, build_report) -> None:
+        with driver.session() as s:
+            rec = s.run(
+                "MATCH (:Army {id: 'test-army'})-[:HAS_LIST]->(cl:CompositionList)"
+                "-[:HAS_SLOT]->(cs:CompositionSlot) "
+                "RETURN cs.slot_name AS sn"
+            ).single()
+        assert rec is not None
+        assert rec["sn"] == "Core"
+
+    # ------------------------------------------------------------------
+    # CAN_TAKE_ITEM derivation
+    # ------------------------------------------------------------------
+
+    def test_can_take_item_derived(self, driver, build_report) -> None:
+        with driver.session() as s:
+            rec = s.run(
+                "MATCH (u:Unit {id: 'test-unit'})-[r:CAN_TAKE_ITEM]->"
+                "(i:MagicItem {id: 'sword-of-power'}) "
+                "RETURN r.budget AS budget"
+            ).single()
+        assert rec is not None
+        assert rec["budget"] == 100
+
+    def test_can_take_item_excludes_magic_standard(self, driver, build_report) -> None:
+        with driver.session() as s:
+            rec = s.run(
+                "MATCH (u:Unit {id: 'test-unit'})-[:CAN_TAKE_ITEM]->"
+                "(i:MagicItem {item_type: 'magic_standard'}) "
+                "RETURN i.id AS iid"
+            ).single()
+        assert rec is None
+
+    # ------------------------------------------------------------------
+    # BSB cross-army uniqueness
+    # ------------------------------------------------------------------
+
+    def test_bsb_upgrade_unique_per_army(self, driver, build_report) -> None:
+        # Two distinct BSB upgrades (one per army slug in id) must each exist exactly once.
+        with driver.session() as s:
+            bsb_ids = [
+                r["iid"]
+                for r in s.run(
+                    "MATCH (u:Unit {id: 'test-unit'})-[:HAS_UPGRADE]->(up:Upgrade) "
+                    "WHERE up.upgrade_type = 'command_bsb' "
+                    "RETURN up.id AS iid"
+                )
+            ]
+        assert sorted(bsb_ids) == [
+            "test-unit#upgrade-bsb-test-army",
+            "test-unit#upgrade-bsb-test-army-2",
+        ]
+
+    # ------------------------------------------------------------------
+    # Idempotency (second full build must not duplicate any node or edge)
+    # ------------------------------------------------------------------
+
     def test_idempotency(self, driver, parsed_dir, monkeypatch_module) -> None:
         from pipeline.graph.builder import GraphBuilder
 
@@ -217,5 +422,12 @@ class TestGraphBuild:
         with driver.session() as s:
             unit_count = s.run("MATCH (n:Unit) RETURN count(n) AS c").single()["c"]
             army_count = s.run("MATCH (n:Army) RETURN count(n) AS c").single()["c"]
+            upgrade_count = s.run("MATCH (n:Upgrade) RETURN count(n) AS c").single()["c"]
+            can_take_count = s.run(
+                "MATCH (u:Unit {id: 'test-unit'})-[:CAN_TAKE_ITEM]->(:MagicItem) "
+                "RETURN count(*) AS c"
+            ).single()["c"]
         assert unit_count == 1
         assert army_count == 1
+        assert upgrade_count == 3
+        assert can_take_count == 1  # MERGE semantic: sword-of-power only, not doubled

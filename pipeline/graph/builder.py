@@ -31,9 +31,12 @@ _PARSED_DIR = Path("data/parsed")
 # but a stable order makes log output easier to follow).
 _NODE_FILES: list[tuple[str, str]] = [
     ("armies.json", "Army"),
+    ("composition_lists.json", "CompositionList"),
+    ("composition_slots.json", "CompositionSlot"),
     ("troop_types.json", "TroopType"),
     ("units.json", "Unit"),
     ("profiles.json", "Profile"),
+    ("upgrades.json", "Upgrade"),
     ("special_rules.json", "SpecialRule"),
     ("core_rules.json", "CoreRule"),
     ("documents.json", "Document"),
@@ -86,6 +89,9 @@ class GraphBuilder:
         else:
             logger.warning("edges.json not found — skipping edge load")
 
+        # Derived edges: CAN_TAKE_ITEM (requires all nodes + upgrade edges loaded)
+        self._derive_can_take_item(driver)
+
         # Static seeds (no-op when endpoints are missing)
         seeds.seed_alliances(driver)
         seeds.seed_terrain_interactions(driver)
@@ -115,6 +121,58 @@ class GraphBuilder:
             for row in session.run("SHOW INDEXES WHERE type <> 'LOOKUP'"):
                 session.run(f"DROP INDEX {row['name']} IF EXISTS")
         logger.info("Graph wiped")
+
+    def _derive_can_take_item(self, driver) -> None:
+        """Post-load step: derive CAN_TAKE_ITEM edges from Upgrade + MagicItem data.
+
+        Three MERGE passes (idempotent):
+        1. Characters with magic_item_budget or command_bsb → common/army items
+           (excluding magic_standard and ability items).
+        2. Units with magic_standard_budget → magic_standard items.
+        3. Units with vampiric_powers_budget or rune_budget → army-specific ability items.
+
+        Edge properties: budget (int), via_upgrade (str).
+        """
+        query_items = """
+            MATCH (u:Unit)-[:HAS_UPGRADE]->(up:Upgrade)
+            WHERE up.upgrade_type IN ['magic_item_budget', 'command_bsb']
+            MATCH (u)-[:BELONGS_TO]->(a:Army)
+            MATCH (i:MagicItem)
+            WHERE (i.army_id IS NULL
+                   OR i.army_id IN ['ravening-hordes', 'forces-of-fantasy']
+                   OR i.army_id = a.id)
+              AND (i.item_type <> 'arcane_item' OR coalesce(u.wizard_level, 0) >= 1)
+              AND i.item_type <> 'magic_standard'
+              AND i.item_type <> 'ability'
+            MERGE (u)-[r:CAN_TAKE_ITEM]->(i)
+            ON CREATE SET r.budget = up.points_budget, r.via_upgrade = up.id
+        """
+        query_standards = """
+            MATCH (u:Unit)-[:HAS_UPGRADE]->(up:Upgrade {upgrade_type: 'magic_standard_budget'})
+            MATCH (u)-[:BELONGS_TO]->(a:Army)
+            MATCH (i:MagicItem {item_type: 'magic_standard'})
+            WHERE (i.army_id IS NULL
+                   OR i.army_id IN ['ravening-hordes', 'forces-of-fantasy']
+                   OR i.army_id = a.id)
+            MERGE (u)-[r:CAN_TAKE_ITEM]->(i)
+            ON CREATE SET r.budget = up.points_budget, r.via_upgrade = up.id
+        """
+        query_abilities = """
+            MATCH (u:Unit)-[:HAS_UPGRADE]->(up:Upgrade)
+            WHERE up.upgrade_type IN ['vampiric_powers_budget', 'rune_budget']
+            MATCH (u)-[:BELONGS_TO]->(a:Army)
+            MATCH (i:MagicItem {item_type: 'ability'})
+            WHERE i.army_id = a.id
+            MERGE (u)-[r:CAN_TAKE_ITEM]->(i)
+            ON CREATE SET r.budget = up.points_budget, r.via_upgrade = up.id
+        """
+        with driver.session() as session:
+            session.run(query_items)
+            session.run(query_standards)
+            session.run(query_abilities)
+            result = session.run("MATCH ()-[r:CAN_TAKE_ITEM]->() RETURN count(r) AS c")
+            count = result.single()["c"]
+        logger.info("Derived %d CAN_TAKE_ITEM edges", count)
 
     def _seed_troop_types(self, driver) -> None:
         """Apply rank-bonus / unit-strength attrs from TROOP_TYPE_SEED.

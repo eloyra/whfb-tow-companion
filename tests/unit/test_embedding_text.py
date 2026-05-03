@@ -337,3 +337,40 @@ class TestUnit:
         driver = _make_driver([[], [], []])
         texts = text_builder.build_for_label(driver, "Unit", ["missing"])
         assert texts == [""]
+
+    def test_contains_upgrades(self) -> None:
+        driver = self._make_driver_for_unit(
+            {"nid": "x", "name": "X", "army_category": None,
+             "cost": None, "size_min": None, "size_max": None, "bw": None, "bd": None,
+             "av": None, "armies": [], "troop_types": []},
+            [],
+            {"nid": "x", "rules": [], "weapons": [],
+             "upgrades": ["Magic Item Budget (100 pts)", "Level 2 Wizard"]},
+        )
+        texts = text_builder.build_for_label(driver, "Unit", ["x"])
+        t = texts[0]
+        assert "Upgrades" in t
+        assert "Magic Item Budget (100 pts)" in t
+        assert "Level 2 Wizard" in t
+
+    def test_no_upgrades_key_does_not_crash(self) -> None:
+        driver = self._make_driver_for_unit(
+            {"nid": "x", "name": "X", "army_category": None,
+             "cost": None, "size_min": None, "size_max": None, "bw": None, "bd": None,
+             "av": None, "armies": [], "troop_types": []},
+            [],
+            {"nid": "x", "rules": [], "weapons": []},  # no "upgrades" key
+        )
+        texts = text_builder.build_for_label(driver, "Unit", ["x"])
+        assert texts == ["X"]
+
+    def test_empty_upgrade_list_no_segment(self) -> None:
+        driver = self._make_driver_for_unit(
+            {"nid": "x", "name": "X", "army_category": None,
+             "cost": None, "size_min": None, "size_max": None, "bw": None, "bd": None,
+             "av": None, "armies": [], "troop_types": []},
+            [],
+            {"nid": "x", "rules": [], "weapons": [], "upgrades": []},
+        )
+        texts = text_builder.build_for_label(driver, "Unit", ["x"])
+        assert "Upgrades" not in texts[0]

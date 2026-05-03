@@ -262,15 +262,17 @@ def _build_unit(driver: neo4j.Driver, ids: list[str]) -> list[str]:
                p.W AS W, p.I AS I, p.A AS A, p.Ld AS Ld, p.order AS ord
         ORDER BY nid, p.order
     """
-    # Fetch rules and weapons
+    # Fetch rules, weapons, and upgrades
     edge_query = """
         UNWIND $ids AS nid
         MATCH (u:Unit {id: nid})
         OPTIONAL MATCH (u)-[:HAS_RULE|HAS_OPTIONAL_RULE]->(r:SpecialRule)
         OPTIONAL MATCH (u)-[:HAS_WEAPON]->(w:Weapon)
+        OPTIONAL MATCH (u)-[:HAS_UPGRADE]->(up:Upgrade)
         RETURN nid,
                collect(DISTINCT r.name) AS rules,
-               collect(DISTINCT w.name) AS weapons
+               collect(DISTINCT w.name) AS weapons,
+               collect(DISTINCT up.name) AS upgrades
     """
 
     unit_rows = _fetch(driver, unit_query, ids)
@@ -333,14 +335,17 @@ def _build_unit(driver: neo4j.Driver, ids: list[str]) -> list[str]:
                 prof_strs.append(f"{p['pname']}: {' '.join(stats)}" if stats else p["pname"])
             parts.append("Profiles — " + "; ".join(prof_strs))
 
-        # Rules and weapons
+        # Rules, weapons, and upgrades
         ev = edges_by_unit.get(nid, {})
         rules = [r for r in (ev.get("rules") or []) if r]
         weapons = [w for w in (ev.get("weapons") or []) if w]
+        upgrade_names = [u for u in (ev.get("upgrades") or []) if u]
         if rules:
             parts.append("Rules: " + ", ".join(sorted(rules)))
         if weapons:
             parts.append("Weapons: " + ", ".join(sorted(weapons)))
+        if upgrade_names:
+            parts.append("Upgrades: " + ", ".join(sorted(upgrade_names)))
 
         result[nid] = ". ".join(p for p in parts if p)
 

@@ -156,6 +156,9 @@ class NodeType:
     MAGIC_ITEM = "magic_item"
     FAQ = "faq"
     ERRATA = "errata"
+    UPGRADE = "upgrade"
+    COMPOSITION_LIST = "composition_list"
+    COMPOSITION_SLOT = "composition_slot"
 
 
 # ---------------------------------------------------------------------------
@@ -242,6 +245,18 @@ class EdgeType:
     USES_LORE = "USES_LORE"
     BELONGS_TO_LORE = "BELONGS_TO_LORE"
     PART_OF_SECTION = "PART_OF_SECTION"
+    # Upgrade edges
+    HAS_UPGRADE = "HAS_UPGRADE"
+    UNLOCKS_RULE = "UNLOCKS_RULE"
+    UNLOCKS_WEAPON = "UNLOCKS_WEAPON"
+    UNLOCKS_ITEM = "UNLOCKS_ITEM"
+    UNLOCKS_MOUNT = "UNLOCKS_MOUNT"
+    REPLACES_WEAPON = "REPLACES_WEAPON"
+    # Army composition edges
+    HAS_LIST = "HAS_LIST"
+    HAS_SLOT = "HAS_SLOT"
+    SLOT_ALLOWS = "SLOT_ALLOWS"
+    ALLIED_WITH = "ALLIED_WITH"
     # Semantic
     REFERENCES = "REFERENCES"
     # Clarification
@@ -267,9 +282,14 @@ NODE_TYPE_TO_LABEL: dict[str, str] = {
     NodeType.MAGIC_ITEM: "MagicItem",
     NodeType.FAQ: "FAQ",
     NodeType.ERRATA: "Errata",
+    NodeType.UPGRADE: "Upgrade",
+    NodeType.COMPOSITION_LIST: "CompositionList",
+    NodeType.COMPOSITION_SLOT: "CompositionSlot",
 }
 
-# Labels for which embeddings are generated (Profile excluded — embedded via parent Unit).
+# Labels for which embeddings are generated.
+# Profile excluded — embedded via parent Unit.
+# CompositionList/CompositionSlot excluded — pure structural nodes, no prose to embed.
 EMBEDDABLE_LABELS: tuple[str, ...] = (
     "SpecialRule",
     "CoreRule",

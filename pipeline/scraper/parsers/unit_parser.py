@@ -32,6 +32,7 @@ from __future__ import annotations
 import logging
 
 from pipeline.constants import TROOP_TYPE_SLUG_MAP, EdgeType, NodeType
+from pipeline.scraper.parsers._options import parse_options_to_upgrades
 from pipeline.scraper.parsers.base_parser import BaseParser, ParseResult
 
 logger = logging.getLogger(__name__)
@@ -87,11 +88,13 @@ class UnitParser(BaseParser):
         army_category: str | None = _ARMY_CATEGORY_MAP.get(unit_cat_slug)
 
         # Army membership via association (armyLists is always empty in this CMS).
-        army_slugs: list[str] = [
-            a.get("fields", {}).get("slug")
-            for a in (fields.get("association") or [])
-            if isinstance(a, dict) and a.get("fields", {}).get("slug")
-        ]
+        army_slugs: list[str] = list(
+            dict.fromkeys(
+                a.get("fields", {}).get("slug")
+                for a in (fields.get("association") or [])
+                if isinstance(a, dict) and a.get("fields", {}).get("slug")
+            )
+        )
         army_name = ""
         if army_slugs:
             army_name = (fields.get("association") or [{}])[0].get("fields", {}).get("name", "")
@@ -126,9 +129,11 @@ class UnitParser(BaseParser):
         # Emit :Profile child nodes + HAS_PROFILE edges.
         # Profiles are first-class graph nodes so stats can be queried directly
         # via Cypher (e.g. units with WS≥5 and A≥3 across any sub-profile).
+        profile_slug_set: set[str] = set()
         for order, profile in enumerate(profiles):
             profile_name = profile.get("name") or f"profile-{order}"
             profile_id = f"{slug}#{self._name_to_slug(profile_name)}"
+            profile_slug_set.add(profile_id)
             result.nodes.append(
                 {
                     "node_type": NodeType.PROFILE,
@@ -197,6 +202,17 @@ class UnitParser(BaseParser):
             if link_slug not in opt_seen:
                 result.edges.append(self._make_edge(slug, link_slug, EdgeType.HAS_OPTIONAL_RULE))
                 opt_seen.add(link_slug)
+
+        # :Upgrade nodes from options richtext (Phase 1 knowledge extraction).
+        # HAS_OPTIONAL_RULE / CAN_MOUNT edges above are preserved as additive context.
+        upgrade_nodes, upgrade_edges = parse_options_to_upgrades(
+            unit_slug=slug,
+            options_rt=fields.get("options"),
+            profile_slug_set=profile_slug_set,
+            source_citation=sc,
+        )
+        result.nodes.extend(upgrade_nodes)
+        result.edges.extend(upgrade_edges)
 
         # USES_LORE edges — wizard units only.
         # magicLore field slugs have a "-lore" suffix (e.g. "battle-magic-lore") that
