@@ -63,6 +63,8 @@ def run_all(driver: neo4j.Driver, parsed_dir: Path = Path("data/parsed")) -> dic
     _check_dangling_applies_to_profile(driver, report)
     _check_armies_without_can_take_item(driver, report)
     _check_items_without_army_id_unreachable(driver, report)
+    _check_faq_errata_coverage(driver, report)
+    _check_intrinsic_rule_edges(driver, report)
 
     report["duration_seconds"] = round(time.time() - start, 2)
     report["node_counts"] = node_counts
@@ -84,9 +86,7 @@ def run_all(driver: neo4j.Driver, parsed_dir: Path = Path("data/parsed")) -> dic
     return report
 
 
-def _check_node_counts(
-    driver: neo4j.Driver, parsed_dir: Path, report: dict
-) -> dict[str, dict]:
+def _check_node_counts(driver: neo4j.Driver, parsed_dir: Path, report: dict) -> dict[str, dict]:
     with driver.session() as session:
         result = session.run(
             "MATCH (n) RETURN labels(n)[0] AS label, count(*) AS c ORDER BY c DESC"
@@ -169,9 +169,7 @@ def _check_edge_counts(
     return edge_counts, edge_drops, threshold_errors
 
 
-def _check_orphan_detail(
-    driver: neo4j.Driver, parsed_dir: Path, report: dict
-) -> None:
+def _check_orphan_detail(driver: neo4j.Driver, parsed_dir: Path, report: dict) -> None:
     edges_path = parsed_dir / "edges.json"
     if not edges_path.exists():
         return
@@ -286,6 +284,72 @@ def _check_items_without_army_id_unreachable(driver: neo4j.Driver, report: dict)
         logger.warning("MagicItems with army_id=NULL and no CAN_TAKE_ITEM edges: %d", count)
     else:
         logger.info("All NULL army_id items reachable via CAN_TAKE_ITEM OK")
+
+
+def _check_faq_errata_coverage(driver: neo4j.Driver, report: dict) -> None:
+    """Warn if more than 30 % of FAQ or Errata nodes have zero outgoing CLARIFIES/AMENDS edges."""
+    with driver.session() as session:
+        faq_total = (session.run("MATCH (f:FAQ) RETURN count(f) AS c").single() or {}).get("c", 0)
+        faq_linked = (
+            session.run(
+                "MATCH (f:FAQ) WHERE EXISTS { (f)-[:CLARIFIES]->() } RETURN count(f) AS c"
+            ).single()
+            or {}
+        ).get("c", 0)
+        errata_total = (session.run("MATCH (e:Errata) RETURN count(e) AS c").single() or {}).get(
+            "c", 0
+        )
+        errata_linked = (
+            session.run(
+                "MATCH (e:Errata) WHERE EXISTS { (e)-[:AMENDS]->() } RETURN count(e) AS c"
+            ).single()
+            or {}
+        ).get("c", 0)
+
+    report["checks"]["faq_total"] = faq_total
+    report["checks"]["faq_with_clarifies"] = faq_linked
+    report["checks"]["errata_total"] = errata_total
+    report["checks"]["errata_with_amends"] = errata_linked
+
+    faq_pct = faq_linked / faq_total if faq_total else 0.0
+    errata_pct = errata_linked / errata_total if errata_total else 0.0
+    report["checks"]["faq_clarifies_coverage_pct"] = round(faq_pct, 3)
+    report["checks"]["errata_amends_coverage_pct"] = round(errata_pct, 3)
+
+    if faq_pct < 0.70:
+        msg = f"FAQ CLARIFIES coverage {faq_pct:.1%} ({faq_linked}/{faq_total}) — below 70 % target"
+        report["warnings"].append(msg)
+        logger.warning(msg)
+    else:
+        logger.info("FAQ CLARIFIES coverage: %d/%d (%.1%%)", faq_linked, faq_total, faq_pct * 100)
+
+    if errata_pct < 0.70:
+        msg = (
+            f"Errata AMENDS coverage {errata_pct:.1%} ({errata_linked}/{errata_total})"
+            " — below 70 % target"
+        )
+        report["warnings"].append(msg)
+        logger.warning(msg)
+    else:
+        logger.info(
+            "Errata AMENDS coverage: %d/%d (%.1%%)", errata_linked, errata_total, errata_pct * 100
+        )
+
+
+def _check_intrinsic_rule_edges(driver: neo4j.Driver, report: dict) -> None:
+    """Warn if no HAS_INTRINSIC_RULE edges exist (TroopType → rule)."""
+    with driver.session() as session:
+        result = session.run("MATCH ()-[r:HAS_INTRINSIC_RULE]->() RETURN count(r) AS c")
+        rec = result.single()
+        count = rec["c"] if rec else 0
+
+    report["checks"]["has_intrinsic_rule_count"] = count
+    if count == 0:
+        msg = "HAS_INTRINSIC_RULE: 0 edges — TroopType intrinsic rule links missing"
+        report["warnings"].append(msg)
+        logger.warning(msg)
+    else:
+        logger.info("HAS_INTRINSIC_RULE edges: %d OK", count)
 
 
 def _check_dangling_troop_types(driver: neo4j.Driver, report: dict) -> None:

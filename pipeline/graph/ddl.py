@@ -35,8 +35,10 @@ _CONSTRAINTS: list[str] = [
     "CREATE CONSTRAINT weapon_id      IF NOT EXISTS FOR (n:Weapon)      REQUIRE n.id IS UNIQUE",
     "CREATE CONSTRAINT magicitem_id   IF NOT EXISTS FOR (n:MagicItem)   REQUIRE n.id IS UNIQUE",
     "CREATE CONSTRAINT upgrade_id     IF NOT EXISTS FOR (n:Upgrade)     REQUIRE n.id IS UNIQUE",
-    "CREATE CONSTRAINT complist_id    IF NOT EXISTS FOR (n:CompositionList)  REQUIRE n.id IS UNIQUE",
-    "CREATE CONSTRAINT compslot_id    IF NOT EXISTS FOR (n:CompositionSlot)  REQUIRE n.id IS UNIQUE",
+    "CREATE CONSTRAINT complist_id    IF NOT EXISTS FOR (n:CompositionList)"
+    "  REQUIRE n.id IS UNIQUE",
+    "CREATE CONSTRAINT compslot_id    IF NOT EXISTS FOR (n:CompositionSlot)"
+    "  REQUIRE n.id IS UNIQUE",
     "CREATE CONSTRAINT faq_id         IF NOT EXISTS FOR (n:FAQ)         REQUIRE n.id IS UNIQUE",
     "CREATE CONSTRAINT errata_id      IF NOT EXISTS FOR (n:Errata)      REQUIRE n.id IS UNIQUE",
 ]

@@ -12,9 +12,6 @@ Run manually:
 from __future__ import annotations
 
 import json
-import os
-import tempfile
-from pathlib import Path
 
 import pytest
 
@@ -34,80 +31,143 @@ pytestmark = pytest.mark.skipif(
 # Synthetic dataset helpers
 # ---------------------------------------------------------------------------
 
-_ARMY = {"node_type": "army", "id": "test-army", "name": "Test Army",
-         "url": "https://example.com/army/test-army",
-         "source_citation_book": "Test Book", "source_citation_page": 1}
+_ARMY = {
+    "node_type": "army",
+    "id": "test-army",
+    "name": "Test Army",
+    "url": "https://example.com/army/test-army",
+    "source_citation_book": "Test Book",
+    "source_citation_page": 1,
+}
 
-_TROOP_TYPE = {"node_type": "troop_type", "id": "regular-infantry", "name": "Regular Infantry",
-               "url": "https://example.com/troop-types/regular-infantry",
-               "source_citation_book": "Core Rules", "source_citation_page": 5,
-               "category": "Infantry", "min_models_for_rank_bonus": None,
-               "max_rank_bonus": None, "unit_strength_per_model": None}
+_TROOP_TYPE = {
+    "node_type": "troop_type",
+    "id": "regular-infantry",
+    "name": "Regular Infantry",
+    "url": "https://example.com/troop-types/regular-infantry",
+    "source_citation_book": "Core Rules",
+    "source_citation_page": 5,
+    "category": "Infantry",
+    "min_models_for_rank_bonus": None,
+    "max_rank_bonus": None,
+    "unit_strength_per_model": None,
+}
 
-_RULE = {"node_type": "special_rule", "id": "fear", "name": "Fear",
-         "text": "Units cause Fear.", "url": "https://example.com/special-rules/fear",
-         "source_citation_book": "Core Rules", "source_citation_page": 10}
+_RULE = {
+    "node_type": "special_rule",
+    "id": "fear",
+    "name": "Fear",
+    "text": "Units cause Fear.",
+    "url": "https://example.com/special-rules/fear",
+    "source_citation_book": "Core Rules",
+    "source_citation_page": 10,
+}
 
-_UNIT = {"node_type": "unit", "id": "test-unit", "name": "Test Unit",
-         "url": "https://example.com/unit/test-unit",
-         "source_citation_book": "Test Book", "source_citation_page": 2,
-         "troop_type_id": "regular-infantry",
-         "unit_size_min": 10, "unit_size_max": 20,
-         "base_width_mm": 25, "base_depth_mm": 25,
-         "cost_points_per_model": 8, "army_category": "Core",
-         "is_named_character": False, "wizard_level": None, "av_intrinsic": None,
-         "unit_category": "Infantry", "last_updated": "2024-01-01"}
+_UNIT = {
+    "node_type": "unit",
+    "id": "test-unit",
+    "name": "Test Unit",
+    "url": "https://example.com/unit/test-unit",
+    "source_citation_book": "Test Book",
+    "source_citation_page": 2,
+    "troop_type_id": "regular-infantry",
+    "unit_size_min": 10,
+    "unit_size_max": 20,
+    "base_width_mm": 25,
+    "base_depth_mm": 25,
+    "cost_points_per_model": 8,
+    "army_category": "Core",
+    "is_named_character": False,
+    "wizard_level": None,
+    "av_intrinsic": None,
+    "unit_category": "Infantry",
+    "last_updated": "2024-01-01",
+}
 
-_PROFILE = {"node_type": "profile", "id": "test-unit#warrior",
-            "name": "Warrior", "url": "https://example.com/unit/test-unit",
-            "source_citation_book": "Test Book", "source_citation_page": 2,
-            "M": 4, "WS": 3, "BS": 3, "S": 3, "T": 3, "W": 1, "I": 3, "A": 1, "Ld": 7,
-            "order": 0}
+_PROFILE = {
+    "node_type": "profile",
+    "id": "test-unit#warrior",
+    "name": "Warrior",
+    "url": "https://example.com/unit/test-unit",
+    "source_citation_book": "Test Book",
+    "source_citation_page": 2,
+    "M": 4,
+    "WS": 3,
+    "BS": 3,
+    "S": 3,
+    "T": 3,
+    "W": 1,
+    "I": 3,
+    "A": 1,
+    "Ld": 7,
+    "order": 0,
+}
 
 # ---------------------------------------------------------------------------
 # Synthetic Upgrade nodes
 # ---------------------------------------------------------------------------
 
 _UPGRADE_BUDGET = {
-    "node_type": "upgrade", "id": "test-unit#upgrade-magic-item-budget-test-army",
+    "node_type": "upgrade",
+    "id": "test-unit#upgrade-magic-item-budget-test-army",
     "url": "https://example.com/unit/test-unit",
     "name": "Magic Item Budget (100 pts)",
     "description": "May take up to 100 points of magic items.",
     "upgrade_type": "magic_item_budget",
-    "points_cost": None, "cost_unit": "budget", "points_budget": 100,
-    "mutex_group": None, "applies_to_profile": None,
-    "availability_constraint": None, "replaces_weapon_id": None,
-    "bsb_unlimited_magic_standard": None, "order": 0,
-    "source_citation_book": "Test Book", "source_citation_page": None,
+    "points_cost": None,
+    "cost_unit": "budget",
+    "points_budget": 100,
+    "mutex_group": None,
+    "applies_to_profile": None,
+    "availability_constraint": None,
+    "replaces_weapon_id": None,
+    "bsb_unlimited_magic_standard": None,
+    "order": 0,
+    "source_citation_book": "Test Book",
+    "source_citation_page": None,
 }
 
 # BSB upgrade for test-army (army 1)
 _UPGRADE_BSB = {
-    "node_type": "upgrade", "id": "test-unit#upgrade-bsb-test-army",
+    "node_type": "upgrade",
+    "id": "test-unit#upgrade-bsb-test-army",
     "url": "https://example.com/unit/test-unit",
     "name": "Battle Standard Bearer",
     "description": "A single Test Unit may be upgraded to Battle Standard Bearer (+25 points).",
     "upgrade_type": "command_bsb",
-    "points_cost": 25, "cost_unit": "flat", "points_budget": None,
-    "mutex_group": None, "applies_to_profile": None,
-    "availability_constraint": None, "replaces_weapon_id": None,
-    "bsb_unlimited_magic_standard": True, "order": 1,
-    "source_citation_book": "test-army", "source_citation_page": None,
+    "points_cost": 25,
+    "cost_unit": "flat",
+    "points_budget": None,
+    "mutex_group": None,
+    "applies_to_profile": None,
+    "availability_constraint": None,
+    "replaces_weapon_id": None,
+    "bsb_unlimited_magic_standard": True,
+    "order": 1,
+    "source_citation_book": "test-army",
+    "source_citation_page": None,
 }
 
 # BSB upgrade for test-army-2 — same character slug, different army
 # Tests that two distinct BSB upgrade IDs survive a build without merging into one.
 _UPGRADE_BSB_2 = {
-    "node_type": "upgrade", "id": "test-unit#upgrade-bsb-test-army-2",
+    "node_type": "upgrade",
+    "id": "test-unit#upgrade-bsb-test-army-2",
     "url": "https://example.com/unit/test-unit",
     "name": "Battle Standard Bearer",
     "description": "A single Test Unit may be upgraded to Battle Standard Bearer (+25 points).",
     "upgrade_type": "command_bsb",
-    "points_cost": 25, "cost_unit": "flat", "points_budget": None,
-    "mutex_group": None, "applies_to_profile": None,
-    "availability_constraint": None, "replaces_weapon_id": None,
-    "bsb_unlimited_magic_standard": False, "order": 1,
-    "source_citation_book": "test-army-2", "source_citation_page": None,
+    "points_cost": 25,
+    "cost_unit": "flat",
+    "points_budget": None,
+    "mutex_group": None,
+    "applies_to_profile": None,
+    "availability_constraint": None,
+    "replaces_weapon_id": None,
+    "bsb_unlimited_magic_standard": False,
+    "order": 1,
+    "source_citation_book": "test-army-2",
+    "source_citation_page": None,
 }
 
 # ---------------------------------------------------------------------------
@@ -115,15 +175,20 @@ _UPGRADE_BSB_2 = {
 # ---------------------------------------------------------------------------
 
 _COMPOSITION_LIST = {
-    "node_type": "composition_list", "id": "test-army#composition-list",
-    "army_id": "test-army", "url": "https://example.com/army/test-army-army-list",
+    "node_type": "composition_list",
+    "id": "test-army#composition-list",
+    "army_id": "test-army",
+    "url": "https://example.com/army/test-army-army-list",
 }
 
 _COMPOSITION_SLOT = {
-    "node_type": "composition_slot", "id": "test-army#composition-list#core",
+    "node_type": "composition_slot",
+    "id": "test-army#composition-list#core",
     "composition_list_id": "test-army#composition-list",
-    "army_id": "test-army", "slot_name": "Core",
-    "min_pct": None, "max_pct": 50,
+    "army_id": "test-army",
+    "slot_name": "Core",
+    "min_pct": None,
+    "max_pct": 50,
 }
 
 # ---------------------------------------------------------------------------
@@ -132,18 +197,30 @@ _COMPOSITION_SLOT = {
 
 # Common magic weapon — accessible via magic_item_budget / command_bsb
 _MAGIC_ITEM_COMMON = {
-    "node_type": "magic_item", "id": "sword-of-power", "name": "Sword of Power",
-    "item_type": "magic_weapon", "army_id": None, "cost": 50,
-    "text": "A powerful sword.", "url": "https://example.com/magic-items/sword-of-power",
-    "source_citation_book": "Test Book", "source_citation_page": None,
+    "node_type": "magic_item",
+    "id": "sword-of-power",
+    "name": "Sword of Power",
+    "item_type": "magic_weapon",
+    "army_id": None,
+    "cost": 50,
+    "text": "A powerful sword.",
+    "url": "https://example.com/magic-items/sword-of-power",
+    "source_citation_book": "Test Book",
+    "source_citation_page": None,
 }
 
 # Magic standard — excluded from magic_item_budget derivation
 _MAGIC_ITEM_STANDARD = {
-    "node_type": "magic_item", "id": "test-magic-standard", "name": "Test Magic Standard",
-    "item_type": "magic_standard", "army_id": None, "cost": 25,
-    "text": "A magic standard.", "url": "https://example.com/magic-items/test-magic-standard",
-    "source_citation_book": "Test Book", "source_citation_page": None,
+    "node_type": "magic_item",
+    "id": "test-magic-standard",
+    "name": "Test Magic Standard",
+    "item_type": "magic_standard",
+    "army_id": None,
+    "cost": 25,
+    "text": "A magic standard.",
+    "url": "https://example.com/magic-items/test-magic-standard",
+    "source_citation_book": "Test Book",
+    "source_citation_page": None,
 }
 
 # ---------------------------------------------------------------------------
@@ -154,22 +231,50 @@ _EDGES = [
     {"src": "test-unit", "dst": "test-army", "relation": "BELONGS_TO", "properties": {}},
     {"src": "test-unit", "dst": "regular-infantry", "relation": "HAS_TYPE", "properties": {}},
     {"src": "test-unit", "dst": "fear", "relation": "HAS_RULE", "properties": {}},
-    {"src": "test-unit", "dst": "test-unit#warrior", "relation": "HAS_PROFILE",
-     "properties": {"order": 0}},
+    {
+        "src": "test-unit",
+        "dst": "test-unit#warrior",
+        "relation": "HAS_PROFILE",
+        "properties": {"order": 0},
+    },
     # Upgrade edges
-    {"src": "test-unit", "dst": "test-unit#upgrade-magic-item-budget-test-army",
-     "relation": "HAS_UPGRADE", "properties": {}},
-    {"src": "test-unit", "dst": "test-unit#upgrade-bsb-test-army",
-     "relation": "HAS_UPGRADE", "properties": {}},
-    {"src": "test-unit", "dst": "test-unit#upgrade-bsb-test-army-2",
-     "relation": "HAS_UPGRADE", "properties": {}},
+    {
+        "src": "test-unit",
+        "dst": "test-unit#upgrade-magic-item-budget-test-army",
+        "relation": "HAS_UPGRADE",
+        "properties": {},
+    },
+    {
+        "src": "test-unit",
+        "dst": "test-unit#upgrade-bsb-test-army",
+        "relation": "HAS_UPGRADE",
+        "properties": {},
+    },
+    {
+        "src": "test-unit",
+        "dst": "test-unit#upgrade-bsb-test-army-2",
+        "relation": "HAS_UPGRADE",
+        "properties": {},
+    },
     # Composition edges
-    {"src": "test-army", "dst": "test-army#composition-list",
-     "relation": "HAS_LIST", "properties": {}},
-    {"src": "test-army#composition-list", "dst": "test-army#composition-list#core",
-     "relation": "HAS_SLOT", "properties": {}},
-    {"src": "test-army#composition-list#core", "dst": "test-unit",
-     "relation": "SLOT_ALLOWS", "properties": {}},
+    {
+        "src": "test-army",
+        "dst": "test-army#composition-list",
+        "relation": "HAS_LIST",
+        "properties": {},
+    },
+    {
+        "src": "test-army#composition-list",
+        "dst": "test-army#composition-list#core",
+        "relation": "HAS_SLOT",
+        "properties": {},
+    },
+    {
+        "src": "test-army#composition-list#core",
+        "dst": "test-unit",
+        "relation": "SLOT_ALLOWS",
+        "properties": {},
+    },
 ]
 
 _NODE_FILES = {
@@ -195,9 +300,7 @@ _NODE_FILES = {
 
 @pytest.fixture(scope="module")
 def neo4j_container():
-    with Neo4jContainer("neo4j:5.24-community").with_env(
-        "NEO4J_PLUGINS", '["apoc"]'
-    ) as container:
+    with Neo4jContainer("neo4j:5.24-community").with_env("NEO4J_PLUGINS", '["apoc"]') as container:
         yield container
 
 
@@ -218,6 +321,7 @@ def driver(neo4j_container, parsed_dir, monkeypatch_module):
     monkeypatch_module.setenv("GRAPH_WIPE_ON_BUILD", "true")
 
     from pipeline.graph import client as _client
+
     _client._driver = None  # reset singleton
     d = _client.get_driver()
     yield d
@@ -228,6 +332,7 @@ def driver(neo4j_container, parsed_dir, monkeypatch_module):
 def monkeypatch_module(request):
     """Module-scoped monkeypatch (pytest monkeypatch is function-scoped by default)."""
     from _pytest.monkeypatch import MonkeyPatch
+
     mp = MonkeyPatch()
     yield mp
     mp.undo()
@@ -237,9 +342,7 @@ def monkeypatch_module(request):
 def build_report(driver, parsed_dir, monkeypatch_module):
     from pipeline.graph.builder import GraphBuilder
 
-    monkeypatch_module.setattr(
-        "pipeline.graph.builder._PARSED_DIR", parsed_dir, raising=True
-    )
+    monkeypatch_module.setattr("pipeline.graph.builder._PARSED_DIR", parsed_dir, raising=True)
     return GraphBuilder().build()
 
 
@@ -413,9 +516,7 @@ class TestGraphBuild:
     def test_idempotency(self, driver, parsed_dir, monkeypatch_module) -> None:
         from pipeline.graph.builder import GraphBuilder
 
-        monkeypatch_module.setattr(
-            "pipeline.graph.builder._PARSED_DIR", parsed_dir, raising=True
-        )
+        monkeypatch_module.setattr("pipeline.graph.builder._PARSED_DIR", parsed_dir, raising=True)
         monkeypatch_module.setenv("GRAPH_WIPE_ON_BUILD", "false")
         GraphBuilder().build()
 

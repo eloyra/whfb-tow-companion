@@ -33,6 +33,7 @@ logger = logging.getLogger(__name__)
 def _label_to_snake(label: str) -> str:
     """Convert CamelCase label to snake_case for index naming."""
     import re
+
     s = re.sub(r"([A-Z])", r"_\1", label).lower().lstrip("_")
     return s
 

@@ -53,6 +53,14 @@ class FAQParser(BaseParser):
             logger.warning("FAQParser: no entries array in pageProps at %s", url)
             return result
 
+        # Derive topic from URL path suffix: /faq/general-principles → "General Principles"
+        url_path = url.rstrip("/")
+        topic: str | None = None
+        if "/faq/" in url_path:
+            suffix = url_path.split("/faq/")[-1]
+            if suffix:
+                topic = suffix.replace("-", " ").title()
+
         for idx, entry in enumerate(entries):
             fields = entry.get("fields", {})
             question: str = fields.get("question", "")
@@ -74,7 +82,7 @@ class FAQParser(BaseParser):
                 **self._make_source_citation(book),
                 "last_updated": date,
                 "name": question,
-                "topic": None,  # not present in Contentful data model
+                "topic": topic,
                 "source_document": source_document,
                 "source_version": version,
                 "question": question,
@@ -83,7 +91,10 @@ class FAQParser(BaseParser):
             }
             result.nodes.append(node)
 
-            # CLARIFIES edges — linked rule/spell entries in the answer body
+            # CLARIFIES edges — linked rule/spell entries in the answer body (CMS hyperlinks).
+            # In practice most FAQ answers are plain text with no entry-hyperlinks; the
+            # coordinator runs a second text-based pass (_derive_clarifies_amends) that fills
+            # in the remaining CLARIFIES edges by name matching.
             for link_slug in self._richtext_entry_links(fields.get("body")):
                 result.edges.append(self._make_edge(slug, link_slug, EdgeType.CLARIFIES))
 

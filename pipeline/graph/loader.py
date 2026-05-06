@@ -101,7 +101,10 @@ def load_edges(
             if merged < expected:
                 logger.warning(
                     "%s: loaded %d / %d (skipped %d — endpoints missing)",
-                    relation, merged, expected, expected - merged,
+                    relation,
+                    merged,
+                    expected,
+                    expected - merged,
                 )
             else:
                 logger.info("%s: loaded %d edges", relation, merged)

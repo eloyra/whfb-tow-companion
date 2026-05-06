@@ -1,13 +1,12 @@
-import os
 from dotenv import load_dotenv
 
 # Load environment variables before initializing the app
 load_dotenv()
 
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI  # noqa: E402
+from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
 
-from backend.api.routes import chat, graph
+from backend.api.routes import chat, graph  # noqa: E402
 
 app = FastAPI(
     title="Warhammer RAG API",

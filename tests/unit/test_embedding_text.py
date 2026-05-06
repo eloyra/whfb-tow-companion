@@ -9,12 +9,9 @@ in the expected order / format.
 from __future__ import annotations
 
 from typing import Any
-from unittest.mock import MagicMock, patch
-
-import pytest
+from unittest.mock import MagicMock
 
 from pipeline.embeddings import text as text_builder
-
 
 # ---------------------------------------------------------------------------
 # Fake driver helpers
@@ -55,9 +52,7 @@ def _make_driver(records_per_call: list[list[dict]]) -> MagicMock:
 
 class TestFormatNameText:
     def test_special_rule(self) -> None:
-        driver = _make_driver(
-            [[{"nid": "fear", "name": "Fear", "text": "Units cause Fear."}]]
-        )
+        driver = _make_driver([[{"nid": "fear", "name": "Fear", "text": "Units cause Fear."}]])
         texts = text_builder.build_for_label(driver, "SpecialRule", ["fear"])
         assert texts == ["Fear. Units cause Fear."]
 
@@ -69,23 +64,17 @@ class TestFormatNameText:
         assert texts == ["Movement. Move in M phase."]
 
     def test_document(self) -> None:
-        driver = _make_driver(
-            [[{"nid": "intro", "name": "Introduction", "text": "Welcome text."}]]
-        )
+        driver = _make_driver([[{"nid": "intro", "name": "Introduction", "text": "Welcome text."}]])
         texts = text_builder.build_for_label(driver, "Document", ["intro"])
         assert texts == ["Introduction. Welcome text."]
 
     def test_missing_text_field(self) -> None:
-        driver = _make_driver(
-            [[{"nid": "x", "name": "X", "text": None}]]
-        )
+        driver = _make_driver([[{"nid": "x", "name": "X", "text": None}]])
         texts = text_builder.build_for_label(driver, "SpecialRule", ["x"])
         assert texts == ["X"]
 
     def test_unknown_label_falls_back_to_name_only(self) -> None:
-        driver = _make_driver(
-            [[{"nid": "z", "name": "Zephyr"}]]
-        )
+        driver = _make_driver([[{"nid": "z", "name": "Zephyr"}]])
         texts = text_builder.build_for_label(driver, "UnknownLabel", ["z"])
         assert texts == ["Zephyr"]
 
@@ -98,15 +87,19 @@ class TestFormatNameText:
 class TestTroopType:
     def test_full_fields(self) -> None:
         driver = _make_driver(
-            [[{
-                "nid": "heavy-cavalry",
-                "name": "Heavy Cavalry",
-                "category": "Cavalry",
-                "min_rank": 3,
-                "max_rank": 3,
-                "strength": 2,
-                "text": "Mounted on barded steeds.",
-            }]]
+            [
+                [
+                    {
+                        "nid": "heavy-cavalry",
+                        "name": "Heavy Cavalry",
+                        "category": "Cavalry",
+                        "min_rank": 3,
+                        "max_rank": 3,
+                        "strength": 2,
+                        "text": "Mounted on barded steeds.",
+                    }
+                ]
+            ]
         )
         texts = text_builder.build_for_label(driver, "TroopType", ["heavy-cavalry"])
         t = texts[0]
@@ -119,8 +112,19 @@ class TestTroopType:
 
     def test_missing_optional_fields(self) -> None:
         driver = _make_driver(
-            [[{"nid": "x", "name": "X", "category": None, "min_rank": None,
-               "max_rank": None, "strength": None, "text": None}]]
+            [
+                [
+                    {
+                        "nid": "x",
+                        "name": "X",
+                        "category": None,
+                        "min_rank": None,
+                        "max_rank": None,
+                        "strength": None,
+                        "text": None,
+                    }
+                ]
+            ]
         )
         texts = text_builder.build_for_label(driver, "TroopType", ["x"])
         assert texts == ["X"]
@@ -134,8 +138,16 @@ class TestTroopType:
 class TestSpell:
     def test_includes_lore(self) -> None:
         driver = _make_driver(
-            [[{"nid": "fireball", "name": "Fireball", "text": "Deals fire damage.",
-               "lore_name": "Fire"}]]
+            [
+                [
+                    {
+                        "nid": "fireball",
+                        "name": "Fireball",
+                        "text": "Deals fire damage.",
+                        "lore_name": "Fire",
+                    }
+                ]
+            ]
         )
         texts = text_builder.build_for_label(driver, "Spell", ["fireball"])
         t = texts[0]
@@ -159,8 +171,17 @@ class TestSpell:
 class TestMagicItem:
     def test_full_fields(self) -> None:
         driver = _make_driver(
-            [[{"nid": "sword-of-kings", "name": "Sword of Kings",
-               "item_type": "magic_weapon", "cost": 50, "text": "A legendary blade."}]]
+            [
+                [
+                    {
+                        "nid": "sword-of-kings",
+                        "name": "Sword of Kings",
+                        "item_type": "magic_weapon",
+                        "cost": 50,
+                        "text": "A legendary blade.",
+                    }
+                ]
+            ]
         )
         texts = text_builder.build_for_label(driver, "MagicItem", ["sword-of-kings"])
         t = texts[0]
@@ -178,8 +199,16 @@ class TestMagicItem:
 class TestLore:
     def test_includes_spells(self) -> None:
         driver = _make_driver(
-            [[{"nid": "lore-of-fire", "name": "Fire", "text": "Fire lore text.",
-               "spell_names": ["Fireball", "Wall of Fire"]}]]
+            [
+                [
+                    {
+                        "nid": "lore-of-fire",
+                        "name": "Fire",
+                        "text": "Fire lore text.",
+                        "spell_names": ["Fireball", "Wall of Fire"],
+                    }
+                ]
+            ]
         )
         texts = text_builder.build_for_label(driver, "Lore", ["lore-of-fire"])
         t = texts[0]
@@ -197,18 +226,26 @@ class TestLore:
 class TestFaq:
     def test_question_and_answer(self) -> None:
         driver = _make_driver(
-            [[{"nid": "q1", "question": "Can a unit march?", "answer": "Yes, if not in 8\"."}]]
+            [[{"nid": "q1", "question": "Can a unit march?", "answer": 'Yes, if not in 8".'}]]
         )
         texts = text_builder.build_for_label(driver, "FAQ", ["q1"])
         assert "Can a unit march?" in texts[0]
-        assert "Yes, if not in 8\"." in texts[0]
+        assert 'Yes, if not in 8".' in texts[0]
 
 
 class TestErrata:
     def test_original_and_corrected(self) -> None:
         driver = _make_driver(
-            [[{"nid": "e1", "name": "Correction 1",
-               "original": "Wrong text.", "corrected": "Correct text."}]]
+            [
+                [
+                    {
+                        "nid": "e1",
+                        "name": "Correction 1",
+                        "original": "Wrong text.",
+                        "corrected": "Correct text.",
+                    }
+                ]
+            ]
         )
         texts = text_builder.build_for_label(driver, "Errata", ["e1"])
         t = texts[0]
@@ -225,10 +262,22 @@ class TestErrata:
 class TestWeapon:
     def test_ranged_weapon(self) -> None:
         driver = _make_driver(
-            [[{"nid": "crossbow", "name": "Crossbow", "weapon_class": "ranged_weapon",
-               "range": 30, "strength": 4, "ap": 1, "shots": 1,
-               "armour_value": None, "special_rules": ["Armour Bane (1)"],
-               "text": "A powerful crossbow."}]]
+            [
+                [
+                    {
+                        "nid": "crossbow",
+                        "name": "Crossbow",
+                        "weapon_class": "ranged_weapon",
+                        "range": 30,
+                        "strength": 4,
+                        "ap": 1,
+                        "shots": 1,
+                        "armour_value": None,
+                        "special_rules": ["Armour Bane (1)"],
+                        "text": "A powerful crossbow.",
+                    }
+                ]
+            ]
         )
         texts = text_builder.build_for_label(driver, "Weapon", ["crossbow"])
         t = texts[0]
@@ -248,9 +297,7 @@ class TestWeapon:
 
 class TestArmy:
     def test_name_only(self) -> None:
-        driver = _make_driver(
-            [[{"nid": "vampire-counts", "name": "Vampire Counts"}]]
-        )
+        driver = _make_driver([[{"nid": "vampire-counts", "name": "Vampire Counts"}]])
         texts = text_builder.build_for_label(driver, "Army", ["vampire-counts"])
         assert texts == ["Vampire Counts"]
 
@@ -267,21 +314,50 @@ class TestUnit:
         profile_recs: list[dict],
         edge_rec: dict,
     ) -> MagicMock:
-        return _make_driver([
-            [unit_rec],
-            profile_recs,
-            [edge_rec],
-        ])
+        return _make_driver(
+            [
+                [unit_rec],
+                profile_recs,
+                [edge_rec],
+            ]
+        )
 
     def test_contains_name_and_army(self) -> None:
         driver = self._make_driver_for_unit(
-            {"nid": "blood-knights", "name": "Blood Knights", "army_category": "Rare",
-             "cost": 39, "size_min": 5, "size_max": None, "bw": 30, "bd": 60,
-             "av": None, "armies": ["Vampire Counts"], "troop_types": ["Heavy Cavalry"]},
-            [{"nid": "blood-knights", "pname": "Blood Knight", "M": 8, "WS": 5,
-              "BS": 3, "S": 4, "T": 4, "W": 1, "I": 4, "A": 2, "Ld": 7, "ord": 0}],
-            {"nid": "blood-knights", "rules": ["Fear", "Frenzy"],
-             "weapons": ["Lance", "Heavy Armour"]},
+            {
+                "nid": "blood-knights",
+                "name": "Blood Knights",
+                "army_category": "Rare",
+                "cost": 39,
+                "size_min": 5,
+                "size_max": None,
+                "bw": 30,
+                "bd": 60,
+                "av": None,
+                "armies": ["Vampire Counts"],
+                "troop_types": ["Heavy Cavalry"],
+            },
+            [
+                {
+                    "nid": "blood-knights",
+                    "pname": "Blood Knight",
+                    "M": 8,
+                    "WS": 5,
+                    "BS": 3,
+                    "S": 4,
+                    "T": 4,
+                    "W": 1,
+                    "I": 4,
+                    "A": 2,
+                    "Ld": 7,
+                    "ord": 0,
+                }
+            ],
+            {
+                "nid": "blood-knights",
+                "rules": ["Fear", "Frenzy"],
+                "weapons": ["Lance", "Heavy Armour"],
+            },
         )
         texts = text_builder.build_for_label(driver, "Unit", ["blood-knights"])
         t = texts[0]
@@ -292,9 +368,19 @@ class TestUnit:
 
     def test_contains_cost_and_size(self) -> None:
         driver = self._make_driver_for_unit(
-            {"nid": "x", "name": "X", "army_category": None,
-             "cost": 10, "size_min": 20, "size_max": 40, "bw": None, "bd": None,
-             "av": None, "armies": [], "troop_types": []},
+            {
+                "nid": "x",
+                "name": "X",
+                "army_category": None,
+                "cost": 10,
+                "size_min": 20,
+                "size_max": 40,
+                "bw": None,
+                "bd": None,
+                "av": None,
+                "armies": [],
+                "troop_types": [],
+            },
             [],
             {"nid": "x", "rules": [], "weapons": []},
         )
@@ -305,11 +391,35 @@ class TestUnit:
 
     def test_contains_profile_stat_block(self) -> None:
         driver = self._make_driver_for_unit(
-            {"nid": "blood-knights", "name": "Blood Knights", "army_category": None,
-             "cost": None, "size_min": None, "size_max": None, "bw": None, "bd": None,
-             "av": None, "armies": [], "troop_types": []},
-            [{"nid": "blood-knights", "pname": "Blood Knight", "M": 8, "WS": 5,
-              "BS": 3, "S": 4, "T": 4, "W": 1, "I": 4, "A": 2, "Ld": 7, "ord": 0}],
+            {
+                "nid": "blood-knights",
+                "name": "Blood Knights",
+                "army_category": None,
+                "cost": None,
+                "size_min": None,
+                "size_max": None,
+                "bw": None,
+                "bd": None,
+                "av": None,
+                "armies": [],
+                "troop_types": [],
+            },
+            [
+                {
+                    "nid": "blood-knights",
+                    "pname": "Blood Knight",
+                    "M": 8,
+                    "WS": 5,
+                    "BS": 3,
+                    "S": 4,
+                    "T": 4,
+                    "W": 1,
+                    "I": 4,
+                    "A": 2,
+                    "Ld": 7,
+                    "ord": 0,
+                }
+            ],
             {"nid": "blood-knights", "rules": [], "weapons": []},
         )
         texts = text_builder.build_for_label(driver, "Unit", ["blood-knights"])
@@ -321,9 +431,19 @@ class TestUnit:
 
     def test_contains_rules_and_weapons(self) -> None:
         driver = self._make_driver_for_unit(
-            {"nid": "x", "name": "X", "army_category": None,
-             "cost": None, "size_min": None, "size_max": None, "bw": None, "bd": None,
-             "av": None, "armies": [], "troop_types": []},
+            {
+                "nid": "x",
+                "name": "X",
+                "army_category": None,
+                "cost": None,
+                "size_min": None,
+                "size_max": None,
+                "bw": None,
+                "bd": None,
+                "av": None,
+                "armies": [],
+                "troop_types": [],
+            },
             [],
             {"nid": "x", "rules": ["Fear", "Frenzy"], "weapons": ["Lance"]},
         )
@@ -340,12 +460,26 @@ class TestUnit:
 
     def test_contains_upgrades(self) -> None:
         driver = self._make_driver_for_unit(
-            {"nid": "x", "name": "X", "army_category": None,
-             "cost": None, "size_min": None, "size_max": None, "bw": None, "bd": None,
-             "av": None, "armies": [], "troop_types": []},
+            {
+                "nid": "x",
+                "name": "X",
+                "army_category": None,
+                "cost": None,
+                "size_min": None,
+                "size_max": None,
+                "bw": None,
+                "bd": None,
+                "av": None,
+                "armies": [],
+                "troop_types": [],
+            },
             [],
-            {"nid": "x", "rules": [], "weapons": [],
-             "upgrades": ["Magic Item Budget (100 pts)", "Level 2 Wizard"]},
+            {
+                "nid": "x",
+                "rules": [],
+                "weapons": [],
+                "upgrades": ["Magic Item Budget (100 pts)", "Level 2 Wizard"],
+            },
         )
         texts = text_builder.build_for_label(driver, "Unit", ["x"])
         t = texts[0]
@@ -355,9 +489,19 @@ class TestUnit:
 
     def test_no_upgrades_key_does_not_crash(self) -> None:
         driver = self._make_driver_for_unit(
-            {"nid": "x", "name": "X", "army_category": None,
-             "cost": None, "size_min": None, "size_max": None, "bw": None, "bd": None,
-             "av": None, "armies": [], "troop_types": []},
+            {
+                "nid": "x",
+                "name": "X",
+                "army_category": None,
+                "cost": None,
+                "size_min": None,
+                "size_max": None,
+                "bw": None,
+                "bd": None,
+                "av": None,
+                "armies": [],
+                "troop_types": [],
+            },
             [],
             {"nid": "x", "rules": [], "weapons": []},  # no "upgrades" key
         )
@@ -366,9 +510,19 @@ class TestUnit:
 
     def test_empty_upgrade_list_no_segment(self) -> None:
         driver = self._make_driver_for_unit(
-            {"nid": "x", "name": "X", "army_category": None,
-             "cost": None, "size_min": None, "size_max": None, "bw": None, "bd": None,
-             "av": None, "armies": [], "troop_types": []},
+            {
+                "nid": "x",
+                "name": "X",
+                "army_category": None,
+                "cost": None,
+                "size_min": None,
+                "size_max": None,
+                "bw": None,
+                "bd": None,
+                "av": None,
+                "armies": [],
+                "troop_types": [],
+            },
             [],
             {"nid": "x", "rules": [], "weapons": [], "upgrades": []},
         )

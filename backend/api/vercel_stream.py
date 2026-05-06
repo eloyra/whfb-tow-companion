@@ -1,38 +1,49 @@
 import json
 import uuid
-from typing import AsyncIterator, Any
+from typing import Any, AsyncIterator
+
+from langchain_core.messages import AIMessageChunk, ToolMessage
 
 
 class VercelStream:
     """
-    Implements the Vercel AI SDK v6 UI Message Stream Protocol.
-    Uses Server-Sent Events (SSE) to populate the frontend's `message.parts` array.
+    Adapts a LangGraph `stream_mode="messages"` stream into the Vercel AI SDK v6
+    UI Message Stream Protocol (SSE). The frontend reads this via the
+    `x-vercel-ai-ui-message-stream: v1` header.
     """
 
     @staticmethod
-    async def stream_langchain(astream_generator: AsyncIterator[Any]) -> AsyncIterator[str]:
-        # Generate a unique ID for this specific AI message response
+    async def stream_langgraph(agent_stream: AsyncIterator[Any]) -> AsyncIterator[str]:
         msg_id = f"msg_{uuid.uuid4().hex}"
 
-        # 1. Announce the start of a text block
-        start_payload = {"type": "text-start", "id": msg_id}
-        yield f"data: {json.dumps(start_payload)}\n\n"
+        yield f"data: {json.dumps({'type': 'text-start', 'id': msg_id})}\n\n"
 
         try:
-            # 2. Stream the deltas (the actual words)
-            async for chunk in astream_generator:
-                if chunk.content:
-                    delta_payload = {"type": "text-delta", "id": msg_id, "delta": chunk.content}
-                    yield f"data: {json.dumps(delta_payload)}\n\n"
+            async for msg, _metadata in agent_stream:
+                if isinstance(msg, AIMessageChunk):
+                    if msg.content and isinstance(msg.content, str):
+                        payload = {
+                            "type": "text-delta",
+                            "id": msg_id,
+                            "delta": msg.content,
+                        }
+                        yield f"data: {json.dumps(payload)}\n\n"
 
-            # 3. Announce the end of the text block
-            end_payload = {"type": "text-end", "id": msg_id}
-            yield f"data: {json.dumps(end_payload)}\n\n"
+                elif isinstance(msg, ToolMessage):
+                    try:
+                        tool_data = json.loads(msg.content)
+                    except (TypeError, ValueError):
+                        continue
+                    tool_id = msg.tool_call_id or f"sources_{uuid.uuid4().hex}"
+                    payload = {
+                        "type": "data-sources",
+                        "id": tool_id,
+                        "data": tool_data,
+                    }
+                    yield f"data: {json.dumps(payload)}\n\n"
 
-            # 4. (Optional but recommended) Close the step so Vercel knows we are done
+            yield f"data: {json.dumps({'type': 'text-end', 'id': msg_id})}\n\n"
             yield f"data: {json.dumps({'type': 'finish-step'})}\n\n"
 
         except Exception as e:
-            # Vercel's protocol for catching backend errors and showing them in the UI
-            error_payload = {"type": "error", "value": str(e)}
-            yield f"data: {json.dumps(error_payload)}\n\n"
+            yield f"data: {json.dumps({'type': 'error', 'value': str(e)})}\n\n"

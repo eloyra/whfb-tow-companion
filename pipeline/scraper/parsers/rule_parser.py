@@ -126,9 +126,13 @@ class RuleParser(BaseParser):
             }
         result.nodes.append(node)
 
-        # REFERENCES edges for linked entries in the rule body
+        # Edges for linked entries in the rule body.
+        # TroopType → SpecialRule/CoreRule links describe intrinsic abilities of the troop type;
+        # emit HAS_INTRINSIC_RULE so RAG can traverse "what rules apply to heavy cavalry?"
+        # without full-text scanning. SpecialRule pages keep REFERENCES (general cross-references).
         for link_slug in self._richtext_entry_links(fields.get("body")):
             if link_slug != slug:
-                result.edges.append(self._make_edge(slug, link_slug, EdgeType.REFERENCES))
+                relation = EdgeType.HAS_INTRINSIC_RULE if is_troop_type else EdgeType.REFERENCES
+                result.edges.append(self._make_edge(slug, link_slug, relation))
 
         return result

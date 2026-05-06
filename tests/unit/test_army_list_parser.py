@@ -7,8 +7,6 @@ from __future__ import annotations
 
 import json
 
-import pytest
-
 from pipeline.scraper.parsers.army_list_parser import ArmyListParser
 
 _PARSER = ArmyListParser()
@@ -67,9 +65,7 @@ def _make_html(army_slug: str, sections: dict[str, list[dict]]) -> str:
             "body": {"nodeType": "document", "content": content},
         }
     }
-    next_data = json.dumps(
-        {"props": {"pageProps": {"entry": entry}}, "isFallback": False}
-    )
+    next_data = json.dumps({"props": {"pageProps": {"entry": entry}}, "isFallback": False})
     return _HTML_TEMPLATE.format(next_data=next_data)
 
 
@@ -167,18 +163,24 @@ class TestAlliesExtraction:
 
     def _make_html(self) -> str:
         allies_list = _ulist(
-            _list_item(_para(
-                _text("Dwarfen Mountain Holds (trusted) "),
-                _hyperlink("dwarfen-mountain-holds", "association"),
-            )),
-            _list_item(_para(
-                _text("Grand Cathay (suspicious) "),
-                _hyperlink("grand-cathay-army-list", "rule"),
-            )),
-            _list_item(_para(
-                _text("Kingdom of Bretonnia "),  # no alliance type → defaults to "trusted"
-                _hyperlink("kingdom-of-bretonnia", "association"),
-            )),
+            _list_item(
+                _para(
+                    _text("Dwarfen Mountain Holds (trusted) "),
+                    _hyperlink("dwarfen-mountain-holds", "association"),
+                )
+            ),
+            _list_item(
+                _para(
+                    _text("Grand Cathay (suspicious) "),
+                    _hyperlink("grand-cathay-army-list", "rule"),
+                )
+            ),
+            _list_item(
+                _para(
+                    _text("Kingdom of Bretonnia "),  # no alliance type → defaults to "trusted"
+                    _hyperlink("kingdom-of-bretonnia", "association"),
+                )
+            ),
         )
         return _make_html("vampire-counts", {"Allies": [allies_list]})
 
@@ -216,10 +218,12 @@ class TestAlliesExtraction:
     def test_army_does_not_ally_with_itself(self) -> None:
         # An ally that happens to share the army slug should be silently dropped
         allies_list = _ulist(
-            _list_item(_para(
-                _text("Vampire Counts "),
-                _hyperlink("vampire-counts", "association"),
-            )),
+            _list_item(
+                _para(
+                    _text("Vampire Counts "),
+                    _hyperlink("vampire-counts", "association"),
+                )
+            ),
         )
         html = _make_html("vampire-counts", {"Allies": [allies_list]})
         result = _PARSER.parse(html, self._URL, "2024-01-01")
@@ -237,15 +241,20 @@ class TestCompositionSlot:
 
     def _make_html(self) -> str:
         slot_items = _ulist(
-            _list_item(_para(_hyperlink("skeleton-warriors", "armyListEntry", "Skeleton Warriors"))),
+            _list_item(
+                _para(_hyperlink("skeleton-warriors", "armyListEntry", "Skeleton Warriors"))
+            ),
             _list_item(_para(_hyperlink("crypt-ghouls", "armyListEntry", "Crypt Ghouls"))),
         )
-        return _make_html("vampire-counts", {
-            "Core": [
-                _para(_text("Up to 50% of your army's points may be spent on Core units.")),
-                slot_items,
-            ]
-        })
+        return _make_html(
+            "vampire-counts",
+            {
+                "Core": [
+                    _para(_text("Up to 50% of your army's points may be spent on Core units.")),
+                    slot_items,
+                ]
+            },
+        )
 
     def test_composition_list_node(self) -> None:
         result = _PARSER.parse(self._make_html(), self._URL, "2024-01-01")
@@ -290,12 +299,15 @@ class TestCompositionSlot:
         slot_items = _ulist(
             _list_item(_para(_hyperlink("state-troops", "armyListEntry", "State Troops"))),
         )
-        html = _make_html("empire-of-man", {
-            "Core": [
-                _para(_text("At least 25% of your army's points must be spent on Core units.")),
-                slot_items,
-            ]
-        })
+        html = _make_html(
+            "empire-of-man",
+            {
+                "Core": [
+                    _para(_text("At least 25% of your army's points must be spent on Core units.")),
+                    slot_items,
+                ]
+            },
+        )
         result = _PARSER.parse(
             html,
             "https://tow.whfb.app/warhammer-armies/empire-of-man-army-list",
@@ -319,12 +331,15 @@ class TestDaemonsNoAllies:
         slot_items = _ulist(
             _list_item(_para(_hyperlink("bloodletters", "armyListEntry", "Bloodletters")))
         )
-        return _make_html("daemons-of-chaos-legacy", {
-            "Characters": [slot_para, slot_items],
-            "Core": [slot_para, slot_items],
-            "Special": [slot_para, slot_items],
-            "Rare": [slot_para, slot_items],
-        })
+        return _make_html(
+            "daemons-of-chaos-legacy",
+            {
+                "Characters": [slot_para, slot_items],
+                "Core": [slot_para, slot_items],
+                "Special": [slot_para, slot_items],
+                "Rare": [slot_para, slot_items],
+            },
+        )
 
     def test_no_allied_with_edges(self) -> None:
         result = _PARSER.parse(self._make_html(), self._URL, "2024-01-01")
@@ -338,7 +353,9 @@ class TestDaemonsNoAllies:
 
     def test_slot_names_are_canonical(self) -> None:
         result = _PARSER.parse(self._make_html(), self._URL, "2024-01-01")
-        slot_names = {n["slot_name"] for n in result.nodes if n.get("node_type") == "composition_slot"}
+        slot_names = {
+            n["slot_name"] for n in result.nodes if n.get("node_type") == "composition_slot"
+        }
         assert slot_names == {"Characters", "Core", "Special", "Rare"}
 
     def test_legacy_slug_produces_base_army_id(self) -> None:
@@ -355,9 +372,7 @@ class TestDaemonsNoAllies:
 class TestMissingSections:
     def test_missing_body_returns_empty_result(self) -> None:
         entry = {"fields": {"slug": "empire-of-man-army-list"}}
-        next_data = json.dumps(
-            {"props": {"pageProps": {"entry": entry}}, "isFallback": False}
-        )
+        next_data = json.dumps({"props": {"pageProps": {"entry": entry}}, "isFallback": False})
         html = _HTML_TEMPLATE.format(next_data=next_data)
         result = _PARSER.parse(
             html,
@@ -368,9 +383,7 @@ class TestMissingSections:
         assert result.edges == []
 
     def test_no_bsb_section_emits_no_bsb_upgrade(self) -> None:
-        html = _make_html("empire-of-man", {
-            "Core": [_para(_text("Up to 50% of your points."))]
-        })
+        html = _make_html("empire-of-man", {"Core": [_para(_text("Up to 50% of your points."))]})
         result = _PARSER.parse(
             html,
             "https://tow.whfb.app/warhammer-armies/empire-of-man-army-list",

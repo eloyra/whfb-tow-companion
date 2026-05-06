@@ -2804,481 +2804,481 @@
   {
     "src": "categories-of-troop-type",
     "dst": "monstrous-infantry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "categories-of-troop-type",
     "dst": "infantry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "categories-of-troop-type",
     "dst": "rank-bonus",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "categories-of-troop-type",
     "dst": "unit-strength",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "infantry",
     "dst": "regular-infantry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "infantry",
     "dst": "heavy-infantry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "infantry",
     "dst": "monstrous-infantry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "infantry",
     "dst": "swarms",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "regular-infantry",
     "dst": "press-of-battle",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "regular-infantry",
     "dst": "massed-infantry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "regular-infantry",
     "dst": "parry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "press-of-battle",
     "dst": "the-fighting-rank",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "massed-infantry",
     "dst": "unit-strength",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "massed-infantry",
     "dst": "calculate-combat-result",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "parry",
     "dst": "hand-weapon",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "parry",
     "dst": "shield",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "parry",
     "dst": "armour-value",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "heavy-infantry",
     "dst": "steady-in-the-ranks",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "heavy-infantry",
     "dst": "press-of-battle",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "heavy-infantry",
     "dst": "massed-infantry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "heavy-infantry",
     "dst": "parry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "steady-in-the-ranks",
     "dst": "heavy-infantry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "steady-in-the-ranks",
     "dst": "close-order",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "steady-in-the-ranks",
     "dst": "open-order-formation",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "steady-in-the-ranks",
     "dst": "disrupted-units",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "steady-in-the-ranks",
     "dst": "unit-strength",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "monstrous-infantry",
     "dst": "clumsy",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "swarms",
     "dst": "insignificant",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "swarms",
     "dst": "no-one-cares",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "swarms",
     "dst": "undisciplined",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "no-one-cares",
     "dst": "swarms",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "no-one-cares",
     "dst": "panic-tests",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "undisciplined",
     "dst": "inspiring-presence",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "undisciplined",
     "dst": "the-general-characters",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "undisciplined",
     "dst": "hold-your-ground",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "undisciplined",
     "dst": "the-battle-standard",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "cavalry",
     "dst": "light-cavalry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "cavalry",
     "dst": "heavy-cavalry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "cavalry",
     "dst": "monstrous-cavalry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "cavalry",
     "dst": "war-beasts",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "light-cavalry",
     "dst": "split-profile-cavalry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "light-cavalry",
     "dst": "cavalry-support",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "split-profile-cavalry",
     "dst": "split-profiles-model-profiles",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "cavalry-support",
     "dst": "cavalry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "cavalry-support",
     "dst": "supporting-attacks",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "heavy-cavalry",
     "dst": "split-profile-cavalry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "heavy-cavalry",
     "dst": "cavalry-support",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "monstrous-cavalry",
     "dst": "split-profile-cavalry",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "monstrous-cavalry",
     "dst": "clumsy",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "war-beasts",
     "dst": "undisciplined",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "chariots",
     "dst": "light-chariots",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "chariots",
     "dst": "heavy-chariots",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "light-chariots",
     "dst": "split-profile-chariots",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "light-chariots",
     "dst": "iron-shod-wheels",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "light-chariots",
     "dst": "churning-wheels",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "light-chariots",
     "dst": "firing-platform",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "split-profile-chariots",
     "dst": "split-profiles-model-profiles",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "split-profile-chariots",
     "dst": "impact-hits",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "split-profile-chariots",
     "dst": "stomp-attacks",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "heavy-chariots",
     "dst": "split-profile-chariots",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "heavy-chariots",
     "dst": "scythed-wheels",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "heavy-chariots",
     "dst": "lumbering",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "heavy-chariots",
     "dst": "iron-shod-wheels",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "heavy-chariots",
     "dst": "firing-platform",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "lumbering",
     "dst": "close-order-formation",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "monsters",
     "dst": "monstrous-creatures",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "monsters",
     "dst": "behemoths",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "monstrous-creatures",
     "dst": "characters-and-ridden-monsters",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "monstrous-creatures",
     "dst": "lumbering",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "behemoths",
     "dst": "characters-and-ridden-monsters",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "behemoths",
     "dst": "lumbering",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "behemoths",
     "dst": "thunderstomp",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "thunderstomp",
     "dst": "stomp-attacks",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "thunderstomp",
     "dst": "armour-piercing",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "thunderstomp",
     "dst": "monstrous-creatures",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "thunderstomp",
     "dst": "behemoths",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "war-machines",
     "dst": "split-profile-war-machine",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "war-machines",
     "dst": "were-not-paid-to-fight",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "war-machines",
     "dst": "weapon-of-war",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
     "src": "split-profile-war-machine",
     "dst": "split-profiles-model-profiles",
-    "relation": "REFERENCES",
+    "relation": "HAS_INTRINSIC_RULE",
     "properties": {}
   },
   {
@@ -118186,6 +118186,5268 @@
     "src": "raise-dead",
     "dst": "lore-of-undeath-renegade",
     "relation": "BELONGS_TO_LORE",
+    "properties": {}
+  },
+  {
+    "src": "page-27-supreme-matriarch-of-nan-gau",
+    "dst": "supreme-matriarch-of-nan-gau",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-27-supreme-matriarch-of-nan-gau",
+    "dst": "jade-lancers",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-27-supreme-matriarch-of-nan-gau",
+    "dst": "jade-warriors",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-141-skeleton-chariots",
+    "dst": "skeleton-chariots",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-141-skeleton-chariots",
+    "dst": "armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-141-skeleton-chariots",
+    "dst": "armour-value",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-29-warriors-of-the-wilderness",
+    "dst": "warriors-of-the-wilderness",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-15-strike-the-runes",
+    "dst": "strike-the-runes",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-15-strike-the-runes",
+    "dst": "bound-spells",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-15-strike-the-runes",
+    "dst": "anvil-of-doom",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-101-combat-result-bonus",
+    "dst": "close-order",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-101-combat-result-bonus",
+    "dst": "close-order-formation",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-101-combat-result-bonus",
+    "dst": "unit-strength",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-90-royal-pegasus",
+    "dst": "royal-pegasus",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-90-royal-pegasus",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-59-character-mounts",
+    "dst": "daemonic",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-59-character-mounts",
+    "dst": "champions",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-59-character-mounts",
+    "dst": "chaos-dragon",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-59-character-mounts",
+    "dst": "daemonic-mount",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-163-white-lions-of-chrace",
+    "dst": "white-lions-of-chrace",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-163-white-lions-of-chrace",
+    "dst": "furious-charge",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-163-white-lions-of-chrace",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-35-da-skull-smasha",
+    "dst": "da-skull-smasha",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-35-da-skull-smasha",
+    "dst": "choose-and-fight-combat",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-20-gigantic-spider",
+    "dst": "gigantic-spider",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-20-gigantic-spider",
+    "dst": "move-through-cover",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-20-gigantic-spider",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-28-baggage-trains",
+    "dst": "baggage-trains",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-28-baggage-trains",
+    "dst": "line-of-sight",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-28-baggage-trains",
+    "dst": "impassable-terrain",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-30-cathayan-warhorse",
+    "dst": "cathayan-warhorse",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-30-cathayan-warhorse",
+    "dst": "first-charge",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-30-cathayan-warhorse",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-34-orion",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-48-general-of-the-empire",
+    "dst": "general-of-the-empire",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-35-sepulchral-animus",
+    "dst": "sepulchral-animus",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-35-sepulchral-animus",
+    "dst": "nehekharan-undead",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-35-sepulchral-animus",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-35-sepulchral-animus",
+    "dst": "command",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-35-sepulchral-animus",
+    "dst": "command-range",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-35-sepulchral-animus",
+    "dst": "mortuary-cult",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-32-dark-coven",
+    "dst": "dark-coven",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-32-dark-coven",
+    "dst": "stupidity",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-32-dark-coven",
+    "dst": "wizards",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-32-dark-coven",
+    "dst": "miscast",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-32-dark-coven",
+    "dst": "miscast-table",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-32-dark-coven",
+    "dst": "dispel",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-32-dark-coven",
+    "dst": "command",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-32-dark-coven",
+    "dst": "command-range",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-32-dark-coven",
+    "dst": "bray-shaman",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-32-dark-coven",
+    "dst": "great-bray-shaman",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-48-ring-of-jet",
+    "dst": "ring-of-jet",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-48-ring-of-jet",
+    "dst": "unquiet-spirits",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-37-guardian-of-the-sacred-sites",
+    "dst": "guardian-of-the-sacred-sites",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-37-guardian-of-the-sacred-sites",
+    "dst": "open-ground",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-37-guardian-of-the-sacred-sites",
+    "dst": "hills",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-37-guardian-of-the-sacred-sites",
+    "dst": "buildings",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-37-the-axe-of-dargo",
+    "dst": "the-axe-of-dargo",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-35-storms-wrath",
+    "dst": "storms-wrath",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-124-treeman-ancients-magic",
+    "dst": "magic",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-124-treeman-ancients-magic",
+    "dst": "lores-of-magic",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-124-treeman-ancients-magic",
+    "dst": "treeman",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-124-treeman-ancients-magic",
+    "dst": "treemen-ancient",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-31-magistrates-of-grand-cathay-options",
+    "dst": "lord-magistrate",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-31-magistrates-of-grand-cathay-options",
+    "dst": "sky-lantern",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-39-teutogen-guard",
+    "dst": "teutogen-guard",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-39-teutogen-guard",
+    "dst": "guardians",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-39-teutogen-guard",
+    "dst": "guardians-of-the-temple",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-39-teutogen-guard",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-179-elven-honours",
+    "dst": "equipment",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-179-elven-honours",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-179-elven-honours",
+    "dst": "unique-equipment",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-40-dwarf-engineer-sappers",
+    "dst": "hostile-terrain",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-40-dwarf-engineer-sappers",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-128-glade-guard",
+    "dst": "glade-guard",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-34-sky-lantern",
+    "dst": "sky-lantern",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-34-sky-lantern",
+    "dst": "flammable",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-34-sky-lantern",
+    "dst": "unbreakable",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-34-sky-lantern",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-38-marauder-tribe-chieftain",
+    "dst": "marauder-tribe-chieftain",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-38-marauder-tribe-chieftain",
+    "dst": "base-size",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-40-badlands-ogre-bulls",
+    "dst": "badlands-ogre-bulls",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-40-badlands-ogre-bulls",
+    "dst": "options",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-48-seal-of-xing-po",
+    "dst": "seal-of-xing-po",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-149-vortex-of-souls",
+    "dst": "vortex-of-souls",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-149-vortex-of-souls",
+    "dst": "bound-spells",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-149-vortex-of-souls",
+    "dst": "casket-of-souls",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-41-the-flail-of-conquered-king",
+    "dst": "the-flail-of-conquered-kings",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-41-the-flail-of-conquered-king",
+    "dst": "flail",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-107-magical-vortex",
+    "dst": "magical-vortex",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-59-chaos-steed",
+    "dst": "chaos-steed",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-59-chaos-steed",
+    "dst": "counter-charge",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-59-chaos-steed",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-15-rune-of-oath-and-steel",
+    "dst": "armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-48-captain-of-the-empire",
+    "dst": "captain-of-the-empire",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-25-night-goblins-options",
+    "dst": "fanatic",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-42-warhorse",
+    "dst": "base-size",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-20-opposed-flanks-deployment-map",
+    "dst": "deployment",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-92-polearm",
+    "dst": "polearm",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-92-polearm",
+    "dst": "fight-in-extra-rank",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-92-polearm",
+    "dst": "requires-two-hands",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-92-polearm",
+    "dst": "choose-and-fight-combat",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-48-ring-of-fury",
+    "dst": "ring-of-fury",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-48-ring-of-fury",
+    "dst": "magic",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-48-ring-of-fury",
+    "dst": "hammerhand",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-34-spectral-hounds",
+    "dst": "spectral-hounds",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-150-flail-of-skulls",
+    "dst": "flail-of-skulls",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-150-flail-of-skulls",
+    "dst": "flail",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-46-von-trickschottes-wondrous-arquebus",
+    "dst": "magical-attacks",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-46-von-trickschottes-wondrous-arquebus",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-52-lector-of-sigmar",
+    "dst": "lector-of-sigmar",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-38-marauder-tribe-berserkers",
+    "dst": "marauder-tribe-berserkers",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-38-marauder-tribe-berserkers",
+    "dst": "base-size",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-26-release-the-fanatics",
+    "dst": "release-the-fanatics",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-26-release-the-fanatics",
+    "dst": "marching-column",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-26-release-the-fanatics",
+    "dst": "start-of-turn",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-26-release-the-fanatics",
+    "dst": "marching",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-94-battle-pilgrims",
+    "dst": "battle-pilgrims",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-94-battle-pilgrims",
+    "dst": "grail-reliquae",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-94-battle-pilgrims",
+    "dst": "unit-size",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-34-disengage",
+    "dst": "disengage",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-34-disengage",
+    "dst": "reform",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-34-disengage",
+    "dst": "give-ground",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-34-disengage",
+    "dst": "fall-back-in-good-order",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-34-disengage",
+    "dst": "follow-up",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-186-hand-of-khaine",
+    "dst": "hand-of-khaine",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-41-doom-seekers",
+    "dst": "skirmishers",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-41-doom-seekers",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-41-doom-seekers",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-38-warhorses-troop-type",
+    "dst": "barded-warhorse",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-42-stone-shaper",
+    "dst": "stone-shaper",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-45-foetid-whirlpool",
+    "dst": "foetid-whirlpool",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-45-foetid-whirlpool",
+    "dst": "start-of-turn",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-45-foetid-whirlpool",
+    "dst": "difficult-terrain",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-101-dragon-ogres",
+    "dst": "dragon-ogres",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-37-araloth-lord-of-talsyn",
+    "dst": "araloth-lord-of-talsyn",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-45-strangleroot",
+    "dst": "banner-of-the-warped-moon",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-129-eternal-guard",
+    "dst": "eternal-guard",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-133-dryad-and-nymph",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-133-dryad-and-nymph",
+    "dst": "armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-35-sky-lantern-bombs",
+    "dst": "sky-lantern-bombs",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-35-sky-lantern-bombs",
+    "dst": "bombing-run",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-35-sky-lantern-bombs",
+    "dst": "sky-lantern",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-40-skin-wolves",
+    "dst": "skin-wolves",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-40-skin-wolves",
+    "dst": "base-size",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-40-skin-wolves",
+    "dst": "options",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-40-skin-wolves",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-151-armour-of-the-ages",
+    "dst": "armour-of-the-ages",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-151-armour-of-the-ages",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-65-chaos-trolls",
+    "dst": "chaos-trolls",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-65-chaos-trolls",
+    "dst": "motley-crew",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-65-chaos-trolls",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-28-troll-mobs",
+    "dst": "motley-crew",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-28-troll-mobs",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-45-fury-of-athel-loren",
+    "dst": "fury-of-athel-loren",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-46-goblin-hewers",
+    "dst": "base-size",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-96-questing-knights",
+    "dst": "questing-knights",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-96-questing-knights",
+    "dst": "unit-size",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-52-priest-of-sigmar",
+    "dst": "priest-of-sigmar",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-22-rangers",
+    "dst": "rangers",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-22-rangers",
+    "dst": "unit-size",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-108-casting-spells",
+    "dst": "casting-spells",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-45-tomb-guard-chariots",
+    "dst": "tomb-guard-chariots",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-45-torrent-of-filth",
+    "dst": "torrent-of-filth",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-23-hammerers",
+    "dst": "hammerers",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-23-hammerers",
+    "dst": "gromril-armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-23-hammerers",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-23-hammerers",
+    "dst": "armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-42-porkos-pigstikka",
+    "dst": "armour-piercing",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-42-porkos-pigstikka",
+    "dst": "armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-53-high-priest-of-ulric",
+    "dst": "high-priest-of-ulric",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-45-rapid-regeneration",
+    "dst": "rapid-regeneration",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-44-warpfire-dragons",
+    "dst": "close-order",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-44-warpfire-dragons",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-41-ogre-loader",
+    "dst": "ogre-loader",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-41-ogre-loader",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-45-spiteful-torrent",
+    "dst": "spiteful-torrent",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-45-spiteful-torrent",
+    "dst": "start-of-turn",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-45-spiteful-torrent",
+    "dst": "difficult-terrain",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-134-glade-riders",
+    "dst": "glade-riders",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-134-glade-riders",
+    "dst": "unit-size",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-66-chaos-spawn",
+    "dst": "chaos-spawn",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-117-viletide",
+    "dst": "viletide",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-98-pegasus-knights",
+    "dst": "pegasus-knights",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-98-pegasus-knights",
+    "dst": "lance-formation",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-98-pegasus-knights",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-98-pegasus-knights",
+    "dst": "lance",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-135-sisters-of-the-thorn",
+    "dst": "sisters-of-the-thorn",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-53-priest-of-ulric",
+    "dst": "priest-of-ulric",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-44-eadbuttin-at",
+    "dst": "eadbuttin-at",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-24-runes-of-protection",
+    "dst": "runes-of-protection",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-41-mercenary-crew",
+    "dst": "mercenary-crew",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-41-mercenary-crew",
+    "dst": "deployment",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-41-mercenary-crew",
+    "dst": "ogre-loader",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-46-da-akrit-axe",
+    "dst": "da-akrit-axe",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-67-chaos-knights",
+    "dst": "chaos-knights",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-67-chaos-knights",
+    "dst": "counter-charge",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-67-chaos-knights",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-110-wizardly-dispel",
+    "dst": "wizardly-dispel",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-110-wizardly-dispel",
+    "dst": "wizards",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-110-wizardly-dispel",
+    "dst": "dispel",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-46-quell-impetuosity",
+    "dst": "quell-impetuosity",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-46-quell-impetuosity",
+    "dst": "impetuous",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-25-trollhammer-torpedo",
+    "dst": "trollhammer-torpedo",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-25-trollhammer-torpedo",
+    "dst": "cumbersome",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-25-trollhammer-torpedo",
+    "dst": "dwarf-crafted",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-110-dispel-roll-and-dispel-result",
+    "dst": "dispelling-remains-in-play-spells",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-110-dispel-roll-and-dispel-result",
+    "dst": "magical-vortex",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-110-dispel-roll-and-dispel-result",
+    "dst": "dispel",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-110-dispel-roll-and-dispel-result",
+    "dst": "wizardly-dispel",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-110-dispel-roll-and-dispel-result",
+    "dst": "fated-dispel",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-135-daughters-of-eternity",
+    "dst": "daughters-of-eternity",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-43-standard-of-wei-jin",
+    "dst": "standard-of-wei-jin",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-106-falcon-horn-of-fredemund",
+    "dst": "falcon-horn-of-fredemund",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-106-falcon-horn-of-fredemund",
+    "dst": "command",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-54-clouds-of-soot-and-smoke",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-74-chaos-dragon",
+    "dst": "chaos-dragon",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-74-chaos-dragon",
+    "dst": "impetuous",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-74-chaos-dragon",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-39-rune-lore",
+    "dst": "rune-lore",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-39-rune-lore",
+    "dst": "wizards",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-39-rune-lore",
+    "dst": "levels-of-wizardry",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-39-rune-lore",
+    "dst": "dispel",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-39-rune-lore",
+    "dst": "wizardly-dispel",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-39-rune-lore",
+    "dst": "anvil-of-doom",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-39-rune-lore",
+    "dst": "runelord",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-39-rune-lore",
+    "dst": "runesmith",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-57-empire-state-troops",
+    "dst": "horde",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-57-empire-state-troops",
+    "dst": "veteran",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-57-empire-state-troops",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-57-empire-state-troops",
+    "dst": "state-troops",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-57-empire-state-troops",
+    "dst": "veteran-state-troops",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-141-ward-saves",
+    "dst": "ward-saves",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-141-ward-saves",
+    "dst": "armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-135-deepwood-coven",
+    "dst": "deepwood-coven",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-135-deepwood-coven",
+    "dst": "magic",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-135-deepwood-coven",
+    "dst": "sisters-of-the-thorn",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-43-icon-of-heavenly-fury",
+    "dst": "icon-of-heavenly-fury",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-43-icon-of-heavenly-fury",
+    "dst": "start-of-turn",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-43-icon-of-heavenly-fury",
+    "dst": "command",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-47-brain-bursta",
+    "dst": "brain-bursta",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-76-hellcannon",
+    "dst": "hellcannon",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-76-hellcannon",
+    "dst": "base-size",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-109-burning-gaze",
+    "dst": "burning-gaze",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-110-combat-result-bonus",
+    "dst": "lance-formation",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-110-combat-result-bonus",
+    "dst": "unit-strength",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-110-combat-result-bonus",
+    "dst": "lance",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-60-empire-greatswords",
+    "dst": "empire-greatswords",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-77-diabolic-splendour",
+    "dst": "diabolic-splendour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-77-diabolic-splendour",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-136-wild-riders",
+    "dst": "wild-riders",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-145-supporting-attacks",
+    "dst": "supporting-attacks",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-145-supporting-attacks",
+    "dst": "the-fighting-rank",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-145-woodland-ambush",
+    "dst": "woodland-ambush",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-145-the-fighting-rank",
+    "dst": "the-fighting-rank",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-145-the-fighting-rank",
+    "dst": "base-contact",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-77-enchanting-aura",
+    "dst": "enchanting-aura",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-77-enchanting-aura",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-44-maw-shard",
+    "dst": "maw-shard",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-146-charging-units",
+    "dst": "charging-units",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-80-infernal-puppet",
+    "dst": "infernal-puppet",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-69-steam-cannon",
+    "dst": "steam-cannon",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-69-steam-cannon",
+    "dst": "line-of-sight",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-69-steam-cannon",
+    "dst": "cannon",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-146-forest-walker",
+    "dst": "forest-walker",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-44-alchemists-mask",
+    "dst": "plague-of-rust",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-44-alchemists-mask",
+    "dst": "alchemists-mask",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-45-the-elemental-winds",
+    "dst": "the-elemental-winds",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-161-heavy-casualties",
+    "dst": "heavy-casualties",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-70-imperial-griffon-special-rules",
+    "dst": "two-heads",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-70-imperial-griffon-special-rules",
+    "dst": "special-rules",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-47-lore-of-yin",
+    "dst": "lore-of-yin",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-48-cathayan-lance",
+    "dst": "cathayan-lance",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-48-cathayan-lance",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-48-cathayan-lance",
+    "dst": "armour-piercing",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-48-cathayan-lance",
+    "dst": "lance",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-48-cathayan-lance",
+    "dst": "armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-76-laurels-of-victory",
+    "dst": "laurels-of-victory",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-167-chariot-runners",
+    "dst": "chariot-runners",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-167-chariot-runners",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-167-chariot-runners",
+    "dst": "line-of-sight",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-167-chariot-runners",
+    "dst": "skirmish-formation",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-48-dragon-fire-bombs",
+    "dst": "dragon-fire-bombs",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-168-evasive",
+    "dst": "evasive",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-168-evasive",
+    "dst": "fall-back-in-good-order",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-169-fire-and-flee",
+    "dst": "fire-and-flee",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-169-fire-and-flee",
+    "dst": "missile-weapons",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-170-frenzy",
+    "dst": "frenzy",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-170-frenzy",
+    "dst": "follow-up",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-172-impact-hits-x",
+    "dst": "challenges",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-172-impetuous",
+    "dst": "impetuous",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-172-impetuous",
+    "dst": "declare-charges-and-charge-reactions",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-172-impetuous",
+    "dst": "charge-reactions",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-172-large-target",
+    "dst": "large-target",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-172-large-target",
+    "dst": "line-of-sight",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-172-large-target",
+    "dst": "crossbows",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-173-monster-handlers",
+    "dst": "monster-handlers",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-175-poisoned-attacks",
+    "dst": "poisoned-attacks",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-176-random-movement",
+    "dst": "random-movement",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-176-regeneration-x",
+    "dst": "armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-177-reserve-move",
+    "dst": "reserve-move",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-178-stupidity",
+    "dst": "stupidity",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-178-stupidity",
+    "dst": "dispel",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-178-stupidity",
+    "dst": "wizardly-dispel",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-178-stupidity",
+    "dst": "start-of-turn",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-178-swiftstride",
+    "dst": "swiftstride",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-178-swiftstride",
+    "dst": "maximum-possible-charge-range",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-178-swiftstride",
+    "dst": "pursuit",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-180-unstable",
+    "dst": "unstable",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-180-vanguard",
+    "dst": "vanguard",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-180-warband",
+    "dst": "warband",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-180-warband",
+    "dst": "impetuous",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-183-quick-turn",
+    "dst": "quick-turn",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-183-quick-turn",
+    "dst": "open-order",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-183-quick-turn",
+    "dst": "remaining-moves",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-183-quick-turn",
+    "dst": "open-order-formation",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-185-skirmishers-in-combat",
+    "dst": "skirmishers-in-combat",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-185-skirmishers-in-combat",
+    "dst": "skirmishers",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-185-skirmishers-in-combat",
+    "dst": "skirmish-formation",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-186-skirmishers-and-charging",
+    "dst": "skirmishers",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-186-skirmishers-and-charging",
+    "dst": "coherency",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-190-regular-infantry-rules",
+    "dst": "unit-strength",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-190-regular-infantry-rules",
+    "dst": "base-contact",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-190-regular-infantry-rules",
+    "dst": "the-fighting-rank",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-190-regular-infantry-rules",
+    "dst": "hand-weapon",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-190-regular-infantry-rules",
+    "dst": "armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-190-regular-infantry-rules",
+    "dst": "armour-value",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-190-regular-infantry-rules",
+    "dst": "shield",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-197-weapon-of-war",
+    "dst": "weapon-of-war",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-197-weapon-of-war",
+    "dst": "follow-up",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-209-look-out-sir",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-209-enemy-shooting",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "pages-212-and-214-flail-profile",
+    "dst": "requires-two-hands",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "pages-212-and-214-flail-profile",
+    "dst": "flail",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "pages-212-and-214-flail-profile",
+    "dst": "armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-213-more-than-one-combat-weapon",
+    "dst": "more-than-one-combat-weapon",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-213-more-than-one-combat-weapon",
+    "dst": "choose-and-fight-combat",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-213-more-than-one-combat-weapon",
+    "dst": "combat-weapons",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-214-halberd",
+    "dst": "halberd",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-214-halberd",
+    "dst": "requires-two-hands",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-214-halberd",
+    "dst": "armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-214-morning-star",
+    "dst": "morning-star",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-214-morning-star",
+    "dst": "armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-215-lance",
+    "dst": "lance",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-215-lance",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-215-lance",
+    "dst": "armour-piercing",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-215-lance",
+    "dst": "armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-220-maximum-armour-value",
+    "dst": "maximum-armour-value",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-220-maximum-armour-value",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-220-maximum-armour-value",
+    "dst": "equipment",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-220-maximum-armour-value",
+    "dst": "armour",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-220-maximum-armour-value",
+    "dst": "armour-value",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-227-5-crunch",
+    "dst": "impassable-terrain",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-270-woodland-boundaries",
+    "dst": "woodland-boundaries",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-270-woodland-boundaries",
+    "dst": "woods",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-286-dead-or-fled",
+    "dst": "unit-strength",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-321-arcane-urgency",
+    "dst": "arcane-urgency",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-321-curse-of-cowardly-flight",
+    "dst": "curse-of-cowardly-flight",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-321-pillar-of-fire",
+    "dst": "pillar-of-fire",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-321-pillar-of-fire",
+    "dst": "start-of-turn",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-321-pillar-of-fire",
+    "dst": "difficult-terrain",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-323-daemonic-vessel",
+    "dst": "daemonic-vessel",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-323-steed-of-shadows",
+    "dst": "steed-of-shadows",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-323-vortex-of-chaos",
+    "dst": "vortex-of-chaos",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-323-vortex-of-chaos",
+    "dst": "start-of-turn",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-323-vortex-of-chaos",
+    "dst": "difficult-terrain",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-325-infernal-gateway",
+    "dst": "infernal-gateway",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-327-earthen-ramparts",
+    "dst": "earthen-ramparts",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-327-flaming-sword",
+    "dst": "flaming-sword",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-327-summon-elemental-spirit",
+    "dst": "summon-elemental-spirit",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-327-summon-elemental-spirit",
+    "dst": "line-of-sight",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-327-summon-elemental-spirit",
+    "dst": "start-of-turn",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-327-summon-elemental-spirit",
+    "dst": "difficult-terrain",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-327-travel-mystical-pathway",
+    "dst": "travel-mystical-pathway",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-329-shield-of-saphery",
+    "dst": "shield-of-saphery",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-331-confounding-convocation",
+    "dst": "confounding-convocation",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-331-miasmic-mirage",
+    "dst": "miasmic-mirage",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-333-curse-of-years",
+    "dst": "curse-of-years",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-334-fist-of-gork-or-mork",
+    "dst": "fist-of-gork-or-mork",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-333-deathly-cabal",
+    "dst": "deathly-cabal",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-333-spiritual-vortex",
+    "dst": "spiritual-vortex",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-333-spiritual-vortex",
+    "dst": "inspiring-presence",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-335-ere-we-go",
+    "dst": "ere-we-go",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-335-foot-of-gork-or-mork",
+    "dst": "foot-of-gork-or-mork",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-335-foot-of-gork-or-mork",
+    "dst": "start-of-turn",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-335-foot-of-gork-or-mork",
+    "dst": "difficult-terrain",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-338-ogre-blade",
+    "dst": "ogre-blade",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-339-berserker-blade",
+    "dst": "berserker-blade",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-339-berserker-blade",
+    "dst": "impetuous",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-339-berserker-blade",
+    "dst": "magical-attacks",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-340-bedazzling-helm",
+    "dst": "bedazzling-helm",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-340-bedazzling-helm",
+    "dst": "troop-type",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-342-ruby-ring-of-ruin",
+    "dst": "ruby-ring-of-ruin",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-342-ruby-ring-of-ruin",
+    "dst": "magic",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-342-ruby-ring-of-ruin",
+    "dst": "fireball",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-344-and-page-1-of-the-quick-reference-sheet-dispelling-a-spell",
+    "dst": "dispel",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "page-344-and-page-1-of-the-quick-reference-sheet-dispelling-a-spell",
+    "dst": "wizardly-dispel",
+    "relation": "AMENDS",
+    "properties": {}
+  },
+  {
+    "src": "can-a-steam-tanks-steam-cannon-fire-grapeshot",
+    "dst": "cannon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-steam-tanks-steam-cannon-fire-grapeshot",
+    "dst": "cannon-fire",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-steam-tanks-steam-cannon-fire-grapeshot",
+    "dst": "grapeshot",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-steam-tanks-steam-cannon-fire-grapeshot",
+    "dst": "steam-cannon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "models-that-are-in-base-contact-with-different-enemy-units-can-choose-which",
+    "dst": "base-contact",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-army-special-rules-extend-to-any-mercenaries-i-include",
+    "dst": "army-special-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-army-special-rules-extend-to-any-mercenaries-i-include",
+    "dst": "mercenaries",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-army-special-rules-extend-to-any-mercenaries-i-include",
+    "dst": "special-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-the-wounds-characteristic-of-a-war-machine-and-its-crew-are-different",
+    "dst": "unit-strength",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-wizard-with-the-warden-of-saphery-elven-honour-purchase-magic-armour",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-wizard-with-the-warden-of-saphery-elven-honour-purchase-magic-armour",
+    "dst": "warden-of-saphery",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-wizard-with-the-warden-of-saphery-elven-honour-purchase-magic-armour",
+    "dst": "armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "a-wood-elf-noble-that-belongs-to-a-wild-rider-kindred-may-only-wear-light",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "a-wood-elf-noble-that-belongs-to-a-wild-rider-kindred-may-only-wear-light",
+    "dst": "wild-rider-kindred",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "a-wood-elf-noble-that-belongs-to-a-wild-rider-kindred-may-only-wear-light",
+    "dst": "noble",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "a-wood-elf-noble-that-belongs-to-a-wild-rider-kindred-may-only-wear-light",
+    "dst": "armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "a-wood-elf-noble-that-belongs-to-a-wild-rider-kindred-may-only-wear-light",
+    "dst": "light-armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-special-rules-conferred-by-a-models-weapon-apply-to-attacks-made-by-that",
+    "dst": "choppas",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-special-rules-conferred-by-a-models-weapon-apply-to-attacks-made-by-that",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-special-rules-conferred-by-a-models-weapon-apply-to-attacks-made-by-that",
+    "dst": "special-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-special-rules-conferred-by-a-models-weapon-apply-to-attacks-made-by-that",
+    "dst": "assailment",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-special-rules-conferred-by-a-models-weapon-apply-to-attacks-made-by-that",
+    "dst": "assailment-spells",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-special-rules-conferred-by-a-models-weapon-apply-to-attacks-made-by-that",
+    "dst": "additional-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-special-rules-conferred-by-a-models-weapon-apply-to-attacks-made-by-that",
+    "dst": "sword-of-swiftness",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-special-rules-conferred-by-a-models-weapon-apply-to-attacks-made-by-that",
+    "dst": "orc-boar-chariot",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-special-rules-conferred-by-a-models-weapon-apply-to-attacks-made-by-that",
+    "dst": "hand-weapon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-model-that-chooses-to-stand-and-shoot-or-fire-and-flee-as-a-charge",
+    "dst": "fire-and-flee",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-model-that-chooses-to-stand-and-shoot-or-fire-and-flee-as-a-charge",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-model-that-chooses-to-stand-and-shoot-or-fire-and-flee-as-a-charge",
+    "dst": "magical-vortex",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-model-that-chooses-to-stand-and-shoot-or-fire-and-flee-as-a-charge",
+    "dst": "bound-spells",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-model-that-chooses-to-stand-and-shoot-or-fire-and-flee-as-a-charge",
+    "dst": "stand-and-shoot",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "bearing-two-or-more-obsidian-lodestones-gives-better-magic-resistance-but",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-warp-lightning-cannon-fire-grapeshot",
+    "dst": "cannon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-warp-lightning-cannon-fire-grapeshot",
+    "dst": "cannon-fire",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-warp-lightning-cannon-fire-grapeshot",
+    "dst": "grapeshot",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-warp-lightning-cannon-fire-grapeshot",
+    "dst": "warp-lightning",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-warp-lightning-cannon-fire-grapeshot",
+    "dst": "warp-lightning-cannon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-hagtree-fetish-be-used-to-re-roll-rolls-to-wound-caused-by-a-bound",
+    "dst": "bound-spells",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-hagtree-fetish-be-used-to-re-roll-rolls-to-wound-caused-by-a-bound",
+    "dst": "hagtree-fetish",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "in-a-doubles-event-as-described-in-the-matched-play-guide-which-armies-if",
+    "dst": "renegade-crowns",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "ogdruz-swampdigga-has-a-lore-familiar-and-knows-spells-from-both-the-lore-of",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "ogdruz-swampdigga-has-a-lore-familiar-and-knows-spells-from-both-the-lore-of",
+    "dst": "lore-familiar",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "ogdruz-swampdigga-has-a-lore-familiar-and-knows-spells-from-both-the-lore-of",
+    "dst": "ogdruz-swampdigga",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-is-limited-to-for-example-0-3-per-specific-type-of-character-or-0",
+    "dst": "army-composition",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-is-limited-to-for-example-0-3-per-specific-type-of-character-or-0",
+    "dst": "combined-arms",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-beastmen-brayherds-army-includes-an-allied-contingent-of-beastmen-can",
+    "dst": "herdstones",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-beastmen-brayherds-army-includes-an-allied-contingent-of-beastmen-can",
+    "dst": "herdstone",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-tomb-scorpion-or-unit-of-necroserpents-makes-use-of-the-terrors-below",
+    "dst": "the-terrors-below",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-tomb-scorpion-or-unit-of-necroserpents-makes-use-of-the-terrors-below",
+    "dst": "unit-strength",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-tomb-scorpion-or-unit-of-necroserpents-makes-use-of-the-terrors-below",
+    "dst": "necroserpents",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-tomb-scorpion-or-unit-of-necroserpents-makes-use-of-the-terrors-below",
+    "dst": "tomb-scorpion",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "heavenly-beacon-allows-you-to-modify-the-roll-by-1-or-1-when-rolling-to",
+    "dst": "ambushers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "heavenly-beacon-allows-you-to-modify-the-roll-by-1-or-1-when-rolling-to",
+    "dst": "heavenly-beacon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-you-choose-not-to-roll-for-the-arrival-of-ambushers-during-your-start-of-turn-sub-phase",
+    "dst": "ambushers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-you-choose-not-to-roll-for-the-arrival-of-ambushers-during-your-start-of-turn-sub-phase",
+    "dst": "special-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-you-choose-not-to-roll-for-the-arrival-of-ambushers-during-your-start-of-turn-sub-phase",
+    "dst": "start-of-turn",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-you-choose-not-to-roll-for-the-arrival-of-ambushers-during-your-start-of-turn-sub-phase",
+    "dst": "compulsory-moves",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-wizard-engaged-in-a-challenge-knows-and-uses-an-assailment-spell-that-uses-a-template-are-the-h",
+    "dst": "assailment",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-wizard-engaged-in-a-challenge-knows-and-uses-an-assailment-spell-that-uses-a-template-are-the-h",
+    "dst": "assailment-spells",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "the-hawk-eyed-archer-rule-allows-a-waystalker-to-target-any-enemy-character",
+    "dst": "hawk-eyed-archer",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "the-hawk-eyed-archer-rule-allows-a-waystalker-to-target-any-enemy-character",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "the-hawk-eyed-archer-rule-allows-a-waystalker-to-target-any-enemy-character",
+    "dst": "magic-items",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "the-hawk-eyed-archer-rule-allows-a-waystalker-to-target-any-enemy-character",
+    "dst": "line-of-sight",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "the-hawk-eyed-archer-rule-allows-a-waystalker-to-target-any-enemy-character",
+    "dst": "waystalker",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "the-hawk-eyed-archer-rule-allows-a-waystalker-to-target-any-enemy-character",
+    "dst": "longbow",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "the-hawk-eyed-archer-rule-allows-a-waystalker-to-target-any-enemy-character",
+    "dst": "asrai-longbow",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-i-wish-to-accept-a-challenge-to-fight-a-warriors-duel-but-do",
+    "dst": "champions",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-korhil-lionmane-or-a-chracian-chieftain-join-a-unit-of-white-lions-of",
+    "dst": "chracian-chieftain",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-korhil-lionmane-or-a-chracian-chieftain-join-a-unit-of-white-lions-of",
+    "dst": "korhil-lionmane",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-korhil-lionmane-or-a-chracian-chieftain-join-a-unit-of-white-lions-of",
+    "dst": "white-lions-of-chrace",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-bretonnian-army-pray-for-the-blessing-of-the-lady-if-it-includes-an",
+    "dst": "blessings-of-the-lady",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-infernal-puppet-be-used-against-a-bound-spell",
+    "dst": "infernal-puppet",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-i-give-armour-runes-to-an-anvil-of-doom-does-the-anvil-itself-benefit-or",
+    "dst": "anvil-of-doom",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-i-give-armour-runes-to-an-anvil-of-doom-does-the-anvil-itself-benefit-or",
+    "dst": "armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-many-spells-can-a-wizard-attempt-to-cast-during-a-single-phase-for",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-many-spells-can-a-wizard-attempt-to-cast-during-a-single-phase-for",
+    "dst": "magic-missiles",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-many-spells-can-a-wizard-attempt-to-cast-during-a-single-phase-for",
+    "dst": "magical-vortex",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-dug-in-unit-of-skirmishers-is-charged-by-an-enemy-unit-does-it-lose",
+    "dst": "skirmishers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-necrosphinx-make-more-than-one-attack-each-turn-with-its-decapitating",
+    "dst": "necrosphinx",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-necrosphinx-make-more-than-one-attack-each-turn-with-its-decapitating",
+    "dst": "decapitating-strike",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-harald-gemunsen-issues-a-second-challenge-using-his-skilled-duellist",
+    "dst": "skilled-duellist",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-harald-gemunsen-issues-a-second-challenge-using-his-skilled-duellist",
+    "dst": "harald-gemunsen",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-attacks-allow-a-specific-model-within-a-unit-to-be-targeted-can-such-an-attack-be-used-to-break",
+    "dst": "skirmishers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-attacks-allow-a-specific-model-within-a-unit-to-be-targeted-can-such-an-attack-be-used-to-break",
+    "dst": "coherency",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-the-spell-arcane-urgency-is-used-to-move-a-unit-with-random-movement-can",
+    "dst": "random-movement",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-the-spell-arcane-urgency-is-used-to-move-a-unit-with-random-movement-can",
+    "dst": "compulsory-moves",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-the-spell-arcane-urgency-is-used-to-move-a-unit-with-random-movement-can",
+    "dst": "remaining-moves",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-the-spell-arcane-urgency-is-used-to-move-a-unit-with-random-movement-can",
+    "dst": "base-contact",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-the-spell-arcane-urgency-is-used-to-move-a-unit-with-random-movement-can",
+    "dst": "arcane-urgency",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "are-units-required-to-make-panic-tests-due-to-the-actions-of-friendly-models-for-example-if-a-wizard",
+    "dst": "miscast",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "are-units-required-to-make-panic-tests-due-to-the-actions-of-friendly-models-for-example-if-a-wizard",
+    "dst": "miscast-table",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "are-units-required-to-make-panic-tests-due-to-the-actions-of-friendly-models-for-example-if-a-wizard",
+    "dst": "make-panic-tests",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "are-units-required-to-make-panic-tests-due-to-the-actions-of-friendly-models-for-example-if-a-wizard",
+    "dst": "panic-tests",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "to-defend-a-low-linear-obstacle-a-unit-must-move-its-front-rank-into-base",
+    "dst": "skirmishers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "to-defend-a-low-linear-obstacle-a-unit-must-move-its-front-rank-into-base",
+    "dst": "base-contact",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-my-opponent-and-i-have-agreed-to-play-a-2-000-points-game-but-my-army-is",
+    "dst": "points-value",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-my-opponent-and-i-have-agreed-to-play-a-2-000-points-game-but-my-army-is",
+    "dst": "army-composition",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "are-the-effects-of-the-grand-cannons-thunderous-impact-special-rule",
+    "dst": "thunderous-impact",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "are-the-effects-of-the-grand-cannons-thunderous-impact-special-rule",
+    "dst": "cannon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "are-the-effects-of-the-grand-cannons-thunderous-impact-special-rule",
+    "dst": "grand-cannon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-my-army-include-a-character-that-has-a-higher-leadership-than-my-general",
+    "dst": "loner",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-fanatic-moves-into-contact-with-a-unit-thats-engaged-in-combat-does-it",
+    "dst": "fanatic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-i-take-a-black-orc-warboss-as-the-general-of-a-nomadic-waaagh-can-i-take",
+    "dst": "black-orc-warboss",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-i-take-a-black-orc-warboss-as-the-general-of-a-nomadic-waaagh-can-i-take",
+    "dst": "orc-warboss",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-the-dark-coven-army-special-rule-from-the-wild-herd-army-of-infamy",
+    "dst": "dark-coven",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-the-dark-coven-army-special-rule-from-the-wild-herd-army-of-infamy",
+    "dst": "miscast",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-the-dark-coven-army-special-rule-from-the-wild-herd-army-of-infamy",
+    "dst": "miscast-table",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-the-dark-coven-army-special-rule-from-the-wild-herd-army-of-infamy",
+    "dst": "army-of-infamy",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-the-dark-coven-army-special-rule-from-the-wild-herd-army-of-infamy",
+    "dst": "wild-herd",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-the-dark-coven-army-special-rule-from-the-wild-herd-army-of-infamy",
+    "dst": "the-plague-chalice",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-a-unit-with-the-blood-greed-special-rule-always-roll-only-a-single-d6",
+    "dst": "blood-greed",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-a-unit-with-the-blood-greed-special-rule-always-roll-only-a-single-d6",
+    "dst": "pursuit",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-the-armour-bane-x-special-rule-apply-to-spells-cast-by-a-model-with-the",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-the-armour-bane-x-special-rule-apply-to-spells-cast-by-a-model-with-the",
+    "dst": "magic-missiles",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-the-armour-bane-x-special-rule-apply-to-spells-cast-by-a-model-with-the",
+    "dst": "assailment",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-the-armour-bane-x-special-rule-apply-to-spells-cast-by-a-model-with-the",
+    "dst": "assailment-spells",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-the-armour-bane-x-special-rule-apply-to-spells-cast-by-a-model-with-the",
+    "dst": "armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-cannon-target-a-point-on-the-ground-if-woods-or-a-hill-lie-between-it-and-that-point",
+    "dst": "cannon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-cannon-target-a-point-on-the-ground-if-woods-or-a-hill-lie-between-it-and-that-point",
+    "dst": "woods",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-cannon-target-a-point-on-the-ground-if-woods-or-a-hill-lie-between-it-and-that-point",
+    "dst": "hills",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "the-crew-of-tomb-guard-chariots-are-equipped-with-shields-does-this-improve",
+    "dst": "equipment",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "the-crew-of-tomb-guard-chariots-are-equipped-with-shields-does-this-improve",
+    "dst": "tomb-guard",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "the-crew-of-tomb-guard-chariots-are-equipped-with-shields-does-this-improve",
+    "dst": "tomb-guard-chariots",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "the-crew-of-tomb-guard-chariots-are-equipped-with-shields-does-this-improve",
+    "dst": "armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "the-crew-of-tomb-guard-chariots-are-equipped-with-shields-does-this-improve",
+    "dst": "armour-value",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-upon-which-earthen-ramparts-has-been-cast-is-obliged-to-declare-a",
+    "dst": "impetuous",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-upon-which-earthen-ramparts-has-been-cast-is-obliged-to-declare-a",
+    "dst": "earthen-ramparts",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-royal-champion-in-a-unit-of-hammerers-put-weapon-runes-on-their-great",
+    "dst": "hammerers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-royal-champion-in-a-unit-of-hammerers-put-weapon-runes-on-their-great",
+    "dst": "royal-clan-warriors",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-royal-champion-in-a-unit-of-hammerers-put-weapon-runes-on-their-great",
+    "dst": "hand-weapon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-royal-champion-in-a-unit-of-hammerers-put-weapon-runes-on-their-great",
+    "dst": "great-weapon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-royal-champion-in-a-unit-of-hammerers-put-weapon-runes-on-their-great",
+    "dst": "great-axe",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-royal-champion-in-a-unit-of-hammerers-put-weapon-runes-on-their-great",
+    "dst": "great-hammer",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-royal-champion-in-a-unit-of-hammerers-put-weapon-runes-on-their-great",
+    "dst": "gromril-great-axe",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-a-magic-standard-that-affects-a-units-weapons-the-razor-standard-for",
+    "dst": "magical-attacks",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-a-magic-standard-that-affects-a-units-weapons-the-razor-standard-for",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-a-magic-standard-that-affects-a-units-weapons-the-razor-standard-for",
+    "dst": "razor-standard",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-wood-elf-realms-army-place-an-additional-wood-using-the-woodland",
+    "dst": "woodland-ambush",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "are-the-effects-of-the-casket-of-souls-bound-spell-light-of-protection",
+    "dst": "light-of-protection",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "are-the-effects-of-the-casket-of-souls-bound-spell-light-of-protection",
+    "dst": "casket-of-souls",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-steam-tanks-engineer-commander-and-steam-cannon-both-shoot-during-the",
+    "dst": "cannon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-steam-tanks-engineer-commander-and-steam-cannon-both-shoot-during-the",
+    "dst": "engineer",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-steam-tanks-engineer-commander-and-steam-cannon-both-shoot-during-the",
+    "dst": "steam-cannon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-model-use-a-breath-weapon-after-marching",
+    "dst": "breath-weapon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-model-use-a-breath-weapon-after-marching",
+    "dst": "marching",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-model-use-a-breath-weapon-after-marching",
+    "dst": "missile-weapons",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-do-i-determine-the-centre-of-a-unit-of-skirmishers",
+    "dst": "skirmishers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-do-i-determine-the-centre-of-a-unit-of-skirmishers",
+    "dst": "templates",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-the-martial-prowess-special-rule-allow-models-to-make-supporting",
+    "dst": "fight-in-extra-rank",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-the-martial-prowess-special-rule-allow-models-to-make-supporting",
+    "dst": "martial-prowess",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-the-martial-prowess-special-rule-allow-models-to-make-supporting",
+    "dst": "supporting-attacks",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "units-must-make-a-panic-test-when-a-nearby-friendly-unit-with-a-unit-strength-of-5-or-more-is-destro",
+    "dst": "unit-strength",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-is-the-furthest-a-model-can-move",
+    "dst": "marching-column",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-is-the-furthest-a-model-can-move",
+    "dst": "marching",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "a-unit-of-empire-road-wardens-may-replace-its-crossbows-with-braces-of",
+    "dst": "empire-road-wardens",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "a-unit-of-empire-road-wardens-may-replace-its-crossbows-with-braces-of",
+    "dst": "pistol",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "a-unit-of-empire-road-wardens-may-replace-its-crossbows-with-braces-of",
+    "dst": "brace-of-pistols",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "a-unit-of-empire-road-wardens-may-replace-its-crossbows-with-braces-of",
+    "dst": "repeater-pistol",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "a-unit-of-empire-road-wardens-may-replace-its-crossbows-with-braces-of",
+    "dst": "crossbows",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-deploying-armies-must-units-be-placed-completely-within-their",
+    "dst": "deployment",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-character-with-the-shield-of-the-lady-special-rule-retire-to-the-rear",
+    "dst": "shield-of-the-lady",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-character-with-the-shield-of-the-lady-special-rule-retire-to-the-rear",
+    "dst": "issuing-a-challenge",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-character-with-the-shield-of-the-lady-special-rule-retire-to-the-rear",
+    "dst": "shield",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-fighting-a-warriors-duel-challenge-between-two-unit-champions-are-such",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-fighting-a-warriors-duel-challenge-between-two-unit-champions-are-such",
+    "dst": "standards",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-fighting-a-warriors-duel-challenge-between-two-unit-champions-are-such",
+    "dst": "champions",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "casting-the-same-enchantment-or-hex-spells-on-a-unit-more-than-once-has-no",
+    "dst": "enchantment",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-one-participant-in-a-challenge-causes-impact-hits-or-makes-stomp-attacks",
+    "dst": "challenges",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-with-the-mark-of-nurgle-for-example-is-mounted-on-a-chariot",
+    "dst": "mark-of-chaos-undivided",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-with-the-mark-of-nurgle-for-example-is-mounted-on-a-chariot",
+    "dst": "mark-of-nurgle",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "models-cannot-cast-magic-missiles-or-magical-vortexes-after-marching-but",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "models-cannot-cast-magic-missiles-or-magical-vortexes-after-marching-but",
+    "dst": "magic-missiles",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "models-cannot-cast-magic-missiles-or-magical-vortexes-after-marching-but",
+    "dst": "bound-spells",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "models-cannot-cast-magic-missiles-or-magical-vortexes-after-marching-but",
+    "dst": "marching",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-the-daemon-heart-increase-its-users-dispel-range",
+    "dst": "dispel",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-the-daemon-heart-increase-its-users-dispel-range",
+    "dst": "daemon-heart",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "mastery-of-the-elemental-winds-can-only-be-used-once-per-turn-but-is-this",
+    "dst": "the-elemental-winds",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "mastery-of-the-elemental-winds-can-only-be-used-once-per-turn-but-is-this",
+    "dst": "mastery-of-the-elemental-winds",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-my-army-includes-a-mercenary-character-can-i-make-them-my-general",
+    "dst": "army-composition",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "the-bow-of-loren-allows-a-wood-elf-character-to-make-a-number-of-shots-equal",
+    "dst": "bow-of-loren",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "the-bow-of-loren-allows-a-wood-elf-character-to-make-a-number-of-shots-equal",
+    "dst": "enchanted-arrows",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-model-armed-with-two-hand-weapons-choose-to-fight-with-just-one-hand",
+    "dst": "hand-weapon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-unit-with-defensive-stakes-be-hit-by-impact-hits-or-stomp-attacks-by-a",
+    "dst": "defensive-stakes",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-an-allied-contingent-have-to-abide-by-the-restrictions-given-in-the",
+    "dst": "grand-army",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-an-allied-contingent-have-to-abide-by-the-restrictions-given-in-the",
+    "dst": "army-of-infamy",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-an-allied-contingent-have-to-abide-by-the-restrictions-given-in-the",
+    "dst": "army-composition",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-model-has-armour-bane-x-listed-amongst-its-special-rules-i-e-if-the",
+    "dst": "special-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-model-has-armour-bane-x-listed-amongst-its-special-rules-i-e-if-the",
+    "dst": "armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "sometimes-when-a-unit-of-skirmishers-charges-or-is-charged-some-of-the",
+    "dst": "skirmishers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "sometimes-when-a-unit-of-skirmishers-charges-or-is-charged-some-of-the",
+    "dst": "coherency",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-are-victory-points-scored-for-a-night-goblin-unit-that-includes-one-or",
+    "dst": "fanatic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-joins-a-unit-of-skin-wolves-can-they-be-transfigured-by-the",
+    "dst": "warped-form",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-joins-a-unit-of-skin-wolves-can-they-be-transfigured-by-the",
+    "dst": "skin-wolves",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-hit-is-rolled-on-the-scatter-dice-for-an-object-that-moves",
+    "dst": "scatter",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-wizard-has-a-magic-item-or-special-rule-that-allows-them-to-re-roll-a",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-wizard-has-a-magic-item-or-special-rule-that-allows-them-to-re-roll-a",
+    "dst": "miscast",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-unit-upon-which-earthen-ramparts-has-been-cast-make-a-counter-charge",
+    "dst": "counter-charge",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-unit-upon-which-earthen-ramparts-has-been-cast-make-a-counter-charge",
+    "dst": "earthen-ramparts",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "before-a-steam-tank-charges-can-it-use-the-steam-power-special-rule-to",
+    "dst": "steam-power",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "before-a-steam-tank-charges-can-it-use-the-steam-power-special-rule-to",
+    "dst": "marching",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-cannon-target-a-point-on-the-ground-if-another-unit-lies-between-it-and-that-point",
+    "dst": "cannon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-wearer-of-the-wizarding-hat-cast-spells-whilst-wearing-armour",
+    "dst": "wizarding-hat",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-wearer-of-the-wizarding-hat-cast-spells-whilst-wearing-armour",
+    "dst": "armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-casket-of-souls-move-at-the-end-of-the-shooting-phase-of-its-turn",
+    "dst": "reserve-move",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-casket-of-souls-move-at-the-end-of-the-shooting-phase-of-its-turn",
+    "dst": "immovable-object",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-casket-of-souls-move-at-the-end-of-the-shooting-phase-of-its-turn",
+    "dst": "remaining-moves",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-casket-of-souls-move-at-the-end-of-the-shooting-phase-of-its-turn",
+    "dst": "casket-of-souls",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-model-with-the-slayer-slayer-of-daemons-or-slayer-of-dragons-special",
+    "dst": "deathblow",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-model-with-the-slayer-slayer-of-daemons-or-slayer-of-dragons-special",
+    "dst": "slayer",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-model-with-the-slayer-slayer-of-daemons-or-slayer-of-dragons-special",
+    "dst": "slayer-of-daemons",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-model-with-the-slayer-slayer-of-daemons-or-slayer-of-dragons-special",
+    "dst": "slayer-of-dragons",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-unit-that-rallies-and-reforms-during-the-rally-fleeing-units-sub-phase",
+    "dst": "rally-fleeing-units",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-scatter-roll-causes-any-part-of-an-object-to-cross-beyond",
+    "dst": "scatter",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-wearer-of-the-wizarding-hat-also-wear-a-magic-helmet-such-as-the-bedazzling-helm",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-wearer-of-the-wizarding-hat-also-wear-a-magic-helmet-such-as-the-bedazzling-helm",
+    "dst": "bedazzling-helm",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-wearer-of-the-wizarding-hat-also-wear-a-magic-helmet-such-as-the-bedazzling-helm",
+    "dst": "wizarding-hat",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-wearer-of-the-wizarding-hat-also-wear-a-magic-helmet-such-as-the-bedazzling-helm",
+    "dst": "armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "is-it-possible-to-resurrect-models-in-a-unit-of-skirmishers",
+    "dst": "skirmishers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "is-it-possible-to-resurrect-models-in-a-unit-of-skirmishers",
+    "dst": "coherency",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "models-in-a-fighting-rank-cannot-fight-if-they-are-killed-before-they-have-a",
+    "dst": "the-fighting-rank",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "models-in-a-fighting-rank-cannot-fight-if-they-are-killed-before-they-have-a",
+    "dst": "supporting-attacks",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-a-unit-of-skirmishers-form-up-when-charged-by-two-or-more-different",
+    "dst": "skirmishers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-a-unit-of-skirmishers-form-up-when-charged-by-two-or-more-different",
+    "dst": "charge-moves",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-unit-in-lance-formation-that-declares-a-charge-finds-its",
+    "dst": "lance-formation",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-unit-in-lance-formation-that-declares-a-charge-finds-its",
+    "dst": "wheel",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-unit-in-lance-formation-that-declares-a-charge-finds-its",
+    "dst": "accidental-contact",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-unit-in-lance-formation-that-declares-a-charge-finds-its",
+    "dst": "accidental-contact-during-a-charge",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-unit-in-lance-formation-that-declares-a-charge-finds-its",
+    "dst": "continuing-ahead",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-unit-in-lance-formation-that-declares-a-charge-finds-its",
+    "dst": "lance",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-black-orc-boss-take-a-black-orc-chariot-as-a-mount-in-an-army-made",
+    "dst": "grand-army",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-black-orc-boss-take-a-black-orc-chariot-as-a-mount-in-an-army-made",
+    "dst": "army-of-infamy",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-black-orc-boss-take-a-black-orc-chariot-as-a-mount-in-an-army-made",
+    "dst": "army-composition",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-that-is-subject-to-any-leadership-modifiers-uses-the-generals",
+    "dst": "terror",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-that-is-subject-to-any-leadership-modifiers-uses-the-generals",
+    "dst": "break-test",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-that-is-subject-to-any-leadership-modifiers-uses-the-generals",
+    "dst": "inspiring-presence",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-mounted-models-have-the-counter-charge-special-rule-but-others-do-not-even-though-they-have-the",
+    "dst": "counter-charge",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-cannon-be-shot-in-such-a-way-as-to-hit-an-enemy-unit-that-is-engaged",
+    "dst": "cannon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-the-musician-and-or-standard-bearer-in-a-unit-of-slayers-are-models-that",
+    "dst": "slayer",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-the-musician-and-or-standard-bearer-in-a-unit-of-slayers-are-models-that",
+    "dst": "champions",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-the-musician-and-or-standard-bearer-in-a-unit-of-slayers-are-models-that",
+    "dst": "giant",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-the-musician-and-or-standard-bearer-in-a-unit-of-slayers-are-models-that",
+    "dst": "slayers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-charges-an-enemy-unit-upon-which-earthen-ramparts-has-been-cast",
+    "dst": "earthen-ramparts",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "is-overkill-counted-by-or-against-a-champion-in-a-challenge-or-does-it-only",
+    "dst": "champions",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "is-overkill-counted-by-or-against-a-champion-in-a-challenge-or-does-it-only",
+    "dst": "challenges",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "are-unsaved-wounds-caused-by-the-mount-of-a-model-bearing-the-laurels-of",
+    "dst": "laurels-of-victory",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-to-a-fanatic-that-moves-into-or-through-the-front-arc-of-a-unit",
+    "dst": "fanatic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-to-a-fanatic-that-moves-into-or-through-the-front-arc-of-a-unit",
+    "dst": "peasant-bowmen",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-to-a-fanatic-that-moves-into-or-through-the-front-arc-of-a-unit",
+    "dst": "defensive-stakes",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-runes-inscribed-upon-a-doomseekers-whirling-blades-of-death-apply-to",
+    "dst": "doomseeker",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-runes-inscribed-upon-a-doomseekers-whirling-blades-of-death-apply-to",
+    "dst": "whirlwind-of-death",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "is-a-units-maximum-possible-charge-range-the-maximum-distance-from-an-enemy-unit-at-which-it-can-dec",
+    "dst": "maximum-possible-charge-range",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-skirmishers-have-flank-or-rear-arcs-whilst-engaged-in-combat",
+    "dst": "skirmishers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-remains-in-play-spell-with-two-casting-values-is-cast-at-the-higher",
+    "dst": "dispel",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-remains-in-play-spell-with-two-casting-values-is-cast-at-the-higher",
+    "dst": "remains-in-play",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-remains-in-play-spell-with-two-casting-values-is-cast-at-the-higher",
+    "dst": "conjuration",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "two-characters-are-engaged-in-a-challenge-whilst-their-units-battle-around",
+    "dst": "give-ground",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "two-characters-are-engaged-in-a-challenge-whilst-their-units-battle-around",
+    "dst": "fall-back-in-good-order",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-a-bolt-thrower-work-when-shooting-at-a-unit-in-lance-formation",
+    "dst": "lance-formation",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-a-bolt-thrower-work-when-shooting-at-a-unit-in-lance-formation",
+    "dst": "bolt-thrower",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-a-bolt-thrower-work-when-shooting-at-a-unit-in-lance-formation",
+    "dst": "lance",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-doomseeker-join-a-unit-of-slayers",
+    "dst": "doomseeker",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-doomseeker-join-a-unit-of-slayers",
+    "dst": "slayers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-bearing-a-standard-inscribed-with-the-master-rune-of-hesitation",
+    "dst": "master-rune-of-hesitation",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-any-type-of-cannon-fire-grapeshot",
+    "dst": "special-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-any-type-of-cannon-fire-grapeshot",
+    "dst": "cannon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-any-type-of-cannon-fire-grapeshot",
+    "dst": "cannon-fire",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-any-type-of-cannon-fire-grapeshot",
+    "dst": "grapeshot",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-wizard-wears-the-wizarding-hat-does-it-increase-their-level-of-wizardry",
+    "dst": "wizarding-hat",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-unit-on-a-hill-draw-a-line-of-sight-across-and-shoot-over-another-unit-on-the-same-hill",
+    "dst": "line-of-sight",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-spell-spectral-doppelganger-from-the-lore-of-illusion-be-used-with-a",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-spell-spectral-doppelganger-from-the-lore-of-illusion-be-used-with-a",
+    "dst": "spectral-doppelganger",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-many-attacks-can-a-model-with-a-split-profile-make-if-it-is-in-the",
+    "dst": "base-contact",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-many-attacks-can-a-model-with-a-split-profile-make-if-it-is-in-the",
+    "dst": "the-fighting-rank",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-model-bearing-the-laurels-of-victory-stands-and-shoots-as-a-charge",
+    "dst": "laurels-of-victory",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-my-battle-standard-bearer-refuses-a-challenge-and-retires-from-combat-can",
+    "dst": "standards",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-my-battle-standard-bearer-refuses-a-challenge-and-retires-from-combat-can",
+    "dst": "still-engaged",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-a-spell-cast-on-a-regimental-unit-affect-its-detachments-or-vice-versa",
+    "dst": "regimental-unit",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-troll-hag-be-the-general-of-an-orc-and-goblin-tribes-army-made-using",
+    "dst": "horde",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-troll-hag-be-the-general-of-an-orc-and-goblin-tribes-army-made-using",
+    "dst": "grand-army",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-troll-hag-be-the-general-of-an-orc-and-goblin-tribes-army-made-using",
+    "dst": "army-composition",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-troll-hag-be-the-general-of-an-orc-and-goblin-tribes-army-made-using",
+    "dst": "troll-horde",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-troll-hag-be-the-general-of-an-orc-and-goblin-tribes-army-made-using",
+    "dst": "troll-hag",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-to-a-fanatic-that-ends-its-movement-within-the-command-range-of",
+    "dst": "hostile-terrain",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-to-a-fanatic-that-ends-its-movement-within-the-command-range-of",
+    "dst": "command",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-to-a-fanatic-that-ends-its-movement-within-the-command-range-of",
+    "dst": "command-range",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-to-a-fanatic-that-ends-its-movement-within-the-command-range-of",
+    "dst": "dangerous-terrain",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-to-a-fanatic-that-ends-its-movement-within-the-command-range-of",
+    "dst": "fanatic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-many-remains-in-play-spells-can-i-attempt-to-dispel-during-my",
+    "dst": "dispel",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-many-remains-in-play-spells-can-i-attempt-to-dispel-during-my",
+    "dst": "remains-in-play",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-many-remains-in-play-spells-can-i-attempt-to-dispel-during-my",
+    "dst": "conjuration",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-i-upgrade-a-unit-of-boar-boyz-to-be-big-uns-do-their-war-boars-benefit-as",
+    "dst": "big-uns",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-troll-hag-purchases-a-magic-weapon-are-any-of-its-special-rules",
+    "dst": "motherly-love",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-troll-hag-purchases-a-magic-weapon-are-any-of-its-special-rules",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-troll-hag-purchases-a-magic-weapon-are-any-of-its-special-rules",
+    "dst": "special-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-troll-hag-purchases-a-magic-weapon-are-any-of-its-special-rules",
+    "dst": "troll-hag",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-the-griffon-standard-allow-a-unit-to-claim-a-higher-rank-bonus-than",
+    "dst": "troop-type",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-the-griffon-standard-allow-a-unit-to-claim-a-higher-rank-bonus-than",
+    "dst": "rank-bonus",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-the-griffon-standard-allow-a-unit-to-claim-a-higher-rank-bonus-than",
+    "dst": "griffon-standard",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "my-unit-charges-an-enemy-unit-that-is-defending-a-low-linear-obstacle-making",
+    "dst": "base-contact",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-of-enemy-infantry-charges-a-unit-with-the-master-rune-of",
+    "dst": "special-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-of-enemy-infantry-charges-a-unit-with-the-master-rune-of",
+    "dst": "master-rune-of-hesitation",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-single-use-special-rules-and-magic-items-require-a-leadership-test-to",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-single-use-special-rules-and-magic-items-require-a-leadership-test-to",
+    "dst": "special-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-single-use-special-rules-and-magic-items-require-a-leadership-test-to",
+    "dst": "magic-items",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-chariots-are-equipped-with-large-scale-missile-weapons-such-as-bolt",
+    "dst": "bolt-throwers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-chariots-are-equipped-with-large-scale-missile-weapons-such-as-bolt",
+    "dst": "missile-weapons",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-whose-mount-has-a-different-sized-base-to-the-models-in-a",
+    "dst": "lance-formation",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-whose-mount-has-a-different-sized-base-to-the-models-in-a",
+    "dst": "shield-of-the-lady",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-whose-mount-has-a-different-sized-base-to-the-models-in-a",
+    "dst": "base-size",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-whose-mount-has-a-different-sized-base-to-the-models-in-a",
+    "dst": "baron",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-whose-mount-has-a-different-sized-base-to-the-models-in-a",
+    "dst": "lance",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-whose-mount-has-a-different-sized-base-to-the-models-in-a",
+    "dst": "shield",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-the-spectral-doppelganger-spell-interact-with-weapons-that-have",
+    "dst": "strike-first",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-the-spectral-doppelganger-spell-interact-with-weapons-that-have",
+    "dst": "strike-last",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-the-spectral-doppelganger-spell-interact-with-weapons-that-have",
+    "dst": "spectral-doppelganger",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-shooting-a-doom-diver-catapult-the-template-can-be-moved-d3-after",
+    "dst": "doom-diver-catapult",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-shooting-a-doom-diver-catapult-the-template-can-be-moved-d3-after",
+    "dst": "doom-diver",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-war-machines-can-have-additional-models-attached-to-them-such-as-the",
+    "dst": "bully",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-war-machines-can-have-additional-models-attached-to-them-such-as-the",
+    "dst": "orc-bully",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-whose-troop-type-is-infantry-that-has-been-joined-by-a-character",
+    "dst": "counter-charge",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-whose-troop-type-is-infantry-that-has-been-joined-by-a-character",
+    "dst": "troop-type",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-size-of-a-range-self-spells-aura-of-effect-be-increased-by-the-idol",
+    "dst": "idol-of-gork",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "a-character-mounted-on-a-ridden-monster-or-a-chariot-can-choose-to-use-their",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "a-character-mounted-on-a-ridden-monster-or-a-chariot-can-choose-to-use-their",
+    "dst": "armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "a-character-mounted-on-a-ridden-monster-or-a-chariot-can-choose-to-use-their",
+    "dst": "armour-value",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-of-enemy-infantry-charges-a-unit-with-the-master-rune-of-initiative",
+    "dst": "special-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-of-enemy-infantry-charges-a-unit-with-the-master-rune-of-initiative",
+    "dst": "master-rune-of-hesitation",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-close-order-unit-of-just-one-model-claim-the-close-order-combat-result",
+    "dst": "close-order",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-close-order-unit-of-just-one-model-claim-the-close-order-combat-result",
+    "dst": "unit-strength",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-unit-in-lance-formation-is-engaged-in-combat-every-model-on-the",
+    "dst": "lance-formation",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-unit-in-lance-formation-is-engaged-in-combat-every-model-on-the",
+    "dst": "accidental-contact",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-unit-in-lance-formation-is-engaged-in-combat-every-model-on-the",
+    "dst": "base-contact",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-unit-in-lance-formation-is-engaged-in-combat-every-model-on-the",
+    "dst": "lance",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-to-a-remains-in-play-spell-that-is-already-in-effect-if-the-wizard-that-cast-it-attempt",
+    "dst": "remains-in-play",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "all-goblins-fear-elves-if-a-unit-of-elves-causes-fear-does-this-lead-them-to",
+    "dst": "terror",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-i-have-a-character-with-an-armour-value-of-6-mounted-on-a-chariot-with-an",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-i-have-a-character-with-an-armour-value-of-6-mounted-on-a-chariot-with-an",
+    "dst": "special-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-i-have-a-character-with-an-armour-value-of-6-mounted-on-a-chariot-with-an",
+    "dst": "armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-i-have-a-character-with-an-armour-value-of-6-mounted-on-a-chariot-with-an",
+    "dst": "armour-value",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-far-does-a-model-with-the-random-movement-special-rule-move-when-making",
+    "dst": "counter-charge",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-far-does-a-model-with-the-random-movement-special-rule-move-when-making",
+    "dst": "random-movement",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-far-does-a-model-with-the-random-movement-special-rule-move-when-making",
+    "dst": "charge-moves",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-unit-arrayed-in-close-order-or-open-order-formation-be-one-model-wide",
+    "dst": "close-order",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-unit-arrayed-in-close-order-or-open-order-formation-be-one-model-wide",
+    "dst": "open-order",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-unit-arrayed-in-close-order-or-open-order-formation-be-one-model-wide",
+    "dst": "open-order-formation",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-will-have-to-wheel-before-or-during-a-charge-do-i-have-to-allow",
+    "dst": "wheel",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-will-have-to-wheel-before-or-during-a-charge-do-i-have-to-allow",
+    "dst": "the-charge-move",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "is-a-charging-lance-blunted-if-an-enemy-unit-counter-charges-it",
+    "dst": "counter-charge",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "is-a-charging-lance-blunted-if-an-enemy-unit-counter-charges-it",
+    "dst": "lance",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-model-wearing-armour-or-carrying-a-shield-cast-a-bound-spell",
+    "dst": "armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-model-wearing-armour-or-carrying-a-shield-cast-a-bound-spell",
+    "dst": "shield",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-scroll-of-transmogrification-is-used-on-a-bound-spell",
+    "dst": "start-of-turn",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-some-of-my-opponents-attacks-cause-multiple-wounds-to-be-lost-per-unsaved",
+    "dst": "excess-wounds",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-unit-with-the-finest-warhorses-special-rule-re-roll-the-dice-when",
+    "dst": "swiftstride",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-unit-with-the-finest-warhorses-special-rule-re-roll-the-dice-when",
+    "dst": "finest-warhorses",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-glowy-green-amulet-be-used-by-a-character-that-isnt-a-wizard",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-glowy-green-amulet-be-used-by-a-character-that-isnt-a-wizard",
+    "dst": "magic-items",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-glowy-green-amulet-be-used-by-a-character-that-isnt-a-wizard",
+    "dst": "dispel",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-glowy-green-amulet-be-used-by-a-character-that-isnt-a-wizard",
+    "dst": "wizardly-dispel",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-the-glowy-green-amulet-be-used-by-a-character-that-isnt-a-wizard",
+    "dst": "glowy-green-amulet",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-wizard-with-a-lore-familiar-choose-one-of-their-factions-signature",
+    "dst": "lore-familiar",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-to-a-unit-that-cannot-give-ground-due-to-the-presence-of-another-unit",
+    "dst": "give-ground",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-to-a-unit-that-cannot-give-ground-due-to-the-presence-of-another-unit",
+    "dst": "surrounded",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-mounted-on-a-ridden-monster-or-chariot-carries-a-shield-does",
+    "dst": "armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-mounted-on-a-ridden-monster-or-chariot-carries-a-shield-does",
+    "dst": "armour-value",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-mounted-on-a-ridden-monster-or-chariot-carries-a-shield-does",
+    "dst": "shield",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-a-unit-that-has-to-declare-a-charge-due-to-being-frenzied-or-impetuous",
+    "dst": "impetuous",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-a-unit-that-has-to-declare-a-charge-due-to-being-frenzied-or-impetuous",
+    "dst": "skirmishers",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-drilled-unit-redress-the-ranks-before-giving-ground",
+    "dst": "drilled",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-drilled-unit-redress-the-ranks-before-giving-ground",
+    "dst": "redress-the-ranks",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-wizard-attempt-to-dispel-a-bound-spell-by-attempting-a-wizardly-dispel",
+    "dst": "dispel",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-wizard-attempt-to-dispel-a-bound-spell-by-attempting-a-wizardly-dispel",
+    "dst": "wizardly-dispel",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "although-it-cannot-make-a-charge-move-a-unit-in-marching-column-can-declare",
+    "dst": "drilled",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "although-it-cannot-make-a-charge-move-a-unit-in-marching-column-can-declare",
+    "dst": "impetuous",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "although-it-cannot-make-a-charge-move-a-unit-in-marching-column-can-declare",
+    "dst": "terror",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "although-it-cannot-make-a-charge-move-a-unit-in-marching-column-can-declare",
+    "dst": "marching-column",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "although-it-cannot-make-a-charge-move-a-unit-in-marching-column-can-declare",
+    "dst": "marching",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "although-it-cannot-make-a-charge-move-a-unit-in-marching-column-can-declare",
+    "dst": "the-charge-move",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-many-spells-does-a-wizard-with-an-arcane-familiar-know-for-example-does",
+    "dst": "arcane-familiar",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-an-evasive-unit-use-that-special-rule-whilst-engaged-in-combat",
+    "dst": "evasive",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-with-the-press-of-battle-rule-has-two-fighting-ranks-can-i-remove",
+    "dst": "base-contact",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-unit-that-wishes-to-make-a-pursuit-or-overrun-move-cannot-move-due-to-the-presence",
+    "dst": "pursuit",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-unit-that-wishes-to-make-a-pursuit-or-overrun-move-cannot-move-due-to-the-presence",
+    "dst": "overrun",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-wizard-with-a-physical-attribute-that-counts-as-a-type-of-armour-such",
+    "dst": "dispel",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-wizard-with-a-physical-attribute-that-counts-as-a-type-of-armour-such",
+    "dst": "treeman",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-wizard-with-a-physical-attribute-that-counts-as-a-type-of-armour-such",
+    "dst": "treemen-ancient",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-wizard-with-a-physical-attribute-that-counts-as-a-type-of-armour-such",
+    "dst": "armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-the-presence-in-a-unit-of-a-character-whose-base-takes-up-the-space-of",
+    "dst": "rank-bonus",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-contains-models-of-two-different-troop-types-how-do-i-determine",
+    "dst": "troop-type",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-contains-models-of-two-different-troop-types-how-do-i-determine",
+    "dst": "rank-bonus",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-models-can-be-found-in-one-factions-army-list-but-can-be-included-in-an",
+    "dst": "mercenaries",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-models-can-be-found-in-one-factions-army-list-but-can-be-included-in-an",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-models-can-be-found-in-one-factions-army-list-but-can-be-included-in-an",
+    "dst": "magic-items",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-models-can-be-found-in-one-factions-army-list-but-can-be-included-in-an",
+    "dst": "dragon-ogre-shaggoth",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-completely-destroys-its-enemy-in-combat-and-makes-an-overrun-move-can-it-attempt-to-reform",
+    "dst": "reform",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-completely-destroys-its-enemy-in-combat-and-makes-an-overrun-move-can-it-attempt-to-reform",
+    "dst": "pursuit",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-completely-destroys-its-enemy-in-combat-and-makes-an-overrun-move-can-it-attempt-to-reform",
+    "dst": "overrun",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-a-wizard-that-has-joined-a-unit-need-to-be-in-base-contact-with-an-enemy-model-to-cast-an-assai",
+    "dst": "assailment",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-a-wizard-that-has-joined-a-unit-need-to-be-in-base-contact-with-an-enemy-model-to-cast-an-assai",
+    "dst": "base-contact",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-a-wizard-that-has-joined-a-unit-need-to-be-in-base-contact-with-an-enemy-model-to-cast-an-assai",
+    "dst": "the-fighting-rank",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-drilled-unit-in-marching-column-has-to-declare-a-charge-due-to-being",
+    "dst": "drilled",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-drilled-unit-in-marching-column-has-to-declare-a-charge-due-to-being",
+    "dst": "impetuous",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-drilled-unit-in-marching-column-has-to-declare-a-charge-due-to-being",
+    "dst": "special-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-drilled-unit-in-marching-column-has-to-declare-a-charge-due-to-being",
+    "dst": "marching-column",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-drilled-unit-in-marching-column-has-to-declare-a-charge-due-to-being",
+    "dst": "marching",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-drilled-unit-in-marching-column-has-to-declare-a-charge-due-to-being",
+    "dst": "redress-the-ranks",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-wizard-declines-a-challenge-and-retires-from-combat-does-their-unit-lose-the-benefits-of-any-ra",
+    "dst": "range-self-spells",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "does-a-unit-that-is-joined-by-a-character-of-a-different-troop-type-gain-the",
+    "dst": "troop-type",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-a-close-order-unit-of-just-one-model-act-is-it-still-a-close-order",
+    "dst": "close-order",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-does-a-close-order-unit-of-just-one-model-act-is-it-still-a-close-order",
+    "dst": "close-order-formation",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-i-want-to-charge-an-enemy-unit-that-is-a-large-target-with-a-unit-of-mine",
+    "dst": "large-target",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-with-the-fly-x-special-rule-moves-over-a-magical-vortex-that-counts-as-dangerous-terrain-i",
+    "dst": "magical-vortex",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-with-the-fly-x-special-rule-moves-over-a-magical-vortex-that-counts-as-dangerous-terrain-i",
+    "dst": "dangerous-terrain",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-with-the-fly-x-special-rule-is-engaged-in-combat-can-it-use-its",
+    "dst": "supporting-attacks",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-character-who-is-within-the-fighting-rank-of-their-unit-but-not-in",
+    "dst": "base-contact",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-character-who-is-within-the-fighting-rank-of-their-unit-but-not-in",
+    "dst": "the-fighting-rank",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-different-saves-be-combined-together-to-improve-their-save-value-for",
+    "dst": "ward-saves",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-character-be-placed-amongst-a-units-command-group",
+    "dst": "command",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-charges-an-enemy-that-is-defending-a-low-linear-obstacle-can-it",
+    "dst": "base-contact",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "impact-hits-and-stomp-attacks-cannot-be-directed-against-a-character-that",
+    "dst": "unit-strength",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "impact-hits-and-stomp-attacks-cannot-be-directed-against-a-character-that",
+    "dst": "champions",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-unit-redirects-a-charge-can-it-charge-a-unit-that-lies-beyond-its-maximum-possible-charge-ran",
+    "dst": "maximum-possible-charge-range",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-with-frenzy-or-impetuous-has-two-movement-characteristics-for",
+    "dst": "frenzy",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-with-frenzy-or-impetuous-has-two-movement-characteristics-for",
+    "dst": "impetuous",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-characters-displace-command-group-models-into-the-second-rank-of-a-unit",
+    "dst": "command",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-unit-enters-the-battle-as-reinforcements-is-there-a-limit-to-how-far-onto-the-battlefield-mod",
+    "dst": "reinforcements",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-wizard-cast-a-conveyance-spell-during-a-turn-in-which-they-charged",
+    "dst": "conveyance",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-unit-that-is-subject-to-frenzy-becomes-subject-to-frenzy-again-does-it",
+    "dst": "frenzy",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-warband-character-as-described-on-page-180-joins-a-warband-with-a-rank-bonus-of-one-or-more-does-",
+    "dst": "warband",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-warband-character-as-described-on-page-180-joins-a-warband-with-a-rank-bonus-of-one-or-more-does-",
+    "dst": "command",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-warband-character-as-described-on-page-180-joins-a-warband-with-a-rank-bonus-of-one-or-more-does-",
+    "dst": "rank-bonus",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-warband-character-as-described-on-page-180-joins-a-warband-with-a-rank-bonus-of-one-or-more-does-",
+    "dst": "command-range",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "war-beasts-and-swarms-fear-models-with-the-flaming-attacks-special-rule-do",
+    "dst": "flaming-attacks",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "war-beasts-and-swarms-fear-models-with-the-flaming-attacks-special-rule-do",
+    "dst": "immune-to-psychology",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-some-models-in-a-unit-cause-fear-but-others-do-not-do-i-use-the-unit",
+    "dst": "unit-strength",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "units-with-the-motley-crew-special-rule-use-the-armour-value-of-the-majority",
+    "dst": "motley-crew",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "units-with-the-motley-crew-special-rule-use-the-armour-value-of-the-majority",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "units-with-the-motley-crew-special-rule-use-the-armour-value-of-the-majority",
+    "dst": "magic-items",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "units-with-the-motley-crew-special-rule-use-the-armour-value-of-the-majority",
+    "dst": "champions",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "units-with-the-motley-crew-special-rule-use-the-armour-value-of-the-majority",
+    "dst": "armour",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "units-with-the-motley-crew-special-rule-use-the-armour-value-of-the-majority",
+    "dst": "armour-value",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-character-that-has-joined-a-unit-of-models-of-a-different-troop-type",
+    "dst": "troop-type",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-joins-a-unit-that-carries-a-magic-standard-do-its-effects",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-joins-a-unit-that-carries-a-magic-standard-do-its-effects",
+    "dst": "standards",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-unit-with-the-move-through-cover-special-rule-is-joined-by",
+    "dst": "move-through-cover",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-unit-with-the-move-through-cover-special-rule-is-joined-by",
+    "dst": "dangerous-terrain",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-warband-character-joins-a-unit-that-isnt-a-warband-does-that-units-rank",
+    "dst": "warband",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-warband-character-joins-a-unit-that-isnt-a-warband-does-that-units-rank",
+    "dst": "rank-bonus",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-weapon-is-subject-to-both-the-ponderous-and-quick-shot-special-rules",
+    "dst": "ponderous",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-weapon-is-subject-to-both-the-ponderous-and-quick-shot-special-rules",
+    "dst": "quick-shot",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-weapon-is-subject-to-both-the-ponderous-and-quick-shot-special-rules",
+    "dst": "special-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "what-happens-if-a-weapon-is-subject-to-both-the-ponderous-and-quick-shot-special-rules",
+    "dst": "moving-and-shooting",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-unit-with-the-random-movement-special-rule-move-around-or-past-an",
+    "dst": "random-movement",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "cannon-do-not-directly-target-enemy-models-they-target-a-point-on-the-ground-how-does-this-work-with",
+    "dst": "templates",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "cannon-do-not-directly-target-enemy-models-they-target-a-point-on-the-ground-how-does-this-work-with",
+    "dst": "troop-type",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "cannon-do-not-directly-target-enemy-models-they-target-a-point-on-the-ground-how-does-this-work-with",
+    "dst": "lone-characters",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "cannon-do-not-directly-target-enemy-models-they-target-a-point-on-the-ground-how-does-this-work-with",
+    "dst": "targeting-lone-characters",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "cannon-do-not-directly-target-enemy-models-they-target-a-point-on-the-ground-how-does-this-work-with",
+    "dst": "cannon",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "cannon-do-not-directly-target-enemy-models-they-target-a-point-on-the-ground-how-does-this-work-with",
+    "dst": "proximity",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "how-far-does-a-unit-with-the-random-movement-special-rule-move-when-giving",
+    "dst": "random-movement",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-magic-weapons-or-special-rules-allow-specific-models-within-a-unit-to",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "some-magic-weapons-or-special-rules-allow-specific-models-within-a-unit-to",
+    "dst": "special-rules",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-unit-that-deploys-using-the-scouts-special-rule-make-a-vanguard-move",
+    "dst": "scouts",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-unit-that-deploys-using-the-scouts-special-rule-make-a-vanguard-move",
+    "dst": "vanguard",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-named-character-is-equipped-with-a-mundane-weapon-such-as-a-lance-or-cavalry-spear-and-a-magic-",
+    "dst": "magic",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-named-character-is-equipped-with-a-mundane-weapon-such-as-a-lance-or-cavalry-spear-and-a-magic-",
+    "dst": "lance",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-named-character-is-equipped-with-a-mundane-weapon-such-as-a-lance-or-cavalry-spear-and-a-magic-",
+    "dst": "cavalry-spear",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "are-units-that-deploy-using-the-scouts-special-rule-counted-when-determining",
+    "dst": "scouts",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "when-a-unit-that-does-not-have-the-stupidity-special-rule-is-joined-by-a-character-that-does-the-uni",
+    "dst": "stupidity",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "swiftstride-enables-a-model-to-move-further-during-a-charge-move-than-its",
+    "dst": "swiftstride",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "swiftstride-enables-a-model-to-move-further-during-a-charge-move-than-its",
+    "dst": "maximum-possible-charge-range",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "do-models-that-cause-terror-cause-it-in-models-that-cause-fear",
+    "dst": "terror",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-the-winning-side-of-a-combat-includes-one-or-more-models-that-cause",
+    "dst": "terror",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "are-wounds-lost-as-a-result-of-a-model-with-timmm-berrr-falling-on-a-unit",
+    "dst": "combat-result-score",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-without-the-vanguard-special-rule-joins-a-unit-with-it-during-deployment-can-the-char",
+    "dst": "vanguard",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-without-the-vanguard-special-rule-joins-a-unit-with-it-during-deployment-can-the-char",
+    "dst": "skirmish-formation",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "if-a-character-without-the-vanguard-special-rule-joins-a-unit-with-it-during-deployment-can-the-char",
+    "dst": "deployment",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-character-without-the-veteran-special-rule-that-has-joined-a-unit-with-the-veteran-special-rul",
+    "dst": "rallying-cry",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-character-without-the-veteran-special-rule-that-has-joined-a-unit-with-the-veteran-special-rul",
+    "dst": "veteran",
+    "relation": "CLARIFIES",
+    "properties": {}
+  },
+  {
+    "src": "can-a-character-without-the-veteran-special-rule-that-has-joined-a-unit-with-the-veteran-special-rul",
+    "dst": "special-rules",
+    "relation": "CLARIFIES",
     "properties": {}
   }
 ]

@@ -72,34 +72,12 @@ The 19 armies are: Beastmen Brayherds, Chaos Dwarfs, Daemons of Chaos, Dark Elve
 
 ## Knowledge graph schema
 
-Full schema is in `docs/schema/knowledge_graph_schema.md`. Summary:
+Full schema in `docs/schema/knowledge_graph_schema.md` — read it before touching any pipeline or graph code.
 
-### Node types
-- `Army` — faction (19 total)
-- `Unit` — unit, character, or mount with stat profile
-- `SpecialRule` — special rule (universal / army-specific / unique)
-- `CoreRule` — rulebook mechanics (movement, shooting, combat phases, etc.)
-- `Document` — orientation/etiquette wiki pages; vector-retrievable but graph-isolated
-- `TroopType` — troop type definitions (Heavy Cavalry, Regular Infantry, etc.)
-- `Weapon` — weapons, armour, equipment
-- `Spell` — individual spells from magic lores
-- `MagicItem` — magic items and army-specific powers (e.g. Vampiric Powers)
-- `FAQ` — official FAQ entries
-- `Errata` — official errata corrections
+Node types: `Army`, `Unit`, `SpecialRule`, `CoreRule`, `Document`, `TroopType`, `Weapon`, `Spell`, `MagicItem`, `FAQ`, `Errata`.  
+Edge types — structural: `BELONGS_TO`, `HAS_TYPE`, `HAS_RULE`, `HAS_OPTIONAL_RULE`, `HAS_WEAPON`, `HAS_OPTIONAL_WEAPON`, `CAN_MOUNT`, `CAN_TAKE_ITEM`, `USES_LORE`, `PART_OF_SECTION`; semantic: `REFERENCES`; clarification: `CLARIFIES`, `AMENDS`.
 
-### Edge types (directed)
-Structural: `BELONGS_TO`, `HAS_TYPE`, `HAS_RULE`, `HAS_OPTIONAL_RULE`, `HAS_WEAPON`, `HAS_OPTIONAL_WEAPON`, `CAN_MOUNT`, `CAN_TAKE_ITEM`, `USES_LORE`, `PART_OF_SECTION`  
-Semantic (from hyperlinks in text): `REFERENCES`  
-Clarification: `CLARIFIES`, `AMENDS`
-
-### Key design decisions
-- **English is the canonical language.** All data scraped from wiki is English.
-- **Multilingual via `i18n` field.** Every node has `"i18n": {"en": {...}, "es": {...}}` for translatable fields (`name`, `text`). Structural fields (`id`, `url`, `source_citation`, stats) are invariant.
-- **Embeddings use a multilingual model** (`paraphrase-multilingual-mpnet-base-v2`) so a Spanish query finds English nodes without translation.
-- **`CHARACTERISTIC_MAP` in `pipeline/constants.py`** maps stat abbreviations (M, WS, BS...) to CoreRule node IDs. This avoids adding 1800 redundant edges (200 units × 9 stats) to the graph.
-- **`troop_type_id` stored as attribute AND as edge** (`HAS_TYPE`) for convenience when serializing nodes to the vector store without graph traversal.
-- **Stats use `null` for `-`** (characteristic not applicable to a subprofile).
-- **`source_citation` is always an object:** `{"book": "Vampire Counts", "page": 13}`.
+Key design decisions (parse contract, `CHARACTERISTIC_MAP`, i18n conventions) live in `pipeline/CLAUDE.md`.
 
 ---
 
@@ -206,19 +184,20 @@ When you are about to implement or modify a component, check `docs/decisions/` f
 
 ---
 
-## Important files to read before working on a component
-
-| Working on | Read first |
-|---|---|
-| Scraper / parsers | `docs/decisions/ADR-0002-crawler-architecture.md`, `docs/decisions/ADR-0003-army-page-data-strategy.md`, `docs/schema/knowledge_graph_schema.md`, `pipeline/constants.py` |
-| Graph builder | `docs/decisions/ADR-0001-graph-database-selection.md`, `docs/decisions/ADR-0004-parse-output-contract.md`, `docs/schema/knowledge_graph_schema.md`, `pipeline/constants.py` |
-| RAG pipeline | `backend/rag/pipeline.py`, `backend/llm/client.py` |
-| API routes | `backend/api/main.py`, `backend/api/routes/chat.py` |
-| Translations | `pipeline/i18n/translator.py`, `pipeline/constants.py` (SUPPORTED_LANGUAGES) |
-| Tests | `tests/evaluation/test_queries.json` for expected behaviour |
-
----
-
 ## Language
 
 All code, comments, docstrings, commit messages, documentation, and any other text produced in this repository must be in English. This includes inline comments, variable names that contain words, log messages, error messages, test descriptions, and markdown files. The only exception is content inside i18n fields within data files, where Spanish translations are intentionally stored alongside English. If you are unsure whether something counts as project text, default to English.
+
+---
+
+## Progressive disclosure
+
+Each top-level subdirectory has a scoped `CLAUDE.md` (and an `AGENTS.md` symlink to it) that covers only what is relevant to that subtree. When working inside a subdirectory, load its `CLAUDE.md` instead of (or in addition to) this file.
+
+| Directory | Scoped context |
+|---|---|
+| `pipeline/` | Parsers, graph builder, constants, ADR pointers, parse contract |
+| `backend/` | FastAPI layout, RAG pipeline, LLM provider rules, streaming |
+| `frontend/` | TanStack Start, FSD architecture, Paraglide i18n, pnpm, Biome |
+| `docs/` | ADR authority, schema authority, what is binding vs. reference |
+| `tests/` | Unit/integration/evaluation layout, golden query set |

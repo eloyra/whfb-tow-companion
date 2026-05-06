@@ -100,13 +100,8 @@ class EmbeddingGenerator:
             result = session.run(query)
             return [rec["nid"] for rec in result if rec["nid"]]
 
-    def _write_embeddings(
-        self, driver, label: str, ids: list[str], vectors: np.ndarray
-    ) -> None:
-        rows = [
-            {"id": nid, "embedding": vectors[i].tolist()}
-            for i, nid in enumerate(ids)
-        ]
+    def _write_embeddings(self, driver, label: str, ids: list[str], vectors: np.ndarray) -> None:
+        rows = [{"id": nid, "embedding": vectors[i].tolist()} for i, nid in enumerate(ids)]
         query = f"""
             UNWIND $rows AS row
             MATCH (n:{label} {{id: row.id}})

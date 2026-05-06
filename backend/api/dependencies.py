@@ -1,4 +1,5 @@
 import os
+
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
@@ -20,9 +21,10 @@ def get_llm() -> BaseChatModel:
         return ChatOpenAI(
             model=os.getenv("LLM_MODEL", "gpt-4o-mini"),
             temperature=0.2,
-            api_key=os.getenv("OPENAI_API_KEY")
+            api_key=os.getenv("OPENAI_API_KEY"),
         )
     else:
         raise ValueError(f"Unsupported LLM Provider: {provider}")
+
 
 # We will add get_retriever() here later for the Neo4j graph traversal.

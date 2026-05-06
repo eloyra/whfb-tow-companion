@@ -39,28 +39,54 @@ ALLIANCE_SEED: list[dict] = [
 
 TERRAIN_INTERACTION_SEED: list[dict] = [
     # Fly (X): ignores most terrain during movement
-    {"from_label": "SpecialRule", "from_id": "fly", "to_id": "difficult-terrain",
-     "effect": "ignores"},
-    {"from_label": "SpecialRule", "from_id": "fly", "to_id": "dangerous-terrain",
-     "effect": "ignores_dangerous_test"},
-    {"from_label": "SpecialRule", "from_id": "fly", "to_id": "woods",
-     "effect": "ignores"},
+    {
+        "from_label": "SpecialRule",
+        "from_id": "fly",
+        "to_id": "difficult-terrain",
+        "effect": "ignores",
+    },
+    {
+        "from_label": "SpecialRule",
+        "from_id": "fly",
+        "to_id": "dangerous-terrain",
+        "effect": "ignores_dangerous_test",
+    },
+    {"from_label": "SpecialRule", "from_id": "fly", "to_id": "woods", "effect": "ignores"},
     # Ethereal: ignores all terrain
-    {"from_label": "SpecialRule", "from_id": "ethereal", "to_id": "difficult-terrain",
-     "effect": "ignores"},
-    {"from_label": "SpecialRule", "from_id": "ethereal", "to_id": "dangerous-terrain",
-     "effect": "ignores"},
-    {"from_label": "SpecialRule", "from_id": "ethereal", "to_id": "impassable-terrain",
-     "effect": "ignores"},
+    {
+        "from_label": "SpecialRule",
+        "from_id": "ethereal",
+        "to_id": "difficult-terrain",
+        "effect": "ignores",
+    },
+    {
+        "from_label": "SpecialRule",
+        "from_id": "ethereal",
+        "to_id": "dangerous-terrain",
+        "effect": "ignores",
+    },
+    {
+        "from_label": "SpecialRule",
+        "from_id": "ethereal",
+        "to_id": "impassable-terrain",
+        "effect": "ignores",
+    },
     # Move Through Cover: ignores cover from woods
-    {"from_label": "SpecialRule", "from_id": "move-through-cover", "to_id": "woods",
-     "effect": "ignores_cover"},
+    {
+        "from_label": "SpecialRule",
+        "from_id": "move-through-cover",
+        "to_id": "woods",
+        "effect": "ignores_cover",
+    },
     # Scouts: can deploy in woods
-    {"from_label": "SpecialRule", "from_id": "scouts", "to_id": "woods",
-     "effect": "can_deploy_in"},
+    {"from_label": "SpecialRule", "from_id": "scouts", "to_id": "woods", "effect": "can_deploy_in"},
     # Skirmishers: treat woods as open
-    {"from_label": "SpecialRule", "from_id": "skirmishers", "to_id": "woods",
-     "effect": "ignores_disruption"},
+    {
+        "from_label": "SpecialRule",
+        "from_id": "skirmishers",
+        "to_id": "woods",
+        "effect": "ignores_disruption",
+    },
 ]
 
 
@@ -93,7 +119,7 @@ def seed_terrain_interactions(driver: neo4j.Driver) -> int:
     with driver.session() as session:
         for entry in TERRAIN_INTERACTION_SEED:
             query = f"""
-                MATCH (source:{entry['from_label']} {{id: $from_id}}), (t:Terrain {{id: $to_id}})
+                MATCH (source:{entry["from_label"]} {{id: $from_id}}), (t:Terrain {{id: $to_id}})
                 MERGE (source)-[e:TERRAIN_INTERACTION]->(t)
                 SET e.effect = $effect
                 RETURN count(e) AS written

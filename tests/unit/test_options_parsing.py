@@ -6,8 +6,6 @@ mutex groups, profile scoping, and edge emission.
 
 from __future__ import annotations
 
-import pytest
-
 from pipeline.constants import EdgeType
 from pipeline.scraper.parsers._options import parse_options_to_upgrades
 
@@ -33,16 +31,18 @@ def _item(
 ) -> dict:
     para_content: list[dict] = [{"nodeType": "text", "value": text}]
     for slug, ct in links or []:
-        para_content.append({
-            "nodeType": "entry-hyperlink",
-            "data": {
-                "target": {
-                    "fields": {"slug": slug},
-                    "sys": {"contentType": {"sys": {"id": ct}}},
-                }
-            },
-            "content": [{"nodeType": "text", "value": slug}],
-        })
+        para_content.append(
+            {
+                "nodeType": "entry-hyperlink",
+                "data": {
+                    "target": {
+                        "fields": {"slug": slug},
+                        "sys": {"contentType": {"sys": {"id": ct}}},
+                    }
+                },
+                "content": [{"nodeType": "text", "value": slug}],
+            }
+        )
     body: list[dict] = [{"nodeType": "paragraph", "content": para_content}]
     if nested:
         body.append({"nodeType": "unordered-list", "content": nested})
@@ -365,6 +365,62 @@ class TestEquipmentSwap:
 # ---------------------------------------------------------------------------
 # Edge structure invariants
 # ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+# Armour addition
+# ---------------------------------------------------------------------------
+
+
+class TestArmourAdd:
+    def test_heavy_armour_classified_as_armour_add(self) -> None:
+        doc = _make_doc(_item("Heavy armour (+4 points per model)", [("heavy-armour", "rule")]))
+        upgrades, _ = parse_options_to_upgrades("unit", doc, set(), _SC)
+        assert upgrades[0]["upgrade_type"] == "armour_add"
+
+    def test_full_plate_armour_classified_as_armour_add(self) -> None:
+        doc = _make_doc(
+            _item("Full plate armour (+8 points per model)", [("full-plate-armour", "rule")])
+        )
+        upgrades, _ = parse_options_to_upgrades("unit", doc, set(), _SC)
+        assert upgrades[0]["upgrade_type"] == "armour_add"
+
+    def test_barding_classified_as_armour_add(self) -> None:
+        doc = _make_doc(_item("Barding (+4 points per model)", [("barding", "rule")]))
+        upgrades, _ = parse_options_to_upgrades("unit", doc, set(), _SC)
+        assert upgrades[0]["upgrade_type"] == "armour_add"
+
+    def test_replace_armour_not_classified_as_armour_add(self) -> None:
+        # Replace keeps weapon_replace classification; armour_add requires addition, not swap
+        doc = _make_doc(
+            _item(
+                "Replace light armour with heavy armour (+2 points per model)",
+                [("light-armour", "rule"), ("heavy-armour", "rule")],
+            )
+        )
+        upgrades, _ = parse_options_to_upgrades("unit", doc, set(), _SC)
+        assert upgrades[0]["upgrade_type"] == "weapon_replace"
+
+    def test_armour_add_not_promoted_to_weapon_add_by_two_pass(self) -> None:
+        # Two-pass should only promote rule_add, not armour_add
+        from pipeline.constants import EdgeType as ET
+
+        upgrade = {"id": "up1", "upgrade_type": "armour_add"}
+        edges = [
+            {"src": "up1", "dst": "heavy-armour", "relation": ET.UNLOCKS_WEAPON, "properties": {}}
+        ]
+        nodes = {"weapon": [{"id": "heavy-armour"}], "upgrade": [upgrade]}
+        # Simulate pass 2
+        upgrades_with_weapon_edge: set[str] = {
+            e["src"] for e in edges if e.get("relation") in (ET.UNLOCKS_WEAPON, ET.UNLOCKS_MOUNT)
+        }
+        for node in nodes["upgrade"]:
+            if (
+                node.get("upgrade_type") == "rule_add"
+                and node.get("id") in upgrades_with_weapon_edge
+            ):
+                node["upgrade_type"] = "weapon_add"
+        assert upgrade["upgrade_type"] == "armour_add"  # should NOT have been promoted
 
 
 class TestEdgeStructure:

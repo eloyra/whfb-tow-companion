@@ -19,7 +19,6 @@ Edge relation conventions:
 from __future__ import annotations
 
 import re
-from typing import Any
 
 from pipeline.constants import EdgeType, NodeType
 
@@ -27,12 +26,8 @@ from pipeline.constants import EdgeType, NodeType
 # Regex patterns
 # ---------------------------------------------------------------------------
 
-_COST_RE = re.compile(
-    r"\(\s*\+(\d+)\s*point[s]?(?:\s+per\s+(model|unit))?\s*\)", re.IGNORECASE
-)
-_BUDGET_RE = re.compile(
-    r"up\s+to\s+(?:a\s+total\s+of\s+)?(\d+)\s+points", re.IGNORECASE
-)
+_COST_RE = re.compile(r"\(\s*\+(\d+)\s*point[s]?(?:\s+per\s+(model|unit))?\s*\)", re.IGNORECASE)
+_BUDGET_RE = re.compile(r"up\s+to\s+(?:a\s+total\s+of\s+)?(\d+)\s+points", re.IGNORECASE)
 _MAGIC_STANDARD_BUDGET_RE = re.compile(
     r"(?:magic\s+standard|standard)\s+(?:worth\s+)?up\s+to", re.IGNORECASE
 )
@@ -42,9 +37,7 @@ _CHAMPION_RE = re.compile(
     r"([\w\s\-]+?)(?:\s*\(champion\))?\s*\(\s*\+",
     re.IGNORECASE,
 )
-_STANDARD_RE = re.compile(
-    r"upgrade\s+one\s+model\s+to\s+a\s+standard\s+bearer", re.IGNORECASE
-)
+_STANDARD_RE = re.compile(r"upgrade\s+one\s+model\s+to\s+a\s+standard\s+bearer", re.IGNORECASE)
 _MUSICIAN_RE = re.compile(
     r"upgrade\s+one\s+model\s+to\s+(?:a\s+)?[\w\s\-]*\(musician\)"
     r"|upgrade\s+one\s+model\s+to\s+a\s+musician",
@@ -52,11 +45,13 @@ _MUSICIAN_RE = re.compile(
 )
 _REPLACE_RE = re.compile(r"\breplace\b", re.IGNORECASE)
 _CONSTRAINT_RE = re.compile(r"^0-(\d+)\s+unit", re.IGNORECASE)
-_PROFILE_SCOPE_RE = re.compile(
-    r"^An?\s+([\w\s\-]+?)\s+may\b", re.IGNORECASE
-)
+_PROFILE_SCOPE_RE = re.compile(r"^An?\s+([\w\s\-]+?)\s+may\b", re.IGNORECASE)
 _MOUNT_HEADER_RE = re.compile(r"may\s+be\s+mounted", re.IGNORECASE)
 _MUTEX_HEADER_RE = re.compile(r"may\s+take\s+one\s+of\s+the\s+following", re.IGNORECASE)
+_ARMOUR_RE = re.compile(
+    r"\b(?:heavy\s+armour|light\s+armour|full\s+plate(?:\s+armour)?|barding|shield(?:\s+\w+)?|coat\s+of\s+plates?|dragon\s+armour|gromril\s+armour|ithilmar\s+armour|enchanted\s+shield)\b",
+    re.IGNORECASE,
+)
 
 # Slugs whose presence in entry-hyperlinks identifies typed budget categories
 _BUDGET_SLUG_TO_TYPE: dict[str, str] = {
@@ -188,10 +183,18 @@ def _classify_and_emit(
         upgrade_type = _budget_type(text, linked_slugs)
         name = _budget_name(text, upgrade_type, links)
         node = _make_upgrade_node(
-            upgrade_id, unit_slug, text, name, upgrade_type, source_citation,
-            points_budget=budget, cost_unit="budget",
-            mutex_group=mutex_group, applies_to_profile=applies_to_profile,
-            availability_constraint=availability_constraint, order=order,
+            upgrade_id,
+            unit_slug,
+            text,
+            name,
+            upgrade_type,
+            source_citation,
+            points_budget=budget,
+            cost_unit="budget",
+            mutex_group=mutex_group,
+            applies_to_profile=applies_to_profile,
+            availability_constraint=availability_constraint,
+            order=order,
         )
         edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=False)
         return node, edgs
@@ -202,10 +205,18 @@ def _classify_and_emit(
         level = int(m_wizard.group(1))
         pts, cu = _cost_and_unit(text)
         node = _make_upgrade_node(
-            upgrade_id, unit_slug, text, f"Level {level} Wizard", "wizard_level",
-            source_citation, points_cost=pts, cost_unit=cu or "flat",
-            mutex_group=mutex_group, applies_to_profile=applies_to_profile,
-            availability_constraint=availability_constraint, order=order,
+            upgrade_id,
+            unit_slug,
+            text,
+            f"Level {level} Wizard",
+            "wizard_level",
+            source_citation,
+            points_cost=pts,
+            cost_unit=cu or "flat",
+            mutex_group=mutex_group,
+            applies_to_profile=applies_to_profile,
+            availability_constraint=availability_constraint,
+            order=order,
         )
         edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=False)
         return node, edgs
@@ -214,10 +225,18 @@ def _classify_and_emit(
     if _STANDARD_RE.search(text):
         pts, cu = _cost_and_unit(text)
         node = _make_upgrade_node(
-            upgrade_id, unit_slug, text, "Standard Bearer", "command_standard",
-            source_citation, points_cost=pts, cost_unit=cu or "per_unit",
-            mutex_group=mutex_group, applies_to_profile=applies_to_profile,
-            availability_constraint=availability_constraint, order=order,
+            upgrade_id,
+            unit_slug,
+            text,
+            "Standard Bearer",
+            "command_standard",
+            source_citation,
+            points_cost=pts,
+            cost_unit=cu or "per_unit",
+            mutex_group=mutex_group,
+            applies_to_profile=applies_to_profile,
+            availability_constraint=availability_constraint,
+            order=order,
         )
         edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=False)
         return node, edgs
@@ -226,10 +245,18 @@ def _classify_and_emit(
     if _MUSICIAN_RE.search(text):
         pts, cu = _cost_and_unit(text)
         node = _make_upgrade_node(
-            upgrade_id, unit_slug, text, "Musician", "command_musician",
-            source_citation, points_cost=pts, cost_unit=cu or "per_unit",
-            mutex_group=mutex_group, applies_to_profile=applies_to_profile,
-            availability_constraint=availability_constraint, order=order,
+            upgrade_id,
+            unit_slug,
+            text,
+            "Musician",
+            "command_musician",
+            source_citation,
+            points_cost=pts,
+            cost_unit=cu or "per_unit",
+            mutex_group=mutex_group,
+            applies_to_profile=applies_to_profile,
+            availability_constraint=availability_constraint,
+            order=order,
         )
         edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=False)
         return node, edgs
@@ -240,10 +267,18 @@ def _classify_and_emit(
         champ_name = m_champ.group(1).strip().title()
         pts, cu = _cost_and_unit(text)
         node = _make_upgrade_node(
-            upgrade_id, unit_slug, text, f"Champion ({champ_name})", "command_champion",
-            source_citation, points_cost=pts, cost_unit=cu or "per_unit",
-            mutex_group=mutex_group, applies_to_profile=applies_to_profile,
-            availability_constraint=availability_constraint, order=order,
+            upgrade_id,
+            unit_slug,
+            text,
+            f"Champion ({champ_name})",
+            "command_champion",
+            source_citation,
+            points_cost=pts,
+            cost_unit=cu or "per_unit",
+            mutex_group=mutex_group,
+            applies_to_profile=applies_to_profile,
+            availability_constraint=availability_constraint,
+            order=order,
         )
         edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=False)
         return node, edgs
@@ -253,10 +288,18 @@ def _classify_and_emit(
         pts, cu = _cost_and_unit(text)
         mount_name = _derive_mount_name(text, links)
         node = _make_upgrade_node(
-            upgrade_id, unit_slug, text, mount_name, "mount",
-            source_citation, points_cost=pts, cost_unit=cu or "flat",
-            mutex_group=mutex_group, applies_to_profile=applies_to_profile,
-            availability_constraint=availability_constraint, order=order,
+            upgrade_id,
+            unit_slug,
+            text,
+            mount_name,
+            "mount",
+            source_citation,
+            points_cost=pts,
+            cost_unit=cu or "flat",
+            mutex_group=mutex_group,
+            applies_to_profile=applies_to_profile,
+            availability_constraint=availability_constraint,
+            order=order,
         )
         edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=False)
         return node, edgs
@@ -268,23 +311,60 @@ def _classify_and_emit(
         rule_links = [(s, ct) for s, ct in links if ct != "armyListEntry"]
         replaces_id = rule_links[0][0] if len(rule_links) >= 2 else None
         node = _make_upgrade_node(
-            upgrade_id, unit_slug, text, _derive_swap_name(text, links), "weapon_replace",
-            source_citation, points_cost=pts, cost_unit=cu or "per_model",
+            upgrade_id,
+            unit_slug,
+            text,
+            _derive_swap_name(text, links),
+            "weapon_replace",
+            source_citation,
+            points_cost=pts,
+            cost_unit=cu or "per_model",
             replaces_weapon_id=replaces_id,
-            mutex_group=mutex_group, applies_to_profile=applies_to_profile,
-            availability_constraint=availability_constraint, order=order,
+            mutex_group=mutex_group,
+            applies_to_profile=applies_to_profile,
+            availability_constraint=availability_constraint,
+            order=order,
         )
         edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=True)
+        return node, edgs
+
+    # --- Armour / shield addition ---
+    if _ARMOUR_RE.search(text) and not _REPLACE_RE.search(text):
+        pts, cu = _cost_and_unit(text)
+        name = _derive_generic_name(text, links)
+        node = _make_upgrade_node(
+            upgrade_id,
+            unit_slug,
+            text,
+            name,
+            "armour_add",
+            source_citation,
+            points_cost=pts,
+            cost_unit=cu or "per_model",
+            mutex_group=mutex_group,
+            applies_to_profile=applies_to_profile,
+            availability_constraint=availability_constraint,
+            order=order,
+        )
+        edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=False)
         return node, edgs
 
     # --- Catch-all: rule_add (also covers weapon/armour additions) ---
     pts, cu = _cost_and_unit(text)
     name = _derive_generic_name(text, links)
     node = _make_upgrade_node(
-        upgrade_id, unit_slug, text, name, "rule_add",
-        source_citation, points_cost=pts, cost_unit=cu,
-        mutex_group=mutex_group, applies_to_profile=applies_to_profile,
-        availability_constraint=availability_constraint, order=order,
+        upgrade_id,
+        unit_slug,
+        text,
+        name,
+        "rule_add",
+        source_citation,
+        points_cost=pts,
+        cost_unit=cu,
+        mutex_group=mutex_group,
+        applies_to_profile=applies_to_profile,
+        availability_constraint=availability_constraint,
+        order=order,
     )
     edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=False)
     return node, edgs
@@ -448,9 +528,7 @@ def _derive_generic_name(text: str, links: list[tuple[str, str]]) -> str:
     return text.strip()[:60]
 
 
-def _match_profile_scope(
-    text: str, unit_slug: str, profile_slug_set: set[str]
-) -> str | None:
+def _match_profile_scope(text: str, unit_slug: str, profile_slug_set: set[str]) -> str | None:
     """Return ``<unit_slug>#<profile_slug>`` if *text* starts with 'A <ProfileName> may'
     and the slugified profile name is in *profile_slug_set*.
     """

@@ -91,9 +91,7 @@ class ArmyListParser(BaseParser):
             canonical = _SLOT_NAME_MAP.get(section_name.lower())
 
             if canonical in ("Characters", "Core", "Special", "Rare", "Mercenaries"):
-                self._process_slot_section(
-                    result, army_slug, list_id, canonical, section_nodes
-                )
+                self._process_slot_section(result, army_slug, list_id, canonical, section_nodes)
             elif section_name.lower() == "allies" or section_name.lower().endswith("allies"):
                 self._process_allies_section(result, army_slug, section_nodes)
             elif section_name.lower() == "battle standard bearer":
@@ -202,9 +200,7 @@ class ArmyListParser(BaseParser):
                 leaves.extend(self._flatten_list_item_leaves(child))
         return leaves if leaves else [item]
 
-    def _emit_ally_edges(
-        self, result: ParseResult, army_slug: str, item: dict
-    ) -> None:
+    def _emit_ally_edges(self, result: ParseResult, army_slug: str, item: dict) -> None:
         """Emit one ALLIED_WITH edge per allied army found in a leaf list-item."""
         # Use only the paragraph text of this leaf (not recursive) to get alliance type
         para_text = ""
@@ -293,9 +289,7 @@ class ArmyListParser(BaseParser):
                     "source_citation_page": None,
                 }
                 result.nodes.append(upgrade_node)
-                result.edges.append(
-                    self._make_edge(char_slug, upgrade_id, EdgeType.HAS_UPGRADE)
-                )
+                result.edges.append(self._make_edge(char_slug, upgrade_id, EdgeType.HAS_UPGRADE))
 
     # ------------------------------------------------------------------
     # Helpers

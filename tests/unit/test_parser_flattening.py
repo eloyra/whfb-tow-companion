@@ -14,7 +14,6 @@ import pytest
 from pipeline.scraper.parsers.base_parser import BaseParser, ParseResult
 from pipeline.scraper.parsers.unit_parser import UnitParser
 
-
 # ---------------------------------------------------------------------------
 # Minimal concrete BaseParser for testing helpers
 # ---------------------------------------------------------------------------
@@ -81,9 +80,7 @@ class TestParseBaseSize:
             ("50×50mm", 50, 50),
         ],
     )
-    def test_parses_valid(
-        self, stub: _StubParser, raw: str, width: int, depth: int
-    ) -> None:
+    def test_parses_valid(self, stub: _StubParser, raw: str, width: int, depth: int) -> None:
         result = stub._parse_base_size(raw)
         assert result == {"base_width_mm": width, "base_depth_mm": depth}
 
@@ -113,9 +110,7 @@ class TestParseUnitSize:
             ("10", 10, 10),
         ],
     )
-    def test_parses_valid(
-        self, stub: _StubParser, raw: str, min_: int, max_: int | None
-    ) -> None:
+    def test_parses_valid(self, stub: _StubParser, raw: str, min_: int, max_: int | None) -> None:
         result = stub._parse_unit_size(raw)
         assert result == {"unit_size_min": min_, "unit_size_max": max_}
 
@@ -188,11 +183,25 @@ class TestUnitParserFlattening:
                 "Blood Knights",
                 "vampire-counts",
                 "Vampire Counts",
-                [{"name": "Blood Knight", "M": 8, "WS": 5, "BS": 3, "S": 4,
-                  "T": 4, "W": 1, "I": 4, "A": 2, "Ld": 7}],
+                [
+                    {
+                        "name": "Blood Knight",
+                        "M": 8,
+                        "WS": 5,
+                        "BS": 3,
+                        "S": 4,
+                        "T": 4,
+                        "W": 1,
+                        "I": 4,
+                        "A": 2,
+                        "Ld": 7,
+                    }
+                ],
             )
         )
-        result = UnitParser().parse(html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z")
+        result = UnitParser().parse(
+            html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z"
+        )
         unit_nodes = [n for n in result.nodes if n.get("node_type") == "unit"]
         assert unit_nodes, "No unit node emitted"
         unit = unit_nodes[0]
@@ -211,7 +220,9 @@ class TestUnitParserFlattening:
                 base_size="30 x 60 mm",
             )
         )
-        result = UnitParser().parse(html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z")
+        result = UnitParser().parse(
+            html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z"
+        )
         unit = next(n for n in result.nodes if n.get("node_type") == "unit")
         assert "base_size_mm" not in unit
         assert unit.get("base_width_mm") == 30
@@ -228,7 +239,9 @@ class TestUnitParserFlattening:
                 unit_size="5+",
             )
         )
-        result = UnitParser().parse(html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z")
+        result = UnitParser().parse(
+            html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z"
+        )
         unit = next(n for n in result.nodes if n.get("node_type") == "unit")
         assert "unit_size" not in unit
         assert unit.get("unit_size_min") == 5
@@ -244,35 +257,67 @@ class TestUnitParserFlattening:
                 [{"name": "Blood Knight", "M": 8}],
             )
         )
-        result = UnitParser().parse(html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z")
+        result = UnitParser().parse(
+            html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z"
+        )
         unit = next(n for n in result.nodes if n.get("node_type") == "unit")
         assert "i18n" not in unit
 
     def test_profiles_emitted_as_separate_nodes(self) -> None:
         profiles_input = [
-            {"name": "Blood Knight", "M": 8, "WS": 5, "BS": 3, "S": 4,
-             "T": 4, "W": 1, "I": 4, "A": 2, "Ld": 7},
-            {"name": "Kastellan", "M": 8, "WS": 5, "BS": 3, "S": 4,
-             "T": 4, "W": 2, "I": 4, "A": 3, "Ld": 8},
+            {
+                "name": "Blood Knight",
+                "M": 8,
+                "WS": 5,
+                "BS": 3,
+                "S": 4,
+                "T": 4,
+                "W": 1,
+                "I": 4,
+                "A": 2,
+                "Ld": 7,
+            },
+            {
+                "name": "Kastellan",
+                "M": 8,
+                "WS": 5,
+                "BS": 3,
+                "S": 4,
+                "T": 4,
+                "W": 2,
+                "I": 4,
+                "A": 3,
+                "Ld": 8,
+            },
         ]
         html = _UNIT_HTML_TEMPLATE.format(
             next_data=_make_unit_next_data(
-                "blood-knights", "Blood Knights", "vampire-counts", "Vampire Counts",
+                "blood-knights",
+                "Blood Knights",
+                "vampire-counts",
+                "Vampire Counts",
                 profiles_input,
             )
         )
-        result = UnitParser().parse(html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z")
+        result = UnitParser().parse(
+            html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z"
+        )
         profile_nodes = [n for n in result.nodes if n.get("node_type") == "profile"]
         assert len(profile_nodes) == 2
 
     def test_profiles_not_in_unit_node(self) -> None:
         html = _UNIT_HTML_TEMPLATE.format(
             next_data=_make_unit_next_data(
-                "blood-knights", "Blood Knights", "vampire-counts", "Vampire Counts",
+                "blood-knights",
+                "Blood Knights",
+                "vampire-counts",
+                "Vampire Counts",
                 [{"name": "Blood Knight", "M": 8}],
             )
         )
-        result = UnitParser().parse(html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z")
+        result = UnitParser().parse(
+            html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z"
+        )
         unit = next(n for n in result.nodes if n.get("node_type") == "unit")
         assert "profiles" not in unit
 
@@ -283,11 +328,16 @@ class TestUnitParserFlattening:
         ]
         html = _UNIT_HTML_TEMPLATE.format(
             next_data=_make_unit_next_data(
-                "blood-knights", "Blood Knights", "vampire-counts", "Vampire Counts",
+                "blood-knights",
+                "Blood Knights",
+                "vampire-counts",
+                "Vampire Counts",
                 profiles_input,
             )
         )
-        result = UnitParser().parse(html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z")
+        result = UnitParser().parse(
+            html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z"
+        )
         has_profile_edges = [e for e in result.edges if e["relation"] == "HAS_PROFILE"]
         assert len(has_profile_edges) == 2
 
@@ -298,11 +348,16 @@ class TestUnitParserFlattening:
         ]
         html = _UNIT_HTML_TEMPLATE.format(
             next_data=_make_unit_next_data(
-                "blood-knights", "Blood Knights", "vampire-counts", "Vampire Counts",
+                "blood-knights",
+                "Blood Knights",
+                "vampire-counts",
+                "Vampire Counts",
                 profiles_input,
             )
         )
-        result = UnitParser().parse(html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z")
+        result = UnitParser().parse(
+            html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z"
+        )
         profile_nodes = sorted(
             [n for n in result.nodes if n.get("node_type") == "profile"],
             key=lambda n: n["order"],
@@ -313,11 +368,16 @@ class TestUnitParserFlattening:
     def test_profile_edge_src_is_unit(self) -> None:
         html = _UNIT_HTML_TEMPLATE.format(
             next_data=_make_unit_next_data(
-                "blood-knights", "Blood Knights", "vampire-counts", "Vampire Counts",
+                "blood-knights",
+                "Blood Knights",
+                "vampire-counts",
+                "Vampire Counts",
                 [{"name": "Blood Knight", "M": 8}],
             )
         )
-        result = UnitParser().parse(html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z")
+        result = UnitParser().parse(
+            html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z"
+        )
         edge = next(e for e in result.edges if e["relation"] == "HAS_PROFILE")
         assert edge["src"] == "blood-knights"
         assert edge["dst"].startswith("blood-knights#")
@@ -325,11 +385,16 @@ class TestUnitParserFlattening:
     def test_profile_has_stat_fields(self) -> None:
         html = _UNIT_HTML_TEMPLATE.format(
             next_data=_make_unit_next_data(
-                "blood-knights", "Blood Knights", "vampire-counts", "Vampire Counts",
+                "blood-knights",
+                "Blood Knights",
+                "vampire-counts",
+                "Vampire Counts",
                 [{"name": "Blood Knight", "M": 8, "WS": 5, "A": 2}],
             )
         )
-        result = UnitParser().parse(html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z")
+        result = UnitParser().parse(
+            html, "https://tow.whfb.app/unit/blood-knights", "2024-01-01T00:00:00Z"
+        )
         profile = next(n for n in result.nodes if n.get("node_type") == "profile")
         assert profile["M"] == 8
         assert profile["WS"] == 5

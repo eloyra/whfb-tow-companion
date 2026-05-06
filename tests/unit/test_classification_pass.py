@@ -11,7 +11,6 @@ from __future__ import annotations
 
 from pipeline.constants import EdgeType
 
-
 # ---------------------------------------------------------------------------
 # Simulate the coordinator two-pass classifier
 # ---------------------------------------------------------------------------
@@ -41,10 +40,7 @@ def _apply_two_pass(
         if e.get("relation") in (EdgeType.UNLOCKS_WEAPON, EdgeType.UNLOCKS_MOUNT)
     }
     for node in nodes_by_type.get("upgrade", []):
-        if (
-            node.get("upgrade_type") == "rule_add"
-            and node.get("id") in upgrades_with_weapon_edge
-        ):
+        if node.get("upgrade_type") == "rule_add" and node.get("id") in upgrades_with_weapon_edge:
             node["upgrade_type"] = "weapon_add"
 
     return all_edges, nodes_by_type

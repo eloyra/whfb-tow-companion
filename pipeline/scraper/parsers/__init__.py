@@ -229,6 +229,8 @@ def run_all_parsers() -> None:
 
     # Refine rule_add upgrade_type: promote to weapon_add when the upgrade
     # has at least one UNLOCKS_WEAPON or UNLOCKS_MOUNT edge.
+    # armour_add upgrades are excluded — they correctly point to armour Weapon nodes
+    # but should stay typed as armour_add for category-filtered queries.
     _upgrades_with_weapon_edge: set[str] = {
         e["src"]
         for e in all_edges
@@ -239,7 +241,9 @@ def run_all_parsers() -> None:
         if node.get("upgrade_type") == "rule_add" and node.get("id") in _upgrades_with_weapon_edge:
             node["upgrade_type"] = "weapon_add"
             weapon_add_count += 1
-    logger.info("Two-pass classifier: %d rule_add upgrades promoted to weapon_add", weapon_add_count)
+    logger.info(
+        "Two-pass classifier: %d rule_add upgrades promoted to weapon_add", weapon_add_count
+    )
 
     # --- Deduplicate nodes by (node_type, id) ---
     # Some pages (e.g. /faq contains all entries; /faq/<section> repeats a subset;
@@ -264,6 +268,12 @@ def run_all_parsers() -> None:
             total_after_dedup,
         )
     nodes_by_type = deduped_by_type
+
+    # --- Derive CLARIFIES and AMENDS edges via name-matching ---
+    # FAQ/Errata body rich-text has no CMS entry-hyperlinks, so the parsers emit 0
+    # CLARIFIES/AMENDS edges from the Contentful link model.  This pass derives them
+    # by matching known node names against FAQ question+answer text and Errata name fields.
+    all_edges.extend(_derive_clarifies_amends(nodes_by_type))
 
     # --- Filter dangling edges ---
     # Remove edges whose dst has no corresponding node to keep the graph valid.
@@ -314,3 +324,112 @@ def run_all_parsers() -> None:
 
 def _write_json(path: Path, data: list) -> None:
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+# ---------------------------------------------------------------------------
+# CLARIFIES / AMENDS edge derivation
+# ---------------------------------------------------------------------------
+
+# Node types whose names are matched against FAQ/Errata text.
+_CLARIFIABLE_TYPES: tuple[str, ...] = (
+    "special_rule",
+    "core_rule",
+    "unit",
+    "spell",
+    "weapon",
+    "magic_item",
+)
+
+# Minimum character length for a name to be matched (short names like "Fear"
+# or "Ld" produce too many false positives in running prose).
+_MIN_MATCH_LEN: int = 5
+
+
+def _derive_clarifies_amends(nodes_by_type: dict[str, list[dict]]) -> list[dict]:
+    """Return CLARIFIES (FAQ→rule) and AMENDS (Errata→rule) edges derived from text.
+
+    Strategy:
+    - Errata: each node's ``name`` IS the rule being amended — direct slug lookup.
+      Also scan ``corrected_text`` for embedded rule names.
+    - FAQ: scan ``question`` + ``answer`` text for known rule names (case-sensitive,
+      word-boundary, minimum length / multi-word filter to limit false positives).
+    """
+    # Build name → [node_id, ...] index (case-sensitive, original casing).
+    # Short single-word names are excluded from the FAQ text-scan index to reduce
+    # false positives, but kept in the id-lookup set used for Errata name matching.
+    name_to_ids: dict[str, list[str]] = {}
+    for node_type in _CLARIFIABLE_TYPES:
+        for node in nodes_by_type.get(node_type, []):
+            name: str = (node.get("name") or "").strip()
+            nid: str = node.get("id", "")
+            if not name or not nid:
+                continue
+            # Only index names that pass the length threshold for FAQ text scanning.
+            # Single short words (< _MIN_MATCH_LEN chars) are too noisy.
+            words = name.split()
+            if len(name) >= _MIN_MATCH_LEN or len(words) >= 2:
+                name_to_ids.setdefault(name, []).append(nid)
+
+    # Build full id set for Errata slug-lookup (no length restriction needed).
+    all_ids: set[str] = {
+        node.get("id", "") for nodes in nodes_by_type.values() for node in nodes if node.get("id")
+    }
+
+    # Pre-compile regex patterns for FAQ scanning (whole-word, case-insensitive for
+    # names that appear in prose; use re.escape for safety).
+    # Build once and cache as (pattern, [ids]) tuples.
+    _faq_patterns: list[tuple[re.Pattern[str], list[str]]] = []
+    for name, ids in name_to_ids.items():
+        try:
+            pat = re.compile(r"\b" + re.escape(name) + r"\b", re.IGNORECASE)
+            _faq_patterns.append((pat, ids))
+        except re.error:
+            continue
+
+    new_edges: list[dict] = []
+    seen: set[tuple[str, str, str]] = set()
+
+    def _add(src: str, dst: str, relation: str) -> None:
+        key = (src, dst, relation)
+        if key not in seen and dst in all_ids:
+            seen.add(key)
+            new_edges.append({"src": src, "dst": dst, "relation": relation, "properties": {}})
+
+    def _name_to_slug_local(name: str) -> str:
+        return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+    # --- AMENDS (Errata → rule) ---
+    for errata in nodes_by_type.get("errata", []):
+        errata_id = errata.get("id", "")
+        if not errata_id:
+            continue
+        rule_name: str = (errata.get("name") or "").strip()
+        if rule_name:
+            slug = _name_to_slug_local(rule_name)
+            _add(errata_id, slug, EdgeType.AMENDS)
+        # Also scan corrected_text for embedded proper rule names
+        corrected: str = errata.get("corrected_text") or ""
+        for pat, ids in _faq_patterns:
+            if pat.search(corrected):
+                for rid in ids:
+                    _add(errata_id, rid, EdgeType.AMENDS)
+
+    # --- CLARIFIES (FAQ → rule) ---
+    for faq in nodes_by_type.get("faq", []):
+        faq_id = faq.get("id", "")
+        if not faq_id:
+            continue
+        text = (faq.get("question") or "") + " " + (faq.get("answer") or "")
+        if not text.strip():
+            continue
+        for pat, ids in _faq_patterns:
+            if pat.search(text):
+                for rid in ids:
+                    _add(faq_id, rid, EdgeType.CLARIFIES)
+
+    logger.info(
+        "Text-based derivation: %d CLARIFIES + %d AMENDS edges",
+        sum(1 for e in new_edges if e["relation"] == EdgeType.CLARIFIES),
+        sum(1 for e in new_edges if e["relation"] == EdgeType.AMENDS),
+    )
+    return new_edges

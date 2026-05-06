@@ -44,8 +44,7 @@ def get_driver() -> neo4j.Driver:
     except Exception as exc:
         driver.close()
         raise RuntimeError(
-            f"Cannot connect to Neo4j at {uri}: {exc}\n"
-            "Run `make neo4j-up` to start the container."
+            f"Cannot connect to Neo4j at {uri}: {exc}\nRun `make neo4j-up` to start the container."
         ) from exc
 
     _driver = driver
