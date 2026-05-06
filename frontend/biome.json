@@ -82,6 +82,16 @@
       }
     },
     {
+      "includes": ["src/**/*.test.{ts,tsx}", "src/test/**/*"],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "useArrowFunction": "off"
+          }
+        }
+      }
+    },
+    {
       "includes": ["src/features/**/*"],
       "linter": {
         "rules": {

@@ -2,9 +2,11 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 // vi.mock calls are hoisted — safe to reference mocked modules below
-vi.mock("@ai-sdk/react", () => ({ useChat: vi.fn() }));
+vi.mock("@ai-sdk/react", () => ({ useChat: vi.fn(function () {}) }));
 vi.mock("ai", () => ({
-  DefaultChatTransport: vi.fn().mockImplementation(() => ({})),
+  DefaultChatTransport: vi.fn(function () {
+    return {};
+  }),
 }));
 vi.mock("#/shared/config/env", () => ({
   env: { apiUrl: "http://localhost:8000" },
@@ -34,18 +36,18 @@ function useChatStub(
 ) {
   return {
     messages: [],
-    sendMessage: vi.fn().mockResolvedValue(undefined),
+    sendMessage: vi.fn(function () {}).mockResolvedValue(undefined),
     status: "ready" as ChatStatus,
     error: undefined,
-    stop: vi.fn(),
-    regenerate: vi.fn().mockResolvedValue(undefined),
-    clearError: vi.fn(),
+    stop: vi.fn(function () {}),
+    regenerate: vi.fn(function () {}).mockResolvedValue(undefined),
+    clearError: vi.fn(function () {}),
     id: "test-chat",
-    setMessages: vi.fn(),
-    resumeStream: vi.fn(),
-    addToolResult: vi.fn(),
-    addToolOutput: vi.fn(),
-    addToolApprovalResponse: vi.fn(),
+    setMessages: vi.fn(function () {}),
+    resumeStream: vi.fn(function () {}),
+    addToolResult: vi.fn(function () {}),
+    addToolOutput: vi.fn(function () {}),
+    addToolApprovalResponse: vi.fn(function () {}),
     ...overrides,
     // biome-ignore lint/suspicious/noExplicitAny: test mock — exact UseChatHelpers shape not needed
   } as any;
@@ -105,7 +107,7 @@ describe("ChatInterface", () => {
   });
 
   it("calls sendMessage with input text on form submit", () => {
-    const sendMessage = vi.fn().mockResolvedValue(undefined);
+    const sendMessage = vi.fn(function () {}).mockResolvedValue(undefined);
     mockUseChat.mockReturnValue(useChatStub({ sendMessage }));
     render(<ChatInterface />);
 
@@ -119,8 +121,8 @@ describe("ChatInterface", () => {
   });
 
   it("shows error banner and calls clearError+regenerate on Retry", () => {
-    const clearError = vi.fn();
-    const regenerate = vi.fn().mockResolvedValue(undefined);
+    const clearError = vi.fn(function () {});
+    const regenerate = vi.fn(function () {}).mockResolvedValue(undefined);
     const { messages, error } = ChatMother.errorState();
     mockUseChat.mockReturnValue(
       useChatStub({ messages, error, clearError, regenerate }),
