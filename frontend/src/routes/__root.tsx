@@ -12,8 +12,8 @@ import type * as React from "react";
 import { useEffect } from "react";
 import { m } from "#/paraglide/messages";
 import { getLocale } from "#/paraglide/runtime";
-import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
-import TanstackQueryProvider from "../integrations/tanstack-query/root-provider";
+import TanStackQueryDevtools from "#/shared/api/query/devtools";
+import TanstackQueryProvider from "#/shared/api/query/root-provider";
 import appCss from "../styles.css?url";
 
 interface MyRouterContext {

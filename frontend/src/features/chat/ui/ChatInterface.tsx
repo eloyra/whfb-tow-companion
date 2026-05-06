@@ -1,84 +1,177 @@
 import { useChat } from "@ai-sdk/react";
-import { Button, Card, Input } from "@heroui/react";
+import { Alert, Button, Card, TextArea } from "@heroui/react";
 import { DefaultChatTransport } from "ai";
-import type * as React from "react";
-import { useEffect, useState } from "react";
+import type { KeyboardEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { m } from "#/paraglide/messages";
+import { env } from "#/shared/config/env";
+import { cn } from "#/shared/lib/utils";
 
 export function ChatInterface() {
   const [input, setInput] = useState("");
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const { messages, sendMessage } = useChat({
-    transport: new DefaultChatTransport({
-      api: `${import.meta.env.VITE_API_URL || "http://localhost:8000"}/chat`,
-    }),
-    onError: (error) => console.error("Chat API Error:", error),
-  });
+  const { messages, sendMessage, status, error, stop, regenerate, clearError } =
+    useChat({
+      transport: new DefaultChatTransport({
+        api: `${env.apiUrl}/chat/`,
+      }),
+      onError: (err) => console.error("Chat API Error:", err),
+    });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: messages triggers scroll; body uses stable ref
   useEffect(() => {
-    console.info("Chat Messages", messages);
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const onSubmit = (e: React.SubmitEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
+  const isStreaming = status === "submitted" || status === "streaming";
 
-    sendMessage({
-      text: input,
-    }).catch((error) => console.error("Error sending message:", error));
+  function doSend() {
+    if (!input.trim() || isStreaming) return;
+    sendMessage({ text: input }).catch((err) =>
+      console.error("Error sending message:", err),
+    );
     setInput("");
-  };
+    inputRef.current?.focus();
+  }
 
-  const isLoading =
-    messages.length > 0 && messages[messages.length - 1].role === "user";
+  function handleKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      doSend();
+    }
+  }
+
+  const lastMsg = messages[messages.length - 1];
 
   return (
     <div className="flex flex-col h-[calc(100vh-8rem)] w-full max-w-4xl mx-auto border border-border/50 rounded-xl bg-background/50 backdrop-blur-sm overflow-hidden shadow-lg">
-      {/* --- MESSAGE HISTORY AREA --- */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-6">
+      {error && (
+        <Alert status="danger" className="m-2 rounded-lg shrink-0">
+          <Alert.Content>
+            <Alert.Title>{m.chat_error_title()}</Alert.Title>
+            <Alert.Description>{error.message}</Alert.Description>
+          </Alert.Content>
+          <Button
+            size="sm"
+            variant="ghost"
+            onPress={() => {
+              clearError();
+              void regenerate();
+            }}
+          >
+            {m.chat_error_retry()}
+          </Button>
+        </Alert>
+      )}
+
+      {/* MESSAGE HISTORY */}
+      <div
+        role="log"
+        aria-live="polite"
+        aria-label={m.chat_history_label()}
+        className="flex-1 overflow-y-auto p-4 space-y-6"
+      >
         {messages.length === 0 ? (
           <div className="h-full flex flex-col items-center justify-center text-center opacity-50">
             <span className="text-4xl mb-4">📜</span>
             <h3 className="text-xl font-display font-bold">
-              The Archives are Open
+              {m.chat_empty_title()}
             </h3>
-            <p className="max-w-md">
-              Ask a question about unit stats, army compositions, or the lore of
-              the Old World.
-            </p>
+            <p className="max-w-md">{m.chat_empty_description()}</p>
           </div>
         ) : (
-          messages.map((m) => (
+          messages.map((msg) => (
             <div
-              key={m.id}
-              className={`flex w-full ${
-                m.role === "user" ? "justify-end" : "justify-start"
-              }`}
+              key={msg.id}
+              className={cn(
+                "flex w-full",
+                msg.role === "user" ? "justify-end" : "justify-start",
+              )}
             >
               <Card
-                className={`max-w-[80%] ${
-                  m.role === "user" ? "bg-primary text-primary-foreground" : ""
-                }`}
+                className={cn(
+                  "max-w-[80%]",
+                  msg.role === "user"
+                    ? "bg-primary text-primary-foreground"
+                    : "",
+                )}
               >
-                <Card.Content className="py-3 px-4">
-                  {m.parts.map((part, index) =>
-                    part.type === "text" ? (
-                      <div
-                        // biome-ignore lint/suspicious/noArrayIndexKey: can't be sorted or filtered
-                        key={index}
-                        className="prose prose-sm dark:prose-invert max-w-none"
+                <Card.Content className="py-3 px-4 space-y-2">
+                  {msg.parts.map((part, index) => {
+                    if (part.type === "text") {
+                      return (
+                        <div
+                          // biome-ignore lint/suspicious/noArrayIndexKey: text parts have no stable id
+                          key={index}
+                          className="prose prose-sm dark:prose-invert max-w-none"
+                        >
+                          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                            {part.text}
+                          </ReactMarkdown>
+                        </div>
+                      );
+                    }
+
+                    if (part.type === "reasoning") {
+                      return (
+                        <details
+                          // biome-ignore lint/suspicious/noArrayIndexKey: parts have no stable id
+                          key={index}
+                          className="text-xs opacity-60"
+                        >
+                          <summary className="cursor-pointer select-none">
+                            Reasoning
+                          </summary>
+                          <pre className="whitespace-pre-wrap mt-1 font-mono">
+                            {part.text}
+                          </pre>
+                        </details>
+                      );
+                    }
+
+                    if (part.type === "source-url") {
+                      return (
+                        <a
+                          // biome-ignore lint/suspicious/noArrayIndexKey: parts have no stable id
+                          key={index}
+                          href={part.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-xs underline opacity-70 block"
+                        >
+                          {part.title ?? part.url}
+                        </a>
+                      );
+                    }
+
+                    // step-start and unrecognised parts: skip silently
+                    return null;
+                  })}
+
+                  {msg.role === "assistant" &&
+                    lastMsg?.id === msg.id &&
+                    !isStreaming && (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onPress={() => void regenerate()}
+                        aria-label={m.chat_regenerate_button()}
+                        className="mt-1 -ml-1"
                       >
-                        <ReactMarkdown>{part.text}</ReactMarkdown>
-                      </div>
-                    ) : null,
-                  )}
+                        {m.chat_regenerate_button()}
+                      </Button>
+                    )}
                 </Card.Content>
               </Card>
             </div>
           ))
         )}
 
-        {isLoading && (
+        {isStreaming && lastMsg?.role === "user" && (
           <div className="flex justify-start">
             <Card className="opacity-70">
               <Card.Content className="py-3 px-4 flex flex-row gap-1 items-center">
@@ -89,28 +182,52 @@ export function ChatInterface() {
             </Card>
           </div>
         )}
+
+        <div ref={scrollRef} aria-hidden="true" />
       </div>
 
-      {/* --- INPUT AREA --- */}
-      <div className="p-4 bg-content1 border-t border-border/50">
-        <form onSubmit={onSubmit} className="flex gap-2 items-center">
-          <Input
+      {/* INPUT AREA */}
+      <div className="p-4 bg-content1 border-t border-border/50 shrink-0">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            doSend();
+          }}
+          className="flex gap-2 items-end"
+        >
+          <TextArea
+            ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Query the Grand Theogonist..."
+            onKeyDown={handleKeyDown}
+            placeholder={m.chat_input_placeholder()}
+            aria-label={m.chat_input_placeholder()}
             fullWidth
             variant="primary"
-            disabled={isLoading}
-            className="text-base"
+            disabled={isStreaming}
+            className="text-base resize-none"
+            rows={2}
           />
 
-          <Button
-            type="submit"
-            variant="primary"
-            isDisabled={!input.trim() || isLoading}
-          >
-            {isLoading ? "..." : "Send"}
-          </Button>
+          {isStreaming ? (
+            <Button
+              type="button"
+              variant="secondary"
+              onPress={() => stop()}
+              aria-label={m.chat_stop_button()}
+            >
+              {m.chat_stop_button()}
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              variant="primary"
+              isDisabled={!input.trim()}
+              aria-label={m.chat_send_button()}
+            >
+              {m.chat_send_button()}
+            </Button>
+          )}
         </form>
       </div>
     </div>

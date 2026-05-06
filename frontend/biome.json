@@ -80,6 +80,43 @@
           }
         }
       }
+    },
+    {
+      "includes": ["src/features/**/*"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "paths": {
+                  "#/widgets": "FSD Violation: Features cannot import from Widgets.",
+                  "#/pages": "FSD Violation: Features cannot import from Pages.",
+                  "#/app": "FSD Violation: Features cannot import from the App layer."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": ["src/widgets/**/*"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "paths": {
+                  "#/pages": "FSD Violation: Widgets cannot import from Pages.",
+                  "#/app": "FSD Violation: Widgets cannot import from the App layer."
+                }
+              }
+            }
+          }
+        }
+      }
     }
   ]
 }

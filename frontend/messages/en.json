@@ -1,4 +1,13 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-  "app_title": "Warhammer: The Old World Companion"
+  "app_title": "Warhammer: The Old World Companion",
+  "chat_empty_title": "The Archives are Open",
+  "chat_empty_description": "Ask a question about unit stats, army compositions, or the lore of the Old World.",
+  "chat_input_placeholder": "Query the Grand Theogonist...",
+  "chat_send_button": "Send",
+  "chat_stop_button": "Stop",
+  "chat_regenerate_button": "Regenerate",
+  "chat_error_title": "Something went wrong",
+  "chat_error_retry": "Retry",
+  "chat_history_label": "Conversation history"
 }
