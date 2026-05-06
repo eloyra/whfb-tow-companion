@@ -2,7 +2,7 @@ import json
 import uuid
 from typing import Any, AsyncIterator
 
-from langchain_core.messages import AIMessageChunk, ToolMessage
+from langchain.messages import AIMessageChunk, ToolMessage
 
 
 class VercelStream:

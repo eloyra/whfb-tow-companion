@@ -6,8 +6,8 @@ from typing import Any, ClassVar
 
 import pytest
 from httpx import ASGITransport, AsyncClient
-from langchain_core.language_models.chat_models import BaseChatModel
-from langchain_core.messages import AIMessageChunk, BaseMessage
+from langchain.chat_models import BaseChatModel
+from langchain.messages import AIMessageChunk, AnyMessage
 from langchain_core.outputs import ChatGenerationChunk, ChatResult
 
 from backend.api.main import app
@@ -30,7 +30,7 @@ class FakeChatModel(BaseChatModel):
 
     async def _astream(
         self,
-        messages: list[BaseMessage],
+        messages: list[AnyMessage],
         stop: list[str] | None = None,
         run_manager: Any = None,
         **kwargs: Any,

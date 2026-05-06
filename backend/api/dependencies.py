@@ -1,6 +1,6 @@
 import os
 
-from langchain_core.language_models.chat_models import BaseChatModel
+from langchain.chat_models import BaseChatModel
 from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
 

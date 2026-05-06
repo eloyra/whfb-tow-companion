@@ -2,9 +2,10 @@ from typing import List, Optional
 
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
-from langchain_core.language_models.chat_models import BaseChatModel
-from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
-from langgraph.prebuilt import create_react_agent
+from langchain.agents import create_agent
+from langchain.chat_models import BaseChatModel
+from langchain.messages import AIMessage, AnyMessage, HumanMessage
+from langgraph.types import Command
 from pydantic import BaseModel
 
 from backend.api.dependencies import get_llm
@@ -41,17 +42,15 @@ async def chat(
     request: ChatRequest,
     llm: BaseChatModel = Depends(get_llm),
 ) -> StreamingResponse:
-    lc_messages = [SystemMessage(content=SYSTEM_PROMPT)]
+    lc_messages: list[AnyMessage] = []
     for msg in request.messages:
         if msg.role == "user":
             lc_messages.append(HumanMessage(content=msg.text_content))
         elif msg.role == "assistant":
             lc_messages.append(AIMessage(content=msg.text_content))
-        elif msg.role == "system":
-            lc_messages.append(SystemMessage(content=msg.text_content))
 
-    agent = create_react_agent(llm, tools=AGENT_TOOLS)
-    agent_stream = agent.astream({"messages": lc_messages}, stream_mode="messages")
+    agent = create_agent(llm, tools=AGENT_TOOLS, system_prompt=SYSTEM_PROMPT)
+    agent_stream = agent.astream(Command(update={"messages": lc_messages}), stream_mode="messages")
 
     return StreamingResponse(
         VercelStream.stream_langgraph(agent_stream),
