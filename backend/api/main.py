@@ -1,7 +1,15 @@
+import os
+
 from dotenv import load_dotenv
 
 # Load environment variables before initializing the app
 load_dotenv()
+
+# Tag all LangSmith traces with the current environment so dev/staging/prod
+# runs are separable in the LangSmith UI without switching projects.
+if os.getenv("LANGSMITH_TRACING", "").lower() == "true":
+    env = os.getenv("ENVIRONMENT", "development")
+    os.environ["LANGSMITH_TAGS"] = f'["env:{env}"]'
 
 from fastapi import FastAPI  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402

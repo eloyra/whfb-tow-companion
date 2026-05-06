@@ -1,3 +1,4 @@
+import os
 from typing import List, Optional
 
 from fastapi import APIRouter, Depends
@@ -50,7 +51,14 @@ async def chat(
             lc_messages.append(AIMessage(content=msg.text_content))
 
     agent = create_agent(llm, tools=AGENT_TOOLS, system_prompt=SYSTEM_PROMPT)
-    agent_stream = agent.astream(Command(update={"messages": lc_messages}), stream_mode="messages")
+    config = {
+        "metadata": {"environment": os.getenv("ENVIRONMENT", "development")},
+    }
+    agent_stream = agent.astream(
+        Command(update={"messages": lc_messages}),
+        stream_mode="messages",
+        config=config,
+    )
 
     return StreamingResponse(
         VercelStream.stream_langgraph(agent_stream),
