@@ -7,7 +7,7 @@ load_dotenv()
 
 # Tag all LangSmith traces with the current environment so dev/staging/prod
 # runs are separable in the LangSmith UI without switching projects.
-if os.getenv("LANGSMITH_TRACING", "").lower() == "true":
+if os.getenv("LANGSMITH_TRACING_V2", "").lower() == "true":
     env = os.getenv("ENVIRONMENT", "development")
     os.environ["LANGSMITH_TAGS"] = f'["env:{env}"]'
 
