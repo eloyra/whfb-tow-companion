@@ -25,48 +25,48 @@ neo4j-logs:  ## Tail Neo4j container logs
 # ── Pipeline ──────────────────────────────────────────────────────────────────
 
 scrape:  ## Crawl tow.whfb.app and save raw HTML to data/raw/
-	python -m pipeline.run_pipeline --stage scrape
+	uv run python -m pipeline.run_pipeline --stage scrape
 
 parse:  ## Parse raw HTML into structured JSON (data/parsed/)
-	python -m pipeline.run_pipeline --stage parse
+	uv run python -m pipeline.run_pipeline --stage parse
 
 build-graph:  ## Load parsed JSON into Neo4j, apply constraints and indexes (data/graph/)
-	python -m pipeline.run_pipeline --stage graph
+	uv run python -m pipeline.run_pipeline --stage graph
 
 embed:  ## Generate embeddings and write to Neo4j node properties
-	python -m pipeline.run_pipeline --stage embed
+	uv run python -m pipeline.run_pipeline --stage embed
 
 translate:  ## Add/update translations for all supported languages
-	python -m pipeline.run_pipeline --stage translate
+	uv run python -m pipeline.run_pipeline --stage translate
 
 pipeline:  ## Run full pipeline from scratch
-	python -m pipeline.run_pipeline --all
+	uv run python -m pipeline.run_pipeline --all
 
 # ── Services ──────────────────────────────────────────────────────────────────
 
 serve:  ## Start FastAPI backend (http://localhost:8000)
-	uvicorn backend.api.main:app --reload --host 0.0.0.0 --port 8000
+	uv run uvicorn backend.api.main:app --reload --host 0.0.0.0 --port 8000
 
 ui:  ## Start Streamlit frontend (http://localhost:8501)
-	streamlit run frontend/app.py
+	uv run streamlit run frontend/app.py
 
 # ── Quality ───────────────────────────────────────────────────────────────────
 
 test:  ## Run all tests
-	pytest tests/ -v
+	uv run pytest tests/ -v
 
 test-unit:  ## Run unit tests only
-	pytest tests/unit/ -v
+	uv run pytest tests/unit/ -v
 
 test-integration:  ## Run integration tests only
-	pytest tests/integration/ -v
+	uv run pytest tests/integration/ -v
 
 format:  ## Auto-format with ruff
-	ruff format .
+	uv run ruff format .
 
 lint:  ## Run ruff linter
-	ruff check .
+	uv run ruff check .
 
 lint-fix:  ## Format then run ruff linter with autofix
-	ruff format .
-	ruff check . --fix
+	uv run ruff format .
+	uv run ruff check . --fix
