@@ -1,6 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
-import { ChatMother, FEAR_REPLY } from "../../src/test/mothers/chat.mother";
+import { ChatMother, FEAR_REPLY } from "#/test/mothers/chat.mother.ts";
 
 const STREAM_BODY = ChatMother.sseStream(FEAR_REPLY);
 
