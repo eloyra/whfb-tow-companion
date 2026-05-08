@@ -4,6 +4,7 @@ import { DefaultChatTransport } from "ai";
 import type { KeyboardEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import rehypeSanitize from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
 import { m } from "#/paraglide/messages";
 import { env } from "#/shared/config/env";
@@ -12,6 +13,7 @@ import { cn } from "#/shared/lib/utils";
 export function ChatInterface() {
   const [input, setInput] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const { messages, sendMessage, status, error, stop, regenerate, clearError } =
@@ -24,8 +26,21 @@ export function ChatInterface() {
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: messages triggers scroll; body uses stable ref
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    const distanceFromBottom =
+      container.scrollHeight - container.scrollTop - container.clientHeight;
+    if (distanceFromBottom < 100) {
+      scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [messages]);
+
+  useEffect(
+    () => () => {
+      stop();
+    },
+    [stop],
+  );
 
   const isStreaming = status === "submitted" || status === "streaming";
 
@@ -70,6 +85,7 @@ export function ChatInterface() {
 
       {/* MESSAGE HISTORY */}
       <div
+        ref={scrollContainerRef}
         role="log"
         aria-live="polite"
         aria-label={m.chat_history_label()}
@@ -109,7 +125,10 @@ export function ChatInterface() {
                           key={index}
                           className="prose prose-sm dark:prose-invert max-w-none"
                         >
-                          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm]}
+                            rehypePlugins={[rehypeSanitize]}
+                          >
                             {part.text}
                           </ReactMarkdown>
                         </div>

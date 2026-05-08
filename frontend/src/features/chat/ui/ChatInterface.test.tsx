@@ -142,8 +142,43 @@ describe("ChatInterface", () => {
       useChatStub({ messages: ChatMother.multiTurnConversation() }),
     );
     render(<ChatInterface />);
-    // exactly one Regenerate button — on the last assistant message
     const btns = screen.getAllByRole("button", { name: "Regenerate" });
     expect(btns).toHaveLength(1);
+  });
+
+  it("calls stop when Stop button is clicked", () => {
+    const stop = vi.fn();
+    mockUseChat.mockReturnValue(
+      useChatStub({
+        messages: [ChatMother.userMessage()],
+        status: "streaming",
+        stop,
+      }),
+    );
+    render(<ChatInterface />);
+    fireEvent.click(screen.getByRole("button", { name: "Stop" }));
+    expect(stop).toHaveBeenCalled();
+  });
+
+  it("calls regenerate when Regenerate button is clicked", () => {
+    const regenerate = vi.fn().mockResolvedValue(undefined);
+    mockUseChat.mockReturnValue(
+      useChatStub({ messages: ChatMother.fearRulesExchange(), regenerate }),
+    );
+    render(<ChatInterface />);
+    fireEvent.click(screen.getByRole("button", { name: "Regenerate" }));
+    expect(regenerate).toHaveBeenCalled();
+  });
+
+  it("shows streaming indicator when streaming and last message is user", () => {
+    mockUseChat.mockReturnValue(
+      useChatStub({
+        messages: [ChatMother.userMessage()],
+        status: "streaming",
+      }),
+    );
+    const { container } = render(<ChatInterface />);
+    const dots = container.querySelector(".animate-bounce");
+    expect(dots).toBeInTheDocument();
   });
 });

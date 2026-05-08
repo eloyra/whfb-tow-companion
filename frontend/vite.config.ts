@@ -22,7 +22,7 @@ const config = defineConfig({
       },
     }),
     viteReact(),
-    nitro({ rollupConfig: { external: [/^@sentry\//] } }),
+    nitro(),
   ],
 });
 

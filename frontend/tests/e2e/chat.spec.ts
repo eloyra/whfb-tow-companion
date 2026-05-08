@@ -52,3 +52,38 @@ test.describe("Chat happy path", () => {
     await expect(page.getByRole("button", { name: "Send" })).toBeDisabled();
   });
 });
+
+test.describe("Chat stop flow", () => {
+  test("stop button ends streaming and returns to idle UI", async ({
+    page,
+  }) => {
+    // Delay the response so the stream remains active long enough for Stop to appear
+    await page.route("**/chat/", async (route) => {
+      await new Promise((resolve) => setTimeout(resolve, 5_000));
+      await route.fulfill({
+        status: 200,
+        headers: {
+          "Content-Type": "text/event-stream",
+          "x-vercel-ai-ui-message-stream": "v1",
+          "Cache-Control": "no-cache",
+        },
+        body: STREAM_BODY,
+      });
+    });
+
+    await page.goto("/");
+    await page.getByRole("textbox").fill(USER_QUESTION);
+    await page.getByRole("button", { name: "Send" }).click();
+
+    await expect(page.getByRole("button", { name: "Stop" })).toBeVisible({
+      timeout: 5_000,
+    });
+
+    await page.getByRole("button", { name: "Stop" }).click();
+
+    // After stopping, the idle UI returns: Send button replaces Stop button
+    await expect(page.getByRole("button", { name: "Send" })).toBeVisible({
+      timeout: 5_000,
+    });
+  });
+});
