@@ -14,6 +14,7 @@ import { m } from "#/paraglide/messages";
 import { getLocale } from "#/paraglide/runtime";
 import TanStackQueryDevtools from "#/shared/api/query/devtools";
 import TanstackQueryProvider from "#/shared/api/query/root-provider";
+import { ErrorBoundary } from "#/shared/ui/ErrorBoundary";
 import appCss from "../styles.css?url";
 
 interface MyRouterContext {
@@ -67,7 +68,9 @@ function RootComponent() {
 
   return (
     <TanstackQueryProvider queryClient={queryClient}>
-      <Outlet />
+      <ErrorBoundary>
+        <Outlet />
+      </ErrorBoundary>
     </TanstackQueryProvider>
   );
 }
