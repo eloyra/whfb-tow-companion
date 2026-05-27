@@ -131,6 +131,12 @@ class TestBudgetClassification:
         upgrades, _ = parse_options_to_upgrades("unit", doc, set(), _SC)
         assert "100" in upgrades[0]["name"]
 
+    def test_budget_regex_matches_pts_abbreviation(self) -> None:
+        doc = _make_doc(_item("May take up to 50 pts of magic items."))
+        upgrades, _ = parse_options_to_upgrades("unit", doc, set(), _SC)
+        assert upgrades[0]["points_budget"] == 50
+        assert upgrades[0]["upgrade_type"] == "magic_item_budget"
+
 
 # ---------------------------------------------------------------------------
 # Wizard level
@@ -187,6 +193,50 @@ class TestCommandGroup:
         for up in upgrades:
             assert up["points_cost"] == 6
             assert up["cost_unit"] == "per_unit"
+
+    def test_champion_without_budget_has_none(self) -> None:
+        doc = _make_doc(
+            _item(
+                "Upgrade one model to a Seneschal (+6 points per unit)",
+                [("seneschal-of-the-grave-guard", "rule")],
+            ),
+        )
+        upgrades, _ = parse_options_to_upgrades("grave-guard", doc, set(), _SC)
+        assert upgrades[0]["upgrade_type"] == "command_champion"
+        assert upgrades[0]["points_budget"] is None
+
+    def test_champion_with_magic_item_budget(self) -> None:
+        doc = _make_doc(
+            _item(
+                "Upgrade one model to a Seneschal (+6 points per unit) "
+                "who may take up to 25 points of magic items.",
+                [("seneschal-of-the-grave-guard", "rule")],
+            ),
+        )
+        upgrades, _ = parse_options_to_upgrades("grave-guard", doc, set(), _SC)
+        assert upgrades[0]["upgrade_type"] == "command_champion"
+        assert upgrades[0]["points_cost"] == 6
+        assert upgrades[0]["points_budget"] == 25
+
+    def test_standard_bearer_with_magic_standard_budget(self) -> None:
+        doc = _make_doc(
+            _item(
+                "Upgrade one model to a standard bearer (+6 points per unit) "
+                "who may carry a magic standard worth up to 50 points",
+            ),
+        )
+        upgrades, _ = parse_options_to_upgrades("unit", doc, set(), _SC)
+        assert upgrades[0]["upgrade_type"] == "command_standard"
+        assert upgrades[0]["points_cost"] == 6
+        assert upgrades[0]["magic_standard_budget"] == 50
+
+    def test_standard_bearer_without_budget_has_none(self) -> None:
+        doc = _make_doc(
+            _item("Upgrade one model to a standard bearer (+6 points per unit)"),
+        )
+        upgrades, _ = parse_options_to_upgrades("unit", doc, set(), _SC)
+        assert upgrades[0]["upgrade_type"] == "command_standard"
+        assert upgrades[0]["magic_standard_budget"] is None
 
 
 # ---------------------------------------------------------------------------

@@ -317,7 +317,7 @@ def driver(neo4j_container, parsed_dir, monkeypatch_module):
     bolt_url = neo4j_container.get_connection_url()
     monkeypatch_module.setenv("NEO4J_URI", bolt_url)
     monkeypatch_module.setenv("NEO4J_USER", "neo4j")
-    monkeypatch_module.setenv("NEO4J_PASSWORD", neo4j_container.NEO4J_ADMIN_PASSWORD)
+    monkeypatch_module.setenv("NEO4J_PASSWORD", neo4j_container.password)
     monkeypatch_module.setenv("GRAPH_WIPE_ON_BUILD", "true")
 
     from pipeline.graph import client as _client
@@ -475,19 +475,23 @@ class TestGraphBuild:
             rec = s.run(
                 "MATCH (u:Unit {id: 'test-unit'})-[r:CAN_TAKE_ITEM]->"
                 "(i:MagicItem {id: 'sword-of-power'}) "
-                "RETURN r.budget AS budget"
+                "RETURN r.budget AS budget, r.unlimited AS unlimited"
             ).single()
         assert rec is not None
         assert rec["budget"] == 100
+        assert rec["unlimited"] is False
 
-    def test_can_take_item_excludes_magic_standard(self, driver, build_report) -> None:
+    def test_can_take_item_includes_magic_standard_for_bsb(self, driver, build_report) -> None:
         with driver.session() as s:
             rec = s.run(
-                "MATCH (u:Unit {id: 'test-unit'})-[:CAN_TAKE_ITEM]->"
+                "MATCH (u:Unit {id: 'test-unit'})-[r:CAN_TAKE_ITEM]->"
                 "(i:MagicItem {item_type: 'magic_standard'}) "
-                "RETURN i.id AS iid"
+                "RETURN r.budget AS budget, r.unlimited AS unlimited, i.id AS iid"
             ).single()
-        assert rec is None
+        assert rec is not None
+        assert rec["iid"] == "test-magic-standard"
+        assert rec["budget"] is None
+        assert rec["unlimited"] is True
 
     # ------------------------------------------------------------------
     # BSB cross-army uniqueness
@@ -531,4 +535,4 @@ class TestGraphBuild:
         assert unit_count == 1
         assert army_count == 1
         assert upgrade_count == 3
-        assert can_take_count == 1  # MERGE semantic: sword-of-power only, not doubled
+        assert can_take_count == 2  # sword-of-power + test-magic-standard (BSB), not doubled

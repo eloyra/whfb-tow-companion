@@ -159,6 +159,7 @@ class NodeType:
     UPGRADE = "upgrade"
     COMPOSITION_LIST = "composition_list"
     COMPOSITION_SLOT = "composition_slot"
+    TERRAIN = "terrain"
 
 
 # ---------------------------------------------------------------------------
@@ -236,6 +237,7 @@ class EdgeType:
     BELONGS_TO = "BELONGS_TO"
     HAS_TYPE = "HAS_TYPE"
     HAS_PROFILE = "HAS_PROFILE"
+    SPLIT_PROFILE_OF = "SPLIT_PROFILE_OF"
     HAS_RULE = "HAS_RULE"
     HAS_OPTIONAL_RULE = "HAS_OPTIONAL_RULE"
     HAS_WEAPON = "HAS_WEAPON"
@@ -288,6 +290,7 @@ NODE_TYPE_TO_LABEL: dict[str, str] = {
     NodeType.UPGRADE: "Upgrade",
     NodeType.COMPOSITION_LIST: "CompositionList",
     NodeType.COMPOSITION_SLOT: "CompositionSlot",
+    NodeType.TERRAIN: "Terrain",
 }
 
 # Labels for which embeddings are generated.
@@ -306,6 +309,7 @@ EMBEDDABLE_LABELS: tuple[str, ...] = (
     "Weapon",
     "Unit",
     "Army",
+    "Terrain",
 )
 
 EMBEDDING_DIM: int = 768

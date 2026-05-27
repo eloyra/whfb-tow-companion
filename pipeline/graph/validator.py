@@ -42,6 +42,7 @@ _FILE_TO_LABEL: dict[str, str] = {
     "upgrades.json": "Upgrade",
     "composition_lists.json": "CompositionList",
     "composition_slots.json": "CompositionSlot",
+    "terrains.json": "Terrain",
 }
 
 _REPORT_DIR = Path("data/graph")

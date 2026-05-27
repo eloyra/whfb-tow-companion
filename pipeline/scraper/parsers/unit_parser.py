@@ -45,6 +45,14 @@ _ARMY_CATEGORY_MAP: dict[str, str] = {
 }
 
 
+def _is_mount_profile(profile: dict) -> bool:
+    """Mount/sub-profiles have movement but no toughness or wounds."""
+    has_movement = profile.get("M") not in (None, "-", "")
+    no_toughness = profile.get("T") in (None, "-", "")
+    no_wounds = profile.get("W") in (None, "-", "")
+    return has_movement and no_toughness and no_wounds
+
+
 class UnitParser(BaseParser):
     """Parse a unit profile page (armyListEntry) into a ``Unit`` node."""
 
@@ -156,6 +164,15 @@ class UnitParser(BaseParser):
             result.edges.append(
                 self._make_edge(slug, profile_id, EdgeType.HAS_PROFILE, {"order": order})
             )
+            if _is_mount_profile(profile):
+                result.edges.append(
+                    self._make_edge(
+                        profile_id,
+                        slug,
+                        EdgeType.SPLIT_PROFILE_OF,
+                        {"profile_role": "mount"},
+                    )
+                )
 
         # BELONGS_TO edges
         for army_slug in army_slugs:

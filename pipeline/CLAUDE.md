@@ -88,19 +88,29 @@ Key rules:
 
 ## Current pipeline state
 
+*(Last updated: 2026-05-27)*
+
 | Stage | Status |
 |---|---|
 | Scrape | Done — dual-seed BFS, output in `data/raw/` |
-| Parse | Done — 4716 nodes, 12170 edges in `data/parsed/` |
-| Graph build | **Next** — `graph/builder.py` reads `data/parsed/` → Neo4j |
+| Parse | Done — nodes and edges in `data/parsed/`; see gaps below |
+| Graph build | Done — graph loaded into Neo4j; `load_report.json` in `data/graph/` |
 | Embeddings | Pending |
 | Translations | Pending |
 
 Known gaps (deferred, not bugs):
-- `Terrain` nodes — terrain pages parsed as `CoreRule` for now
-- `Upgrade` nodes — complex; deferred
-- `SPLIT_PROFILE_OF` edges for multi-profile units — not emitted
-- `CLARIFIES`/`AMENDS` edges — FAQ/errata resolved hyperlinks not available from parser
+- `SPLIT_PROFILE_OF` edges for multi-profile units — not emitted (Fix 2 in fix plan)
+- `HAS_COMPOSITION_RULE` edges from Army to its list page — not emitted (Fix 6 in fix plan)
+- Weapon `range` / `strength` / `ap` fields — still `null`; need HTML stat-table extraction (Fix 7)
+- Spell `casting_value` / `range` / `spell_type` — still parsed from prose; HTML pivot pending (Fix 7)
+- `Upgrade` nodes — present but champion `points_budget` and standard-bearer `magic_standard_budget`
+  not correctly captured (Fixes 3 + 4 in fix plan)
+- `TERRAIN_INTERACTION` edges from seed — enabled but unverified in live graph (Fix 5)
+
+Previously listed as gaps, now shipped:
+- ~~`Terrain` nodes~~ — 37 `:Terrain` nodes parsed and in graph (Fix 1 done)
+- ~~`CLARIFIES`/`AMENDS` edges~~ — 517 / 441 edges at 83–88% coverage
+- ~~`HAS_INTRINSIC_RULE` edges~~ — 80 edges in graph
 
 ---
 

@@ -46,6 +46,7 @@ _NODE_FILES: list[tuple[str, str]] = [
     ("magic_items.json", "MagicItem"),
     ("faqs.json", "FAQ"),
     ("errata.json", "Errata"),
+    ("terrains.json", "Terrain"),
 ]
 
 
@@ -131,7 +132,7 @@ class GraphBuilder:
         2. Units with magic_standard_budget → magic_standard items.
         3. Units with vampiric_powers_budget or rune_budget → army-specific ability items.
 
-        Edge properties: budget (int), via_upgrade (str).
+        Edge properties: budget (int|null), unlimited (bool), via_upgrade (str).
         """
         query_items = """
             MATCH (u:Unit)-[:HAS_UPGRADE]->(up:Upgrade)
@@ -145,17 +146,29 @@ class GraphBuilder:
               AND i.item_type <> 'magic_standard'
               AND i.item_type <> 'ability'
             MERGE (u)-[r:CAN_TAKE_ITEM]->(i)
-            ON CREATE SET r.budget = up.points_budget, r.via_upgrade = up.id
+            ON CREATE SET r.budget = up.points_budget,
+                          r.unlimited = (up.upgrade_type = 'command_bsb'
+                                         AND up.bsb_unlimited_magic_standard = true),
+                          r.via_upgrade = up.id
         """
         query_standards = """
-            MATCH (u:Unit)-[:HAS_UPGRADE]->(up:Upgrade {upgrade_type: 'magic_standard_budget'})
+            MATCH (u:Unit)-[:HAS_UPGRADE]->(up:Upgrade)
+            WHERE (up.upgrade_type = 'magic_standard_budget'
+                   AND up.points_budget IS NOT NULL)
+               OR (up.upgrade_type = 'command_standard'
+                   AND up.magic_standard_budget IS NOT NULL)
+               OR (up.upgrade_type = 'command_bsb'
+                   AND up.bsb_unlimited_magic_standard = true)
             MATCH (u)-[:BELONGS_TO]->(a:Army)
             MATCH (i:MagicItem {item_type: 'magic_standard'})
             WHERE (i.army_id IS NULL
                    OR i.army_id IN ['ravening-hordes', 'forces-of-fantasy']
                    OR i.army_id = a.id)
             MERGE (u)-[r:CAN_TAKE_ITEM]->(i)
-            ON CREATE SET r.budget = up.points_budget, r.via_upgrade = up.id
+            ON CREATE SET r.budget = COALESCE(up.points_budget, up.magic_standard_budget),
+                          r.unlimited = (up.upgrade_type = 'command_bsb'
+                                         AND up.bsb_unlimited_magic_standard = true),
+                          r.via_upgrade = up.id
         """
         query_abilities = """
             MATCH (u:Unit)-[:HAS_UPGRADE]->(up:Upgrade)
@@ -164,7 +177,9 @@ class GraphBuilder:
             MATCH (i:MagicItem {item_type: 'ability'})
             WHERE i.army_id = a.id
             MERGE (u)-[r:CAN_TAKE_ITEM]->(i)
-            ON CREATE SET r.budget = up.points_budget, r.via_upgrade = up.id
+            ON CREATE SET r.budget = up.points_budget,
+                          r.unlimited = false,
+                          r.via_upgrade = up.id
         """
         with driver.session() as session:
             session.run(query_items)

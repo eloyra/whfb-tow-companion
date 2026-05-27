@@ -48,6 +48,7 @@ from pipeline.scraper.parsers.faq_parser import FAQParser
 from pipeline.scraper.parsers.magic_item_parser import MagicItemParser
 from pipeline.scraper.parsers.rule_parser import RuleParser
 from pipeline.scraper.parsers.spell_parser import SpellParser
+from pipeline.scraper.parsers.terrain_parser import TerrainParser
 from pipeline.scraper.parsers.unit_parser import UnitParser
 from pipeline.scraper.parsers.weapon_parser import WeaponParser
 
@@ -76,6 +77,7 @@ _PARSERS: dict[str, BaseParser] = {
     "weapon": WeaponParser(),
     "faq": FAQParser(),
     "errata": ErrataParser(),
+    "terrain": TerrainParser(),
 }
 
 # ---------------------------------------------------------------------------
@@ -99,6 +101,7 @@ _NODE_TYPE_TO_FILE: dict[str, str] = {
     "upgrade": "upgrades.json",
     "composition_list": "composition_lists.json",
     "composition_slot": "composition_slots.json",
+    "terrain": "terrains.json",
 }
 
 _RAW_DIR = Path("data/raw")

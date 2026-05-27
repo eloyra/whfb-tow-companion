@@ -27,7 +27,9 @@ from pipeline.constants import EdgeType, NodeType
 # ---------------------------------------------------------------------------
 
 _COST_RE = re.compile(r"\(\s*\+(\d+)\s*point[s]?(?:\s+per\s+(model|unit))?\s*\)", re.IGNORECASE)
-_BUDGET_RE = re.compile(r"up\s+to\s+(?:a\s+total\s+of\s+)?(\d+)\s+points", re.IGNORECASE)
+_BUDGET_RE = re.compile(
+    r"up\s+to\s+(?:a\s+total\s+of\s+)?(\d+)\s+(?:points?|pts)", re.IGNORECASE
+)
 _MAGIC_STANDARD_BUDGET_RE = re.compile(
     r"(?:magic\s+standard|standard)\s+(?:worth\s+)?up\s+to", re.IGNORECASE
 )
@@ -176,7 +178,77 @@ def _classify_and_emit(
     upgrade_id = f"{unit_slug}#upgrade-{order}"
     linked_slugs = [slug for slug, _ in links]
 
-    # --- Budget (highest priority) ---
+    # --- Standard bearer ---
+    if _STANDARD_RE.search(text):
+        pts, cu = _cost_and_unit(text)
+        magic_standard_match = _BUDGET_RE.search(text)
+        magic_standard_budget = int(magic_standard_match.group(1)) if (
+            magic_standard_match and _MAGIC_STANDARD_BUDGET_RE.search(text)
+        ) else None
+        node = _make_upgrade_node(
+            upgrade_id,
+            unit_slug,
+            text,
+            "Standard Bearer",
+            "command_standard",
+            source_citation,
+            points_cost=pts,
+            cost_unit=cu or "per_unit",
+            magic_standard_budget=magic_standard_budget,
+            mutex_group=mutex_group,
+            applies_to_profile=applies_to_profile,
+            availability_constraint=availability_constraint,
+            order=order,
+        )
+        edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=False)
+        return node, edgs
+
+    # --- Musician ---
+    if _MUSICIAN_RE.search(text):
+        pts, cu = _cost_and_unit(text)
+        node = _make_upgrade_node(
+            upgrade_id,
+            unit_slug,
+            text,
+            "Musician",
+            "command_musician",
+            source_citation,
+            points_cost=pts,
+            cost_unit=cu or "per_unit",
+            mutex_group=mutex_group,
+            applies_to_profile=applies_to_profile,
+            availability_constraint=availability_constraint,
+            order=order,
+        )
+        edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=False)
+        return node, edgs
+
+    # --- Champion ---
+    m_champ = _CHAMPION_RE.search(text)
+    if m_champ:
+        champ_name = m_champ.group(1).strip().title()
+        pts, cu = _cost_and_unit(text)
+        budget_match = _BUDGET_RE.search(text)
+        points_budget = int(budget_match.group(1)) if budget_match else None
+        node = _make_upgrade_node(
+            upgrade_id,
+            unit_slug,
+            text,
+            f"Champion ({champ_name})",
+            "command_champion",
+            source_citation,
+            points_cost=pts,
+            cost_unit=cu or "per_unit",
+            points_budget=points_budget,
+            mutex_group=mutex_group,
+            applies_to_profile=applies_to_profile,
+            availability_constraint=availability_constraint,
+            order=order,
+        )
+        edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=False)
+        return node, edgs
+
+    # --- Budget ---
     m_budget = _BUDGET_RE.search(text)
     if m_budget:
         budget = int(m_budget.group(1))
@@ -213,68 +285,6 @@ def _classify_and_emit(
             source_citation,
             points_cost=pts,
             cost_unit=cu or "flat",
-            mutex_group=mutex_group,
-            applies_to_profile=applies_to_profile,
-            availability_constraint=availability_constraint,
-            order=order,
-        )
-        edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=False)
-        return node, edgs
-
-    # --- Standard bearer ---
-    if _STANDARD_RE.search(text):
-        pts, cu = _cost_and_unit(text)
-        node = _make_upgrade_node(
-            upgrade_id,
-            unit_slug,
-            text,
-            "Standard Bearer",
-            "command_standard",
-            source_citation,
-            points_cost=pts,
-            cost_unit=cu or "per_unit",
-            mutex_group=mutex_group,
-            applies_to_profile=applies_to_profile,
-            availability_constraint=availability_constraint,
-            order=order,
-        )
-        edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=False)
-        return node, edgs
-
-    # --- Musician ---
-    if _MUSICIAN_RE.search(text):
-        pts, cu = _cost_and_unit(text)
-        node = _make_upgrade_node(
-            upgrade_id,
-            unit_slug,
-            text,
-            "Musician",
-            "command_musician",
-            source_citation,
-            points_cost=pts,
-            cost_unit=cu or "per_unit",
-            mutex_group=mutex_group,
-            applies_to_profile=applies_to_profile,
-            availability_constraint=availability_constraint,
-            order=order,
-        )
-        edgs = _make_edges(unit_slug, upgrade_id, links, is_replace=False)
-        return node, edgs
-
-    # --- Champion ---
-    m_champ = _CHAMPION_RE.search(text)
-    if m_champ:
-        champ_name = m_champ.group(1).strip().title()
-        pts, cu = _cost_and_unit(text)
-        node = _make_upgrade_node(
-            upgrade_id,
-            unit_slug,
-            text,
-            f"Champion ({champ_name})",
-            "command_champion",
-            source_citation,
-            points_cost=pts,
-            cost_unit=cu or "per_unit",
             mutex_group=mutex_group,
             applies_to_profile=applies_to_profile,
             availability_constraint=availability_constraint,
@@ -386,6 +396,7 @@ def _make_upgrade_node(
     points_cost: int | None = None,
     cost_unit: str | None = None,
     points_budget: int | None = None,
+    magic_standard_budget: int | None = None,
     replaces_weapon_id: str | None = None,
     mutex_group: str | None = None,
     applies_to_profile: str | None = None,
@@ -402,6 +413,7 @@ def _make_upgrade_node(
         "points_cost": points_cost,
         "cost_unit": cost_unit,
         "points_budget": points_budget,
+        "magic_standard_budget": magic_standard_budget,
         "mutex_group": mutex_group,
         "applies_to_profile": applies_to_profile,
         "availability_constraint": availability_constraint,

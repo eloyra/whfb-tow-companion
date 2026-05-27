@@ -3846,234 +3846,6 @@
     "properties": {}
   },
   {
-    "src": "the-size-of-things",
-    "dst": "battlefield-decoration",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "placing-terrain-battlefield-terrain",
-    "dst": "pitched-battles",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "placing-terrain-battlefield-terrain",
-    "dst": "special-features-battlefield-terrain",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "impassable-terrain",
-    "dst": "disordered-charges",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "low-and-high-linear-obstacles",
-    "dst": "low-linear-obstacles",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "low-and-high-linear-obstacles",
-    "dst": "high-linear-obstacles",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "low-linear-obstacles",
-    "dst": "difficult-terrain",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "low-linear-obstacles",
-    "dst": "disrupted-units",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "low-linear-obstacles",
-    "dst": "rank-bonus",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "defended-low-linear-obstacles",
-    "dst": "low-linear-obstacles",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "defended-low-linear-obstacles",
-    "dst": "fly",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "defended-low-linear-obstacles",
-    "dst": "disordered-charges",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "high-linear-obstacles",
-    "dst": "impassable-terrain-movement",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "woods",
-    "dst": "difficult-terrain",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "woods",
-    "dst": "dangerous-terrain",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "woods",
-    "dst": "impassable-terrain",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "arcane-monolith",
-    "dst": "proximity",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "monument-of-glory",
-    "dst": "proximity",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "dark-ruins",
-    "dst": "infantry",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "dark-ruins",
-    "dst": "unit-strength",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "dark-ruins",
-    "dst": "fear",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "dark-ruins",
-    "dst": "terror",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "dark-ruins",
-    "dst": "templates",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "tower",
-    "dst": "infantry",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "tower",
-    "dst": "unit-strength",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "tower",
-    "dst": "fly",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "tower",
-    "dst": "templates",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "random-terrain-generator",
-    "dst": "linear-terrain-features",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "random-terrain-generator",
-    "dst": "buildings",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "wasteland-terrain-generator",
-    "dst": "difficult-terrain",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "wasteland-terrain-generator",
-    "dst": "dangerous-terrain",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "wasteland-terrain-generator",
-    "dst": "low-linear-obstacles",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "shadowlands-terrain-generator",
-    "dst": "linear-terrain-features",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "shadowlands-terrain-generator",
-    "dst": "dangerous-terrain",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "shadowlands-terrain-generator",
-    "dst": "difficult-terrain",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "shadowlands-terrain-generator",
-    "dst": "low-linear-obstacles",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "shadowlands-terrain-generator",
-    "dst": "impassable-terrain",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
-    "src": "scattered-terrain-placement",
-    "dst": "placing-terrain-warhammer-battles",
-    "relation": "REFERENCES",
-    "properties": {}
-  },
-  {
     "src": "minimum-three-units",
     "dst": "swarms",
     "relation": "REFERENCES",
@@ -32331,6 +32103,14 @@
     }
   },
   {
+    "src": "abyssal-terror#abyssal-terror",
+    "dst": "abyssal-terror",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "abyssal-terror",
     "dst": "monstrous-creatures",
     "relation": "HAS_TYPE",
@@ -33907,6 +33687,14 @@
     }
   },
   {
+    "src": "bale-taurus#bale-taurus",
+    "dst": "bale-taurus",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "bale-taurus",
     "dst": "behemoths",
     "relation": "HAS_TYPE",
@@ -33987,6 +33775,14 @@
     }
   },
   {
+    "src": "barded-elven-steed#barded-elven-steed",
+    "dst": "barded-elven-steed",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "barded-elven-steed",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -34034,6 +33830,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "barded-pegasus#barded-pegasus",
+    "dst": "barded-pegasus",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -34087,6 +33891,14 @@
     }
   },
   {
+    "src": "barded-skeletal-steed#barded-skeletal-steed",
+    "dst": "barded-skeletal-steed",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "barded-skeletal-steed",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -34128,6 +33940,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "barded-warhorse#barded-warhorse",
+    "dst": "barded-warhorse",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -35377,6 +35197,14 @@
     }
   },
   {
+    "src": "black-coach#nightmares-x2",
+    "dst": "black-coach",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "black-coach",
     "dst": "heavy-chariots",
     "relation": "HAS_TYPE",
@@ -35454,6 +35282,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "black-dragon#black-dragon",
+    "dst": "black-dragon",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -35680,6 +35516,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "black-knights#skeletal-steed",
+    "dst": "black-knights",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -36042,6 +35886,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "black-orc-boar-chariot#war-boars-x2",
+    "dst": "black-orc-boar-chariot",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -36591,6 +36443,14 @@
     }
   },
   {
+    "src": "blood-knights#nightmare",
+    "dst": "blood-knights",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "blood-knights",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -36880,6 +36740,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "bloodcrushers-of-khorne#juggernaut-of-khorne",
+    "dst": "bloodcrushers-of-khorne",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -38369,6 +38237,14 @@
     }
   },
   {
+    "src": "bretonnian-warhorse#bretonnian-warhorse",
+    "dst": "bretonnian-warhorse",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "bretonnian-warhorse",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -39317,6 +39193,14 @@
     }
   },
   {
+    "src": "burning-chariot-of-tzeentch#screamer-x2",
+    "dst": "burning-chariot-of-tzeentch",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "burning-chariot-of-tzeentch",
     "dst": "heavy-chariots",
     "relation": "HAS_TYPE",
@@ -40025,6 +39909,14 @@
     }
   },
   {
+    "src": "carnosaur#carnosaur",
+    "dst": "carnosaur",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "carnosaur",
     "dst": "behemoths",
     "relation": "HAS_TYPE",
@@ -40313,6 +40205,14 @@
     }
   },
   {
+    "src": "cathayan-horse#cathayan-horse",
+    "dst": "cathayan-horse",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "cathayan-horse",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -40518,6 +40418,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "cathayan-warhorse#cathayan-warhorse",
+    "dst": "cathayan-warhorse",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -41007,6 +40915,14 @@
     }
   },
   {
+    "src": "chaos-chariot#chaos-steed-x2",
+    "dst": "chaos-chariot",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "chaos-chariot",
     "dst": "heavy-chariots",
     "relation": "HAS_TYPE",
@@ -41132,6 +41048,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "chaos-dragon#chaos-dragon",
+    "dst": "chaos-dragon",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -41478,6 +41402,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "chaos-knights#chaos-steed",
+    "dst": "chaos-knights",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -42683,6 +42615,14 @@
     }
   },
   {
+    "src": "chaos-steed#chaos-steed",
+    "dst": "chaos-steed",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "chaos-steed",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -43521,6 +43461,14 @@
     }
   },
   {
+    "src": "chariot-of-tzeentch#screamer-x2",
+    "dst": "chariot-of-tzeentch",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "chariot-of-tzeentch",
     "dst": "heavy-chariots",
     "relation": "HAS_TYPE",
@@ -43590,6 +43538,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "chieftains-chariot#chracian-lion-x2",
+    "dst": "chieftains-chariot",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -43811,6 +43767,14 @@
     }
   },
   {
+    "src": "chosen-chaos-chariot#chaos-steed-x2",
+    "dst": "chosen-chaos-chariot",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "chosen-chaos-chariot",
     "dst": "heavy-chariots",
     "relation": "HAS_TYPE",
@@ -43958,6 +43922,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "chosen-chaos-knights#chaos-steed",
+    "dst": "chosen-chaos-knights",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -45045,6 +45017,14 @@
     }
   },
   {
+    "src": "cold-one-chariot#cold-one-x2",
+    "dst": "cold-one-chariot",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "cold-one-chariot",
     "dst": "heavy-chariots",
     "relation": "HAS_TYPE",
@@ -45125,6 +45105,14 @@
     }
   },
   {
+    "src": "cold-one-dark-elves#cold-one",
+    "dst": "cold-one-dark-elves",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "cold-one-dark-elves",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -45194,6 +45182,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "cold-one-knights#cold-one",
+    "dst": "cold-one-knights",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -45349,6 +45345,14 @@
     }
   },
   {
+    "src": "cold-one-lizardmen#cold-one",
+    "dst": "cold-one-lizardmen",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "cold-one-lizardmen",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -45412,6 +45416,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "cold-one-riders#cold-one",
+    "dst": "cold-one-riders",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -45687,6 +45699,14 @@
     }
   },
   {
+    "src": "corpse-cart#the-restless-dead",
+    "dst": "corpse-cart",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "corpse-cart",
     "dst": "heavy-chariots",
     "relation": "HAS_TYPE",
@@ -45852,6 +45872,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "coven-throne#spirit-horde",
+    "dst": "coven-throne",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -47525,6 +47553,14 @@
     }
   },
   {
+    "src": "daemonic-mount#daemonic-mount",
+    "dst": "daemonic-mount",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "daemonic-mount",
     "dst": "monstrous-cavalry",
     "relation": "HAS_TYPE",
@@ -48881,6 +48917,14 @@
     }
   },
   {
+    "src": "dark-pegasus#dark-pegasus",
+    "dst": "dark-pegasus",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "dark-pegasus",
     "dst": "monstrous-cavalry",
     "relation": "HAS_TYPE",
@@ -48944,6 +48988,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "dark-riders#dark-steed",
+    "dst": "dark-riders",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -49102,6 +49154,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "dark-steed#dark-steed",
+    "dst": "dark-steed",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -49611,6 +49671,14 @@
     }
   },
   {
+    "src": "demigryph#demigryph",
+    "dst": "demigryph",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "demigryph",
     "dst": "monstrous-cavalry",
     "relation": "HAS_TYPE",
@@ -49674,6 +49742,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "demigryph-knights#demigryph",
+    "dst": "demigryph-knights",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -49920,6 +49996,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "disc-of-tzeentch#disc-of-tzeentch",
+    "dst": "disc-of-tzeentch",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -50235,6 +50319,14 @@
     }
   },
   {
+    "src": "doomfire-warlocks#dark-steed",
+    "dst": "doomfire-warlocks",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "doomfire-warlocks",
     "dst": "light-cavalry",
     "relation": "HAS_TYPE",
@@ -50532,6 +50624,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 1
+    }
+  },
+  {
+    "src": "dragon-mage#sun-dragon",
+    "dst": "dragon-mage",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -51048,6 +51148,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "dragon-princes#barded-elven-steed",
+    "dst": "dragon-princes",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -51761,6 +51869,14 @@
     }
   },
   {
+    "src": "dwarf-cart#draft-pony",
+    "dst": "dwarf-cart",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "dwarf-cart",
     "dst": "light-chariots",
     "relation": "HAS_TYPE",
@@ -52060,6 +52176,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "ellyrian-reavers#elven-steed",
+    "dst": "ellyrian-reavers",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -52490,6 +52614,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "elven-steed#elven-steed",
+    "dst": "elven-steed",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -52935,6 +53067,14 @@
     }
   },
   {
+    "src": "empire-knights#barded-warhorse",
+    "dst": "empire-knights",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "empire-knights",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -53130,6 +53270,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "empire-road-wardens#warhorse",
+    "dst": "empire-road-wardens",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -53497,6 +53645,14 @@
     }
   },
   {
+    "src": "empire-war-wagon#barded-warhorse-x2",
+    "dst": "empire-war-wagon",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "empire-war-wagon",
     "dst": "heavy-chariots",
     "relation": "HAS_TYPE",
@@ -53556,6 +53712,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "empire-warhorse#empire-warhorse",
+    "dst": "empire-warhorse",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -54430,6 +54594,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "exalted-seeker-chariot-of-slaanesh#steed-of-slaanesh-x4",
+    "dst": "exalted-seeker-chariot-of-slaanesh",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -55465,6 +55637,14 @@
     }
   },
   {
+    "src": "flamespyre-phoenix-mount#flamespyre-phoenix-mount",
+    "dst": "flamespyre-phoenix-mount",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "flamespyre-phoenix-mount",
     "dst": "monstrous-creatures",
     "relation": "HAS_TYPE",
@@ -55696,6 +55876,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "forest-dragon#forest-dragons",
+    "dst": "forest-dragon",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -56023,11 +56211,27 @@
     }
   },
   {
+    "src": "freeblade-knights#warhorse",
+    "dst": "freeblade-knights",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "freeblade-knights",
     "dst": "freeblade-knights#barded-warhorse",
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 3
+    }
+  },
+  {
+    "src": "freeblade-knights#barded-warhorse",
+    "dst": "freeblade-knights",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -56230,6 +56434,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "frostheart-phoenix-mount#frostheart-phoenix-mount",
+    "dst": "frostheart-phoenix-mount",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -57541,6 +57753,14 @@
     }
   },
   {
+    "src": "giant-wolf#giant-wolf",
+    "dst": "giant-wolf",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "giant-wolf",
     "dst": "light-cavalry",
     "relation": "HAS_TYPE",
@@ -57758,6 +57978,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "gigantic-spider#gigantic-spider",
+    "dst": "gigantic-spider",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -58693,6 +58921,14 @@
     }
   },
   {
+    "src": "glade-riders#elven-steed",
+    "dst": "glade-riders",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "glade-riders",
     "dst": "light-cavalry",
     "relation": "HAS_TYPE",
@@ -59006,6 +59242,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "gnoblar-scraplauncher#rhinox-x1",
+    "dst": "gnoblar-scraplauncher",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -59941,6 +60185,14 @@
     }
   },
   {
+    "src": "goblin-spider-rider-mob#giant-spider",
+    "dst": "goblin-spider-rider-mob",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "goblin-spider-rider-mob",
     "dst": "light-cavalry",
     "relation": "HAS_TYPE",
@@ -60303,6 +60555,14 @@
     }
   },
   {
+    "src": "goblin-wolf-chariot#giant-wolves-x2",
+    "dst": "goblin-wolf-chariot",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "goblin-wolf-chariot",
     "dst": "light-chariots",
     "relation": "HAS_TYPE",
@@ -60396,6 +60656,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "goblin-wolf-rider-mob#giant-wolf",
+    "dst": "goblin-wolf-rider-mob",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -60766,6 +61034,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "gorebeast-chariot#gorebeast-x1",
+    "dst": "gorebeast-chariot",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -61232,6 +61508,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "grail-knights#bretonnian-warhorse",
+    "dst": "grail-knights",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -62025,6 +62309,14 @@
     }
   },
   {
+    "src": "great-eagle-mount#great-eagle-mount",
+    "dst": "great-eagle-mount",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "great-eagle-mount",
     "dst": "monstrous-creatures",
     "relation": "HAS_TYPE",
@@ -62078,6 +62370,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "great-stag#great-stag",
+    "dst": "great-stag",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -62146,6 +62446,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "great-taurus#great-taurus",
+    "dst": "great-taurus",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -62419,6 +62727,14 @@
     }
   },
   {
+    "src": "the-green-knight#the-shadow-steed",
+    "dst": "the-green-knight",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "the-green-knight",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -62657,6 +62973,14 @@
     }
   },
   {
+    "src": "griffon-empire#griffon",
+    "dst": "griffon-empire",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "griffon-empire",
     "dst": "monstrous-creatures",
     "relation": "HAS_TYPE",
@@ -62722,6 +63046,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "griffon-high-elves#griffon",
+    "dst": "griffon-high-elves",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -63847,6 +64179,14 @@
     }
   },
   {
+    "src": "harald-gemunsen#barded-warhorse",
+    "dst": "harald-gemunsen",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "harald-gemunsen",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -64263,6 +64603,14 @@
     }
   },
   {
+    "src": "hellcannon#chaos-dwarf-handlers-x3",
+    "dst": "hellcannon",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "hellcannon",
     "dst": "behemoths",
     "relation": "HAS_TYPE",
@@ -64382,6 +64730,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 3
+    }
+  },
+  {
+    "src": "hellflayer-of-slaanesh#steed-of-slaanesh-x2",
+    "dst": "hellflayer-of-slaanesh",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -64532,6 +64888,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "hexwraiths#spectral-steed",
+    "dst": "hexwraiths",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -65161,6 +65525,14 @@
     }
   },
   {
+    "src": "hippogryph#hippogryph",
+    "dst": "hippogryph",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "hippogryph",
     "dst": "monstrous-creatures",
     "relation": "HAS_TYPE",
@@ -65266,6 +65638,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "hireling-outriders#warhorse",
+    "dst": "hireling-outriders",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -65909,6 +66289,14 @@
     }
   },
   {
+    "src": "hobgoblin-wolf-riders#giant-wolf",
+    "dst": "hobgoblin-wolf-riders",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "hobgoblin-wolf-riders",
     "dst": "light-cavalry",
     "relation": "HAS_TYPE",
@@ -66538,6 +66926,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "imperial-griffon#imperial-griffon",
+    "dst": "imperial-griffon",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -67661,6 +68057,14 @@
     }
   },
   {
+    "src": "inner-circle-knights#barded-warhorse",
+    "dst": "inner-circle-knights",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "inner-circle-knights",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -68082,6 +68486,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 3
+    }
+  },
+  {
+    "src": "ironblaster#rhinox-x1",
+    "dst": "ironblaster",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -68863,6 +69275,14 @@
     }
   },
   {
+    "src": "jade-lancers#cathayan-warhorse",
+    "dst": "jade-lancers",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "jade-lancers",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -69190,6 +69610,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "juggernaut-of-khorne#juggernaut-of-khorne",
+    "dst": "juggernaut-of-khorne",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -69717,6 +70145,14 @@
     }
   },
   {
+    "src": "kharibdyss#beastmaster-handlers-x2",
+    "dst": "kharibdyss",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "kharibdyss",
     "dst": "behemoths",
     "relation": "HAS_TYPE",
@@ -69956,6 +70392,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 1
+    }
+  },
+  {
+    "src": "kiknik-toofsnatcha#chompa",
+    "dst": "kiknik-toofsnatcha",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -70306,6 +70750,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "knights-errant#bretonnian-warhorse",
+    "dst": "knights-errant",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -70805,6 +71257,14 @@
     }
   },
   {
+    "src": "lady-elisse-duchaard#ariandir",
+    "dst": "lady-elisse-duchaard",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "lady-elisse-duchaard",
     "dst": "monstrous-cavalry",
     "relation": "HAS_TYPE",
@@ -70918,6 +71378,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "lammasu#lammasu",
+    "dst": "lammasu",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -71332,6 +71800,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "lion-chariot-of-chrace#war-lion-x2",
+    "dst": "lion-chariot-of-chrace",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -72122,6 +72598,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "lothern-skycutter#swiftfeather-roc-x1",
+    "dst": "lothern-skycutter",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -72979,6 +73463,14 @@
     }
   },
   {
+    "src": "manticore-dark-elves#manticore",
+    "dst": "manticore-dark-elves",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "manticore-dark-elves",
     "dst": "monstrous-creatures",
     "relation": "HAS_TYPE",
@@ -73062,6 +73554,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "manticore-warriors-of-chaos#manticore",
+    "dst": "manticore-warriors-of-chaos",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -73164,6 +73664,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "marauder-horsemen#warhorse",
+    "dst": "marauder-horsemen",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -73926,6 +74434,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "marauder-tribe-huscarls#warhorse",
+    "dst": "marauder-tribe-huscarls",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -75465,6 +75981,14 @@
     }
   },
   {
+    "src": "moon-dragon#moon-dragon",
+    "dst": "moon-dragon",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "moon-dragon",
     "dst": "behemoths",
     "relation": "HAS_TYPE",
@@ -75604,6 +76128,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "mortis-engine#spirit-horde",
+    "dst": "mortis-engine",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -75861,6 +76393,14 @@
     }
   },
   {
+    "src": "mounted-knights-of-the-realm#bretonnian-warhorse",
+    "dst": "mounted-knights-of-the-realm",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "mounted-knights-of-the-realm",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -75996,6 +76536,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "mounted-yeomen#warhorse",
+    "dst": "mounted-yeomen",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -76164,6 +76712,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "mournfang-cavalry#mournfang",
+    "dst": "mournfang-cavalry",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -76402,6 +76958,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "necrolith-bone-dragon#necrolith-bone-dragon",
+    "dst": "necrolith-bone-dragon",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -76712,6 +77276,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "necropolis-knights#necroserpent",
+    "dst": "necropolis-knights",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -78188,6 +78760,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "nightmare#nightmare",
+    "dst": "nightmare",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -79757,6 +80337,14 @@
     }
   },
   {
+    "src": "orc-boar-boy-mob#war-boar",
+    "dst": "orc-boar-boy-mob",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "orc-boar-boy-mob",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -80018,6 +80606,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "orc-boar-chariot#war-boars-x2",
+    "dst": "orc-boar-chariot",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -81271,6 +81867,14 @@
     }
   },
   {
+    "src": "outriders#empire-warhorse",
+    "dst": "outriders",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "outriders",
     "dst": "light-cavalry",
     "relation": "HAS_TYPE",
@@ -81715,6 +82319,14 @@
     }
   },
   {
+    "src": "palanquin-of-nurgle#palanquin-of-nurgle",
+    "dst": "palanquin-of-nurgle",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "palanquin-of-nurgle",
     "dst": "monstrous-cavalry",
     "relation": "HAS_TYPE",
@@ -82031,6 +82643,14 @@
     }
   },
   {
+    "src": "pegasus#pegasus",
+    "dst": "pegasus",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "pegasus",
     "dst": "monstrous-cavalry",
     "relation": "HAS_TYPE",
@@ -82088,6 +82708,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "pegasus-knights#barded-pegasus",
+    "dst": "pegasus-knights",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -82453,6 +83081,14 @@
     }
   },
   {
+    "src": "pistoliers#empire-warhorse",
+    "dst": "pistoliers",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "pistoliers",
     "dst": "light-cavalry",
     "relation": "HAS_TYPE",
@@ -82668,6 +83304,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "plague-drones-of-nurgle#rot-fly",
+    "dst": "plague-drones-of-nurgle",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -85223,6 +85867,14 @@
     }
   },
   {
+    "src": "questing-knights#bretonnian-warhorse",
+    "dst": "questing-knights",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "questing-knights",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -85828,6 +86480,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 3
+    }
+  },
+  {
+    "src": "razorgor-chariot#razorgor-x1",
+    "dst": "razorgor-chariot",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -86759,6 +87419,14 @@
     }
   },
   {
+    "src": "ripperdactyl#ripperdactyl",
+    "dst": "ripperdactyl",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "ripperdactyl",
     "dst": "monstrous-cavalry",
     "relation": "HAS_TYPE",
@@ -86840,6 +87508,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "ripperdactyl-riders#ripperdactyl",
+    "dst": "ripperdactyl-riders",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -87486,6 +88162,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "royal-pegasus#royal-pegasus",
+    "dst": "royal-pegasus",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -88593,6 +89277,14 @@
     }
   },
   {
+    "src": "scourgerunner-chariot#dark-steed-x2",
+    "dst": "scourgerunner-chariot",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "scourgerunner-chariot",
     "dst": "light-chariots",
     "relation": "HAS_TYPE",
@@ -89225,6 +89917,14 @@
     }
   },
   {
+    "src": "seeker-chariot-of-slaanesh#steed-of-slaanesh-x2",
+    "dst": "seeker-chariot-of-slaanesh",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "seeker-chariot-of-slaanesh",
     "dst": "light-chariots",
     "relation": "HAS_TYPE",
@@ -89318,6 +90018,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "seekers-of-slaanesh#steed-of-slaanesh",
+    "dst": "seekers-of-slaanesh",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -89911,6 +90619,14 @@
     }
   },
   {
+    "src": "settra-the-imperishable#skeletal-steed-x4",
+    "dst": "settra-the-imperishable",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "settra-the-imperishable",
     "dst": "heavy-chariots",
     "relation": "HAS_TYPE",
@@ -90327,6 +91043,14 @@
     }
   },
   {
+    "src": "shieldbearers#shieldbearers",
+    "dst": "shieldbearers",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "shieldbearers",
     "dst": "heavy-infantry",
     "relation": "HAS_TYPE",
@@ -90589,6 +91313,14 @@
     }
   },
   {
+    "src": "shugengan-general#great-spirit-longma",
+    "dst": "shugengan-general",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "shugengan-general",
     "dst": "monstrous-creatures",
     "relation": "HAS_TYPE",
@@ -90842,6 +91574,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 1
+    }
+  },
+  {
+    "src": "shugengan-lord#great-spirit-longma",
+    "dst": "shugengan-lord",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -91112,6 +91852,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "silver-helms#barded-elven-steed",
+    "dst": "silver-helms",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -91551,6 +92299,14 @@
     }
   },
   {
+    "src": "sisters-of-the-thorn#steed-of-isha",
+    "dst": "sisters-of-the-thorn",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "sisters-of-the-thorn",
     "dst": "light-cavalry",
     "relation": "HAS_TYPE",
@@ -91977,6 +92733,14 @@
     }
   },
   {
+    "src": "skeletal-steed-tomb-kings#skeletal-steed",
+    "dst": "skeletal-steed-tomb-kings",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "skeletal-steed-tomb-kings",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -92012,6 +92776,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "skeletal-steed-vampire-counts#skeletal-steed",
+    "dst": "skeletal-steed-vampire-counts",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -92183,6 +92955,14 @@
     }
   },
   {
+    "src": "skeleton-cavalry-cohort#skeletal-steed",
+    "dst": "skeleton-cavalry-cohort",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "skeleton-cavalry-cohort",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -92337,6 +93117,14 @@
     }
   },
   {
+    "src": "skeleton-chariot#skeletal-steed-x2",
+    "dst": "skeleton-chariot",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "skeleton-chariot",
     "dst": "light-chariots",
     "relation": "HAS_TYPE",
@@ -92414,6 +93202,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 3
+    }
+  },
+  {
+    "src": "skeleton-chariots#skeletal-steed-x2",
+    "dst": "skeleton-chariots",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -92546,6 +93342,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "skeleton-horse-archers#skeletal-steed",
+    "dst": "skeleton-horse-archers",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -92690,6 +93494,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "skeleton-horsemen#skeletal-steed",
+    "dst": "skeleton-horsemen",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -96093,6 +96905,14 @@
     }
   },
   {
+    "src": "star-dragon#star-dragon",
+    "dst": "star-dragon",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "star-dragon",
     "dst": "behemoths",
     "relation": "HAS_TYPE",
@@ -96487,6 +97307,14 @@
     }
   },
   {
+    "src": "steed-of-slaanesh#steed-of-slaanesh",
+    "dst": "steed-of-slaanesh",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "steed-of-slaanesh",
     "dst": "light-cavalry",
     "relation": "HAS_TYPE",
@@ -96804,6 +97632,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "stonehorn#stonehorn",
+    "dst": "stonehorn",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -97503,6 +98339,14 @@
     }
   },
   {
+    "src": "sun-dragon#sun-dragon",
+    "dst": "sun-dragon",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "sun-dragon",
     "dst": "behemoths",
     "relation": "HAS_TYPE",
@@ -98173,6 +99017,14 @@
     }
   },
   {
+    "src": "terradon#terradon",
+    "dst": "terradon",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "terradon",
     "dst": "monstrous-cavalry",
     "relation": "HAS_TYPE",
@@ -98236,6 +99088,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "terradon-riders#terradon",
+    "dst": "terradon-riders",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -98438,6 +99298,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "terrorgheist-mount#terrorgheist-mount",
+    "dst": "terrorgheist-mount",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -99109,6 +99977,14 @@
     }
   },
   {
+    "src": "thundertusk#thundertusk",
+    "dst": "thundertusk",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "thundertusk",
     "dst": "behemoths",
     "relation": "HAS_TYPE",
@@ -99364,6 +100240,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "tiranoc-chariot#elven-steed-x2",
+    "dst": "tiranoc-chariot",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -99672,6 +100556,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 3
+    }
+  },
+  {
+    "src": "tomb-guard-chariots#skeletal-steed-x2",
+    "dst": "tomb-guard-chariots",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -101157,6 +102049,14 @@
     }
   },
   {
+    "src": "tuskgor-chariot#tuskgor-x2",
+    "dst": "tuskgor-chariot",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "tuskgor-chariot",
     "dst": "heavy-chariots",
     "relation": "HAS_TYPE",
@@ -101808,6 +102708,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "unicorn#unicorn",
+    "dst": "unicorn",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -102771,11 +103679,27 @@
     }
   },
   {
+    "src": "veteran-freeblades#warhorse",
+    "dst": "veteran-freeblades",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "veteran-freeblades",
     "dst": "veteran-freeblades#barded-warhorse",
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 3
+    }
+  },
+  {
+    "src": "veteran-freeblades#barded-warhorse",
+    "dst": "veteran-freeblades",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -103409,6 +104333,14 @@
     }
   },
   {
+    "src": "war-altar-of-sigmar#barded-warhorse-x2",
+    "dst": "war-altar-of-sigmar",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "war-altar-of-sigmar",
     "dst": "heavy-chariots",
     "relation": "HAS_TYPE",
@@ -103489,6 +104421,14 @@
     }
   },
   {
+    "src": "war-boar#war-boar",
+    "dst": "war-boar",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "war-boar",
     "dst": "heavy-cavalry",
     "relation": "HAS_TYPE",
@@ -103538,6 +104478,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 1
+    }
+  },
+  {
+    "src": "war-hydra#beastmaster-handlers-x2",
+    "dst": "war-hydra",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -104219,6 +105167,14 @@
     }
   },
   {
+    "src": "warhawk#warhawk",
+    "dst": "warhawk",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "warhawk",
     "dst": "monstrous-cavalry",
     "relation": "HAS_TYPE",
@@ -104282,6 +105238,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 2
+    }
+  },
+  {
+    "src": "warhawk-riders#warhawk",
+    "dst": "warhawk-riders",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -104703,6 +105667,14 @@
     }
   },
   {
+    "src": "warhorse-bretonnia#warhorse",
+    "dst": "warhorse-bretonnia",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "warhorse-bretonnia",
     "dst": "light-cavalry",
     "relation": "HAS_TYPE",
@@ -104732,6 +105704,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "warhorse-realms-of-men#warhorse",
+    "dst": "warhorse-realms-of-men",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -104770,6 +105750,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "warhorse-warriors-of-chaos#warhorse",
+    "dst": "warhorse-warriors-of-chaos",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -106417,6 +107405,14 @@
     }
   },
   {
+    "src": "wild-riders#steed-of-kurnous",
+    "dst": "wild-riders",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "wild-riders",
     "dst": "light-cavalry",
     "relation": "HAS_TYPE",
@@ -107297,6 +108293,14 @@
     }
   },
   {
+    "src": "wyvern#wyvern",
+    "dst": "wyvern",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
+    }
+  },
+  {
     "src": "wyvern",
     "dst": "monstrous-creatures",
     "relation": "HAS_TYPE",
@@ -107678,6 +108682,14 @@
     "relation": "HAS_PROFILE",
     "properties": {
       "order": 0
+    }
+  },
+  {
+    "src": "zombie-dragon#zombie-dragon",
+    "dst": "zombie-dragon",
+    "relation": "SPLIT_PROFILE_OF",
+    "properties": {
+      "profile_role": "mount"
     }
   },
   {
@@ -118363,12 +119375,6 @@
     "properties": {}
   },
   {
-    "src": "page-28-baggage-trains",
-    "dst": "impassable-terrain",
-    "relation": "AMENDS",
-    "properties": {}
-  },
-  {
     "src": "page-30-cathayan-warhorse",
     "dst": "cathayan-warhorse",
     "relation": "AMENDS",
@@ -118509,24 +119515,6 @@
   {
     "src": "page-37-guardian-of-the-sacred-sites",
     "dst": "guardian-of-the-sacred-sites",
-    "relation": "AMENDS",
-    "properties": {}
-  },
-  {
-    "src": "page-37-guardian-of-the-sacred-sites",
-    "dst": "open-ground",
-    "relation": "AMENDS",
-    "properties": {}
-  },
-  {
-    "src": "page-37-guardian-of-the-sacred-sites",
-    "dst": "hills",
-    "relation": "AMENDS",
-    "properties": {}
-  },
-  {
-    "src": "page-37-guardian-of-the-sacred-sites",
-    "dst": "buildings",
     "relation": "AMENDS",
     "properties": {}
   },
@@ -118987,12 +119975,6 @@
     "properties": {}
   },
   {
-    "src": "page-45-foetid-whirlpool",
-    "dst": "difficult-terrain",
-    "relation": "AMENDS",
-    "properties": {}
-  },
-  {
     "src": "page-101-dragon-ogres",
     "dst": "dragon-ogres",
     "relation": "AMENDS",
@@ -119253,12 +120235,6 @@
   {
     "src": "page-45-spiteful-torrent",
     "dst": "start-of-turn",
-    "relation": "AMENDS",
-    "properties": {}
-  },
-  {
-    "src": "page-45-spiteful-torrent",
-    "dst": "difficult-terrain",
     "relation": "AMENDS",
     "properties": {}
   },
@@ -120301,20 +121277,8 @@
     "properties": {}
   },
   {
-    "src": "page-227-5-crunch",
-    "dst": "impassable-terrain",
-    "relation": "AMENDS",
-    "properties": {}
-  },
-  {
     "src": "page-270-woodland-boundaries",
     "dst": "woodland-boundaries",
-    "relation": "AMENDS",
-    "properties": {}
-  },
-  {
-    "src": "page-270-woodland-boundaries",
-    "dst": "woods",
     "relation": "AMENDS",
     "properties": {}
   },
@@ -120349,12 +121313,6 @@
     "properties": {}
   },
   {
-    "src": "page-321-pillar-of-fire",
-    "dst": "difficult-terrain",
-    "relation": "AMENDS",
-    "properties": {}
-  },
-  {
     "src": "page-323-daemonic-vessel",
     "dst": "daemonic-vessel",
     "relation": "AMENDS",
@@ -120375,12 +121333,6 @@
   {
     "src": "page-323-vortex-of-chaos",
     "dst": "start-of-turn",
-    "relation": "AMENDS",
-    "properties": {}
-  },
-  {
-    "src": "page-323-vortex-of-chaos",
-    "dst": "difficult-terrain",
     "relation": "AMENDS",
     "properties": {}
   },
@@ -120417,12 +121369,6 @@
   {
     "src": "page-327-summon-elemental-spirit",
     "dst": "start-of-turn",
-    "relation": "AMENDS",
-    "properties": {}
-  },
-  {
-    "src": "page-327-summon-elemental-spirit",
-    "dst": "difficult-terrain",
     "relation": "AMENDS",
     "properties": {}
   },
@@ -120495,12 +121441,6 @@
   {
     "src": "page-335-foot-of-gork-or-mork",
     "dst": "start-of-turn",
-    "relation": "AMENDS",
-    "properties": {}
-  },
-  {
-    "src": "page-335-foot-of-gork-or-mork",
-    "dst": "difficult-terrain",
     "relation": "AMENDS",
     "properties": {}
   },
@@ -121275,18 +122215,6 @@
   {
     "src": "can-a-cannon-target-a-point-on-the-ground-if-woods-or-a-hill-lie-between-it-and-that-point",
     "dst": "cannon",
-    "relation": "CLARIFIES",
-    "properties": {}
-  },
-  {
-    "src": "can-a-cannon-target-a-point-on-the-ground-if-woods-or-a-hill-lie-between-it-and-that-point",
-    "dst": "woods",
-    "relation": "CLARIFIES",
-    "properties": {}
-  },
-  {
-    "src": "can-a-cannon-target-a-point-on-the-ground-if-woods-or-a-hill-lie-between-it-and-that-point",
-    "dst": "hills",
     "relation": "CLARIFIES",
     "properties": {}
   },
@@ -122282,12 +123210,6 @@
   },
   {
     "src": "what-happens-to-a-fanatic-that-ends-its-movement-within-the-command-range-of",
-    "dst": "dangerous-terrain",
-    "relation": "CLARIFIES",
-    "properties": {}
-  },
-  {
-    "src": "what-happens-to-a-fanatic-that-ends-its-movement-within-the-command-range-of",
     "dst": "fanatic",
     "relation": "CLARIFIES",
     "properties": {}
@@ -123043,12 +123965,6 @@
     "properties": {}
   },
   {
-    "src": "if-a-unit-with-the-fly-x-special-rule-moves-over-a-magical-vortex-that-counts-as-dangerous-terrain-i",
-    "dst": "dangerous-terrain",
-    "relation": "CLARIFIES",
-    "properties": {}
-  },
-  {
     "src": "if-a-unit-with-the-fly-x-special-rule-is-engaged-in-combat-can-it-use-its",
     "dst": "supporting-attacks",
     "relation": "CLARIFIES",
@@ -123241,12 +124157,6 @@
     "properties": {}
   },
   {
-    "src": "what-happens-if-a-unit-with-the-move-through-cover-special-rule-is-joined-by",
-    "dst": "dangerous-terrain",
-    "relation": "CLARIFIES",
-    "properties": {}
-  },
-  {
     "src": "if-a-warband-character-joins-a-unit-that-isnt-a-warband-does-that-units-rank",
     "dst": "warband",
     "relation": "CLARIFIES",
@@ -123315,12 +124225,6 @@
   {
     "src": "cannon-do-not-directly-target-enemy-models-they-target-a-point-on-the-ground-how-does-this-work-with",
     "dst": "cannon",
-    "relation": "CLARIFIES",
-    "properties": {}
-  },
-  {
-    "src": "cannon-do-not-directly-target-enemy-models-they-target-a-point-on-the-ground-how-does-this-work-with",
-    "dst": "proximity",
     "relation": "CLARIFIES",
     "properties": {}
   },
