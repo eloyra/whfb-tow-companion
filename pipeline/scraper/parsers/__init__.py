@@ -45,6 +45,7 @@ from pipeline.scraper.parsers.base_parser import BaseParser, ParseResult
 from pipeline.scraper.parsers.core_rule_parser import CoreRuleParser
 from pipeline.scraper.parsers.errata_parser import ErrataParser
 from pipeline.scraper.parsers.faq_parser import FAQParser
+from pipeline.scraper.parsers.lore_parser import LoreParser
 from pipeline.scraper.parsers.magic_item_parser import MagicItemParser
 from pipeline.scraper.parsers.rule_parser import RuleParser
 from pipeline.scraper.parsers.spell_parser import SpellParser
@@ -72,7 +73,8 @@ _PARSERS: dict[str, BaseParser] = {
     "troop_type": RuleParser(),  # RuleParser handles both special_rule + troop_type
     "core_rule": CoreRuleParser(),
     "army_list": ArmyListParser(),
-    "spell": SpellParser(),
+    "spell": LoreParser(),       # /the-lores-of-magic/{slug} — Lore node + membership edges
+    "spell_page": SpellParser(), # /spell/{slug} — dedicated Spell node
     "magic_item": MagicItemParser(),
     "weapon": WeaponParser(),
     "faq": FAQParser(),
@@ -185,10 +187,14 @@ def run_all_parsers() -> None:
             # list pages (embedded-entry-block with magicItem data) and rules/intro pages
             # (plain rich text with no item blocks).  Route the latter to CoreRuleParser
             # because the URL alone cannot distinguish them.
+            url_path = entry["url"].split("tow.whfb.app")[-1].rstrip("/")
             if page_type == "magic_item" and not _has_embedded_magic_items(html):
                 parser: BaseParser = _PARSERS["core_rule"]
             elif page_type == "core_rule" and entry["url"].rstrip("/").endswith("-army-list"):
                 parser = _PARSERS["army_list"]
+            elif page_type == "core_rule" and url_path.startswith("/spell/"):
+                # Existing manifest labels /spell/{slug} pages as core_rule — route to SpellParser.
+                parser = _PARSERS["spell_page"]
             else:
                 parser = _PARSERS[page_type]
 
@@ -247,6 +253,13 @@ def run_all_parsers() -> None:
     logger.info(
         "Two-pass classifier: %d rule_add upgrades promoted to weapon_add", weapon_add_count
     )
+
+    # --- Two-pass: renegade-lore BELONGS_TO_LORE edges ---
+    # Renegade lore pages have no structured spell-slug list, so LoreParser emits zero
+    # BELONGS_TO_LORE edges for them.  After all parsers run we have complete Spell nodes
+    # (from dedicated pages) and Lore nodes (from lore pages).  We derive renegade membership
+    # by matching each Spell name against the renegade Lore's text body.
+    all_edges.extend(_derive_renegade_lore_membership(nodes_by_type, all_edges))
 
     # --- Deduplicate nodes by (node_type, id) ---
     # Some pages (e.g. /faq contains all entries; /faq/<section> repeats a subset;
@@ -434,5 +447,78 @@ def _derive_clarifies_amends(nodes_by_type: dict[str, list[dict]]) -> list[dict]
         "Text-based derivation: %d CLARIFIES + %d AMENDS edges",
         sum(1 for e in new_edges if e["relation"] == EdgeType.CLARIFIES),
         sum(1 for e in new_edges if e["relation"] == EdgeType.AMENDS),
+    )
+    return new_edges
+
+
+# ---------------------------------------------------------------------------
+# Renegade-lore BELONGS_TO_LORE derivation
+# ---------------------------------------------------------------------------
+
+
+def _derive_renegade_lore_membership(
+    nodes_by_type: dict[str, list[dict]],
+    existing_edges: list[dict],
+) -> list[dict]:
+    """Return ``BELONGS_TO_LORE`` edges for renegade lores via spell-name matching.
+
+    Renegade lore pages have no embedded spell-slug list so ``LoreParser`` emits zero
+    ``BELONGS_TO_LORE`` edges for them.  This pass derives membership by matching each
+    Spell node's name (case-insensitive, whole-word) against the renegade Lore's text body.
+
+    Only lores that have received **zero** structural ``BELONGS_TO_LORE`` edges (i.e.
+    renegade lores) are considered, preventing standard-lore spells from picking up false
+    cross-lore memberships.
+    """
+    # Lores that already have at least one BELONGS_TO_LORE edge are standard lores.
+    lores_with_edges: set[str] = {
+        e["dst"]
+        for e in existing_edges
+        if e.get("relation") == EdgeType.BELONGS_TO_LORE
+    }
+
+    renegade_lores = [
+        n
+        for n in nodes_by_type.get("lore", [])
+        if n.get("id") and n["id"] not in lores_with_edges
+    ]
+    if not renegade_lores:
+        return []
+
+    spell_nodes = nodes_by_type.get("spell", [])
+
+    new_edges: list[dict] = []
+    seen: set[tuple[str, str]] = set()
+
+    for lore in renegade_lores:
+        lore_id = lore["id"]
+        lore_text: str = lore.get("text") or ""
+        if not lore_text:
+            continue
+
+        for spell in spell_nodes:
+            spell_id = spell.get("id", "")
+            if not spell_id:
+                continue
+            spell_name: str = spell.get("name") or ""
+            if not spell_name:
+                continue
+            if re.search(r"\b" + re.escape(spell_name) + r"\b", lore_text, re.IGNORECASE):
+                key = (spell_id, lore_id)
+                if key not in seen:
+                    seen.add(key)
+                    new_edges.append(
+                        {
+                            "src": spell_id,
+                            "dst": lore_id,
+                            "relation": EdgeType.BELONGS_TO_LORE,
+                            "properties": {},
+                        }
+                    )
+
+    logger.info(
+        "Renegade-lore two-pass: %d BELONGS_TO_LORE edges derived for %d renegade lore(s)",
+        len(new_edges),
+        len(renegade_lores),
     )
     return new_edges

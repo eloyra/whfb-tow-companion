@@ -124,6 +124,8 @@ class WeaponParser(BaseParser):
 
         weapon_class = _infer_weapon_class(slug, name, text)
 
+        profile = self._extract_weapon_profile(html)
+
         node = {
             "node_type": NodeType.WEAPON,
             "id": slug,
@@ -131,12 +133,10 @@ class WeaponParser(BaseParser):
             **self._make_source_citation(book, page_ref),
             "last_updated": date,
             "weapon_class": weapon_class,
-            # Structured profile fields — not present in Contentful data model;
-            # values are only in the body text and require a separate enrichment pass.
-            "range": None,
-            "strength": None,
-            "ap": None,
-            "special_rules": [],
+            "range": profile["range"],
+            "strength": profile["strength"],
+            "ap": profile["ap"],
+            "special_rules": profile["special_rules"],
             "armour_value": None,
             "shots": None,
             "template_type": None,

@@ -22,6 +22,8 @@ import re
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 
+from bs4 import BeautifulSoup
+
 logger = logging.getLogger(__name__)
 
 # Regex that extracts the JSON payload from the Next.js __NEXT_DATA__ script tag.
@@ -265,6 +267,75 @@ class BaseParser(ABC):
     def _richtext_entry_links(self, node: dict | None) -> list[str]:
         """Return slugs from all entry-hyperlink / embedded-entry-inline nodes."""
         return [slug for slug, _ in self._richtext_entry_links_typed(node)]
+
+    # ------------------------------------------------------------------
+    # Rendered-DOM helpers (HTML pivot)
+    # ------------------------------------------------------------------
+
+    _DASH_VALUES: frozenset[str] = frozenset({"-", "–", "—", ""})
+
+    def _extract_weapon_profile(self, html: str) -> dict:
+        """Extract Range/Strength/AP/Special Rules from the rendered weapon profile table.
+
+        Returns a dict with keys ``range``, ``strength``, ``ap``, ``special_rules``.
+        Falls back gracefully to null/empty when the table is absent (ISR shell, armour pages,
+        war-machine-only pages, etc.) — never raises.
+        """
+        empty: dict = {"range": None, "strength": None, "ap": None, "special_rules": []}
+        try:
+            soup = BeautifulSoup(html, "html.parser")
+            table = soup.select_one("table.profile-table--weapon")
+            if table is None:
+                return empty
+            rows = table.select("tbody tr")
+            if not rows:
+                return empty
+            cells = rows[0].select("td")
+            if len(cells) < 4:
+                return empty
+
+            def _norm(cell) -> str | None:
+                v = cell.get_text(strip=True)
+                return None if v in self._DASH_VALUES else v
+
+            sr_cell = cells[3]
+            special_rules = [
+                a["href"].rstrip("/").split("/")[-1]
+                for a in sr_cell.select('a[href^="/special-rules/"]')
+            ]
+            return {
+                "range": _norm(cells[0]),
+                "strength": _norm(cells[1]),
+                "ap": _norm(cells[2]),
+                "special_rules": special_rules,
+            }
+        except Exception:  # noqa: BLE001
+            logger.warning("_extract_weapon_profile: unexpected error; returning defaults")
+            return empty
+
+    def _extract_spell_type(self, html: str) -> str | None:
+        """Extract the spell type from the single ``div.spell`` block on a dedicated spell page.
+
+        Looks for the ``Type`` stat row and returns the text of its ``<a href="/magic/...">``
+        anchor (e.g. ``"Enchantment"``, ``"Magic Missile"``).  Returns ``None`` when the block
+        is absent or the Type row has no magic-category link (e.g. bound spells).
+        """
+        try:
+            soup = BeautifulSoup(html, "html.parser")
+            block = soup.select_one("div.spell")
+            if block is None:
+                return None
+            for row in block.select("table tr"):
+                cells = row.select("td")
+                if len(cells) < 2:
+                    continue
+                if cells[0].get_text(strip=True) != "Type":
+                    continue
+                type_a = cells[1].select_one('a[href^="/magic/"]')
+                return type_a.get_text(strip=True) or None if type_a else None
+        except Exception:  # noqa: BLE001
+            logger.warning("_extract_spell_type: unexpected error; returning None")
+        return None
 
     def _richtext_entry_links_typed(self, node: dict | None) -> list[tuple[str, str]]:
         """Return ``(slug, contentType)`` pairs from entry-hyperlink nodes.

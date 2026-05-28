@@ -6,7 +6,7 @@
     "source_citation_page": 319,
     "last_updated": "2026-04-15",
     "name": "Spells & Spell Generation",
-    "text": ""
+    "text": "Each player randomly generates spells for each of their Wizards before armies are deployed. If your army contains more than one Wizard, you may generate spells for each in an order of your choosing. Each Lore of Magic contains seven spells: six numbered (1-6) and a seventh 'signature' spell. To determine the spells your Wizard knows, roll a number of D6 equal to their Level of Wizardry, re-rolling any duplicate results. The result(s) show which spell(s) your Wizard knows. If you wish, your Wizard may discard one of these randomly generated spells and instead select the signature spell of their chosen Lore of Magic. Any number of Wizards in your army may do this. Note that Wizards in the same army may know the same spell(s), so individual spells may be duplicated within your army. However, no single Wizard can know the same spell twice."
   },
   {
     "id": "spell-categories-lores",
@@ -15,7 +15,7 @@
     "source_citation_page": 319,
     "last_updated": "2026-04-15",
     "name": "Spell Categories (Lores)",
-    "text": ""
+    "text": "Spells fall into six categories. These determine during which phase of the game they can be cast. These are: Enchantment: Spells that empower the caster's allies, protecting them with sorcerous wards and magically enhancing their fighting prowess. Hex: The opposite of Enchantment spells, spells that weaken the enemy in some way, perhaps slowing them down or sapping their strength. Conveyance: These spells enable Wizards to enhance movement or transport units from place to place. Magic Missiles: These are sorcerous projectiles that the Wizard hurls at the foe. Magic Missiles can only target enemy units. Magical Vortex: These are roiling globes of magical energy that travel across the battlefield wreaking all kinds of havoc. Assailment: These spells are deadly attacks that strike the foe without warning."
   },
   {
     "id": "battle-magic",
@@ -24,7 +24,7 @@
     "source_citation_page": 320,
     "last_updated": "2026-04-15",
     "name": "Battle Magic",
-    "text": "In the heat of battle, mighty Wizards summon columns of fire to burn through the enemy. In the deadly swirl of melee combat, powerful warrior mages smite their foes with fists that fall like hammers. In the Old World and beyond, Battle Magic is one of the most widely practised magical arts, for here battle is the one constant in life."
+    "text": "Unlike many Wizards who spend long hours in darkened rooms studying their arcane arts by candlelight, practitioners of Battle Magic tend to be hardy individuals, as at home on the battlefield as they are in their libraries. This is because, unlike other lores that may be studied, Battle Magic is openly offensive and tailored towards use upon the field of battle (which, given the Lore's name, should come as no surprise), and it is here that masters of the Lore hone their skill. Practitioners of Battle Magic are favoured by cunning generals all across the Old World and beyond, and their services are often in high demand. Many an opposing army has been undone by devastating fireballs cast from afar, found a cloying mist obscuring their view, their path blocked by a bend in the river that was not there before, or their courage sapped as arrows fell upon them with supernatural accuracy. Those that wield Battle Magic will draw their power from whichever of the Winds of Magic suits their purpose. They grasp at the red wind, summoning forth fire from the air to rain upon the enemy, the green wind to armour themselves with the strength of oak, the grey wind to cow and demoralise their foe, and more besides. To a Battle Mage, the incorporeal dangers of harnessing several Winds of Magic at once are of little concern – what matters most is turning the tide and ensuring swift victory. "
   },
   {
     "id": "daemonology",
@@ -33,7 +33,7 @@
     "source_citation_page": 322,
     "last_updated": "2026-04-15",
     "name": "Daemonology",
-    "text": "Those that make study of the Realm of Chaos – that twisted and warped nether world in which the Ruinous Powers reside – are known as Daemonologists. These cursed souls are drawn to their study in the vain hope of gaining mastery over the daemonic denizens of that realm and turning their power back against the Chaos gods. Seldom are such noble intentions realised, for those that converse with Daemons are inevitably corrupted by their whispered lies."
+    "text": "When a denizen of the Old World thinks of Daemons, they imagine the nightmare servants of the Chaos powers. Yet the pantheon of daemonic beings is far greater than this. Within the Realm of Chaos there dwells an infinite number of creatures that owe no allegiance to the Ruinous Powers. Such creatures often manifest within the mortal realm, some masquerading as elemental sprites, mischievous spirits of house and hearth, others possessing a host and bending it to their will. In truth, denizens of the Old World think of Daemons rarely, fearful that doing so might summon them forth! In this superstitious belief, Daemonologists are not like others. Through rituals and invocations shared and perfected within secretive covens, they endeavour to summon forth the most powerful of Daemons, hoping to entrap them and bind them to their will. Some use props in their craft, binding daemonic servants into mundane items such as books, oil lamps, staffs, even weapons of war. Thus bound, a Daemon becomes subservient to the Wizard that summoned it and must comply with its master's wishes. Yet Daemons are ever dishonest, their words and deeds selfish and cruel. Consequently, most Daemonologists quickly fall foul of the very beings they believed they had mastered. For all their mysticism and ritual, their secret orders and wealth of arcane knowledge, Daemonologists are not the enlightened seekers of truth many believe themselves to be. They are mere slaves to the powers they seek to master – there are no champions of Chaos, only the lost and the damned. "
   },
   {
     "id": "dark-magic",
@@ -42,7 +42,7 @@
     "source_citation_page": 324,
     "last_updated": "2026-04-15",
     "name": "Dark Magic",
-    "text": "Once, only pure magic flowed into the world. Whole and unsullied, it was a natural force under the control of a race of god-like beings. With the coming of Chaos, this was to change as a darker, more unstable form of magic was unleashed into the mortal realm, one which refused to be chained by the hand of any mere mortal."
+    "text": "With the collapse of the polar gates, Chaos came into the world. As it did, the pure and refined magic harnessed by the Old Ones came into contact with its influence for the first time within the mortal realm. Almost immediately, the corrupting power of Chaos began to work upon it as surely as it did the bodies and minds of mortals. Twisted and warped by Chaos, the unseen strands of colour that composed pure magic merged and bled into one another, causing the Winds of Magic to grow blackened and ever more unstable. Amongst the Elves of Ulthuan, there were those drawn to this phenomenon. Sensing a raw source of power, magic which could be mastered more easily, they began to experiment with its use. Quickly, most learned the dangers – that magic corrupted by Chaos would quickly corrupt those that sought to master it – yet there were those that persisted. Today, Dark Magic still torments the world. Wherever the touch of Chaos is felt most strongly, the Winds of Magic twist and coalesce into dark, roiling clouds. Many Wizards feel compelled to study and use Dark Magic, wielding it with careless abandon, enraptured by its potency and the apparent ease of its mastery. Yet those that dabble with Dark Magic are fools, for Dark Magic is like nothing so much as the raw stuff of chaos, and its use is a path to certain damnation and eternal servitude. "
   },
   {
     "id": "elementalism",
@@ -51,7 +51,7 @@
     "source_citation_page": 326,
     "last_updated": "2026-04-15",
     "name": "Elementalism",
-    "text": "All across the Old World there dwell Wizards able to bend the Winds of Magic to their will to such an extent that they can harness the power of the elements themselves to do their bidding. Such mages summon gale force winds and torrential rains from the heavens, raise earthen ramparts, and even call forth elemental spirits to do their bidding."
+    "text": "Wizards that study Elementalism will often hide their art from the uneducated masses, for the powers they wield can easily be mistaken for darker arts such as Daemonology or Necromancy, summoning as they do elemental spirits from the ætheric netherworld. But for all the suspicion that haunts their study, their abilities are often in great demand. Many a farming community has sought out the aid of an Elementalist to end a period of drought; their ability to summon rain from a clear sky the difference between a prosperous and a failed harvest. Many a ship's captain will seek an Elementalist's services for long and dangerous voyages, hoping that their charms can deliver favourable winds and settle a restless ocean. Still other Elementalists conceal their craft behind a more mundane façade. Many a skilled blacksmith or farrier secretly manipulates the red wind to heat their forge and the iron that glows within it by arcane means, producing works of great wonder. Other Elementalists prefer to turn their magical powers to a different, more scientific purpose, melding arcane knowledge of the yellow wind and study of natural philosophy within the halls of academia to study alchemy. In battle, the powers an Elementalist wields are a considerable blessing, able as they are to disrupt the enemy lines, entrench and defend their own, and even cause the weapons of allies to burn with the heat of their forging whilst the armour of their foes crumbles to rust. "
   },
   {
     "id": "high-magic",
@@ -60,7 +60,7 @@
     "source_citation_page": 328,
     "last_updated": "2026-04-15",
     "name": "High Magic",
-    "text": "In its purest form, magic glistens like a silver haze that fills the air, visible in and around all things to those gifted with the mage-sight. It is a wondrous thing, there to be manipulated by those with the talent and the learning. With long decades of study, a mage can manipulate pure magic to perform almost any deed imaginable, but the work is exhausting and the rituals complex."
+    "text": "With the collapse of the polar gates, a torrent of magic was unleashed, the gentle clouds of silvery light becoming gusting gales and swirling storms. Upon completion of the Elves' great ritual – performed to lessen the magic flooding the world – the arcane works of the Old Ones shattered, causing the silver light of magic to fragment, revealing the kaleidoscopic Winds of Magic. Students of High Magic study each of these winds closely, becoming intimately familiar with their properties and potential over long years. With mastery of each wind, the mage edges closer to understanding High Magic and, eventually, becomes able to draw all of the winds together, crafting High Magic. This may seem similar to the use of Dark Magic, similar even to the lesser Lores of Magic. It is not. Where other Wizards grasp clumsily at the Winds of Magic, or warp them into darker hues, High Mages carefully bring all eight winds together, seeking the silvery light of pure magic and crafting spells of such sublime potency that lesser Wizards are struck dumb to witness. A simple fireball cast by a Battle Mage may burn hot with the power of the red wind, but one conjured by a High Mage will burn incandescently bright, searing the world and blinding all that gaze upon it. Such is the power of High Magic. "
   },
   {
     "id": "illusion",
@@ -69,7 +69,7 @@
     "source_citation_page": 330,
     "last_updated": "2026-04-15",
     "name": "Illusion",
-    "text": "The art of Illusion is a strange Lore of Magic. Where most Wizards wield their arcane might to change the world around them in direct fashion, Illusionists prefer to change the world in subtle ways, hiding their power to control minds and emotions behind the façade of stagecraft and trickery. For an Illusionist, it is the glamour and splendour of the casting itself, the use of magical power to confound and confuse, that is the aim of their conjuring."
+    "text": "Many Illusionists travel the Old World, manipulating the innocent and subjecting the unwary to their will. Others find shelter within the entourage of a powerful lord or lady, masquerading as entertainers before courtiers and guests. Almost all maintain a pretence of stagecraft in everything they do, carefully crafted charms working to befuddle the minds of those around them, lulling an audience into an almost trancelike state in which the Illusionist's victims remain convinced that, no matter how overt the magic practiced before their eyes, they are witnessing a simple mummers act. Behind this pretence, Illusionists practise a profane art which thrives upon deceit and misdirection. They work the Winds of Magic in subtle ways, crafting mirage images that fill the mind with counterfeit memories and imposter emotions. It is by these means that Illusionists are able to manipulate those around them, bending them to their will, causing them to react to realities that are not, in fact, real. Illusion is, perhaps, the most dangerous of lores, both for those that practise it as well as those that witness it. A careless Illusionist can find themselves drawn into their own deceits, the Winds of Magic entrapping them and pulling their mind into a world that does not truly exist. "
   },
   {
     "id": "necromancy",
@@ -78,7 +78,7 @@
     "source_citation_page": 332,
     "last_updated": "2026-04-15",
     "name": "Necromancy",
-    "text": "Of all the mages that study the Lores of Magic, those that practise the art of Necromancy are the most shunned and reviled, yet simultaneously often the most sought after. Necromancy is the study of death, and of more than death – Necromancy is the means by which those trapped within the mortal coil can penetrate through the shroud of death into Morr's dark realm, to commune with the spirits of the departed and witness the wisdom of ancestors."
+    "text": "Necromancers make use of the darker Winds of Magic, the purple wind of death and the grey wind of shadow most often, melding them with the green wind of life and the amber wind of beasts. From these disparate strands of ætheric power they craft charms and incantations that grant them a power to reach beyond death's embrace. With this power, Necromancers summon spirits and commune with the dead, channelling the spirits of the departed that they may speak with the living. Still others take their study further into the dark, dallying with the blackest of magics, the raw power of chaos. Some utilise foul warpstone to enhance their control of this writhing, evil force, using the wicked material to draw bleak power ever more closely about their withered forms, channelling this dark energy into the husks of dead things and crafting vile unlife from cold, lifeless corpses pulled from the dark earth. For every Necromancer gainfully employed in spiritualism, communing with the souls of departed loved ones, there is certain to be another skulking in graveyards and mausoleums, disturbing the dead and seeking to extend their own life by means magical and profane. This is why Necromancers are so untrusted and unloved – for honest and good citizens of the Old World can never be sure just how deep into the shadows a Necromancer has delved. "
   },
   {
     "id": "waaagh-magic",
@@ -87,7 +87,7 @@
     "source_citation_page": 334,
     "last_updated": "2026-04-15",
     "name": "Waaagh! Magic",
-    "text": "When Orc and Goblin tribes march to war (as they are given to do with alarming regularity), they are accompanied by powerful shamans. These 'Weirdboy' and 'Oddgit' shamans, as Orcs and Goblins call them, are each a living conduit to Gork and Mork, the primitive gods of their kind, and each can wield such arcane might that even the most learned of Elven mages would have to be impressed."
+    "text": "The power of Orc and Goblin Shamans does not come primarily from the Winds of Magic, but from the raw Waaagh! magic radiated by their kind. A potent force barely understood by mages of other races, Waaagh! magic can consume the Winds of Magic, absorbing them and deadening the mage-sight of other Wizards. As Orcs and Goblins rush into battle, the Waaagh! rises in great storms that spring forth to drown entire regions, before draining away once more, leaving only wisps of magical potential behind. An Orc or Goblin Shaman, blessed by Gork (or possibly Mork) can focus the Waaagh! through the power of their mind (such as it is), casting spells as brutal and cunning as Gork and Mork themselves. These shamans have been known to burst the skulls of their foes, to shoot beams of crackling green death from their beady eyes or to summon almighty green appendages from the skies to punch and kick the enemy. Yet with great power comes great peculiarity, and shamans are a most peculiar breed. Constant exposure to the raw Waaagh! and the will of their gods causes Orcs and Goblins to become somewhat unhinged. Consequently, their shamans are prone to drifting into trances, breaking uncontrollably into spasmodic dancing, and talking animatedly to unseen entities. Of course, for the average Orc or Goblin, such behaviour is a bonus – after all, how can one be impressed by a Wizard that doesn't act the part? "
   },
   {
     "id": "lore-of-athel-loren",
@@ -96,7 +96,7 @@
     "source_citation_page": 146,
     "last_updated": "2026-04-15",
     "name": "Lore of Athel Loren",
-    "text": ""
+    "text": "Wood Elf Mages have a unique relationship with the forest. They are a part of it, much like Dryads and Treemen, yet possessed of a greater sense of individuality. This bond allows them to commune with the forest, to entreat with it on behalf of their kin and, in times of war, to awaken it to their aid. A Wizard with the 'Lore of Athel Loren' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-beasts",
@@ -105,7 +105,7 @@
     "source_citation_page": 117,
     "last_updated": "2026-04-15",
     "name": "Lore of Beasts",
-    "text": ""
+    "text": "Bray-Shamans are born into magic, and wield it with an instinctive ease. A palpable miasma of fell sorcery surrounds them and when their wrath is roused, reality itself is distorted and maimed. Tree roots twist and writhe at their passing, the undergrowth boils with unholy life and repugnant parasites scurry at their feet. A Wizard with the 'Lore of Beasts' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-chaos",
@@ -114,7 +114,7 @@
     "source_citation_page": 83,
     "last_updated": "2026-04-15",
     "name": "Lore of Chaos",
-    "text": ""
+    "text": "Chaos Sorcerers are gifted understanding of dark magic by the Ruinous Powers which they serve. Spells creep into their minds through dreams, visions, and the whispers of the Dark Gods themselves. A Wizard with the 'Lore of Chaos' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or the spell that corresponds to their Mark of Chaos listed below. "
   },
   {
     "id": "lore-of-daemons",
@@ -123,7 +123,7 @@
     "source_citation_page": 34,
     "last_updated": "2026-04-15",
     "name": "Lore of Daemons",
-    "text": ""
+    "text": "A Daemon’s sorcerous powers – indeed its entire being – are fixed at the moment of creation. Daemons cannot grow, develop or learn as mortals can. Those Daemons steeped in the mysteries of magic were created with that knowledge and, though it rarely grows or diminishes, such power is a primal expression of the Dark Gods’ will. A Wizard with 'Lore of Daemons' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells that corresponds to their Daemonic Alignment listed below. "
   },
   {
     "id": "lore-of-gork",
@@ -132,7 +132,7 @@
     "source_citation_page": 47,
     "last_updated": "2026-04-15",
     "name": "Lore of Gork",
-    "text": ""
+    "text": "Surrounded by Boyz, Orc Shamans tap into the superstitious beliefs of their mates to conjure spells that are, much like the wildly gesticulating and gibbering Shamans themselves, flamboyant and rowdy, but brutal in their effects. A Wizard with the 'Lore of Gork' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-hashut",
@@ -141,7 +141,7 @@
     "source_citation_page": 21,
     "last_updated": "2026-04-15",
     "name": "Lore of Hashut",
-    "text": ""
+    "text": "The Chaos Dwarfs study forge-craft, weapon making and the dark magics of Hashut himself in equal measure. Using this forbidden lore, they forge their terrible weapons and craft their arcane devices. A Wizard with the 'Lore of Hashut' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-lustria",
@@ -150,7 +150,7 @@
     "source_citation_page": 21,
     "last_updated": "2026-04-15",
     "name": "Lore of Lustria",
-    "text": ""
+    "text": "The Slann Mage-Priests are masters of magic able to wield tremendous power with almost contemptuous ease. With this power they are able to alter the environment around them and the fates of their loyal servants, summoning rains to wash away their foes, or calling upon the Winds of Magic to heal their champions. A Wizard with the 'Lore of Lustria' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-mork",
@@ -159,7 +159,7 @@
     "source_citation_page": 47,
     "last_updated": "2026-04-15",
     "name": "Lore of Mork",
-    "text": ""
+    "text": "Goblin Shamans delight in casting cunning curses upon their enemies. These petty charms are intended to disrupt and confuse the foe, leaving them vulnerable to sneaky attacks A Wizard with the 'Lore of Mork' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-naggaroth",
@@ -168,7 +168,7 @@
     "source_citation_page": 26,
     "last_updated": "2026-04-15",
     "name": "Lore of Naggaroth",
-    "text": ""
+    "text": "Like their High Elf Kin, Dark Elves are skilled manipulators of the Winds of Magic. Yet where the power available to the Elves of Ulthuan is limited by their cautious approach, Dark Elves know no such limit, weaving high and dark magic with reckless abandon. A Wizard with the 'Lore of Naggaroth' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-nehekhara",
@@ -177,7 +177,7 @@
     "source_citation_page": 155,
     "last_updated": "2026-04-15",
     "name": "Lore of Nehekhara",
-    "text": ""
+    "text": "The magic of Nehekhara was perfected millennia ago and has remained unchanged in the long centuries since. The wording of every incantation used in the preservation and reanimating of the dead is recorded on dusty papyrus in the mysterious hieroglyphs of Nehekhara’s ancient language, to be uttered aloud in long, monotonous ritual. A Wizard with the 'Lore of Nehekhara' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-primal-magic",
@@ -186,7 +186,7 @@
     "source_citation_page": 44,
     "last_updated": "2026-04-15",
     "name": "Lore of Primal Magic",
-    "text": ""
+    "text": "In addition to the Lores of Magic detailed in the Warhammer: the Old World rulebook, some Wizards, especially those of a wild and chaotic nature, may know spells from the 'Primal Magic' Lore of Magic. As usual, if it is stated that a Wizard knows spells from one of a number of given Lores of Magic, you must choose one of these Lores when writing your muster list. "
   },
   {
     "id": "lore-of-saphery",
@@ -195,7 +195,7 @@
     "source_citation_page": 186,
     "last_updated": "2026-04-15",
     "name": "Lore of Saphery",
-    "text": ""
+    "text": "While lesser races study magic in its corrupted, broken form, High Elf Mages harness its power as pure mystical energy. Within the White Tower, mages learn to smooth the tumultuous eddies of the Winds of Magic, bringing all eight together to create the silvery hue of pure magic. A Wizard with the 'Lore of Saphery' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-the-great-maw",
@@ -204,7 +204,7 @@
     "source_citation_page": 25,
     "last_updated": "2026-04-15",
     "name": "Lore of the Great Maw",
-    "text": ""
+    "text": "Emissaries of the Great Maw suck marrow from cracked bones or stuff huge chunks of raw meat into their mouths to aid their magical abilities. As they do, those around them feel replenished, the gnawing hunger that eternally chews at their guts subsiding. A Wizard with the 'Lore of the Great Maw' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-the-horned-rat",
@@ -213,7 +213,7 @@
     "source_citation_page": 24,
     "last_updated": "2026-04-15",
     "name": "Lore of the Horned Rat",
-    "text": ""
+    "text": "Skaven believe all magic originates from the same source, their powerful and fickle god – the Horned Rat. In truth, the potent and destructive magic of the Skaven relies upon the manipulation of the Winds of Magic, without which even the most devout and cunning Skaven would be unable to weave the simplest spell. A Wizard with the 'Lore of the Horned Rat' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-the-lady",
@@ -222,7 +222,7 @@
     "source_citation_page": 109,
     "last_updated": "2026-04-15",
     "name": "Lore of the Lady",
-    "text": ""
+    "text": "The magical powers of the Handmaidens of the Lady all resemble religious observance as much as they do sorcery. With hands clasped in devotion and rapturous joy upon her brow, a Damsel or Prophetess beseeches her goddess to protect and empower her dutiful followers. A Wizard with the 'Lore of the Lady' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-the-shadowlands",
@@ -231,7 +231,7 @@
     "source_citation_page": 44,
     "last_updated": "2026-04-15",
     "name": "Lore of the Shadowlands",
-    "text": ""
+    "text": "In addition to the Lores of Battle Magic, Daemonology and Dark Magic listed on their profiles in Ravening Hordes, Sorcerers of Chaos may know spells from the 'Lore of the Shadowlands' Lore of Magic. As usual, you must choose one of these Lores the Sorcerer will know spells from when writing your muster list. "
   },
   {
     "id": "lore-of-the-wilds",
@@ -240,7 +240,7 @@
     "source_citation_page": 44,
     "last_updated": "2026-04-15",
     "name": "Lore of the Wilds",
-    "text": ""
+    "text": "In addition to the Lores of Magic detailed in the Warhammer: the Old World rulebook, some Wizards, especially those who dwell within the borders of the Old World's ancient forests, may know spells from the Lore of the Wilds Lore of Magic. As usual, if it is stated that a Wizard knows spells from one of a number of given Lores of Magic, you must choose one of these Lores when writing your muster list. "
   },
   {
     "id": "lore-of-troll-magic",
@@ -249,7 +249,7 @@
     "source_citation_page": 44,
     "last_updated": "2026-04-15",
     "name": "Lore of Troll Magic",
-    "text": ""
+    "text": "In addition to the Lores of Magic detailed in the Warhammer: the Old World rulebook, some Wizards, especially those with an affinity for Trolls, may know spells from the Lore of Troll Magic. As usual, if it is stated that a Wizard knows spells from one of a number of given Lores of Magic, you must choose one of these Lores when writing your muster list. "
   },
   {
     "id": "lore-of-undeath",
@@ -258,7 +258,7 @@
     "source_citation_page": 29,
     "last_updated": "2026-04-15",
     "name": "Lore of Undeath",
-    "text": ""
+    "text": "Mystery shrouds the study of Necromancy. To learn this dark art, an aspirant must find a willing tutor and become their apprentice, or acquire forbidden books rich in the secrets of undeath. It is this intrinsic mystery that drives Necromancers to become servants of the Vampire Counts, hoping to learn first-hand from the masters of undeath. A Wizard with the 'Lore of Undeath' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-yang",
@@ -267,7 +267,7 @@
     "source_citation_page": 46,
     "last_updated": "2026-04-15",
     "name": "Lore of Yang",
-    "text": "In the teaching of Feng Shi sorcery, the Winds of Magic are divided into two groups: Yin and Yang. Through long years of study, Yang Mages learn to control the tumultuous blustering of the Winds of Magic. As masters of the elements and the heavens, they wield magic that is bright, vibrant and extremely powerful."
+    "text": "A Wizard with the 'Lore of Yang' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-yin",
@@ -276,7 +276,7 @@
     "source_citation_page": 47,
     "last_updated": "2026-04-15",
     "name": "Lore of Yin",
-    "text": "Those that study the art of Yin magic wield dark and dangerous powers. They twist together the Winds of Magic to craft potent spells of brutal force, spells that can twist nature and upend the natural order of the world. At their command, the very light retreats, replaced by dark shadows from which elemental creatures creep to do their bidding."
+    "text": "A Wizard with the 'Lore of Yin' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. "
   },
   {
     "id": "lore-of-daemons-renegade",
@@ -285,7 +285,7 @@
     "source_citation_page": 11,
     "last_updated": "2026-04-15",
     "name": "Lore of Daemons (Renegade)",
-    "text": ""
+    "text": "A Daemon’s sorcerous powers – indeed its entire being – are fixed at the moment of creation. Daemons cannot grow, develop or learn as mortals can. Those Daemons steeped in the mysteries of magic were created with that knowledge and, though it rarely grows or diminishes, such power is a primal expression of the Dark Gods’ will. A Wizard with 'Lore of Daemons' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells that corresponds to their Daemonic Alignment listed below. Plague Wind Type Magical Vortex Casting Value 7+ Range 12\" Daemons of Nurgle only. Remains in Play. Place a small (3\") blast template so that its central hole is within 12\" of the caster. Whilst in play, the template is treated as dangerous terrain. The template scatters D6\" during every Start of Turn sub-phase. Any unit (friend or foe, but not including Daemons of Nurgle) that moves through the template, or that the template moves over suffers a -1 modifier to its Toughness characteristic for the remainder of the turn. Cacophonic Hymn Type Hex Casting Value 10+ Range 12\" Daemons of Slaanesh only. Remains in Play. If this spell is cast, the effects of any enchantment spell previously cast on the target unit immediately expire. In addition, whilst this spell is in play, the target unit becomes subject to the Stupidity special rule. Pink Fire Type Magic Missile Casting Value 8+ Range 18\" Daemons of Tzeentch only. The target enemy unit suffers D3+3 Strength 3 hits, each with an AP of - and with the Flaming Attacks special rule. Gift of Mutation Type Hex Casting Value 7+/10+ Range 12\" Daemons of Tzeentch only. If this spell is cast with a casting result of 8 or more, the target enemy unit suffers a -D3 modifier to one of the following characteristics (to a minimum of 1, chosen by the casting player). If this spell is cast with a casting result of 12 or more, the target enemy unit suffers a -D3 modifier to two of the following characteristics (to a minimum of 1, chosen by the casting player). This spell lasts until your next Start of Turn sub-phase: Weapon Skill Strength Toughness "
   },
   {
     "id": "lore-of-hashut-renegade",
@@ -294,7 +294,7 @@
     "source_citation_page": 8,
     "last_updated": "2026-04-15",
     "name": "Lore of Hashut (Renegade)",
-    "text": ""
+    "text": "The Chaos Dwarfs study forge-craft, weapon making and the dark magics of Hashut himself in equal measure. Using this forbidden lore, they forge their terrible weapons and craft their arcane devices. A Wizard with the 'Lore of Hashut' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. Curse of Hashut Type Magic Missile Casting Value 9+ Range 18\" This spell can only target enemy characters. However, it may target any enemy character that is within range and that the caster can draw a line of sight to, regardless of the usual rules for targeting characters, and may even target an enemy character that has joined a unit or that is engaged in combat. The target enemy character must immediately make a Toughness test. If this test is passed, it suffers D3 Strength 2 hits, each with an AP of -. If, however, this test is failed, it suffers D3+2 Strength 5 hits, with no armour or Regeneration saves permitted (Ward saves can be attempted as normal). Storm of Ash Type Hex Casting Value 9+ Range Self Until your next Start of Turn sub-phase, all enemy units suffer a -1 modifier to any rolls To Hit made whilst within 9\" of the caster's model (rolls of a natural 6 are unaffected). Flames of Hashut Type Assailment Casting Value 8+ Range Combat A single enemy unit the caster is engaged in combat with suffers D3+1 Strength 4 hits, each with an AP of -1. These hits have the Flaming Attacks special rule."
   },
   {
     "id": "lore-of-lustria-renegade",
@@ -303,7 +303,7 @@
     "source_citation_page": 14,
     "last_updated": "2026-04-15",
     "name": "Lore of Lustria (Renegade)",
-    "text": ""
+    "text": "The Slann Mage-Priests are masters of magic able to wield tremendous power with almost contemptuous ease. With this power they are able to alter the environment around them and the fates of their loyal servants, summoning rains to wash away their foes, or calling upon the Winds of Magic to heal their champions. A Wizard with the 'Lore of Lustria' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. Apotheosis Type Enchantment Casting Value 8+/10+ Range 24\" This spell can only target friendly characters whose troop type is infantry or cavalry, but may target characters engaged in combat. If this spell is cast with a casting result of 8 or more, the target friendly model immediately regains D3 lost Wounds. If this spell is cast with a casting result of 10 or more, the target friendly model immediately regains D3+1 lost Wounds. In addition, the target friendly character gains the Fear special rule. If they already have the Fear special rule, they instead gain the Terror special rule. Monsoon Type Magical Vortex Casting Value 8+ Range 15\" Remains in Play. Place a large (5\") blast template so that its central hole is within 15\" of the caster. Whilst in play, the template is treated as dangerous terrain over which no line of sight can be drawn. The template scatters D6\" during every Start of Turn sub-phase. Any enemy for there move though the template becomes 'drenched' for the remainder of the game. A drenched unit suffers a -1 To Hit modifier during the Shooting phase. A drenched model whose troop type is 'war machine' must roll a D6 before shooting. On a roll of 1, the model fails to shoot this turn."
   },
   {
     "id": "lore-of-naggaroth-renegade",
@@ -312,7 +312,7 @@
     "source_citation_page": 23,
     "last_updated": "2026-04-15",
     "name": "Lore of Naggaroth (Renegade)",
-    "text": ""
+    "text": "Like their High Elf Kin, Dark Elves are skilled manipulators of the Winds of Magic. Yet where the power available to the Elves of Ulthuan is limited by their cautious approach, Dark Elves know no such limit, weaving high and dark magic with reckless abandon. A Wizard with the 'Lore of Naggaroth' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. Cursing Word Type Hex Casting Value 7+ Range 12\" Remains in Play. Whilst this spell is in play, the target enemy unit suffers a -1 modifier to either its Weapon skill characteristic, or its Ballistic Skill characteristic (chosen by the casting Wizard’s controlling player, to minimum of 1). If this spell is cast, the effects of any other Hex previously cast on the target unit immediately expire. Black Horror Type Magical Vortex Casting Value 9+ Range 18\" Remains in Play. Place a large (5\") blast template so that its central hole is within 18\" of the caster. Whilst in play, the template is treated as difficult terrain. The template scatters 2D6\" during every Start of Turn sub-phase. Any enemy unit that moves through the template, or that the template moves over must immediately make D6 Strength tests. For each test that is failed, the unit loses a single Wound."
   },
   {
     "id": "lore-of-the-great-maw-renegade",
@@ -321,7 +321,7 @@
     "source_citation_page": 17,
     "last_updated": "2026-04-15",
     "name": "Lore of the Great Maw (Renegade)",
-    "text": ""
+    "text": "Emissaries of the Great Maw suck marrow from cracked bones or stuff huge chunks of raw meat into their mouths to aid their magical abilities. As they do, those around them feel replenished, the gnawing hunger that eternally chews at their guts subsiding. A Wizard with the 'Lore of the Great Maw' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. Toothcracker Type Enchantment Casting Value 6+/9+ Range 12\" If this spell is cast with a casting result of 7 or more, the target friendly unit gains a +1 modifier to its Toughness characteristic (to a maximum of 10). If this spell is cast with a casting result of 10 or more, the target friendly unit gains a +2 modifier to its Toughness characteristic (to a maximum of 10). This spell lasts until the end of this turn. Trollguts Type Enchantment Casting Value 7+/10+ Range 15\" If this spell is cast with a casting result of 8 or more, the target friendly unit gains the Regeneration (6+) special rule. If this spell is cast with a casting result of 11 or more, the target friendly unit gains the Regeneration (5+) special rule. This spell lasts until your next Start of Turn sub-phase. "
   },
   {
     "id": "lore-of-the-horned-rat-renegade",
@@ -330,7 +330,7 @@
     "source_citation_page": 20,
     "last_updated": "2026-04-15",
     "name": "Lore of the Horned Rat (Renegade)",
-    "text": ""
+    "text": "Skaven believe all magic originates from the same source, their powerful and fickle god – the Horned Rat. In truth, the potent and destructive magic of the Skaven relies upon the manipulation of the Winds of Magic, without which even the most devout and cunning Skaven would be unable to weave the simplest spell. A Wizard with the 'Lore of the Horned Rat' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. Skitterleap Type Conveyance Casting Value 7+ Range 18\" This spell can only target friendly characters whose Troop Type is infantry, but may target characters engaged in combat. You may immediately remove the target friendly character from the battlefield and replace it anywhere completely within 24\" of its original location, but not within 6\" of any enemy models. The target cannot move again during this Movement phase. Note that this spell allows a character to leave combat. Warp Lightning Type Magic Missile Casting Value 9+ Range 18\" The target enemy unit suffers D3+1 Strength 5 hits, each with an AP of -3. Cloud of Corruption Type Magical Vortex Casting Value 9+ Range 9\" Remains in Play. Place a small (3\") blast template so that its central hole is within 9\" of the caster. Whilst in play, the template is treated as dangerous terrain over which no line of sight can be drawn. Whilst within 3\" of one or more of these templates, enemy units suffer a -1 modifier to their Toughness characteristic (to a minimum of one). "
   },
   {
     "id": "lore-of-undeath-renegade",
@@ -339,6 +339,6 @@
     "source_citation_page": 21,
     "last_updated": "2026-04-15",
     "name": "Lore of Undeath (Renegade)",
-    "text": ""
+    "text": "Mystery shrouds the study of Necromancy. To learn this dark art, an aspirant must find a willing tutor and become their apprentice, or acquire forbidden books rich in the secrets of undeath. It is this intrinsic mystery that drives Necromancers to become servants of the Vampire Counts, hoping to learn first-hand from the masters of undeath. A Wizard with the 'Lore of Undeath' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below. Vanhal's Danse Macabre Type Enchantment Casting Value 7+/11+ Range 12\" If this spell is cast with a casting result of 7 or more, the target friendly unit gains a +D3 modifier to one of the following characteristics (to a maximum of 10). If this spell is cast with a casting result of 11 or more, the target friendly unit gains a +D3 modifier to two of the following characteristics (to a maximum of 10). This spell lasts until your next Start of Turn sub-phase. Movement Weapon Skill Initiative Hellish Vigour Type Enchantment Casting Value 6+/10+ Range Self If this spell is cast with a casting result of 6 or more, a single friendly unit that has the Necromantic Undead special rule and is within the caster's Command range gains the Reserve Move special rule. If this spell is cast with a casting result of 10 or more, every friendly unit that has the Necromantic Undead special rule and is within the caster's Command range gains the Reserve Move special rule. This spell lasts until the end of this turn. Raise Dead Type Enchantment Casting Value 9+ Range 12\" Place a unit of 2D3 Risen Zombies on the battlefield anywhere completely within 12\" of this model, but not within 1\" of any enemy models. This unit cannot declare a charge during the turn in which it was raised: Troop Type: Regular Infantry Base Size: 25 x 25 mm Unit Size: 2-6 Equipment: Hand weapons Special Rules: Necromantic Undead, Regeneration (6+), Skirmishers, The Newly Dead Note that Risen Zombies are not worth any Victory Points."
   }
 ]

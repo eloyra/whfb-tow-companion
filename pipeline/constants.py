@@ -137,6 +137,10 @@ MAGIC_ITEM_TYPE_MAP: dict[str, str] = {
     "Unique": "unique",
 }
 
+# CoreRule node id for the casting-roll / casting-value rules page.
+# Used by SpellParser to emit a REFERENCES edge from every spell that has a casting value.
+CASTING_VALUE_RULE_ID: str = "casting-roll-casting-result-and-casting-value"
+
 # ---------------------------------------------------------------------------
 # Node types
 # ---------------------------------------------------------------------------

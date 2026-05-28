@@ -178,6 +178,7 @@ _PAGE_TYPE_PATTERNS: list[tuple[re.Pattern[str], str]] = [
     (re.compile(r"^/troop-types-in-detail/[^/]+$"), "troop_type"),
     (re.compile(r"^/magic-items/[^/]+$"), "magic_item"),
     (re.compile(r"^/the-lores-of-magic/[^/]+$"), "spell"),
+    (re.compile(r"^/spell/[^/]+$"), "spell_page"),
     (re.compile(r"^/weapons-of-war/[^/]+$"), "weapon"),
     (re.compile(r"^/battlefield-terrain/[^/]+$"), "terrain"),
     # Generic two-segment path: /{section}/{slug} — core rulebook pages.

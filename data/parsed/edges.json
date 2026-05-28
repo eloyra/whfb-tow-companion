@@ -109073,6 +109073,12 @@
     "properties": {}
   },
   {
+    "src": "hammerhand",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "fireball",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -109091,6 +109097,12 @@
     "properties": {}
   },
   {
+    "src": "fireball",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "curse-of-arrow-attraction",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -109099,6 +109111,12 @@
   {
     "src": "curse-of-arrow-attraction",
     "dst": "start-of-turn",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "curse-of-arrow-attraction",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109139,8 +109157,20 @@
     "properties": {}
   },
   {
+    "src": "pillar-of-fire",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "arcane-urgency",
     "dst": "conveyance",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "arcane-urgency",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109169,6 +109199,12 @@
     "properties": {}
   },
   {
+    "src": "oaken-shield",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "curse-of-cowardly-flight",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -109187,6 +109223,12 @@
     "properties": {}
   },
   {
+    "src": "curse-of-cowardly-flight",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "the-summoning",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -109195,6 +109237,12 @@
   {
     "src": "the-summoning",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "the-summoning",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109223,6 +109271,12 @@
     "properties": {}
   },
   {
+    "src": "steed-of-shadows",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "gathering-darkness",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -109237,6 +109291,12 @@
   {
     "src": "gathering-darkness",
     "dst": "inspiring-presence",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "gathering-darkness",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109259,6 +109319,12 @@
     "properties": {}
   },
   {
+    "src": "daemonic-familiars",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "daemonic-vessel",
     "dst": "enchantment",
     "relation": "REFERENCES",
@@ -109273,6 +109339,12 @@
   {
     "src": "daemonic-vessel",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "daemonic-vessel",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109307,8 +109379,20 @@
     "properties": {}
   },
   {
+    "src": "vortex-of-chaos",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "daemonic-vigour",
     "dst": "enchantment",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "daemonic-vigour",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109331,8 +109415,20 @@
     "properties": {}
   },
   {
+    "src": "doombolt",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "word-of-pain",
     "dst": "hex",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "word-of-pain",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109355,8 +109451,20 @@
     "properties": {}
   },
   {
+    "src": "stream-of-corruption",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "infernal-gateway",
     "dst": "conveyance",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "infernal-gateway",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109385,6 +109493,12 @@
     "properties": {}
   },
   {
+    "src": "phantasmagoria",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "battle-lust",
     "dst": "enchantment",
     "relation": "REFERENCES",
@@ -109399,6 +109513,12 @@
   {
     "src": "battle-lust",
     "dst": "hatred",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "battle-lust",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109427,6 +109547,12 @@
     "properties": {}
   },
   {
+    "src": "soul-eater",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "storm-call",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -109435,6 +109561,12 @@
   {
     "src": "storm-call",
     "dst": "start-of-turn",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "storm-call",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109457,6 +109589,12 @@
     "properties": {}
   },
   {
+    "src": "flaming-sword",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "plague-of-rust",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -109471,6 +109609,12 @@
   {
     "src": "plague-of-rust",
     "dst": "armour-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "plague-of-rust",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109501,6 +109645,12 @@
   {
     "src": "summon-elemental-spirit",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "summon-elemental-spirit",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109541,6 +109691,12 @@
     "properties": {}
   },
   {
+    "src": "earthen-ramparts",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "wind-blast",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -109559,8 +109715,20 @@
     "properties": {}
   },
   {
+    "src": "wind-blast",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "travel-mystical-pathway",
     "dst": "conveyance",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "travel-mystical-pathway",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109579,6 +109747,12 @@
   {
     "src": "drain-magic",
     "dst": "remains-in-play",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "drain-magic",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109613,6 +109787,12 @@
     "properties": {}
   },
   {
+    "src": "walk-between-worlds",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "fiery-convocation",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -109637,6 +109817,12 @@
     "properties": {}
   },
   {
+    "src": "fiery-convocation",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "tempest",
     "dst": "magical-vortex",
     "relation": "REFERENCES",
@@ -109651,6 +109837,12 @@
   {
     "src": "tempest",
     "dst": "dangerous-terrain",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "tempest",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109673,6 +109865,12 @@
     "properties": {}
   },
   {
+    "src": "corporeal-unmaking",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "fury-of-khaine",
     "dst": "enchantment",
     "relation": "REFERENCES",
@@ -109685,6 +109883,12 @@
     "properties": {}
   },
   {
+    "src": "fury-of-khaine",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "shield-of-saphery",
     "dst": "enchantment",
     "relation": "REFERENCES",
@@ -109693,6 +109897,12 @@
   {
     "src": "shield-of-saphery",
     "dst": "ward-saves",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "shield-of-saphery",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109715,6 +109925,12 @@
     "properties": {}
   },
   {
+    "src": "glittering-robe",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "mind-razor",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -109733,6 +109949,12 @@
     "properties": {}
   },
   {
+    "src": "mind-razor",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "shimmering-dragon",
     "dst": "conveyance",
     "relation": "REFERENCES",
@@ -109745,6 +109967,12 @@
     "properties": {}
   },
   {
+    "src": "shimmering-dragon",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "column-of-crystal",
     "dst": "magical-vortex",
     "relation": "REFERENCES",
@@ -109753,6 +109981,12 @@
   {
     "src": "column-of-crystal",
     "dst": "remains-in-play",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "column-of-crystal",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109775,8 +110009,20 @@
     "properties": {}
   },
   {
+    "src": "confounding-convocation",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "spectral-doppelganger",
     "dst": "assailment",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "spectral-doppelganger",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109789,6 +110035,12 @@
   {
     "src": "miasmic-mirage",
     "dst": "start-of-turn",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "miasmic-mirage",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109807,6 +110059,12 @@
   {
     "src": "the-dwellers-below",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "the-dwellers-below",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109841,6 +110099,12 @@
     "properties": {}
   },
   {
+    "src": "deathly-cabal",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "unquiet-spirits",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -109855,6 +110119,12 @@
   {
     "src": "unquiet-spirits",
     "dst": "regeneration",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "unquiet-spirits",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109883,6 +110153,12 @@
     "properties": {}
   },
   {
+    "src": "spiritual-vortex",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "curse-of-years",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -109891,6 +110167,12 @@
   {
     "src": "curse-of-years",
     "dst": "start-of-turn",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "curse-of-years",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109925,6 +110207,12 @@
     "properties": {}
   },
   {
+    "src": "spectral-steed",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "spirit-leech",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -109933,6 +110221,12 @@
   {
     "src": "spirit-leech",
     "dst": "inspiring-presence",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "spirit-leech",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109951,6 +110245,12 @@
   {
     "src": "fist-of-gork-or-mork",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "fist-of-gork-or-mork",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -109979,14 +110279,32 @@
     "properties": {}
   },
   {
+    "src": "vindictive-glare",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "hand-of-mork-or-gork",
     "dst": "conveyance",
     "relation": "REFERENCES",
     "properties": {}
   },
   {
+    "src": "hand-of-mork-or-gork",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "bad-moon-rizin",
     "dst": "hex",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "bad-moon-rizin",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -110015,6 +110333,12 @@
     "properties": {}
   },
   {
+    "src": "evil-sun-shinin",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "ere-we-go",
     "dst": "enchantment",
     "relation": "REFERENCES",
@@ -110029,6 +110353,12 @@
   {
     "src": "ere-we-go",
     "dst": "declare-charges-and-charge-reactions",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "ere-we-go",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -110059,6 +110389,12 @@
   {
     "src": "foot-of-gork-or-mork",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "foot-of-gork-or-mork",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -111145,6 +111481,12 @@
   {
     "src": "call-of-the-wild",
     "dst": "reserve-move",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "call-of-the-wild",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -114815,6 +115157,12 @@
     "properties": {}
   },
   {
+    "src": "devolve",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "blade-of-revered-tzunki",
     "dst": "make-armour-saves-combat",
     "relation": "REFERENCES",
@@ -115007,8 +115355,20 @@
     "properties": {}
   },
   {
+    "src": "tree-singing",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "forest-walker",
     "dst": "conveyance",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "forest-walker",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115021,6 +115381,12 @@
   {
     "src": "flock-of-doom-wood-elves",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "flock-of-doom-wood-elves",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115043,6 +115409,12 @@
     "properties": {}
   },
   {
+    "src": "viletide",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "mantle-of-ghorok",
     "dst": "enchantment",
     "relation": "REFERENCES",
@@ -115051,6 +115423,12 @@
   {
     "src": "mantle-of-ghorok",
     "dst": "range-self-spells",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "mantle-of-ghorok",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115073,6 +115451,12 @@
     "properties": {}
   },
   {
+    "src": "winds-of-chaos",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "acquiescence",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -115087,6 +115471,12 @@
   {
     "src": "acquiescence",
     "dst": "strike-last",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "acquiescence",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115115,6 +115505,12 @@
     "properties": {}
   },
   {
+    "src": "fleshy-abundance",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "blue-fire",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -115135,6 +115531,12 @@
   {
     "src": "blue-fire",
     "dst": "flaming-attacks",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "blue-fire",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115169,6 +115571,12 @@
     "properties": {}
   },
   {
+    "src": "plague-wind",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "cacophonic-hymn",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -115189,6 +115597,12 @@
   {
     "src": "cacophonic-hymn",
     "dst": "stupidity",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "cacophonic-hymn",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115217,6 +115631,12 @@
     "properties": {}
   },
   {
+    "src": "pink-fire",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "gift-of-mutation",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -115231,6 +115651,12 @@
   {
     "src": "gift-of-mutation",
     "dst": "start-of-turn",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "gift-of-mutation",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115259,6 +115685,12 @@
     "properties": {}
   },
   {
+    "src": "brain-bursta",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "gaze-of-gork",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -115267,6 +115699,12 @@
   {
     "src": "gaze-of-gork",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "gaze-of-gork",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115301,6 +115739,12 @@
     "properties": {}
   },
   {
+    "src": "curse-of-hashut",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "storm-of-ash",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -115319,6 +115763,12 @@
     "properties": {}
   },
   {
+    "src": "storm-of-ash",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "flames-of-hashut",
     "dst": "assailment",
     "relation": "REFERENCES",
@@ -115333,6 +115783,12 @@
   {
     "src": "flames-of-hashut",
     "dst": "flaming-attacks",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "flames-of-hashut",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115367,6 +115823,12 @@
     "properties": {}
   },
   {
+    "src": "apotheosis",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "monsoon",
     "dst": "magical-vortex",
     "relation": "REFERENCES",
@@ -115387,6 +115849,12 @@
   {
     "src": "monsoon",
     "dst": "start-of-turn",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "monsoon",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115409,6 +115877,12 @@
     "properties": {}
   },
   {
+    "src": "morks-curse",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "itchy-nuisance",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -115421,6 +115895,12 @@
     "properties": {}
   },
   {
+    "src": "itchy-nuisance",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "cursing-word",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -115429,6 +115909,12 @@
   {
     "src": "cursing-word",
     "dst": "remains-in-play",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "cursing-word",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115453,6 +115939,12 @@
   {
     "src": "black-horror",
     "dst": "start-of-turn",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "black-horror",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115483,6 +115975,12 @@
   {
     "src": "djafs-incantation-of-cursed-blades",
     "dst": "command-range",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "djafs-incantation-of-cursed-blades",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115517,8 +116015,20 @@
     "properties": {}
   },
   {
+    "src": "khsars-incantation-of-the-desert-wind",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "usekhps-incantation-of-desiccation",
     "dst": "hex",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "usekhps-incantation-of-desiccation",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115549,6 +116059,12 @@
   {
     "src": "primordial-gloom",
     "dst": "difficult-terrain",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "primordial-gloom",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115577,6 +116093,12 @@
     "properties": {}
   },
   {
+    "src": "in-the-gloaming-wildwood",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "flock-of-doom-beastmen",
     "dst": "assailment",
     "relation": "REFERENCES",
@@ -115597,6 +116119,12 @@
   {
     "src": "flock-of-doom-beastmen",
     "dst": "multiple-wounds",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "flock-of-doom-beastmen",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115619,6 +116147,12 @@
     "properties": {}
   },
   {
+    "src": "fury-of-the-beast",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "strangleroot",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -115627,6 +116161,12 @@
   {
     "src": "strangleroot",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "strangleroot",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115661,6 +116201,12 @@
     "properties": {}
   },
   {
+    "src": "neath-the-shaden-wodespan",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "hand-of-khaine",
     "dst": "assailment",
     "relation": "REFERENCES",
@@ -115681,6 +116227,12 @@
   {
     "src": "hand-of-khaine",
     "dst": "regeneration",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "hand-of-khaine",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115703,14 +116255,32 @@
     "properties": {}
   },
   {
+    "src": "courage-of-aenarion",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "vauls-unmaking",
     "dst": "hex",
     "relation": "REFERENCES",
     "properties": {}
   },
   {
+    "src": "vauls-unmaking",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "toothcracker",
     "dst": "enchantment",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "toothcracker",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115733,6 +116303,12 @@
     "properties": {}
   },
   {
+    "src": "trollguts",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "skitterleap",
     "dst": "conveyance",
     "relation": "REFERENCES",
@@ -115745,6 +116321,12 @@
     "properties": {}
   },
   {
+    "src": "skitterleap",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "warp-lightning",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -115753,6 +116335,12 @@
   {
     "src": "warp-lightning",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "warp-lightning",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115775,6 +116363,12 @@
     "properties": {}
   },
   {
+    "src": "cloud-of-corruption",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "the-ladys-gift",
     "dst": "enchantment",
     "relation": "REFERENCES",
@@ -115789,6 +116383,12 @@
   {
     "src": "the-ladys-gift",
     "dst": "regeneration",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "the-ladys-gift",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115817,6 +116417,12 @@
     "properties": {}
   },
   {
+    "src": "burning-gaze",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "the-ladys-wrath",
     "dst": "enchantment",
     "relation": "REFERENCES",
@@ -115841,6 +116447,12 @@
     "properties": {}
   },
   {
+    "src": "the-ladys-wrath",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "maelstrom-of-chaos",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -115859,6 +116471,12 @@
     "properties": {}
   },
   {
+    "src": "maelstrom-of-chaos",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "blackened-bolts",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -115873,6 +116491,12 @@
   {
     "src": "blackened-bolts",
     "dst": "panic-tests",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "blackened-bolts",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115897,6 +116521,12 @@
   {
     "src": "veil-of-gloom",
     "dst": "templates",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "veil-of-gloom",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115945,6 +116575,12 @@
   {
     "src": "vortex-of-darkness",
     "dst": "regeneration",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "vortex-of-darkness",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -115973,6 +116609,12 @@
     "properties": {}
   },
   {
+    "src": "shadowed-assailants",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "crawling-mists",
     "dst": "conveyance",
     "relation": "REFERENCES",
@@ -115991,6 +116633,12 @@
     "properties": {}
   },
   {
+    "src": "crawling-mists",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "chains-of-darkness",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -115999,6 +116647,12 @@
   {
     "src": "chains-of-darkness",
     "dst": "start-of-turn",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "chains-of-darkness",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -116015,6 +116669,12 @@
     "properties": {}
   },
   {
+    "src": "swirling-mists",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "fury-of-athel-loren",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -116023,6 +116683,12 @@
   {
     "src": "fury-of-athel-loren",
     "dst": "multiple-wounds",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "fury-of-athel-loren",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -116041,6 +116707,12 @@
   {
     "src": "ariels-blessing",
     "dst": "regeneration",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "ariels-blessing",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -116077,6 +116749,12 @@
   {
     "src": "spiteful-torrent",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "spiteful-torrent",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -116105,6 +116783,12 @@
     "properties": {}
   },
   {
+    "src": "durthus-wrath",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "hidden-pathways",
     "dst": "conveyance",
     "relation": "REFERENCES",
@@ -116129,6 +116813,12 @@
     "properties": {}
   },
   {
+    "src": "hidden-pathways",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "sapping-blight",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -116137,6 +116827,12 @@
   {
     "src": "sapping-blight",
     "dst": "start-of-turn",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "sapping-blight",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -116177,6 +116873,12 @@
     "properties": {}
   },
   {
+    "src": "big-smartz",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "acidic-bile",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -116191,6 +116893,12 @@
   {
     "src": "acidic-bile",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "acidic-bile",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -116213,6 +116921,12 @@
     "properties": {}
   },
   {
+    "src": "troll-brainz",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "ravenous-recourse",
     "dst": "conveyance",
     "relation": "REFERENCES",
@@ -116227,6 +116941,12 @@
   {
     "src": "ravenous-recourse",
     "dst": "stupidity",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "ravenous-recourse",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -116261,6 +116981,12 @@
     "properties": {}
   },
   {
+    "src": "foetid-whirlpool",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "torrent-of-filth",
     "dst": "assailment",
     "relation": "REFERENCES",
@@ -116269,6 +116995,12 @@
   {
     "src": "torrent-of-filth",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "torrent-of-filth",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -116297,6 +117029,12 @@
     "properties": {}
   },
   {
+    "src": "rapid-regeneration",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "vanhals-danse-macabre",
     "dst": "enchantment",
     "relation": "REFERENCES",
@@ -116305,6 +117043,12 @@
   {
     "src": "vanhals-danse-macabre",
     "dst": "start-of-turn",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "vanhals-danse-macabre",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -116335,6 +117079,12 @@
   {
     "src": "hellish-vigour",
     "dst": "reserve-move",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "hellish-vigour",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -116387,6 +117137,12 @@
     "properties": {}
   },
   {
+    "src": "raise-dead",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "constellation-of-the-dragon",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -116395,6 +117151,12 @@
   {
     "src": "constellation-of-the-dragon",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "constellation-of-the-dragon",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -116435,6 +117197,12 @@
     "properties": {}
   },
   {
+    "src": "great-bastion",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "might-of-heaven-and-earth",
     "dst": "enchantment",
     "relation": "REFERENCES",
@@ -116459,6 +117227,12 @@
     "properties": {}
   },
   {
+    "src": "might-of-heaven-and-earth",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "spirits-of-wind-and-shadow",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -116477,6 +117251,12 @@
     "properties": {}
   },
   {
+    "src": "spirits-of-wind-and-shadow",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "accursed-mirror",
     "dst": "hex",
     "relation": "REFERENCES",
@@ -116491,6 +117271,12 @@
   {
     "src": "accursed-mirror",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "accursed-mirror",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -116513,6 +117299,12 @@
     "properties": {}
   },
   {
+    "src": "ancestral-warriors",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "the-storm-dragons-fury",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
@@ -116527,6 +117319,12 @@
   {
     "src": "the-storm-dragons-fury",
     "dst": "give-ground",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "the-storm-dragons-fury",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -117419,6 +118217,12 @@
     "properties": {}
   },
   {
+    "src": "rune-of-oath-and-steel",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "rune-of-hearth-and-home",
     "dst": "enchantment",
     "relation": "REFERENCES",
@@ -117443,8 +118247,20 @@
     "properties": {}
   },
   {
+    "src": "rune-of-hearth-and-home",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "rune-of-haste-and-urgency",
     "dst": "conveyance",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "rune-of-haste-and-urgency",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -117457,6 +118273,12 @@
   {
     "src": "rune-of-wrath-and-ruin",
     "dst": "armour-piercing",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "rune-of-wrath-and-ruin",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -118259,6 +119081,12 @@
     "properties": {}
   },
   {
+    "src": "light-of-death",
+    "dst": "casting-roll-casting-result-and-casting-value",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
     "src": "light-of-protection",
     "dst": "enchantment",
     "relation": "REFERENCES",
@@ -118279,6 +119107,12 @@
   {
     "src": "light-of-protection",
     "dst": "bound-spells",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "light-of-protection",
+    "dst": "casting-roll-casting-result-and-casting-value",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -119429,7 +120263,7 @@
     "properties": {}
   },
   {
-    "src": "vanhal-s-danse-macabre",
+    "src": "vanhals-danse-macabre",
     "dst": "lore-of-undeath-renegade",
     "relation": "BELONGS_TO_LORE",
     "properties": {}
@@ -121002,13 +121836,13 @@
   },
   {
     "src": "page-44-alchemists-mask",
-    "dst": "plague-of-rust",
+    "dst": "alchemists-mask",
     "relation": "AMENDS",
     "properties": {}
   },
   {
     "src": "page-44-alchemists-mask",
-    "dst": "alchemists-mask",
+    "dst": "plague-of-rust",
     "relation": "AMENDS",
     "properties": {}
   },
@@ -121968,13 +122802,13 @@
   },
   {
     "src": "can-a-warp-lightning-cannon-fire-grapeshot",
-    "dst": "warp-lightning",
+    "dst": "warp-lightning-cannon",
     "relation": "CLARIFIES",
     "properties": {}
   },
   {
     "src": "can-a-warp-lightning-cannon-fire-grapeshot",
-    "dst": "warp-lightning-cannon",
+    "dst": "warp-lightning",
     "relation": "CLARIFIES",
     "properties": {}
   },
@@ -122574,13 +123408,13 @@
   },
   {
     "src": "are-the-effects-of-the-casket-of-souls-bound-spell-light-of-protection",
-    "dst": "light-of-protection",
+    "dst": "casket-of-souls",
     "relation": "CLARIFIES",
     "properties": {}
   },
   {
     "src": "are-the-effects-of-the-casket-of-souls-bound-spell-light-of-protection",
-    "dst": "casket-of-souls",
+    "dst": "light-of-protection",
     "relation": "CLARIFIES",
     "properties": {}
   },

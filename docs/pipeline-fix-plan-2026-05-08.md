@@ -34,7 +34,8 @@ the change to make, and verification steps.
   `CAN_TAKE_ITEM` edges so agents can distinguish "unlimited" (`budget=null, unlimited=true`)
   from "budgeted" (`budget=50, unlimited=false`) from "data error" (`budget=null, unlimited=false`).
 
-**What has NOT been started:** Fix 7.
+**What has NOT been started:** ~~Fix 7~~ — **Fix 7 (partial) ✅ DONE as of 2026-05-28.**
+See Fix 7 section below for what shipped and what remains as a follow-up.
 
 **Fix 5** (terrain-interaction seed) is ✅ verified — 9 `TERRAIN_INTERACTION` edges written live.
 
@@ -523,11 +524,72 @@ The destination node is the army-list page, currently parsed as a
 
 ---
 
-## Fix 7 ❌ NOT STARTED — Weapon / spell / unit-option enrichment via rendered HTML (the HTML pivot)
+## Fix 7 ✅ PARTIAL — Weapon / spell / unit-option enrichment via rendered HTML (the HTML pivot)
 
+> **Updated 2026-05-28 (second pass).** Spell source-of-truth flipped to dedicated `/spell/{slug}`
+> pages. All structured Spell properties now populated; CoreRule duplicates removed. See below.
+>
+> **Updated 2026-05-28 (first pass).** Weapon attack-profile extraction and spell_type extraction
+> done. `_options.py` typed-href rework deferred. See follow-up section.
+>
 > **Updated 2026-05-27.** The original Option A/B framing is superseded. The HTML pivot
 > (`docs/plans/scraper-html-pivot-explained.md`) is the correct approach and defines the scope
 > precisely. Summary recorded here; full rationale in that document.
+
+### What shipped (2026-05-28 — second pass: Spell source-of-truth flip)
+
+**Problem identified:** Every dedicated `/spell/{slug}` page was being parsed as a `CoreRule` node
+(the crawler correctly saves them in `data/raw/core_rule/` and the URL pattern falls into the
+generic `/{section}/{slug}` = `core_rule` bucket). This created a duplicate-id collision: each
+spell had a flavor-text-only `Spell` node (from the lore page) AND a mechanics-rich `CoreRule`
+node (from the dedicated page). REFERENCES edges came from the CoreRule, not the Spell.
+
+**Fix applied:**
+
+- **`pipeline/scraper/parsers/lore_parser.py`** (new) — extracted from the old `spell_parser.py`;
+  emits one `Lore` node + `BELONGS_TO_LORE` edges from embedded spell slugs. No Spell nodes.
+- **`pipeline/scraper/parsers/spell_parser.py`** (rewritten) — now parses a single `/spell/{slug}`
+  dedicated page (contentType `spell`); emits one `Spell` node with structured `casting_value`
+  (int), `range`, `spell_type` (from `div.spell` Type row), full mechanical `bodyIndex` text,
+  and `REFERENCES` edges from body hyperlinks including one to `CASTING_VALUE_RULE_ID`.
+- **`pipeline/scraper/parsers/__init__.py`** — registry: `"spell" → LoreParser()`,
+  `"spell_page" → SpellParser()`; URL-based routing override routes existing manifest's `core_rule`
+  entries whose URL starts with `/spell/` to `SpellParser`; renegade two-pass derives
+  `BELONGS_TO_LORE` for renegade lores by name-matching spell names against lore body text.
+- **`pipeline/scraper/parsers/base_parser.py`** — `_extract_spell_html_types` removed;
+  replaced with `_extract_spell_type(html) -> str | None` for single dedicated pages.
+- **`pipeline/scraper/utils.py`** — added `/spell/[^/]+` → `spell_page` pattern (for future crawls).
+- **`pipeline/constants.py`** — added `CASTING_VALUE_RULE_ID`.
+- **`tests/unit/test_parsers.py`** — updated to cover dedicated-page SpellParser, LoreParser,
+  `_extract_spell_type` helper.
+
+**Results (verified):**
+- 139 `Spell` nodes (was 133 from lore pages; 7 previously missing now included).
+- 0 `CoreRule` nodes from `/spell/` URLs (was ~133 duplicates removed).
+- 151 `BELONGS_TO_LORE` edges (same count; renegade lores now have structured membership).
+- 139 / 139 spells have `spell_type` and `casting_value` populated.
+- `oaken-shield` has `casting_value=7`, `range="Self"`, `spell_type="Enchantment"`, full
+  mechanical text, and 5 REFERENCES edges (enchantment, range-self-spells, start-of-turn,
+  ward-saves, casting-roll-casting-result-and-casting-value).
+
+Audit query **#9** (`spell_type`) → ✅. Casting-value hop → ✅.
+
+### Follow-up: non-HTML-table gaps (NOT resolved by this fix)
+
+These fields cannot be extracted from any HTML table or structured DOM element:
+
+- **`armour_value`** (audit #15/#16 — shield, full-plate-armour): armour pages have **no**
+  `profile-table--weapon`. The schema weapon seed (`docs/schema/knowledge_graph_schema.md:775-779`)
+  already lists the canonical values (`light-armour 5+`, `heavy-armour 4+`, `full-plate 3+`,
+  `shield/barding +1`). Resolution: apply these as a deterministic seed in `builder.py` or as
+  hardcoded property overrides in `weapon_parser.py`.
+- **War-machine `shots`/`template_type`/`bounce`/`is_indirect`** (audit #12 — cannon bounce):
+  no `/weapons-of-war/cannon` page exists (cannon is a Unit, not a Weapon entry). These fields
+  require prose parsing of unit body text, or a manual seed.
+- **`casting_value_boosted`**: the rendered stat table has only one Casting Value row; no structured
+  source for the boosted value exists.
+- **`_options.py` typed-href rework**: the two-pass UNLOCKS_RULE relabel in `parsers/__init__.py`
+  is working and sufficient; defer unless a concrete bug surfaces.
 
 ### Decision
 
@@ -602,7 +664,10 @@ do not raise an exception.
    - #4 → ✅ (terrain nodes resolve).
    - #44, #45 → ✅ (budgets captured).
    - #48 → ✅ (SPLIT_PROFILE_OF emitted).
-   - Queries #9, #12, #15, #16 remain ⚠️ unless Fix 7 is taken.
+   - #9 → ✅ (spell_type populated via HTML pivot, Fix 7 partial).
+   - #12 (cannon bounce), #15/#16 (armour_value) remain ⚠️ — see Fix 7 follow-up section.
+   - Add `MATCH (w:Weapon) WHERE w.range IS NOT NULL RETURN count(w)` (expect ~226) and
+     `MATCH (s:Spell) WHERE s.spell_type IS NOT NULL RETURN count(s)` to the sanity list above.
 
 ---
 

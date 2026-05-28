@@ -101,8 +101,9 @@ Key rules:
 Known gaps (deferred, not bugs):
 - `SPLIT_PROFILE_OF` edges for multi-profile units — not emitted (Fix 2 in fix plan)
 - `HAS_COMPOSITION_RULE` edges from Army to its list page — not emitted (Fix 6 in fix plan)
-- Weapon `range` / `strength` / `ap` fields — still `null`; need HTML stat-table extraction (Fix 7)
-- Spell `casting_value` / `range` / `spell_type` — still parsed from prose; HTML pivot pending (Fix 7)
+- Weapon `range` / `strength` / `ap` fields — populated from `table.profile-table--weapon` (Fix 7 done)
+- Spell `casting_value` / `range` / `spell_type` — fully structured; dedicated `/spell/{slug}` pages
+  are the source of truth via `SpellParser`; lore pages handled by `LoreParser` (Fix 7 done)
 - `Upgrade` nodes — present but champion `points_budget` and standard-bearer `magic_standard_budget`
   not correctly captured (Fixes 3 + 4 in fix plan)
 - `TERRAIN_INTERACTION` edges from seed — enabled but unverified in live graph (Fix 5)

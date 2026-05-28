@@ -322,7 +322,7 @@ def _check_faq_errata_coverage(driver: neo4j.Driver, report: dict) -> None:
         report["warnings"].append(msg)
         logger.warning(msg)
     else:
-        logger.info("FAQ CLARIFIES coverage: %d/%d (%.1%%)", faq_linked, faq_total, faq_pct * 100)
+        logger.info("FAQ CLARIFIES coverage: %d/%d (%.1f%%)", faq_linked, faq_total, faq_pct * 100)
 
     if errata_pct < 0.70:
         msg = (
@@ -333,7 +333,7 @@ def _check_faq_errata_coverage(driver: neo4j.Driver, report: dict) -> None:
         logger.warning(msg)
     else:
         logger.info(
-            "Errata AMENDS coverage: %d/%d (%.1%%)", errata_linked, errata_total, errata_pct * 100
+            "Errata AMENDS coverage: %d/%d (%.1f%%)", errata_linked, errata_total, errata_pct * 100
         )
 
 
