@@ -73,6 +73,46 @@ class ArmyListParser(BaseParser):
             logger.warning("ArmyListParser: no body field at %s", url)
             return result
 
+        name: str = fields.get("name", "")
+        body_text = self._body_text(fields)
+        page_ref: int | None = fields.get("pageReference")
+
+        # Derive section from ruleType or fall back to URL path
+        rule_types: list[dict] = fields.get("ruleType") or []
+        section_id = ""
+        if rule_types:
+            section_id = rule_types[0].get("fields", {}).get("slug", "")
+        if not section_id:
+            from urllib.parse import urlparse as _urlparse
+            path_parts = [p for p in _urlparse(url).path.strip("/").split("/") if p]
+            section_id = path_parts[0] if path_parts else ""
+        section_name = section_id.replace("-", " ").title()
+
+        # Emit a CoreRule node for the full composition text (enables vector
+        # search + graph traversal from Army to composition rules).
+        core_rule_node: dict = {
+            "node_type": NodeType.CORE_RULE,
+            "id": slug,
+            "url": url,
+            **self._make_source_citation("Rulebook", page_ref),
+            "last_updated": self._date_only(fetched_at),
+            "section": section_name,
+            "section_id": section_id,
+            "prev_page_url": None,
+            "next_page_url": None,
+            "name": name,
+            "text": body_text,
+            **self._make_i18n(name=name, text=body_text),
+        }
+        result.nodes.append(core_rule_node)
+        result.edges.append(
+            self._make_edge(army_slug, slug, EdgeType.HAS_COMPOSITION_RULE)
+        )
+        if section_id:
+            result.edges.append(
+                self._make_edge(slug, section_id, EdgeType.PART_OF_SECTION)
+            )
+
         # Build the CompositionList node
         list_id = f"{army_slug}#composition-list"
         list_node: dict = {

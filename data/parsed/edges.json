@@ -4483,7 +4483,19 @@
   },
   {
     "src": "a-timely-arrival",
+    "dst": "warriors-of-chaos-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "a-timely-arrival",
     "dst": "wolves-of-the-sea",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "a-timely-arrival",
+    "dst": "empire-of-man-army-list",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -4531,6 +4543,12 @@
   },
   {
     "src": "assault-on-leonen",
+    "dst": "warriors-of-chaos-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "assault-on-leonen",
     "dst": "wolves-of-the-sea",
     "relation": "REFERENCES",
     "properties": {}
@@ -4562,6 +4580,12 @@
   {
     "src": "reclamation-of-hollum",
     "dst": "stubborn",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "reclamation-of-hollum",
+    "dst": "warriors-of-chaos-army-list",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -4639,6 +4663,12 @@
   },
   {
     "src": "war-in-the-shadowlands",
+    "dst": "warriors-of-chaos-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "war-in-the-shadowlands",
     "dst": "wolves-of-the-sea",
     "relation": "REFERENCES",
     "properties": {}
@@ -4687,7 +4717,19 @@
   },
   {
     "src": "looting-and-pillaging",
+    "dst": "warriors-of-chaos-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "looting-and-pillaging",
     "dst": "wolves-of-the-sea",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "looting-and-pillaging",
+    "dst": "empire-of-man-army-list",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -4723,7 +4765,19 @@
   },
   {
     "src": "hallowed-ground",
+    "dst": "warriors-of-chaos-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "hallowed-ground",
     "dst": "wolves-of-the-sea",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "hallowed-ground",
+    "dst": "empire-of-man-army-list",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -14833,6 +14887,18 @@
   },
   {
     "src": "ambush-at-winters-teeth-pass",
+    "dst": "dwarfen-mountain-holds-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "ambush-at-winters-teeth-pass",
+    "dst": "empire-of-man-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "ambush-at-winters-teeth-pass",
     "dst": "infantry",
     "relation": "REFERENCES",
     "properties": {}
@@ -15427,6 +15493,12 @@
   },
   {
     "src": "the-battle-of-chalons",
+    "dst": "beastmen-brayherds-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "the-battle-of-chalons",
     "dst": "placing-terrain-battlefield-terrain",
     "relation": "REFERENCES",
     "properties": {}
@@ -15463,6 +15535,12 @@
   },
   {
     "src": "the-battle-of-matorea",
+    "dst": "tomb-kings-of-khemri-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "the-battle-of-matorea",
     "dst": "errantry-crusade",
     "relation": "REFERENCES",
     "properties": {}
@@ -15482,6 +15560,12 @@
   {
     "src": "the-battle-of-matorea",
     "dst": "victory-points-warhammer-battles",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "the-battle-of-nan-li",
+    "dst": "warriors-of-chaos-army-list",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -15530,6 +15614,12 @@
   {
     "src": "the-battle-of-nan-li",
     "dst": "panic-tests",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "the-battle-of-stirhuegel-hills",
+    "dst": "beastmen-brayherds-army-list",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -15603,6 +15693,12 @@
     "src": "beam-of-chotec",
     "dst": "flaming-attacks",
     "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "beastmen-brayherds",
+    "dst": "beastmen-brayherds-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
     "properties": {}
   },
   {
@@ -17071,6 +17167,12 @@
   },
   {
     "src": "chaos-dwarfs",
+    "dst": "chaos-dwarfs-legacy-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
+    "properties": {}
+  },
+  {
+    "src": "chaos-dwarfs",
     "dst": "chaos-dwarfs#composition-list",
     "relation": "HAS_LIST",
     "properties": {}
@@ -17673,6 +17775,12 @@
   },
   {
     "src": "clash-at-the-northern-crossroads",
+    "dst": "empire-of-man-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "clash-at-the-northern-crossroads",
     "dst": "placing-terrain-battlefield-terrain",
     "relation": "REFERENCES",
     "properties": {}
@@ -17704,6 +17812,12 @@
   {
     "src": "clash-on-the-zandri-road",
     "dst": "mortuary-cult",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "clash-on-the-zandri-road",
+    "dst": "orc-and-goblin-tribes-army-list",
     "relation": "REFERENCES",
     "properties": {}
   },
@@ -18297,6 +18411,12 @@
   },
   {
     "src": "daemons-of-chaos",
+    "dst": "daemons-of-chaos-legacy-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
+    "properties": {}
+  },
+  {
+    "src": "daemons-of-chaos",
     "dst": "daemons-of-chaos#composition-list",
     "relation": "HAS_LIST",
     "properties": {}
@@ -18689,6 +18809,12 @@
     "src": "dark-coven",
     "dst": "miscast-table",
     "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "dark-elves",
+    "dst": "dark-elves-legacy-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
     "properties": {}
   },
   {
@@ -19427,6 +19553,12 @@
   },
   {
     "src": "dwarfen-mountain-holds",
+    "dst": "dwarfen-mountain-holds-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
+    "properties": {}
+  },
+  {
+    "src": "dwarfen-mountain-holds",
     "dst": "dwarfen-mountain-holds#composition-list",
     "relation": "HAS_LIST",
     "properties": {}
@@ -19824,6 +19956,12 @@
     "src": "the-elemental-winds",
     "dst": "magic-missiles",
     "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "empire-of-man",
+    "dst": "empire-of-man-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
     "properties": {}
   },
   {
@@ -21261,6 +21399,12 @@
   },
   {
     "src": "grand-cathay",
+    "dst": "grand-cathay-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
+    "properties": {}
+  },
+  {
+    "src": "grand-cathay",
     "dst": "grand-cathay#composition-list",
     "relation": "HAS_LIST",
     "properties": {}
@@ -22255,6 +22399,12 @@
   },
   {
     "src": "high-elf-realms",
+    "dst": "high-elf-realms-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
+    "properties": {}
+  },
+  {
+    "src": "high-elf-realms",
     "dst": "high-elf-realms#composition-list",
     "relation": "HAS_LIST",
     "properties": {}
@@ -23205,6 +23355,12 @@
   },
   {
     "src": "jade-fleet",
+    "dst": "empire-of-man-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "jade-fleet",
     "dst": "captain-of-the-empire",
     "relation": "REFERENCES",
     "properties": {}
@@ -23345,6 +23501,12 @@
     "src": "king-of-the-slayer-hold",
     "dst": "unbreakable",
     "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "kingdom-of-bretonnia",
+    "dst": "kingdom-of-bretonnia-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
     "properties": {}
   },
   {
@@ -24009,6 +24171,12 @@
     "src": "lion-cloak",
     "dst": "armour-value",
     "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "lizardmen",
+    "dst": "lizardmen-legacy-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
     "properties": {}
   },
   {
@@ -25818,6 +25986,12 @@
   },
   {
     "src": "nuln-state-troops",
+    "dst": "empire-of-man-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "nuln-state-troops",
     "dst": "state-missile-troops",
     "relation": "REFERENCES",
     "properties": {}
@@ -25904,6 +26078,12 @@
     "src": "ogre-charge",
     "dst": "rank-bonus",
     "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "ogre-kingdoms",
+    "dst": "ogre-kingdoms-legacy-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
     "properties": {}
   },
   {
@@ -26152,6 +26332,12 @@
     "src": "on-da-move",
     "dst": "nomadic-waaagh",
     "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "orc-and-goblin-tribes",
+    "dst": "orc-and-goblin-tribes-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
     "properties": {}
   },
   {
@@ -27137,6 +27323,12 @@
   },
   {
     "src": "the-prophet-and-the-hunter",
+    "dst": "beastmen-brayherds-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "the-prophet-and-the-hunter",
     "dst": "kralmaw-the-prophet-of-ruin",
     "relation": "REFERENCES",
     "properties": {}
@@ -27779,6 +27971,12 @@
   },
   {
     "src": "the-ruins-of-hollum",
+    "dst": "empire-of-man-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "the-ruins-of-hollum",
     "dst": "wolves-of-the-sea",
     "relation": "REFERENCES",
     "properties": {}
@@ -28043,6 +28241,12 @@
   },
   {
     "src": "sea-guard-garrison",
+    "dst": "high-elf-realms-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "sea-guard-garrison",
     "dst": "sea-guard-garrison-commander",
     "relation": "REFERENCES",
     "properties": {}
@@ -28279,6 +28483,12 @@
     "src": "skaryn-the-eye-thief",
     "dst": "armour-piercing",
     "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "skaven",
+    "dst": "skaven-legacy-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
     "properties": {}
   },
   {
@@ -29254,6 +29464,12 @@
   },
   {
     "src": "the-storming-of-khazid-vosk",
+    "dst": "orc-and-goblin-tribes-army-list",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "the-storming-of-khazid-vosk",
     "dst": "placing-terrain-battlefield-terrain",
     "relation": "REFERENCES",
     "properties": {}
@@ -29586,6 +29802,12 @@
     "src": "tolling-the-bell",
     "dst": "ward-saves",
     "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "tomb-kings-of-khemri",
+    "dst": "tomb-kings-of-khemri-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
     "properties": {}
   },
   {
@@ -30208,6 +30430,12 @@
   },
   {
     "src": "vampire-counts",
+    "dst": "vampire-counts-legacy-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
+    "properties": {}
+  },
+  {
+    "src": "vampire-counts",
     "dst": "vampire-counts#composition-list",
     "relation": "HAS_LIST",
     "properties": {}
@@ -30797,6 +31025,12 @@
     "src": "warriors-duel",
     "dst": "the-grail-vow",
     "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "warriors-of-chaos",
+    "dst": "warriors-of-chaos-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
     "properties": {}
   },
   {
@@ -31718,6 +31952,12 @@
     "src": "wood-elf-kindreds",
     "dst": "magic-items",
     "relation": "PART_OF_SECTION",
+    "properties": {}
+  },
+  {
+    "src": "wood-elf-realms",
+    "dst": "wood-elf-realms-army-list",
+    "relation": "HAS_COMPOSITION_RULE",
     "properties": {}
   },
   {
@@ -113833,6 +114073,12 @@
   {
     "src": "the-might-of-miragliano",
     "dst": "tilean-stoicism",
+    "relation": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "src": "the-renegade-knight",
+    "dst": "kingdom-of-bretonnia-army-list",
     "relation": "REFERENCES",
     "properties": {}
   },

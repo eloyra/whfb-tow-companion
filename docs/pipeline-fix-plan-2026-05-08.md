@@ -20,7 +20,21 @@ the change to make, and verification steps.
   (441 edges, 88% errata coverage) — listed as *out of scope* in this plan — now exist.
   `HAS_INTRINSIC_RULE` (80 edges) present.
 
-**What has NOT been started:** Fixes 3, 4, 6, 7.
+**What has shipped since this plan was written (2026-05-08) — continued:**
+
+- **Fix 3 ✅ DONE.** `_BUDGET_RE` broadened to match `pts`. Champion branch now extracts
+  `points_budget` (e.g. 25 pts for Seneschal magic items). Verified by unit tests.
+- **Fix 4 ✅ DONE.** Dispatch reordered: Standard/Musician/Champion branches now fire
+  before Budget. `magic_standard_budget` property added to `command_standard` upgrades.
+  `builder.py` `query_standards` Cypher updated to match both `magic_standard_budget`
+  nodes and `command_standard` nodes carrying the property.
+- **BSB gap fix (beyond plan) ✅ DONE.** `query_standards` now also matches `command_bsb`
+  upgrades with `bsb_unlimited_magic_standard = true`, so BSBs get `CAN_TAKE_ITEM`
+  edges to magic standard items. Added `r.unlimited` boolean property to all
+  `CAN_TAKE_ITEM` edges so agents can distinguish "unlimited" (`budget=null, unlimited=true`)
+  from "budgeted" (`budget=50, unlimited=false`) from "data error" (`budget=null, unlimited=false`).
+
+**What has NOT been started:** Fix 7.
 
 **Fix 5** (terrain-interaction seed) is ✅ verified — 9 `TERRAIN_INTERACTION` edges written live.
 
@@ -460,7 +474,7 @@ If it returns 0 after Fix 1, debug:
 
 ---
 
-## Fix 6 ❌ NOT STARTED — Emit `HAS_COMPOSITION_RULE` in `ArmyListParser`
+## Fix 6 ✅ DONE — Emit `HAS_COMPOSITION_RULE` in `ArmyListParser`
 
 ### Goal
 Link an Army to the CoreRule node representing its army-list composition
