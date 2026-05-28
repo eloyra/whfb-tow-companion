@@ -83,12 +83,13 @@ Key rules:
 | Parse output contract | `docs/decisions/ADR-0004-parse-output-contract.md` |
 | Graph storage conventions | `docs/decisions/ADR-0005-graph-storage-conventions.md` |
 | Graph database selection | `docs/decisions/ADR-0001-graph-database-selection.md` |
+| Parser data-source strategy | `docs/decisions/ADR-0006-parser-data-source-strategy.md` |
 
 ---
 
 ## Current pipeline state
 
-*(Last updated: 2026-05-27)*
+*(Last updated: 2026-05-29)*
 
 | Stage | Status |
 |---|---|
@@ -99,19 +100,38 @@ Key rules:
 | Translations | Pending |
 
 Known gaps (deferred, not bugs):
-- `SPLIT_PROFILE_OF` edges for multi-profile units — not emitted (Fix 2 in fix plan)
-- `HAS_COMPOSITION_RULE` edges from Army to its list page — not emitted (Fix 6 in fix plan)
-- Weapon `range` / `strength` / `ap` fields — populated from `table.profile-table--weapon` (Fix 7 done)
-- Spell `casting_value` / `range` / `spell_type` — fully structured; dedicated `/spell/{slug}` pages
-  are the source of truth via `SpellParser`; lore pages handled by `LoreParser` (Fix 7 done)
-- `Upgrade` nodes — present but champion `points_budget` and standard-bearer `magic_standard_budget`
-  not correctly captured (Fixes 3 + 4 in fix plan)
-- `TERRAIN_INTERACTION` edges from seed — enabled but unverified in live graph (Fix 5)
+- Champion magic-item budget **not profile-scoped** — `points_budget` is 0 / `None` on
+  `command_champion` upgrades; budgets live as separate `magic_item_budget` nodes granted to
+  the Unit, not the champion sub-profile.
+- Standard-bearer `magic_standard_budget` — dispatch reorder not shipped; property exists
+  only as separate `magic_standard_budget` nodes, not on `command_standard` upgrades.
+- `armour_value` (shield, armour pages) — no `profile-table--weapon` column on armour pages;
+  apply canonical schema seed values (`docs/schema/knowledge_graph_schema.md:775-779`).
+- War-machine `shots` / `template_type` / `bounce` / `is_indirect` — no
+  `/weapons-of-war/cannon` page (cannon is a `:Unit`); needs unit-prose parse or manual seed.
+- `casting_value_boosted` — rendered spell stat table has only one Casting Value row; no
+  structured source for the boosted value.
+- Weapon `special_rules` → slugs when table cell is plain text (no `<a href>`) — name-match
+  fallback only.
+- `_options.py` typed-href rework — deferred; two-pass UNLOCKS relabel is working and
+  sufficient.
+- Embeddings + Translations stages — pending.
 
-Previously listed as gaps, now shipped:
-- ~~`Terrain` nodes~~ — 37 `:Terrain` nodes parsed and in graph (Fix 1 done)
-- ~~`CLARIFIES`/`AMENDS` edges~~ — 517 / 441 edges at 83–88% coverage
-- ~~`HAS_INTRINSIC_RULE` edges~~ — 80 edges in graph
+HTML-extraction rationale: see `docs/decisions/ADR-0006-parser-data-source-strategy.md` and
+`docs/plans/scraper-html-pivot-explained.md`.
+
+Shipped (verified in live graph):
+- `SPLIT_PROFILE_OF` — 155 edges (mount-profile heuristic: M present, T+W absent)
+- `HAS_COMPOSITION_RULE` — 17 edges (Army → army-list CoreRule page)
+- `PART_OF_SECTION` — 77 edges
+- Weapon `range` / `strength` / `ap` — from `table.profile-table--weapon`; 226 weapons with
+  `range IS NOT NULL`
+- Spell `casting_value` / `range` / `spell_type` — via dedicated `/spell/{slug}` pages
+  (`SpellParser`); lore pages handled by `LoreParser` (membership only); 139 / 139 spells
+  have `spell_type`
+- `TERRAIN_INTERACTION` — 9 edges written by seed; 37 `:Terrain` nodes in graph
+- `CLARIFIES` / `AMENDS` — 510 / 407 edges at 83–88% coverage
+- `HAS_INTRINSIC_RULE` — 80 edges
 
 ---
 

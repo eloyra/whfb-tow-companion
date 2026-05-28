@@ -31,6 +31,7 @@ Current ADRs:
 | `ADR-0003-army-page-data-strategy.md` | How army/unit pages are parsed |
 | `ADR-0004-parse-output-contract.md` | JSON shape out of parsers |
 | `ADR-0005-graph-storage-conventions.md` | Node IDs, property names, index design |
+| `ADR-0006-parser-data-source-strategy.md` | Hybrid parsing (Contentful JSON + HTML DOM), spell source-of-truth |
 
 ---
 

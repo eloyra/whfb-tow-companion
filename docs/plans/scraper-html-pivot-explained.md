@@ -57,7 +57,7 @@ served without the rendered table does not silently produce empty fields.
 > **Update 2026-05-27:** Items 2 and the terrain-heuristic claim have since shipped.
 > See notes inline below.
 
-Four things the pivot does NOT fix:
+Things the pivot does NOT fix:
 
 1. **Terrain booleans** — `blocks_movement`, `disrupts_units`, `requires_dangerous_test`,
    `grants_cover`, `movement_penalty`. The HTML is pure prose; these are reader-inferred from
@@ -76,6 +76,18 @@ Four things the pivot does NOT fix:
    link, mapping rule names to slugs still requires text guessing.
 4. **`SPLIT_PROFILE_OF`, army `composition_percentages`, Upgrade nodes** — not present in any
    table either; these are orthogonal gaps.
+   *(Note 2026-05-29: `SPLIT_PROFILE_OF` has shipped — 155 edges via mount-profile heuristic
+   (M present, T+W absent). The composition/upgrade gaps remain.)*
+5. **`armour_value` (shield, light/heavy/full-plate armour)** — armour pages have no
+   `profile-table--weapon` column for this field. Canonical values are defined in
+   `docs/schema/knowledge_graph_schema.md:775-779` (`light-armour 5+`, `heavy-armour 4+`,
+   `full-plate 3+`, `shield/barding +1`). Resolution: apply as a deterministic seed in
+   `builder.py` or as hardcoded property overrides in `weapon_parser.py`.
+6. **War-machine `shots` / `template_type` / `bounce` / `is_indirect`** — there is no
+   `/weapons-of-war/cannon` page; cannon is a `:Unit`, not a `:Weapon` entry. These fields
+   require prose parsing of unit body text, or a manual seed.
+7. **`casting_value_boosted`** — the rendered spell stat table has only one Casting Value row.
+   No structured source for the boosted value exists.
 
 Why: these are semantic/relational facts that live only as natural language or human inference —
 never marked up as a field or a named cell. A CSS selector cannot extract what was never tagged.
