@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
+import { parseGraphSources } from "#/features/chat/model/graph-source";
+import { SourcesList } from "#/features/chat/ui/SourcesList";
 import { m } from "#/paraglide/messages";
 import { env } from "#/shared/config/env";
 import { cn } from "#/shared/lib/utils";
@@ -164,6 +166,21 @@ export function ChatInterface() {
                         >
                           {part.title ?? part.url}
                         </a>
+                      );
+                    }
+
+                    if (part.type === "data-sources") {
+                      const sources = parseGraphSources(part.data);
+                      if (sources === null) {
+                        // Lenient reader: malformed source payload is dropped
+                        // without crashing the stream.
+                        return null;
+                      }
+                      return (
+                        <SourcesList
+                          key={part.id ?? `sources-${index}`}
+                          sources={sources}
+                        />
                       );
                     }
 

@@ -1,4 +1,5 @@
 import type { UIMessage } from "ai";
+import type { GraphSource } from "#/features/chat/model/graph-source";
 
 // ── primitives ────────────────────────────────────────────────────────────────
 
@@ -88,9 +89,16 @@ export const ChatMother = {
   /**
    * Produces the raw SSE body for the Playwright network interceptor,
    * matching a given assistant reply text (v6 UI Message Stream format).
+   *
+   * Optionally includes a `data-sources` event carrying retrieved graph nodes,
+   * emitted before `text-end` so it appears within the same assistant message.
    */
-  sseStream: (text: string, id = "msg_test"): string =>
-    [
+  sseStream: (
+    text: string,
+    options: { id?: string; sources?: GraphSource[] } = {},
+  ): string => {
+    const { id = "msg_test", sources } = options;
+    const lines: string[] = [
       `data: {"type":"text-start","id":"${id}"}`,
       ...text
         .split(" ")
@@ -98,11 +106,23 @@ export const ChatMother = {
           (word) =>
             `data: {"type":"text-delta","id":"${id}","delta":"${word} "}`,
         ),
-      `data: {"type":"text-end","id":"${id}"}`,
-      `data: {"type":"finish-step"}`,
-    ]
-      .map((line) => `${line}\n\n`)
-      .join(""),
+    ];
+
+    if (sources && sources.length > 0) {
+      const sourceId = `src_${id}`;
+      const payload = JSON.stringify({
+        type: "data-sources",
+        id: sourceId,
+        data: sources,
+      });
+      lines.push(`data: ${payload}`);
+    }
+
+    lines.push(`data: {"type":"text-end","id":"${id}"}`);
+    lines.push(`data: {"type":"finish-step"}`);
+
+    return lines.map((line) => `${line}\n\n`).join("");
+  },
 };
 
 /** The assistant reply text used by fearRulesExchange — re-exported so

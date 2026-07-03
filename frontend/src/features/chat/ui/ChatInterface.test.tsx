@@ -181,4 +181,85 @@ describe("ChatInterface", () => {
     const dots = container.querySelector(".animate-bounce");
     expect(dots).toBeInTheDocument();
   });
+
+  it("renders data-sources parts as source chips", () => {
+    const messages: UIMessage[] = [
+      ChatMother.userMessage("How does Fear work?"),
+      {
+        id: "assistant-sources",
+        role: "assistant",
+        parts: [
+          { type: "text", text: "Fear forces a Panic test." },
+          {
+            type: "data-sources",
+            id: "src-1",
+            data: [
+              {
+                id: "fear",
+                label: "SpecialRule",
+                text: "Fear forces the enemy unit to take a Panic test.",
+              },
+            ],
+          },
+        ],
+      },
+    ];
+
+    mockUseChat.mockReturnValue(useChatStub({ messages }));
+    render(<ChatInterface />);
+
+    expect(screen.getByText("Sources")).toBeInTheDocument();
+    expect(screen.getByText("fear")).toBeInTheDocument();
+  });
+
+  it("drops malformed data-sources parts without crashing", () => {
+    const messages: UIMessage[] = [
+      ChatMother.userMessage("How does Fear work?"),
+      {
+        id: "assistant-bad-sources",
+        role: "assistant",
+        parts: [
+          { type: "text", text: "Fear forces a Panic test." },
+          {
+            type: "data-sources",
+            id: "src-2",
+            // Missing required `id` field inside the data array.
+            data: [{ text: "Missing id" }],
+          },
+        ],
+      },
+    ];
+
+    mockUseChat.mockReturnValue(useChatStub({ messages }));
+    render(<ChatInterface />);
+
+    // The text still renders.
+    expect(screen.getByText("Fear forces a Panic test.")).toBeInTheDocument();
+    // The malformed source is dropped silently.
+    expect(screen.queryByText("Sources")).not.toBeInTheDocument();
+  });
+
+  it("renders 'no sources retrieved' when data-sources payload is empty", () => {
+    const messages: UIMessage[] = [
+      ChatMother.userMessage("How does Fear work?"),
+      {
+        id: "assistant-empty-sources",
+        role: "assistant",
+        parts: [
+          { type: "text", text: "Fear forces a Panic test." },
+          {
+            type: "data-sources",
+            id: "src-3",
+            data: [],
+          },
+        ],
+      },
+    ];
+
+    mockUseChat.mockReturnValue(useChatStub({ messages }));
+    render(<ChatInterface />);
+
+    expect(screen.getByText("Sources")).toBeInTheDocument();
+    expect(screen.getByText("No sources retrieved")).toBeInTheDocument();
+  });
 });

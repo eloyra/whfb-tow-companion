@@ -9,5 +9,12 @@
   "chat_regenerate_button": "Regenerate",
   "chat_error_title": "Something went wrong",
   "chat_error_retry": "Retry",
-  "chat_history_label": "Conversation history"
+  "chat_history_label": "Conversation history",
+  "app_subtitle": "GraphRAG-powered rules assistant",
+  "chat_sources_label": "Sources",
+  "chat_no_sources": "No sources retrieved",
+  "chat_example_prompt": "Try one of these:",
+  "chat_example_1": "What happens when a unit with Regeneration is hit by Flaming Attacks?",
+  "chat_example_2": "Tell me about the Blood Knights",
+  "chat_example_3": "How does Fear work?"
 }

@@ -9,5 +9,12 @@
   "chat_regenerate_button": "Regenerar",
   "chat_error_title": "Algo salió mal",
   "chat_error_retry": "Reintentar",
-  "chat_history_label": "Historial de conversación"
+  "chat_history_label": "Historial de conversación",
+  "app_subtitle": "Asistente de reglas potenciado por GraphRAG",
+  "chat_sources_label": "Fuentes",
+  "chat_no_sources": "No se recuperaron fuentes",
+  "chat_example_prompt": "Prueba una de estas:",
+  "chat_example_1": "¿Qué ocurre cuando una unidad con Regeneración recibe Ataques Flamígeros?",
+  "chat_example_2": "Háblame de los Caballeros de Sangre",
+  "chat_example_3": "¿Cómo funciona el Miedo?"
 }
