@@ -40,4 +40,36 @@ test.describe("Accessibility", () => {
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations).toEqual([]);
   });
+
+  test("chat with sources has no detectable a11y violations", async ({
+    page,
+  }) => {
+    await page.route("**/chat/", async (route) => {
+      await route.fulfill({
+        status: 200,
+        headers: {
+          "Content-Type": "text/event-stream",
+          "x-vercel-ai-ui-message-stream": "v1",
+          "Cache-Control": "no-cache",
+        },
+        body: ChatMother.sseStream(FEAR_REPLY, {
+          sources: [
+            {
+              id: "fear",
+              label: "SpecialRule",
+              text: "Fear forces the enemy unit to take a Panic test.",
+            },
+          ],
+        }),
+      });
+    });
+
+    await page.goto("/");
+    await page.getByRole("textbox").fill("How does Fear work?");
+    await page.getByRole("button", { name: "Send" }).click();
+    await expect(page.getByText("Sources")).toBeVisible();
+
+    const results = await new AxeBuilder({ page }).analyze();
+    expect(results.violations).toEqual([]);
+  });
 });

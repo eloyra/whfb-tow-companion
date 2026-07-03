@@ -11,15 +11,18 @@ export const graphSourceSchema = z.object({
   label: z
     .string()
     .nullish()
-    .transform((value) => value ?? undefined),
+    .transform((value) => value ?? undefined)
+    .optional(),
   text: z
     .string()
     .nullish()
-    .transform((value) => value ?? undefined),
+    .transform((value) => value ?? undefined)
+    .optional(),
   source_url: z
     .string()
     .nullish()
-    .transform((value) => value ?? undefined),
+    .transform((value) => value ?? undefined)
+    .optional(),
 });
 
 export type GraphSource = z.infer<typeof graphSourceSchema>;

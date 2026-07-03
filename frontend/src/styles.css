@@ -37,7 +37,7 @@
 
   --focus: oklch(0.45 0.16 25);
   --foreground: oklch(0.20 0.01 65); /* Dark Ink */
-  --muted: oklch(0.65 0.01 65);
+  --muted: oklch(0.48 0.01 65); /* WCAG 2 AA against background */
 
   --overlay: oklch(0.20 0.01 65 / 0.5);
   --overlay-foreground: oklch(0.20 0.01 65);

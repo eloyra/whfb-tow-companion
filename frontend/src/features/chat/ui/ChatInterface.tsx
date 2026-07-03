@@ -1,6 +1,7 @@
 import { useChat } from "@ai-sdk/react";
 import { Alert, Button, Card, TextArea } from "@heroui/react";
 import { DefaultChatTransport } from "ai";
+import { Scroll } from "lucide-react";
 import type { KeyboardEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -46,9 +47,10 @@ export function ChatInterface() {
 
   const isStreaming = status === "submitted" || status === "streaming";
 
-  function doSend() {
-    if (!input.trim() || isStreaming) return;
-    sendMessage({ text: input }).catch((err) =>
+  function doSend(textToSend?: string) {
+    const text = textToSend ?? input;
+    if (!text.trim() || isStreaming) return;
+    sendMessage({ text }).catch((err) =>
       console.error("Error sending message:", err),
     );
     setInput("");
@@ -65,7 +67,7 @@ export function ChatInterface() {
   const lastMsg = messages[messages.length - 1];
 
   return (
-    <div className="flex flex-col h-[calc(100vh-8rem)] w-full max-w-4xl mx-auto border border-border/50 rounded-xl bg-background/50 backdrop-blur-sm overflow-hidden shadow-lg">
+    <div className="flex flex-col h-full w-full max-w-4xl mx-auto border border-border/50 rounded-xl bg-background/50 backdrop-blur-sm overflow-hidden shadow-lg">
       {error && (
         <Alert status="danger" className="m-2 rounded-lg shrink-0">
           <Alert.Content>
@@ -94,13 +96,7 @@ export function ChatInterface() {
         className="flex-1 overflow-y-auto p-4 space-y-6"
       >
         {messages.length === 0 ? (
-          <div className="h-full flex flex-col items-center justify-center text-center opacity-50">
-            <span className="text-4xl mb-4">📜</span>
-            <h3 className="text-xl font-display font-bold">
-              {m.chat_empty_title()}
-            </h3>
-            <p className="max-w-md">{m.chat_empty_description()}</p>
-          </div>
+          <EmptyState onSelect={doSend} />
         ) : (
           messages.map((msg) => (
             <div
@@ -113,26 +109,34 @@ export function ChatInterface() {
               <Card
                 className={cn(
                   "max-w-[80%]",
-                  msg.role === "user"
-                    ? "bg-primary text-primary-foreground"
-                    : "",
+                  msg.role === "user" ? "bg-accent" : "bg-surface",
                 )}
               >
                 <Card.Content className="py-3 px-4 space-y-2">
                   {msg.parts.map((part, index) => {
                     if (part.type === "text") {
+                      const isUser = msg.role === "user";
                       return (
                         <div
                           // biome-ignore lint/suspicious/noArrayIndexKey: text parts have no stable id
                           key={index}
-                          className="prose prose-sm dark:prose-invert max-w-none"
+                          className={cn(
+                            "max-w-none",
+                            isUser
+                              ? "text-accent-foreground whitespace-pre-wrap"
+                              : "prose prose-sm dark:prose-invert",
+                          )}
                         >
-                          <ReactMarkdown
-                            remarkPlugins={[remarkGfm]}
-                            rehypePlugins={[rehypeSanitize]}
-                          >
-                            {part.text}
-                          </ReactMarkdown>
+                          {isUser ? (
+                            part.text
+                          ) : (
+                            <ReactMarkdown
+                              remarkPlugins={[remarkGfm]}
+                              rehypePlugins={[rehypeSanitize]}
+                            >
+                              {part.text}
+                            </ReactMarkdown>
+                          )}
                         </div>
                       );
                     }
@@ -265,6 +269,45 @@ export function ChatInterface() {
             </Button>
           )}
         </form>
+      </div>
+    </div>
+  );
+}
+
+interface EmptyStateProps {
+  onSelect: (text: string) => void;
+}
+
+function EmptyState({ onSelect }: EmptyStateProps) {
+  const examples = [m.chat_example_1(), m.chat_example_2(), m.chat_example_3()];
+
+  return (
+    <div className="h-full flex flex-col items-center justify-center text-center px-2">
+      <div className="mb-6 rounded-full border border-border/50 bg-surface p-4">
+        <Scroll className="h-8 w-8 text-accent" aria-hidden="true" />
+      </div>
+
+      <h2 className="text-xl font-display font-bold text-foreground mb-2">
+        {m.chat_empty_title()}
+      </h2>
+      <p className="max-w-md text-muted mb-6">{m.chat_empty_description()}</p>
+
+      <div className="w-full max-w-lg">
+        <p className="text-xs font-medium text-muted mb-3">
+          {m.chat_example_prompt()}
+        </p>
+        <div className="flex flex-col gap-3">
+          {examples.map((query) => (
+            <button
+              key={query}
+              type="button"
+              onClick={() => onSelect(query)}
+              className="text-left rounded-xl border border-border/50 bg-surface p-3 transition-colors hover:bg-surface-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              <p className="text-sm text-foreground">{query}</p>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

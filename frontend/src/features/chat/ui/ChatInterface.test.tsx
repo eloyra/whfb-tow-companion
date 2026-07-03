@@ -56,10 +56,22 @@ function useChatStub(
 // ── tests ─────────────────────────────────────────────────────────────────────
 
 describe("ChatInterface", () => {
-  it("shows empty state when no messages", () => {
-    mockUseChat.mockReturnValue(useChatStub());
+  it("shows empty state with example queries when no messages", () => {
+    const sendMessage = vi.fn(function () {}).mockResolvedValue(undefined);
+    mockUseChat.mockReturnValue(useChatStub({ sendMessage }));
     render(<ChatInterface />);
+
     expect(screen.getByText("The Archives are Open")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /How does Fear work\?/ }),
+    ).toBeInTheDocument();
+
+    fireEvent.click(
+      screen.getByRole("button", { name: /How does Fear work\?/ }),
+    );
+    expect(sendMessage).toHaveBeenCalledWith({
+      text: "How does Fear work?",
+    });
   });
 
   it("renders user and assistant bubbles (fear rules exchange)", () => {

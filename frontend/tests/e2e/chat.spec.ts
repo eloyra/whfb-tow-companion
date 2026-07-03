@@ -44,12 +44,78 @@ test.describe("Chat happy path", () => {
     ).toBeVisible();
   });
 
-  test("empty state shown on first load", async ({ page }) => {
+  test("empty state shown on first load with example queries", async ({
+    page,
+  }) => {
     await expect(page.getByText("The Archives are Open")).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: /What happens when a unit/ }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: /Tell me about the Blood Knights/ }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: /How does Fear work\?/ }),
+    ).toBeVisible();
+  });
+
+  test("clicking an example query sends it and renders the reply", async ({
+    page,
+  }) => {
+    await page
+      .getByRole("button", { name: /How does Fear work\?/ })
+      .click();
+
+    await expect(page.getByText(USER_QUESTION)).toBeVisible();
+    await expect(page.getByText(/Fear forces the enemy unit/)).toBeVisible({
+      timeout: 5_000,
+    });
   });
 
   test("Send button disabled when input is empty", async ({ page }) => {
     await expect(page.getByRole("button", { name: "Send" })).toBeDisabled();
+  });
+});
+
+test.describe("Chat sources rendering", () => {
+  const SOURCES = [
+    {
+      id: "fear",
+      label: "SpecialRule",
+      text: "Fear forces the enemy unit to take a Panic test.",
+    },
+    {
+      id: "flaming-attacks",
+      label: "SpecialRule",
+      text: "Flaming Attacks cause Fear tests for Regeneration.",
+    },
+  ];
+
+  test("renders source chips after the assistant reply", async ({ page }) => {
+    await page.route("**/chat/", async (route) => {
+      await route.fulfill({
+        status: 200,
+        headers: {
+          "Content-Type": "text/event-stream",
+          "x-vercel-ai-ui-message-stream": "v1",
+          "Cache-Control": "no-cache",
+        },
+        body: ChatMother.sseStream(FEAR_REPLY, { sources: SOURCES }),
+      });
+    });
+
+    await page.goto("/");
+    await page.getByRole("textbox").fill(USER_QUESTION);
+    await page.getByRole("button", { name: "Send" }).click();
+
+    await expect(page.getByText(/Fear forces the enemy unit/)).toBeVisible({
+      timeout: 5_000,
+    });
+    await expect(page.getByText("Sources")).toBeVisible();
+    await expect(page.getByRole("button", { name: "fear" })).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "flaming-attacks" }),
+    ).toBeVisible();
   });
 });
 

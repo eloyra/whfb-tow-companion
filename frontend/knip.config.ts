@@ -11,7 +11,6 @@ const config: KnipConfig = {
     "tw-animate-css",
     "@heroui/styles",
     "@tanstack/router-plugin",
-    "lucide-react",
   ],
   ignoreBinaries: ["react-compiler-healthcheck"],
 };

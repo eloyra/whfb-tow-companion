@@ -10,12 +10,10 @@ const sources: GraphSource[] = [
     id: "fear",
     label: "SpecialRule",
     text: "Fear forces the enemy unit to take a Panic test.",
-    source_url: undefined,
   },
   {
     id: "blood-knights",
     label: "Unit",
-    text: undefined,
     source_url: "https://example.com",
   },
 ];
