@@ -10,6 +10,7 @@ from langchain.chat_models import BaseChatModel
 from langchain.messages import AIMessageChunk, AnyMessage
 from langchain_core.outputs import ChatGenerationChunk, ChatResult
 
+from backend.api.dependencies import get_llm, get_rag_pipeline
 from backend.api.main import app
 
 
@@ -43,6 +44,27 @@ class FakeChatModel(BaseChatModel):
         return self
 
 
+class FakeRAGPipeline:
+    """Fake GraphRAG pipeline that returns a deterministic tool result."""
+
+    def query(self, query: str) -> dict:
+        return {
+            "context": f"Fake context for: {query}",
+            "sources": [
+                {
+                    "id": "stubborn",
+                    "label": "SpecialRule",
+                    "name": "Stubborn",
+                    "text": "Stubborn units ignore Combat Result modifiers when testing Break.",
+                    "url": "https://tow.whfb.app/special-rules/stubborn",
+                    "score": 0.95,
+                }
+            ],
+            "links": [],
+            "expansion": [],
+        }
+
+
 def _parse_sse_events(body: str) -> list[dict]:
     """Parse a raw SSE body string into a list of JSON payloads."""
     events = []
@@ -64,9 +86,9 @@ def _reset_fake():
     """Reset FakeChatModel state before each test."""
     FakeChatModel.chunks = []
     FakeChatModel.call_count = 0
-    from backend.api.dependencies import get_llm
 
     app.dependency_overrides[get_llm] = lambda: FakeChatModel()
+    app.dependency_overrides[get_rag_pipeline] = lambda: FakeRAGPipeline()
     yield
     app.dependency_overrides.clear()
 
@@ -145,3 +167,5 @@ async def test_chat_stream_emits_data_sources_on_tool_call():
     for item in data:
         assert isinstance(item, dict), f"Expected list of dicts, found {type(item)} in {data}"
         assert "id" in item
+        assert "source_url" in item
+        assert item["source_url"] == "https://tow.whfb.app/special-rules/stubborn"

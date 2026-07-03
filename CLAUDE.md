@@ -149,9 +149,9 @@ make lint           # run ruff
 - [x] `pipeline/scraper/parsers/*.py` — 13 parsers + coordinator (ADR-0003, ADR-0006)
 - [x] `pipeline/graph/` — builder, client, DDL, loader, seeds, validator (ADR-0001, ADR-0004, ADR-0005); `load_report.json` produced
 - [x] `pipeline/embeddings/` — generator, per-label text builders, HNSW vector_store (ADR-0005)
-- [~] `backend/api/main.py` — FastAPI app wired; `/chat` route implemented (LangGraph agent + Vercel SSE); `/graph` routes raise `NotImplementedError`
-- [~] `backend/llm/` — `client.py` dispatcher exists but provider submodules are stubs; **deprecated** in favour of `api/dependencies.py::get_llm()` (ADR-0007)
-- [~] `backend/rag/` — `system_prompt.py` + mocked `tools.py` only; `pipeline.py`, `retriever.py`, `graph_traversal.py`, `prompts/templates.py` are `# TODO` stubs — **next task**
+- [x] `backend/api/main.py` — FastAPI app wired; `/chat` route implemented (LangGraph agent + Vercel SSE); `/graph` routes still raise `NotImplementedError`
+- [x] `backend/llm/` — `client.py` dispatcher exists but provider submodules are stubs; **deprecated** in favour of `api/dependencies.py::get_llm()` (ADR-0007)
+- [x] `backend/rag/` — `retriever.py`, `graph_traversal.py`, `pipeline.py`, `tools.py`, `prompts/system_prompt.py` implemented; `prompts/templates.py` remains a `# TODO` stub
 - [ ] `pipeline/i18n/` — `translator.py` is a `# TODO` stub; translation JSON files empty
 - [ ] `tests/evaluation/` — `evaluate.py` is a `# TODO` stub; golden set has only 3 queries
 - [ ] Frontend graph visualisation (chat UI is implemented; see `frontend/CLAUDE.md`)

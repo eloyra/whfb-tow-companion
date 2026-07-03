@@ -4,15 +4,16 @@ from typing import List, Optional
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 from langchain.agents import create_agent
-from langchain.chat_models import BaseChatModel
 from langchain.messages import AIMessage, AnyMessage, HumanMessage
+from langchain_core.language_models.chat_models import BaseChatModel
 from langgraph.types import Command
 from pydantic import BaseModel
 
-from backend.api.dependencies import get_llm
+from backend.api.dependencies import get_llm, get_rag_pipeline
 from backend.api.vercel_stream import VercelStream
+from backend.rag.pipeline import RAGPipeline
 from backend.rag.prompts.system_prompt import SYSTEM_PROMPT
-from backend.rag.tools import AGENT_TOOLS
+from backend.rag.tools import build_tools
 
 router = APIRouter()
 
@@ -42,6 +43,7 @@ class ChatRequest(BaseModel):
 async def chat(
     request: ChatRequest,
     llm: BaseChatModel = Depends(get_llm),
+    pipeline: RAGPipeline = Depends(get_rag_pipeline),
 ) -> StreamingResponse:
     lc_messages: list[AnyMessage] = []
     for msg in request.messages:
@@ -50,7 +52,8 @@ async def chat(
         elif msg.role == "assistant":
             lc_messages.append(AIMessage(content=msg.text_content))
 
-    agent = create_agent(llm, tools=AGENT_TOOLS, system_prompt=SYSTEM_PROMPT)
+    tools = build_tools(pipeline)
+    agent = create_agent(llm, tools=tools, system_prompt=SYSTEM_PROMPT)
     config = {
         "metadata": {"environment": os.getenv("ENVIRONMENT", "development")},
     }

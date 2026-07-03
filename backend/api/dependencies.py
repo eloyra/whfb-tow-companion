@@ -22,6 +22,9 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
 
+from backend.rag import graph_traversal
+from backend.rag.pipeline import RAGPipeline
+from backend.rag.retriever import GraphRAGRetriever
 from pipeline.graph import client as graph_client
 
 logger = logging.getLogger(__name__)
@@ -99,3 +102,11 @@ def get_embedder() -> "SentenceTransformer":
     device = os.getenv("EMBEDDING_DEVICE", "cpu")
     logger.info("Loading embedding model: %s (device=%s)", model_name, device)
     return SentenceTransformer(model_name, device=device)
+
+
+def get_rag_pipeline() -> RAGPipeline:
+    """Return the GraphRAG pipeline wired to the Neo4j driver and embedder."""
+    driver = get_driver()
+    embedder = get_embedder()
+    retriever = GraphRAGRetriever(driver, embedder, top_k=8)
+    return RAGPipeline(retriever, graph_traversal)

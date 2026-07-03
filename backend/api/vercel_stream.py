@@ -34,11 +34,37 @@ class VercelStream:
                         tool_data = json.loads(msg.content)
                     except (TypeError, ValueError):
                         continue
+
+                    # The pipeline returns a dict with a "sources" array. The UI
+                    # expects data-sources to be a flat list of source nodes so it
+                    # can render them as clickable chips/links.
+                    raw_sources = (
+                        tool_data.get("sources")
+                        if isinstance(tool_data, dict)
+                        else None
+                    )
+                    if not isinstance(raw_sources, list):
+                        raw_sources = []
+
+                    # Normalize to the contract the frontend renderer expects.
+                    sources = []
+                    for src in raw_sources:
+                        if not isinstance(src, dict):
+                            continue
+                        sources.append(
+                            {
+                                "id": src.get("id"),
+                                "label": src.get("label"),
+                                "text": src.get("text"),
+                                "source_url": src.get("source_url") or src.get("url"),
+                            }
+                        )
+
                     tool_id = msg.tool_call_id or f"sources_{uuid.uuid4().hex}"
                     payload = {
                         "type": "data-sources",
                         "id": tool_id,
-                        "data": tool_data,
+                        "data": sources,
                     }
                     yield f"data: {json.dumps(payload)}\n\n"
 
