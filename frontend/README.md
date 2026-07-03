@@ -1,222 +1,90 @@
-Welcome to your new TanStack Start app! 
+# Whfb-tow-companion — Frontend
 
-# Getting Started
+Conversational assistant + graph visualisation UI for Warhammer: The Old World.
+Built with TanStack Start, HeroUI, Paraglide i18n, and Feature-Sliced Design.
 
-To run this application:
+## Features
+
+- **Streaming chat** over the Vercel AI SDK protocol — calls the Python backend's `/chat` endpoint with `useChat` from `@ai-sdk/react`.
+- **Markdown rendering** of assistant replies with GFM support and `rehype-sanitize` XSS sanitisation.
+- **Bilingual UI** (English + Spanish) via Paraglide — locale encoded in the URL.
+- **Dark / light theme toggle** powered by `next-themes`.
+- **Abort-on-unmount** — leaving the page mid-stream cancels the request client-side.
+- **(Coming soon)** Graph visualisation of the Neo4j knowledge graph.
+
+## Prerequisites
+
+- **Node.js** >= 24.13.1 (see `.node-version`).
+- **pnpm** >= 10.33.2 (pinned via the `packageManager` field in `package.json`).
+- The **Python backend** running locally — see [`../README.md`](../README.md) for setup. The chat feature calls `${VITE_API_URL}/chat/` (defaults to `http://localhost:8000`).
+
+## Quick start
 
 ```bash
 pnpm install
-pnpm dev
+pnpm dev          # http://localhost:3000 (Vite dev server, hot-reload)
 ```
 
-# Building For Production
+## Scripts
 
-To build this application for production:
+| Script | Purpose |
+|---|---|
+| `pnpm dev` | Start the Vite dev server with hot-reload (port 3000). |
+| `pnpm build` | Production build. |
+| `pnpm preview` | Preview the production build locally. |
+| `pnpm test` | Run Vitest unit + component tests (jsdom environment). |
+| `pnpm test:e2e` | Run Playwright end-to-end tests. Auto-starts the dev server unless `APP_URL` is set. |
+| `pnpm check` | Biome lint + format check (read-only). |
+| `pnpm format` | Auto-format with Biome. |
+| `pnpm typecheck` | TypeScript typecheck (`tsc --noEmit`). |
+| `pnpm knip` | Detect dead code and unused files. |
+| `pnpm lhci` | Run a local Lighthouse CI audit. |
+| `pnpm react-compiler:healthcheck` | Verify React Compiler health. |
 
-```bash
-pnpm build
+## Project structure
+
+```
+src/
+  routes/         ← TanStack Router file-based routes (page entry points only)
+  widgets/        ← composite blocks combining entities + features (e.g. graph-viewer)
+  features/       ← self-contained feature slices (e.g. chat/)
+  entities/       ← domain models + their UI
+  shared/         ← cross-cutting utilities, UI primitives, API client, config
+  paraglide/      ← GENERATED — do not edit manually; regenerated on dev/build
+  test/           ← shared test utilities (e.g. fixtures, mothers)
 ```
 
-## Testing
+## Architecture — Feature-Sliced Design (FSD)
 
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
+Code is organised into vertical slices (`features/`, `entities/`, `widgets/`) plus a horizontal `shared/` layer. Each slice owns its `ui/`, `model/`, and `api/` sub-directories. Slices may import from `shared/` but **not from sibling features**.
 
-```bash
-pnpm test
-```
+Import rules are enforced at lint time by Biome's `noRestrictedImports` rule (see `biome.json`), not just by convention. The legacy `@/*` path alias is banned; the modern `#/*` subpath import (declared in `package.json` `imports` and `tsconfig.json`) is used everywhere.
+
+## i18n (Paraglide)
+
+- Message keys live in `messages/en.json` and `messages/es.json` (one file per locale).
+- `src/paraglide/` is **auto-generated** — never edit it directly.
+- Run `pnpm dev` or `pnpm build` to regenerate the Paraglide outputs after adding or changing message keys.
+- URL routing is localised through the Paraglide Vite plugin (locale encoded in the URL, strategy `["url", "baseLocale"]`).
 
 ## Styling
 
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
+Tailwind CSS v4 (via `@tailwindcss/vite`) and the [HeroUI](https://www.heroui.com/) component library (`@heroui/react`). Styling is done with Tailwind utility classes alongside HeroUI's variant props. There is no shadcn/ui — `README` files from the default `create-tanstack-app` template referencing it have been replaced.
 
-### Removing Tailwind CSS
+## Testing
 
-If you prefer not to use Tailwind CSS:
+- **Unit + component tests** — Vitest + Testing Library + `jest-dom` in a `jsdom` environment.
+- **End-to-end tests** — Playwright (chromium-only) with axe-core accessibility checks. The Playwright config auto-starts `pnpm dev` unless `APP_URL` is set to point at an already-running server.
+- **Shared fixtures** — chat message fixtures live in `src/test/mothers/chat.mother.ts`, a single source of truth used by both Vitest unit tests and Playwright e2e tests.
 
-1. Remove the demo pages in `src/routes/demo/`
-2. Replace the Tailwind import in `src/styles.css` with your own styles
-3. Remove `tailwindcss()` from the plugins array in `vite.config.ts`
-4. Uninstall the packages: `pnpm add @tailwindcss/vite tailwindcss --dev`
+## Backend connection
 
-## Linting & Formatting
+Chat talks to the backend via the Vercel AI SDK v6 `DefaultChatTransport` pointing at `${VITE_API_URL}/chat/`. The backend emits a Vercel AI SDK-compatible SSE stream (see `../backend/api/vercel_stream.py`).
 
-This project uses [Biome](https://biomejs.dev/) for linting and formatting. The following scripts are available:
+To target a non-local backend, set `VITE_API_URL` in a `.env` file (or your shell environment) before running `pnpm dev` / `pnpm build`. The variable is read and Zod-validated in `src/shared/config/env.ts`.
 
+A typed REST client for the future `/graph` endpoints is not yet implemented — it will land in `src/shared/api/` when the graph visualisation feature starts.
 
-```bash
-pnpm lint
-pnpm format
-pnpm check
-```
+## Contributing
 
-
-## Shadcn
-
-Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
-
-```bash
-pnpm dlx shadcn@latest add button
-```
-
-
-# Paraglide i18n
-
-This add-on wires up ParaglideJS for localized routing and message formatting.
-
-- Messages live in `project.inlang/messages`.
-- URLs are localized through the Paraglide Vite plugin and router `rewrite` hooks.
-- Run the dev server or build to regenerate the `src/paraglide` outputs.
-
-
-
-## Routing
-
-This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you render `{children}` in the `shellComponent`.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-
-export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'My App' },
-    ],
-  }),
-  shellComponent: ({ children }) => (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <header>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-          </nav>
-        </header>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  ),
-})
-```
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-## Server Functions
-
-TanStack Start provides server functions that allow you to write server-side code that seamlessly integrates with your client components.
-
-```tsx
-import { createServerFn } from '@tanstack/react-start'
-
-const getServerTime = createServerFn({
-  method: 'GET',
-}).handler(async () => {
-  return new Date().toISOString()
-})
-
-// Use in a component
-function MyComponent() {
-  const [time, setTime] = useState('')
-  
-  useEffect(() => {
-    getServerTime().then(setTime)
-  }, [])
-  
-  return <div>Server time: {time}</div>
-}
-```
-
-## API Routes
-
-You can create API routes by using the `server` property in your route definitions:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-import { json } from '@tanstack/react-start'
-
-export const Route = createFileRoute('/api/hello')({
-  server: {
-    handlers: {
-      GET: () => json({ message: 'Hello, World!' }),
-    },
-  },
-})
-```
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/people')({
-  loader: async () => {
-    const response = await fetch('https://swapi.dev/api/people')
-    return response.json()
-  },
-  component: PeopleComponent,
-})
-
-function PeopleComponent() {
-  const data = Route.useLoaderData()
-  return (
-    <ul>
-      {data.results.map((person) => (
-        <li key={person.name}>{person.name}</li>
-      ))}
-    </ul>
-  )
-}
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-# Demo files
-
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
-
-For TanStack Start specific documentation, visit [TanStack Start](https://tanstack.com/start).
+For architecture conventions, binding constraints, and coding rules, see [`CLAUDE.md`](./CLAUDE.md). For design decisions that govern the wider project (pipeline, graph, backend), see the [`docs/decisions/`](../docs/decisions/) ADRs.

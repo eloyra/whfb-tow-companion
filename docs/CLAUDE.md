@@ -7,12 +7,17 @@ For project overview and coding conventions, see [`../CLAUDE.md`](../CLAUDE.md).
 
 ## What lives here
 
-| Directory | Status | Notes |
+| Path | Status | Notes |
 |---|---|---|
-| `decisions/` | Binding | Architecture Decision Records (ADRs) |
-| `schema/` | Authoritative | Knowledge graph node/edge schema |
-| `diagrams/` | Reference | Architecture and flow diagrams |
+| `decisions/` | Binding | Architecture Decision Records (ADRs), including amendments |
+| `schema/` | Authoritative | Knowledge graph node/edge schema (v3.1; re-aligned with ADR-0004/0005 amendments) |
+| `diagrams/` | Empty / pending | Architecture and flow diagrams — not yet produced |
 | `plans/` | Non-binding | Planning artefacts, may be stale |
+| `validation/` | Non-binding | Graph-validation tracker, query-coverage seed, conformity reports (currently empty) |
+| `architecture-and-chat-review.md` | Non-binding | One-off review of backend chat + frontend architecture |
+| `partial-deliverable-briefing.md` | Non-binding | TFM deliverable briefing notes |
+| `warhammer_tow_domain_knowledge.md` | Reference | Domain knowledge dump used for prompt/evaluation context |
+| `demo-queries.cypher` | Reference | Example Cypher queries for demos |
 
 ---
 
@@ -32,6 +37,7 @@ Current ADRs:
 | `ADR-0004-parse-output-contract.md` | JSON shape out of parsers |
 | `ADR-0005-graph-storage-conventions.md` | Node IDs, property names, index design |
 | `ADR-0006-parser-data-source-strategy.md` | Hybrid parsing (Contentful JSON + HTML DOM), spell source-of-truth |
+| `ADR-0007-llm-provider-strategy.md` | Canonical LLM resolution via `api/dependencies.py`; `llm/client.py` deprecated |
 
 ---
 

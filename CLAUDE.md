@@ -92,7 +92,7 @@ Key design decisions (parse contract, `CHARACTERISTIC_MAP`, i18n conventions) li
 | LLM | Configurable via `LLM_PROVIDER` env var | OpenAI / Anthropic / local (Ollama) |
 | Orchestration | `langchain` / `langgraph` | TBD during RAG phase |
 | Backend API | `fastapi` + `uvicorn` | |
-| Frontend | `streamlit` | Chat UI + graph visualisation |
+| Frontend | TanStack Start + React 19 | See `frontend/CLAUDE.md`; not Streamlit — `make ui` was removed |
 | Package manager | `uv` | Preferred over pip/poetry |
 | Linter | `ruff` | |
 | Tests | `pytest` | |
@@ -131,9 +131,8 @@ make build-graph    # build graph → data/graph/
 make embed          # generate embeddings → data/embeddings/
 make translate      # add translations to graph nodes
 make pipeline       # run all stages end to end
-make serve          # start API on :8000
-make ui             # start Streamlit on :8501
-make test           # run all tests
+make serve           # start API on :8000
+make test            # run all tests
 make lint           # run ruff
 ```
 
@@ -146,15 +145,16 @@ make lint           # run ruff
 - [x] `pyproject.toml` with all dependencies
 - [x] `pipeline/constants.py` with `CHARACTERISTIC_MAP`, `NodeType`, `EdgeType`
 - [x] `pipeline/run_pipeline.py` entry point
-- [x] `backend/api/main.py` (wired up, routes not implemented)
-- [x] `backend/llm/client.py` (abstraction, implementations pending)
-- [x] Sample data in `data/samples/vampire-counts-sample.json`
 - [x] `pipeline/scraper/crawler.py` — dual-seed BFS crawler (ADR-0002)
-- [x] `pipeline/scraper/parsers/*.py` — 9 parsers + coordinator (ADR-0003)
-- [ ] `pipeline/graph/builder.py` — **next task** (see ADR-0001, ADR-0004)
-- [ ] `pipeline/embeddings/`
-- [ ] `backend/rag/`
-- [ ] `frontend/`
+- [x] `pipeline/scraper/parsers/*.py` — 13 parsers + coordinator (ADR-0003, ADR-0006)
+- [x] `pipeline/graph/` — builder, client, DDL, loader, seeds, validator (ADR-0001, ADR-0004, ADR-0005); `load_report.json` produced
+- [x] `pipeline/embeddings/` — generator, per-label text builders, HNSW vector_store (ADR-0005)
+- [~] `backend/api/main.py` — FastAPI app wired; `/chat` route implemented (LangGraph agent + Vercel SSE); `/graph` routes raise `NotImplementedError`
+- [~] `backend/llm/` — `client.py` dispatcher exists but provider submodules are stubs; **deprecated** in favour of `api/dependencies.py::get_llm()` (ADR-0007)
+- [~] `backend/rag/` — `system_prompt.py` + mocked `tools.py` only; `pipeline.py`, `retriever.py`, `graph_traversal.py`, `prompts/templates.py` are `# TODO` stubs — **next task**
+- [ ] `pipeline/i18n/` — `translator.py` is a `# TODO` stub; translation JSON files empty
+- [ ] `tests/evaluation/` — `evaluate.py` is a `# TODO` stub; golden set has only 3 queries
+- [ ] Frontend graph visualisation (chat UI is implemented; see `frontend/CLAUDE.md`)
 
 ---
 

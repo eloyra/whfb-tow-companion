@@ -1,4 +1,4 @@
-.PHONY: help install scrape parse build-graph embed translate pipeline serve ui test test-unit test-integration lint lint-fix format
+.PHONY: help install scrape parse build-graph embed translate pipeline serve test test-unit test-integration lint lint-fix format
 
 help:  ## Show available commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
@@ -47,8 +47,8 @@ pipeline:  ## Run full pipeline from scratch
 serve:  ## Start FastAPI backend (http://localhost:8000)
 	uv run uvicorn backend.api.main:app --reload --host 0.0.0.0 --port 8000
 
-ui:  ## Start Streamlit frontend (http://localhost:8501)
-	uv run streamlit run frontend/app.py
+# Frontend is a TanStack Start / pnpm project (see frontend/CLAUDE.md).
+# Start it from the frontend/ directory:  cd frontend && pnpm dev  (http://localhost:3000)
 
 # ── Quality ───────────────────────────────────────────────────────────────────
 

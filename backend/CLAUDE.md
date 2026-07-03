@@ -30,23 +30,37 @@ backend/
 
 ## Key rules
 
-**LLM provider**: always resolved from `LLM_PROVIDER` env var via `llm/client.py`. Never import or instantiate a provider directly in routes or RAG code.
+**LLM provider**: resolved from `LLM_PROVIDER` env var via `api/dependencies.py::get_llm()`, which returns a LangChain `BaseChatModel` (required by `create_agent`). See ADR-0007. The older `llm/client.py` Protocol + `_openai.py`/`_anthropic.py`/`_local.py` abstraction is **deprecated** and unused; do not add new code to it. Providers supported today: Ollama (default), OpenAI. Anthropic is a known gap (no branch in `get_llm()` yet).
 
-**Routes stay thin**: business logic lives in `rag/pipeline.py`, not in `api/routes/`. Route handlers call `pipeline.py` and return the result.
+**Routes stay thin** (target convention): business logic should live in `rag/pipeline.py`, not in `api/routes/`. This is **not yet enforced** — `rag/pipeline.py` is a `# TODO` stub, so `routes/chat.py` currently builds its LangGraph agent inline. When the RAG pipeline is implemented, move the agent construction into `pipeline.py` and have `chat.py` call it.
 
 **Vector store**: Neo4j built-in vector index (HNSW). No separate ChromaDB or Pinecone.
 
 **Streaming**: frontend uses Vercel AI SDK. Use `api/vercel_stream.py` to format SSE responses — do not invent a different streaming protocol.
 
-**Graph access**: always go through the RAG pipeline (`rag/pipeline.py`) for retrieval. Graph traversal lives in `rag/graph_traversal.py`.
+**Graph access**: always go through the RAG pipeline (`rag/pipeline.py`) for retrieval. Graph traversal lives in `rag/graph_traversal.py`. (Both currently stubs.)
 
 ---
 
 ## Status
 
-All files are stubs with `# TODO` docstrings. Implementations pending. The scrape and parse stages are complete upstream (see `pipeline/CLAUDE.md`).
+Not all files are stubs. Per-file state:
 
-RAG design not yet finalised. Check `docs/decisions/` for any ADRs added before starting work here.
+| File | State |
+|---|---|
+| `api/main.py` | Implemented — FastAPI app, CORS, `/health`, mounts `chat` + `graph` routers |
+| `api/routes/chat.py` | Implemented — `POST /chat/` builds a LangGraph agent (`create_agent`) and streams via `VercelStream` |
+| `api/routes/graph.py` | Stub — `/graph/nodes` and `/graph/subgraph/{node_id}` raise `NotImplementedError` |
+| `api/vercel_stream.py` | Implemented — Vercel AI SDK v6 UI Message Stream SSE adapter |
+| `api/dependencies.py` | Implemented — `get_llm()` (Ollama/OpenAI via LangChain); `get_retriever()` not yet added |
+| `llm/client.py` | Dispatcher implemented but **deprecated/unused** (ADR-0007); delegates to stubbed submodules |
+| `llm/_openai.py`, `_anthropic.py`, `_local.py` | Stubs (`# TODO`) — deprecated, do not implement |
+| `rag/tools.py` | Partial — `query_warhammer_archive` `@tool` returns hardcoded mock nodes; flagged for replacement with real GraphRAG calls |
+| `rag/prompts/system_prompt.py` | Implemented — `SYSTEM_PROMPT` constant |
+| `rag/prompts/templates.py` | Stub (`# TODO`) |
+| `rag/pipeline.py`, `retriever.py`, `graph_traversal.py` | Stubs (`# TODO`) — the GraphRAG core is not yet implemented (next task) |
+
+Upstream scrape/parse/graph/embeddings stages are complete (see `pipeline/CLAUDE.md`). RAG design is not yet finalised; ADR-0007 locks the LLM-provider path. A future ADR will cover RAG retrieval/traversal design.
 
 ---
 

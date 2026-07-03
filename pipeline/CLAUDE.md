@@ -10,9 +10,9 @@ For project overview, stack, environment variables, and coding conventions, see 
 | Directory | Purpose |
 |---|---|
 | `scraper/` | BFS crawler + per-section parsers |
-| `graph/` | Neo4j graph builder, serializer, validator |
-| `embeddings/` | Sentence-transformer embedding generation |
-| `i18n/` | Translation injection into graph nodes |
+| `graph/` | Neo4j graph builder, loader, validator (`serializer.py` is a `# TODO` stub, unused) |
+| `embeddings/` | Sentence-transformer embedding generation (per-label text builders + HNSW vector_store) |
+| `i18n/` | Translation injection into graph nodes (`translator.py` is a `# TODO` stub) |
 | `constants.py` | Single source of truth — node/edge types, mappings |
 | `run_pipeline.py` | CLI entry point for end-to-end run |
 
@@ -89,15 +89,17 @@ Key rules:
 
 ## Current pipeline state
 
-*(Last updated: 2026-05-29)*
+*(Last updated: 2026-07-03)*
 
 | Stage | Status |
 |---|---|
-| Scrape | Done — dual-seed BFS, output in `data/raw/` |
-| Parse | Done — nodes and edges in `data/parsed/`; see gaps below |
+| Scrape | Done — dual-seed BFS, output in `data/raw/` (~2,720 HTML files, all 19 armies) |
+| Parse | Done — nodes and edges in `data/parsed/` (18 JSON files per ADR-0004); see gaps below |
 | Graph build | Done — graph loaded into Neo4j; `load_report.json` in `data/graph/` |
-| Embeddings | Pending |
-| Translations | Pending |
+| Embeddings | Done — `generator.py`, `text.py` (12 per-label builders), `vector_store.py` (HNSW per-label indexes); wired into `run_pipeline.py` |
+| Translations | Pending — `i18n/translator.py` is a `# TODO` stub; `run_translate()` is a no-op; `en.json`/`es.json` empty |
+
+Remaining stubs in this subtree: `graph/serializer.py` (1-line `# TODO`, not imported by the builder), `i18n/translator.py` (1-line `# TODO`).
 
 Known gaps (deferred, not bugs):
 - Champion magic-item budget **not profile-scoped** — `points_budget` is 0 / `None` on
@@ -115,7 +117,7 @@ Known gaps (deferred, not bugs):
   fallback only.
 - `_options.py` typed-href rework — deferred; two-pass UNLOCKS relabel is working and
   sufficient.
-- Embeddings + Translations stages — pending.
+- Translations stage — pending (see state table above).
 
 HTML-extraction rationale: see `docs/decisions/ADR-0006-parser-data-source-strategy.md` and
 `docs/plans/scraper-html-pivot-explained.md`.
