@@ -159,3 +159,32 @@ def _neighbor_priority(row: dict[str, Any]) -> tuple[int, str]:
     """Sort key: tier first, then stable id ordering."""
     tier = _EDGE_TYPE_TIERS.get(row["rel_type"], 99)
     return (tier, row["id"])
+
+
+class GraphTraversal:
+    """Driver-bound wrapper exposing a retriever-like API.
+
+    This mirrors ``GraphRAGRetriever``: the dependency layer injects a driver
+    once, and the pipeline calls ``expand()`` / ``links_between()`` without
+    needing to pass the driver on every call.
+    """
+
+    def __init__(self, driver: neo4j.Driver) -> None:
+        self.driver = driver
+
+    def expand(
+        self,
+        seed_ids: list[str],
+        *,
+        max_neighbors_per_seed: int = 6,
+    ) -> list[dict[str, Any]]:
+        """Return bounded, ranked 1-hop neighbors for ``seed_ids``."""
+        return expand(
+            self.driver,
+            seed_ids,
+            max_neighbors_per_seed=max_neighbors_per_seed,
+        )
+
+    def links_between(self, seed_ids: list[str]) -> list[dict[str, Any]]:
+        """Return direct edges among ``seed_ids``."""
+        return links_between(self.driver, seed_ids)

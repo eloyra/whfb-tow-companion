@@ -101,6 +101,52 @@ def test_query_formats_context_with_sources_links_and_expansion() -> None:
     assert "Blood Knights" in context
     assert "HAS_RULE" in context
     assert "REFERENCES" in context
+    assert "## Retrieved sources" in context
+    assert "## Direct links among sources" in context
+    assert "(1 direct edge(s) among the retrieved sources)" in context
+    assert "(Unit)" in context
+    assert "(SpecialRule)" in context
+
+
+def test_query_preserves_full_source_text() -> None:
+    """Rule text is primary evidence and must never be truncated."""
+    long_text = "A" * 600
+    seeds = [
+        {
+            "id": "long-rule",
+            "label": "SpecialRule",
+            "name": "Long Rule",
+            "text": long_text,
+            "url": "url",
+            "score": 0.9,
+        }
+    ]
+    pipeline = RAGPipeline(FakeRetriever(seeds), FakeTraversal([], []))
+    result = pipeline.query("Long rule")
+    context = result["context"]
+
+    assert long_text in context
+    assert "…" not in context
+
+
+def test_query_notes_when_no_direct_links_exist() -> None:
+    """When there are no links, the context should say so explicitly."""
+    seeds = [
+        {
+            "id": "blood-knights",
+            "label": "Unit",
+            "name": "Blood Knights",
+            "text": "Elite cavalry.",
+            "url": "url",
+            "score": 0.95,
+        }
+    ]
+    pipeline = RAGPipeline(FakeRetriever(seeds), FakeTraversal([], []))
+    result = pipeline.query("Blood Knights")
+    context = result["context"]
+
+    assert "## Direct links among sources" in context
+    assert "No direct edge was found" in context
 
 
 def test_query_formats_link_props() -> None:

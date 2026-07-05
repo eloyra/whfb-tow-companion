@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from backend.rag.graph_traversal import expand, links_between
+from backend.rag.graph_traversal import GraphTraversal, expand, links_between
 
 
 class FakeRecord:
@@ -219,3 +219,25 @@ def test_links_between_returns_empty_for_unconnected_seeds() -> None:
 
 def test_links_between_empty_seed_list() -> None:
     assert links_between(FakeDriver(), []) == []
+
+
+def test_graph_traversal_class_has_retriever_like_api() -> None:
+    """GraphTraversal binds the driver and exposes expand()/links_between() used by RAGPipeline."""
+    responses = {
+        "fear": [
+            _neighbor("REFERENCES", "terror", name="Terror"),
+        ],
+    }
+    links = [
+        {"source": "a", "target": "b", "rel_type": "REFERENCES", "props": {}},
+    ]
+    driver = FakeDriver(responses=responses, links=links)
+    traversal = GraphTraversal(driver)
+
+    expansion = traversal.expand(["fear"], max_neighbors_per_seed=1)
+    assert len(expansion) == 1
+    assert expansion[0]["id"] == "terror"
+
+    direct = traversal.links_between(["a", "b"])
+    assert len(direct) == 1
+    assert direct[0]["rel_type"] == "REFERENCES"

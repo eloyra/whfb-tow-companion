@@ -108,5 +108,6 @@ def get_rag_pipeline() -> RAGPipeline:
     """Return the GraphRAG pipeline wired to the Neo4j driver and embedder."""
     driver = get_driver()
     embedder = get_embedder()
-    retriever = GraphRAGRetriever(driver, embedder, top_k=8)
-    return RAGPipeline(retriever, graph_traversal)
+    retriever = GraphRAGRetriever(driver, embedder, top_k=5)
+    traversal = graph_traversal.GraphTraversal(driver)
+    return RAGPipeline(retriever, traversal, max_neighbors_per_seed=4)

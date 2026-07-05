@@ -84,6 +84,7 @@ class RAGPipeline:
 
         if links:
             parts.append("\n## Direct links among sources")
+            parts.append(f"({len(links)} direct edge(s) among the retrieved sources)")
             for link in links:
                 props = link.get("props") or {}
                 props_str = ""
@@ -96,6 +97,9 @@ class RAGPipeline:
                 parts.append(
                     f"- [{link['source']}] --{link['rel_type']}--{props_str}→ [{link['target']}]"
                 )
+        else:
+            parts.append("\n## Direct links among sources")
+            parts.append("(No direct edge was found among the retrieved sources.)")
 
         if expansion:
             parts.append("\n## Related context")
