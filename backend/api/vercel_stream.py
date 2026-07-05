@@ -10,6 +10,10 @@ class VercelStream:
     Adapts a LangGraph `stream_mode="messages"` stream into the Vercel AI SDK v6
     UI Message Stream Protocol (SSE). The frontend reads this via the
     `x-vercel-ai-ui-message-stream: v1` header.
+
+    Source chips (`data-sources`) are emitted only for sources the model actually
+    cites in its answer. The tool may return many candidates, but only those whose
+    id appears in the final assistant text as ``[slug]`` are surfaced to the UI.
     """
 
     @staticmethod
@@ -18,10 +22,15 @@ class VercelStream:
 
         yield f"data: {json.dumps({'type': 'text-start', 'id': msg_id})}\n\n"
 
+        # Candidates come from ToolMessages; the final text from AIMessageChunks.
+        candidate_sources: dict[str, dict[str, Any]] = {}
+        assistant_text_parts: list[str] = []
+
         try:
             async for msg, _metadata in agent_stream:
                 if isinstance(msg, AIMessageChunk):
                     if msg.content and isinstance(msg.content, str):
+                        assistant_text_parts.append(msg.content)
                         payload = {
                             "type": "text-delta",
                             "id": msg_id,
@@ -35,9 +44,6 @@ class VercelStream:
                     except (TypeError, ValueError):
                         continue
 
-                    # The pipeline returns a dict with a "sources" array. The UI
-                    # expects data-sources to be a flat list of source nodes so it
-                    # can render them as clickable chips/links.
                     raw_sources = (
                         tool_data.get("sources")
                         if isinstance(tool_data, dict)
@@ -46,29 +52,38 @@ class VercelStream:
                     if not isinstance(raw_sources, list):
                         raw_sources = []
 
-                    # Normalize to the contract the frontend renderer expects.
-                    sources = []
+                    # Collect candidates by id (deduped across multiple tool calls).
                     for src in raw_sources:
                         if not isinstance(src, dict):
                             continue
-                        sources.append(
-                            {
-                                "id": src.get("id"),
-                                "label": src.get("label"),
-                                "text": src.get("text"),
-                                "source_url": src.get("source_url") or src.get("url"),
-                            }
-                        )
+                        sid = src.get("id")
+                        if not sid:
+                            continue
+                        candidate_sources[sid] = {
+                            "id": sid,
+                            "label": src.get("label"),
+                            "text": src.get("text"),
+                            "source_url": src.get("source_url") or src.get("url"),
+                        }
 
-                    tool_id = msg.tool_call_id or f"sources_{uuid.uuid4().hex}"
-                    payload = {
-                        "type": "data-sources",
-                        "id": tool_id,
-                        "data": sources,
-                    }
-                    yield f"data: {json.dumps(payload)}\n\n"
+            assistant_text = "".join(assistant_text_parts)
+            used_sources = [
+                candidate_sources[sid]
+                for sid in candidate_sources
+                if f"[{sid}]" in assistant_text
+            ]
 
             yield f"data: {json.dumps({'type': 'text-end', 'id': msg_id})}\n\n"
+
+            # Only emit a sources chip list if a tool was actually called this turn.
+            if candidate_sources:
+                payload = {
+                    "type": "data-sources",
+                    "id": msg_id,
+                    "data": used_sources,
+                }
+                yield f"data: {json.dumps(payload)}\n\n"
+
             yield f"data: {json.dumps({'type': 'finish-step'})}\n\n"
 
         except Exception as e:

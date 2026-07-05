@@ -37,8 +37,23 @@ class FakeChatModel(BaseChatModel):
         **kwargs: Any,
     ):
         FakeChatModel.call_count += 1
-        for chunk in FakeChatModel.chunks:
-            yield ChatGenerationChunk(message=chunk)
+        chunks = FakeChatModel.chunks
+
+        # Mimic a real agent: first call yields any tool-call chunk, second call
+        # yields the final answer chunks that cite the tool result.
+        first_is_tool = bool(
+            chunks and getattr(chunks[0], "tool_calls", None)
+        )
+        if FakeChatModel.call_count == 1 and first_is_tool:
+            yield ChatGenerationChunk(message=chunks[0])
+            return
+
+        if first_is_tool:
+            for chunk in chunks[1:]:
+                yield ChatGenerationChunk(message=chunk)
+        else:
+            for chunk in chunks:
+                yield ChatGenerationChunk(message=chunk)
 
     def bind_tools(self, tools: list, **kwargs: Any) -> "FakeChatModel":
         return self
@@ -58,7 +73,15 @@ class FakeRAGPipeline:
                     "text": "Stubborn units ignore Combat Result modifiers when testing Break.",
                     "url": "https://tow.whfb.app/special-rules/stubborn",
                     "score": 0.95,
-                }
+                },
+                {
+                    "id": "fear",
+                    "label": "SpecialRule",
+                    "name": "Fear",
+                    "text": "Fear causes units to test against their Leadership.",
+                    "url": "https://tow.whfb.app/special-rules/fear",
+                    "score": 0.85,
+                },
             ],
             "links": [],
             "expansion": [],
@@ -130,7 +153,7 @@ async def test_chat_stream_yields_expected_events():
 
 @pytest.mark.asyncio
 async def test_chat_stream_emits_data_sources_on_tool_call():
-    """Tool turn: SSE must emit a data-sources event with a flat array of node dicts."""
+    """Tool turn: SSE emits only the sources actually cited by the model."""
     FakeChatModel.chunks = [
         AIMessageChunk(
             content="",
@@ -141,6 +164,9 @@ async def test_chat_stream_emits_data_sources_on_tool_call():
                     "id": "call_1",
                 }
             ],
+        ),
+        AIMessageChunk(
+            content="Stubborn units ignore Combat Result modifiers when testing Break [stubborn]."
         ),
     ]
 
@@ -157,15 +183,18 @@ async def test_chat_stream_emits_data_sources_on_tool_call():
     data_events = [
         e for e in events if isinstance(e.get("type"), str) and e["type"].startswith("data-")
     ]
-    assert len(data_events) >= 1, f"No data-* event found in {[e['type'] for e in events]}"
+    assert len(data_events) == 1, f"Expected one data-* event, got {[e['type'] for e in events]}"
 
     source_event = data_events[0]
     assert source_event["type"] == "data-sources"
     data = source_event["data"]
     assert isinstance(data, list), f"Expected flat list, got {type(data)}"
-    assert len(data) > 0
-    for item in data:
-        assert isinstance(item, dict), f"Expected list of dicts, found {type(item)} in {data}"
-        assert "id" in item
-        assert "source_url" in item
-        assert item["source_url"] == "https://tow.whfb.app/special-rules/stubborn"
+
+    # Only the cited source should appear; the unrelated 'fear' source must be filtered out.
+    assert len(data) == 1, f"Expected exactly one cited source, got {data}"
+    item = data[0]
+    assert isinstance(item, dict)
+    assert item["id"] == "stubborn"
+    assert "source_url" in item
+    assert item["source_url"] == "https://tow.whfb.app/special-rules/stubborn"
+    assert not any(s["id"] == "fear" for s in data)
