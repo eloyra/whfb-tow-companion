@@ -23,10 +23,8 @@ function SourceChip({ source }: { source: GraphSource }) {
     <Tooltip>
       <Tooltip.Trigger>
         <Chip
-          color="accent"
           size="sm"
-          variant="soft"
-          className="cursor-default"
+          className="cursor-default border border-heraldic/20 bg-heraldic/10 text-heraldic hover:bg-heraldic/15"
         >
           {source.id}
         </Chip>
@@ -59,13 +57,16 @@ function SourceChip({ source }: { source: GraphSource }) {
  */
 export function SourcesList({ sources }: SourcesListProps) {
   return (
-    <div className="border-t border-border/50 mt-2 pt-2">
-      <p className="text-xs font-medium text-muted mb-1.5">
-        {m.chat_sources_label()}
-      </p>
+    <div className="pt-3">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="w-4 h-px bg-metal/60" aria-hidden="true" />
+        <p className="font-display text-[10px] uppercase tracking-[0.12em] text-metal">
+          {m.chat_sources_label()}
+        </p>
+      </div>
 
       {sources.length === 0 ? (
-        <p className="text-xs text-muted/70 italic">{m.chat_no_sources()}</p>
+        <p className="text-xs text-muted italic">{m.chat_no_sources()}</p>
       ) : (
         <div className="flex flex-wrap gap-2">
           {sources.map((source) => (

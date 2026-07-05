@@ -1,20 +1,17 @@
 import { useChat } from "@ai-sdk/react";
 import { Alert, Button, Card, TextArea } from "@heroui/react";
 import { DefaultChatTransport } from "ai";
-import { Scroll } from "lucide-react";
-import type { KeyboardEvent } from "react";
+import { ChevronDown, Scroll, Send, Square } from "lucide-react";
+import type { KeyboardEvent, UIEvent } from "react";
 import { useEffect, useRef, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import rehypeSanitize from "rehype-sanitize";
-import remarkGfm from "remark-gfm";
-import { parseGraphSources } from "#/features/chat/model/graph-source";
-import { SourcesList } from "#/features/chat/ui/SourcesList";
+import { MessageBubble } from "#/features/chat/ui/MessageBubble";
 import { m } from "#/paraglide/messages";
 import { env } from "#/shared/config/env";
-import { cn } from "#/shared/lib/utils";
+import { WaxSeal } from "#/shared/ui/WaxSeal";
 
 export function ChatInterface() {
   const [input, setInput] = useState("");
+  const [showJumpToLatest, setShowJumpToLatest] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -27,6 +24,17 @@ export function ChatInterface() {
       onError: (err) => console.error("Chat API Error:", err),
     });
 
+  const isStreaming = status === "submitted" || status === "streaming";
+  const lastMsg = messages[messages.length - 1];
+
+  function checkScrollPosition() {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    const distanceFromBottom =
+      container.scrollHeight - container.scrollTop - container.clientHeight;
+    setShowJumpToLatest(distanceFromBottom > 100 && isStreaming);
+  }
+
   // biome-ignore lint/correctness/useExhaustiveDependencies: messages triggers scroll; body uses stable ref
   useEffect(() => {
     const container = scrollContainerRef.current;
@@ -36,6 +44,7 @@ export function ChatInterface() {
     if (distanceFromBottom < 100) {
       scrollRef.current?.scrollIntoView({ behavior: "smooth" });
     }
+    checkScrollPosition();
   }, [messages]);
 
   useEffect(
@@ -44,8 +53,6 @@ export function ChatInterface() {
     },
     [stop],
   );
-
-  const isStreaming = status === "submitted" || status === "streaming";
 
   function doSend(textToSend?: string) {
     const text = textToSend ?? input;
@@ -64,12 +71,19 @@ export function ChatInterface() {
     }
   }
 
-  const lastMsg = messages[messages.length - 1];
+  function handleScroll(e: UIEvent<HTMLDivElement>) {
+    e.persist();
+    checkScrollPosition();
+  }
+
+  function scrollToLatest() {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
 
   return (
-    <div className="flex flex-col h-full w-full max-w-4xl mx-auto border border-border/50 rounded-xl bg-background/50 backdrop-blur-sm overflow-hidden shadow-lg">
+    <div className="flex flex-col h-full w-full max-w-4xl mx-auto border border-border/50 rounded-xl bg-background/60 backdrop-blur-sm overflow-hidden shadow-md">
       {error && (
-        <Alert status="danger" className="m-2 rounded-lg shrink-0">
+        <Alert status="danger" className="m-3 rounded-lg shrink-0">
           <Alert.Content>
             <Alert.Title>{m.chat_error_title()}</Alert.Title>
             <Alert.Description>{error.message}</Alert.Description>
@@ -93,141 +107,42 @@ export function ChatInterface() {
         role="log"
         aria-live="polite"
         aria-label={m.chat_history_label()}
-        className="flex-1 overflow-y-auto p-4 space-y-6"
+        onScroll={handleScroll}
+        className="relative flex-1 overflow-y-auto p-4 sm:p-6 space-y-8"
       >
         {messages.length === 0 ? (
           <EmptyState onSelect={doSend} />
         ) : (
-          messages.map((msg) => (
-            <div
+          messages.map((msg, index) => (
+            <MessageBubble
               key={msg.id}
-              className={cn(
-                "flex w-full",
-                msg.role === "user" ? "justify-end" : "justify-start",
-              )}
-            >
-              <Card
-                className={cn(
-                  "max-w-[80%]",
-                  msg.role === "user" ? "bg-accent" : "bg-surface",
-                )}
-              >
-                <Card.Content className="py-3 px-4 space-y-2">
-                  {msg.parts.map((part, index) => {
-                    if (part.type === "text") {
-                      const isUser = msg.role === "user";
-                      return (
-                        <div
-                          // biome-ignore lint/suspicious/noArrayIndexKey: text parts have no stable id
-                          key={index}
-                          className={cn(
-                            "max-w-none",
-                            isUser
-                              ? "text-accent-foreground whitespace-pre-wrap"
-                              : "prose prose-sm dark:prose-invert",
-                          )}
-                        >
-                          {isUser ? (
-                            part.text
-                          ) : (
-                            <ReactMarkdown
-                              remarkPlugins={[remarkGfm]}
-                              rehypePlugins={[rehypeSanitize]}
-                            >
-                              {part.text}
-                            </ReactMarkdown>
-                          )}
-                        </div>
-                      );
-                    }
-
-                    if (part.type === "reasoning") {
-                      return (
-                        <details
-                          // biome-ignore lint/suspicious/noArrayIndexKey: parts have no stable id
-                          key={index}
-                          className="text-xs opacity-60"
-                        >
-                          <summary className="cursor-pointer select-none">
-                            Reasoning
-                          </summary>
-                          <pre className="whitespace-pre-wrap mt-1 font-mono">
-                            {part.text}
-                          </pre>
-                        </details>
-                      );
-                    }
-
-                    if (part.type === "source-url") {
-                      return (
-                        <a
-                          // biome-ignore lint/suspicious/noArrayIndexKey: parts have no stable id
-                          key={index}
-                          href={part.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-xs underline opacity-70 block"
-                        >
-                          {part.title ?? part.url}
-                        </a>
-                      );
-                    }
-
-                    if (part.type === "data-sources") {
-                      const sources = parseGraphSources(part.data);
-                      if (sources === null) {
-                        // Lenient reader: malformed source payload is dropped
-                        // without crashing the stream.
-                        return null;
-                      }
-                      return (
-                        <SourcesList
-                          key={part.id ?? `sources-${index}`}
-                          sources={sources}
-                        />
-                      );
-                    }
-
-                    // step-start and unrecognised parts: skip silently
-                    return null;
-                  })}
-
-                  {msg.role === "assistant" &&
-                    lastMsg?.id === msg.id &&
-                    !isStreaming && (
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onPress={() => void regenerate()}
-                        aria-label={m.chat_regenerate_button()}
-                        className="mt-1 -ml-1"
-                      >
-                        {m.chat_regenerate_button()}
-                      </Button>
-                    )}
-                </Card.Content>
-              </Card>
-            </div>
+              message={msg}
+              isLast={index === messages.length - 1}
+              isStreaming={isStreaming}
+              onRegenerate={() => void regenerate()}
+            />
           ))
         )}
 
-        {isStreaming && lastMsg?.role === "user" && (
-          <div className="flex justify-start">
-            <Card className="opacity-70">
-              <Card.Content className="py-3 px-4 flex flex-row gap-1 items-center">
-                <div className="w-2 h-2 rounded-full bg-current animate-bounce" />
-                <div className="w-2 h-2 rounded-full bg-current animate-bounce [animation-delay:0.2s]" />
-                <div className="w-2 h-2 rounded-full bg-current animate-bounce [animation-delay:0.4s]" />
-              </Card.Content>
-            </Card>
-          </div>
-        )}
+        {isStreaming && lastMsg?.role === "user" && <StreamingIndicator />}
 
         <div ref={scrollRef} aria-hidden="true" />
+
+        {showJumpToLatest && (
+          <Button
+            size="sm"
+            variant="secondary"
+            onPress={scrollToLatest}
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 shadow-md"
+          >
+            <ChevronDown size={14} aria-hidden="true" />
+            Latest
+          </Button>
+        )}
       </div>
 
       {/* INPUT AREA */}
-      <div className="p-4 bg-content1 border-t border-border/50 shrink-0">
+      <div className="p-3 sm:p-4 bg-surface border-t border-border/50 shrink-0">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -245,18 +160,20 @@ export function ChatInterface() {
             fullWidth
             variant="primary"
             disabled={isStreaming}
-            className="text-base resize-none"
+            className="text-base resize-none rounded-lg bg-field-background text-field-foreground placeholder:text-field-placeholder focus-visible:ring-2 focus-visible:ring-accent/40"
             rows={2}
           />
 
           {isStreaming ? (
             <Button
               type="button"
-              variant="secondary"
+              variant="danger"
               onPress={() => stop()}
               aria-label={m.chat_stop_button()}
+              isIconOnly
+              className="shrink-0 h-11 w-11"
             >
-              {m.chat_stop_button()}
+              <Square size={18} aria-hidden="true" />
             </Button>
           ) : (
             <Button
@@ -264,11 +181,32 @@ export function ChatInterface() {
               variant="primary"
               isDisabled={!input.trim()}
               aria-label={m.chat_send_button()}
+              isIconOnly
+              className="shrink-0 h-11 w-11"
             >
-              {m.chat_send_button()}
+              <Send size={18} aria-hidden="true" />
             </Button>
           )}
         </form>
+      </div>
+    </div>
+  );
+}
+
+function StreamingIndicator() {
+  return (
+    <div className="flex w-full gap-3">
+      <WaxSeal icon={Scroll} size={28} aria-label="Assistant" />
+      <div className="flex min-w-0 flex-col items-start">
+        <span className="mb-1 font-display text-[10px] uppercase tracking-[0.12em] text-metal">
+          {m.chat_role_assistant()}
+        </span>
+        <Card className="w-fit rounded-2xl rounded-tl-sm border border-border/50 bg-surface shadow-sm">
+          <Card.Content className="flex items-center gap-3 px-4 py-3">
+            <WaxSeal icon={Scroll} size={20} pulse aria-label="Scribing" />
+            <span className="text-sm text-muted italic">Scribing a reply…</span>
+          </Card.Content>
+        </Card>
       </div>
     </div>
   );
@@ -282,18 +220,23 @@ function EmptyState({ onSelect }: EmptyStateProps) {
   const examples = [m.chat_example_1(), m.chat_example_2(), m.chat_example_3()];
 
   return (
-    <div className="h-full flex flex-col items-center justify-center text-center px-2">
-      <div className="mb-6 rounded-full border border-border/50 bg-surface p-4">
-        <Scroll className="h-8 w-8 text-accent" aria-hidden="true" />
-      </div>
+    <div className="h-full flex flex-col items-center justify-center text-center px-2 py-8">
+      <WaxSeal
+        icon={Scroll}
+        size={64}
+        className="mb-5"
+        aria-label="The Archives are Open"
+      />
 
-      <h2 className="text-xl font-display font-bold text-foreground mb-2">
+      <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground mb-2 tracking-wide">
         {m.chat_empty_title()}
       </h2>
-      <p className="max-w-md text-muted mb-6">{m.chat_empty_description()}</p>
+      <p className="max-w-md text-muted mb-8 text-base leading-relaxed">
+        {m.chat_empty_description()}
+      </p>
 
       <div className="w-full max-w-lg">
-        <p className="text-xs font-medium text-muted mb-3">
+        <p className="text-[10px] font-display uppercase tracking-[0.12em] text-metal mb-3">
           {m.chat_example_prompt()}
         </p>
         <div className="flex flex-col gap-3">
@@ -302,9 +245,9 @@ function EmptyState({ onSelect }: EmptyStateProps) {
               key={query}
               type="button"
               onClick={() => onSelect(query)}
-              className="text-left rounded-xl border border-border/50 bg-surface p-3 transition-colors hover:bg-surface-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="text-left rounded-lg border border-metal/30 bg-surface p-3 transition-colors hover:bg-surface-secondary hover:border-metal/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
             >
-              <p className="text-sm text-foreground">{query}</p>
+              <p className="text-sm text-foreground leading-snug">{query}</p>
             </button>
           ))}
         </div>

@@ -1,6 +1,7 @@
 {
-  "short_name": "TanStack App",
-  "name": "Create TanStack App Sample",
+  "short_name": "TOW Companion",
+  "name": "Warhammer: The Old World Companion",
+  "description": "A GraphRAG-powered rules assistant for Warhammer: The Old World.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +21,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#9a2b22",
+  "background_color": "#fbf6ec"
 }

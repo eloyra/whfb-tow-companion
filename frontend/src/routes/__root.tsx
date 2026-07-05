@@ -85,7 +85,52 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
       <body className="bg-background text-foreground" suppressHydrationWarning>
         <div id="global-loader">
-          <div className="spinner mb-4"></div>
+          <svg
+            width="56"
+            height="56"
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="seal-pulse"
+            aria-label="Loading"
+          >
+            <circle cx="24" cy="24" r="22" fill="var(--metal)" />
+            <circle
+              cx="24"
+              cy="24"
+              r="18"
+              stroke="var(--metal-foreground)"
+              strokeOpacity="0.3"
+              strokeWidth="1"
+            />
+            <path
+              d="M14 18L18 22"
+              stroke="var(--metal-foreground)"
+              strokeOpacity="0.25"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+            <path
+              d="M30 30L34 34"
+              stroke="var(--metal-foreground)"
+              strokeOpacity="0.25"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+            <path
+              d="M32 14L30 18"
+              stroke="var(--metal-foreground)"
+              strokeOpacity="0.2"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+            <path
+              d="M24 16V32M17 24H31"
+              stroke="var(--metal-foreground)"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
         </div>
 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

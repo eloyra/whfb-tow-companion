@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 @import 'tailwindcss';
 @import '@heroui/styles';
 @plugin '@tailwindcss/typography';
@@ -6,11 +6,30 @@
 @theme inline {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Cinzel', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Radius scale */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+  --radius: var(--radius-md);
+
+  /* Elevation (warm-tinted, very subtle) */
+  --shadow-xs: 0 1px 2px oklch(0.2 0.01 65 / 0.04);
+  --shadow-sm: 0 2px 6px oklch(0.2 0.01 65 / 0.06);
+  --shadow-md: 0 6px 16px oklch(0.2 0.01 65 / 0.10);
+  --shadow-lg: 0 12px 32px oklch(0.2 0.01 65 / 0.14);
 }
 
 /*
- * Warhammer: The Old World Theme (OKLCH Native)
- * Crimson, Bone, and Iron
+ * Warhammer: The Old World — "Parchment & Slate" theme
+ *
+ * Comfort-first: warm parchment, cool slate ink, calm teal accent,
+ * bronze decorative flourishes, and crimson reserved for errors only.
  */
 
 :root,
@@ -18,98 +37,126 @@
 .default,
 [data-theme="light"],
 [data-theme="default"] {
-  /* Theme Colors (Light Mode - Parchment Base) */
-  --accent: oklch(0.45 0.16 25); /* Khorne Crimson */
-  --accent-foreground: oklch(0.98 0 0); /* Pure White */
+  color-scheme: light;
 
-  --background: oklch(0.98 0.01 85); /* Bone/Parchment */
-  --border: oklch(0.90 0.01 85);
+  /* Deep Teal — primary action / links (calm, readable) */
+  --accent: oklch(0.50 0.08 200);
+  --accent-foreground: oklch(0.99 0 0);
 
-  --danger: oklch(0.50 0.20 25);
-  --danger-foreground: oklch(0.98 0 0);
+  /* Slate — header band and user bubble (calm, high contrast) */
+  --slate: oklch(0.40 0.035 250);
+  --slate-foreground: oklch(0.98 0 0);
 
-  --default: oklch(0.90 0.01 85);
-  --default-foreground: oklch(0.20 0.01 65);
+  /* Antique Brass — decorative chrome only (seals, hairlines, dividers) */
+  --metal: oklch(0.62 0.092 75);
+  --metal-foreground: oklch(0.46 0.07 70);
 
-  --field-background: oklch(1.0 0 0);
-  --field-foreground: oklch(0.20 0.01 65);
-  --field-placeholder: oklch(0.65 0.01 65);
+  /* Imperial Blue — citations / graph sources */
+  --heraldic: oklch(0.45 0.11 258);
+  --heraldic-foreground: oklch(0.99 0 0);
 
-  --focus: oklch(0.45 0.16 25);
-  --foreground: oklch(0.20 0.01 65); /* Dark Ink */
-  --muted: oklch(0.48 0.01 65); /* WCAG 2 AA against background */
+  /* Parchment & Slate Ink — neutrals */
+  --background: oklch(0.96 0.010 85);
+  --foreground: oklch(0.26 0.025 250);
+  --muted: oklch(0.48 0.020 250);
 
-  --overlay: oklch(0.20 0.01 65 / 0.5);
-  --overlay-foreground: oklch(0.20 0.01 65);
+  --border: oklch(0.89 0.012 85);
+  --separator: oklch(0.89 0.012 85);
 
-  --scrollbar: oklch(0.85 0.01 85);
-  --segment: oklch(0.95 0.01 85);
-  --segment-foreground: oklch(0.20 0.01 65);
-  --separator: oklch(0.90 0.01 85);
+  --surface: oklch(0.94 0.010 85);
+  --surface-foreground: oklch(0.26 0.025 250);
+  --surface-secondary: oklch(0.91 0.012 85);
+  --surface-secondary-foreground: oklch(0.26 0.025 250);
+  --surface-tertiary: oklch(0.88 0.012 85);
+  --surface-tertiary-foreground: oklch(0.26 0.025 250);
 
-  --success: oklch(0.55 0.15 150);
-  --success-foreground: oklch(0.98 0 0);
+  --overlay: oklch(0.26 0.025 250 / 0.5);
+  --overlay-foreground: oklch(0.26 0.025 250);
 
-  --surface: oklch(0.96 0.01 85);
-  --surface-foreground: oklch(0.20 0.01 65);
-  --surface-secondary: oklch(0.93 0.01 85);
-  --surface-secondary-foreground: oklch(0.20 0.01 65);
-  --surface-tertiary: oklch(0.90 0.01 85);
-  --surface-tertiary-foreground: oklch(0.20 0.01 65);
+  --field-background: oklch(1 0 0);
+  --field-foreground: oklch(0.26 0.025 250);
+  --field-placeholder: oklch(0.60 0.018 250);
+  --field-radius: var(--radius-md);
 
-  --warning: oklch(0.65 0.18 60);
-  --warning-foreground: oklch(0.98 0 0);
+  --default: oklch(0.9 0.012 85);
+  --default-foreground: oklch(0.26 0.025 250);
 
-  /* Geometry */
-  --radius: 0.25rem;
-  --field-radius: 0.125rem;
+  --focus: var(--accent);
+
+  /* Crimson is intentionally reserved for errors / destructive actions only. */
+  --danger: oklch(0.50 0.18 27);
+  --danger-foreground: oklch(0.99 0 0);
+
+  --success: oklch(0.50 0.10 150);
+  --success-foreground: oklch(0.99 0 0);
+
+  --warning: oklch(0.68 0.14 70);
+  --warning-foreground: oklch(0.26 0.025 250);
+
+  --scrollbar: oklch(0.85 0.012 85);
+  --segment: oklch(0.95 0.010 85);
+  --segment-foreground: oklch(0.26 0.025 250);
 }
 
 .dark,
 [data-theme="dark"] {
   color-scheme: dark;
 
-  /* Theme Colors (Dark Mode - Iron Base) */
-  --accent: oklch(0.45 0.16 25); /* Khorne Crimson */
-  --accent-foreground: oklch(0.98 0 0); /* Pure White */
+  /* Deep Teal — brightened for dark readability */
+  --accent: oklch(0.62 0.08 200);
+  --accent-foreground: oklch(0.12 0.02 250);
 
-  --background: oklch(0.20 0.01 65); /* Iron/Stone */
-  --border: oklch(0.35 0.01 65);
+  /* Slate — lifted slightly above the dark iron background */
+  --slate: oklch(0.32 0.035 250);
+  --slate-foreground: oklch(0.95 0.010 85);
 
-  --danger: oklch(0.50 0.20 25);
-  --danger-foreground: oklch(0.98 0 0);
+  /* Antique Brass */
+  --metal: oklch(0.72 0.085 75);
+  --metal-foreground: oklch(0.82 0.08 75);
 
-  --default: oklch(0.35 0.01 65);
-  --default-foreground: oklch(0.95 0.01 85);
+  /* Imperial Blue — brightened for dark */
+  --heraldic: oklch(0.60 0.10 258);
+  --heraldic-foreground: oklch(0.12 0.02 250);
 
-  --field-background: oklch(0.12 0.01 65); /* Deep dark for inputs */
-  --field-foreground: oklch(0.95 0.01 85);
-  --field-placeholder: oklch(0.55 0.01 65);
+  /* Iron & Slate — cool charcoal, not muddy brown */
+  --background: oklch(0.21 0.015 250);
+  --foreground: oklch(0.93 0.010 85);
+  --muted: oklch(0.66 0.015 250);
 
-  --focus: oklch(0.45 0.16 25);
-  --foreground: oklch(0.95 0.01 85); /* Light Text */
-  --muted: oklch(0.55 0.01 65);
+  --border: oklch(0.34 0.015 250);
+  --separator: oklch(0.34 0.015 250);
 
-  --overlay: oklch(0.12 0.01 65 / 0.7);
-  --overlay-foreground: oklch(0.95 0.01 85);
+  --surface: oklch(0.25 0.015 250);
+  --surface-foreground: oklch(0.93 0.010 85);
+  --surface-secondary: oklch(0.29 0.015 250);
+  --surface-secondary-foreground: oklch(0.93 0.010 85);
+  --surface-tertiary: oklch(0.34 0.015 250);
+  --surface-tertiary-foreground: oklch(0.93 0.010 85);
 
-  --scrollbar: oklch(0.40 0.01 65);
-  --segment: oklch(0.28 0.01 65);
-  --segment-foreground: oklch(0.95 0.01 85);
-  --separator: oklch(0.28 0.01 65);
+  --overlay: oklch(0.12 0.015 250 / 0.7);
+  --overlay-foreground: oklch(0.93 0.010 85);
 
-  --success: oklch(0.55 0.15 150);
-  --success-foreground: oklch(0.98 0 0);
+  --field-background: oklch(0.16 0.015 250);
+  --field-foreground: oklch(0.93 0.010 85);
+  --field-placeholder: oklch(0.55 0.015 250);
 
-  --surface: oklch(0.25 0.01 65);
-  --surface-foreground: oklch(0.95 0.01 85);
-  --surface-secondary: oklch(0.30 0.01 65);
-  --surface-secondary-foreground: oklch(0.95 0.01 85);
-  --surface-tertiary: oklch(0.35 0.01 65);
-  --surface-tertiary-foreground: oklch(0.95 0.01 85);
+  --default: oklch(0.35 0.015 250);
+  --default-foreground: oklch(0.93 0.010 85);
 
-  --warning: oklch(0.60 0.18 60);
-  --warning-foreground: oklch(0.98 0 0);
+  --focus: var(--accent);
+
+  --danger: oklch(0.60 0.18 27);
+  --danger-foreground: oklch(0.99 0 0);
+
+  --success: oklch(0.60 0.10 150);
+  --success-foreground: oklch(0.12 0.02 250);
+
+  --warning: oklch(0.72 0.14 70);
+  --warning-foreground: oklch(0.12 0.02 250);
+
+  --scrollbar: oklch(0.40 0.015 250);
+  --segment: oklch(0.28 0.015 250);
+  --segment-foreground: oklch(0.93 0.010 85);
 }
 
 html, body, #app {
@@ -123,6 +170,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Selection treated as a muted teal highlight */
+::selection {
+  background-color: oklch(0.62 0.08 200 / 0.25);
+  color: inherit;
+}
+
+.dark ::selection {
+  background-color: oklch(0.62 0.08 200 / 0.35);
+}
+
 /* SPA Initial Loader */
 #global-loader {
   position: fixed;
@@ -132,9 +189,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
   background-color: var(--background);
   color: var(--foreground);
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.4s ease-out;
 }
 
 .loader-fade-out {
@@ -142,16 +200,51 @@ body {
   pointer-events: none;
 }
 
-.spinner {
-  width: 48px;
-  height: 48px;
-  border: 4px solid var(--accent);
-  border-bottom-color: transparent;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+/* Wax-seal pulse (replaces generic spinner) */
+.seal-pulse {
+  animation: sealPulse 2s ease-in-out infinite;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+@keyframes sealPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.04); opacity: 0.85; }
+}
+
+/* Subtle entrance for newly appended messages */
+.message-enter {
+  animation: messageEnter 220ms ease-out;
+}
+
+@keyframes messageEnter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .seal-pulse {
+    animation: none;
+  }
+}
+
+/* High contrast */
+@media (prefers-contrast: more) {
+  :root,
+  .light {
+    --border: oklch(0.55 0.014 85);
+    --separator: oklch(0.55 0.014 85);
+  }
+
+  .dark {
+    --border: oklch(0.65 0.012 250);
+    --separator: oklch(0.65 0.012 250);
+  }
 }

@@ -189,9 +189,8 @@ describe("ChatInterface", () => {
         status: "streaming",
       }),
     );
-    const { container } = render(<ChatInterface />);
-    const dots = container.querySelector(".animate-bounce");
-    expect(dots).toBeInTheDocument();
+    render(<ChatInterface />);
+    expect(screen.getByText("Scribing a reply…")).toBeInTheDocument();
   });
 
   it("renders data-sources parts as source chips", () => {
