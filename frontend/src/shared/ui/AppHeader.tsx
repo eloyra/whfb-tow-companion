@@ -9,7 +9,7 @@ export function AppHeader() {
           <h1 className="font-display text-xl sm:text-2xl font-bold tracking-wide text-slate-foreground">
             {m.app_title()}
           </h1>
-          <p className="hidden sm:block text-[10px] font-display uppercase tracking-[0.12em] text-metal-foreground">
+          <p className="hidden sm:block text-[10px] font-display uppercase tracking-[0.12em] text-slate-foreground/80">
             {m.app_subtitle()}
           </p>
         </div>

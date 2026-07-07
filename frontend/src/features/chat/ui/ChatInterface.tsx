@@ -198,7 +198,7 @@ function StreamingIndicator() {
     <div className="flex w-full gap-3">
       <WaxSeal icon={Scroll} size={28} aria-label="Assistant" />
       <div className="flex min-w-0 flex-col items-start">
-        <span className="mb-1 font-display text-[10px] uppercase tracking-[0.12em] text-metal">
+        <span className="mb-1 font-display text-[10px] uppercase tracking-[0.12em] text-metal-foreground">
           {m.chat_role_assistant()}
         </span>
         <Card className="w-fit rounded-2xl rounded-tl-sm border border-border/50 bg-surface shadow-sm">
@@ -236,7 +236,7 @@ function EmptyState({ onSelect }: EmptyStateProps) {
       </p>
 
       <div className="w-full max-w-lg">
-        <p className="text-[10px] font-display uppercase tracking-[0.12em] text-metal mb-3">
+        <p className="text-[10px] font-display uppercase tracking-[0.12em] text-metal-foreground mb-3">
           {m.chat_example_prompt()}
         </p>
         <div className="flex flex-col gap-3">

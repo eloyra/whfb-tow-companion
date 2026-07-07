@@ -60,7 +60,7 @@ export function SourcesList({ sources }: SourcesListProps) {
     <div className="pt-3">
       <div className="flex items-center gap-2 mb-2">
         <span className="w-4 h-px bg-metal/60" aria-hidden="true" />
-        <p className="font-display text-[10px] uppercase tracking-[0.12em] text-metal">
+        <p className="font-display text-[10px] uppercase tracking-[0.12em] text-metal-foreground">
           {m.chat_sources_label()}
         </p>
       </div>

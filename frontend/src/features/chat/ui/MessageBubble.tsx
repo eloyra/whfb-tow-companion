@@ -26,7 +26,7 @@ const ROLE_LABELS: Record<string, string> = {
 function ReasoningBlock({ text }: { text: string }) {
   return (
     <details className="group/reasoning text-xs">
-      <summary className="cursor-pointer select-none inline-flex items-center gap-1.5 text-metal font-display uppercase tracking-wider">
+      <summary className="cursor-pointer select-none inline-flex items-center gap-1.5 text-metal-foreground font-display uppercase tracking-wider">
         <span className="w-4 h-px bg-metal/60" aria-hidden="true" />
         Reasoning
       </summary>
@@ -87,7 +87,7 @@ export function MessageBubble({
             isUser ? "flex-row-reverse" : "flex-row",
           )}
         >
-          <span className="font-display text-[10px] uppercase tracking-[0.12em] text-metal">
+          <span className="font-display text-[10px] uppercase tracking-[0.12em] text-metal-foreground">
             {ROLE_LABELS[displayRole]}
           </span>
           {!isUser && (

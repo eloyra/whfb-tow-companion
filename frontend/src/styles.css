@@ -23,6 +23,15 @@
   --shadow-sm: 0 2px 6px oklch(0.2 0.01 65 / 0.06);
   --shadow-md: 0 6px 16px oklch(0.2 0.01 65 / 0.10);
   --shadow-lg: 0 12px 32px oklch(0.2 0.01 65 / 0.14);
+
+  /* Map semantic tokens into the Tailwind color namespace so utilities like
+     bg-slate, text-metal, fill-heraldic, etc. resolve correctly. */
+  --color-slate: var(--slate);
+  --color-slate-foreground: var(--slate-foreground);
+  --color-metal: var(--metal);
+  --color-metal-foreground: var(--metal-foreground);
+  --color-heraldic: var(--heraldic);
+  --color-heraldic-foreground: var(--heraldic-foreground);
 }
 
 /*
@@ -49,7 +58,7 @@
 
   /* Antique Brass — decorative chrome only (seals, hairlines, dividers) */
   --metal: oklch(0.62 0.092 75);
-  --metal-foreground: oklch(0.46 0.07 70);
+  --metal-foreground: oklch(0.38 0.06 70);
 
   /* Imperial Blue — citations / graph sources */
   --heraldic: oklch(0.45 0.11 258);
