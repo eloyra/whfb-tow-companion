@@ -46,15 +46,29 @@ def _rule_interaction_example() -> list[AnyMessage]:
             "text": "Hits from Flaming Attacks are flaming...",
             "source_url": "https://tow.whfb.app/special-rules/flaming-attacks",
         },
+        {
+            "id": "flammable",
+            "label": "SpecialRule",
+            "name": "Flammable",
+            "text": (
+                "A model with this special rule cannot make a Regeneration save "
+                "against a wound caused by a Flaming attack."
+            ),
+            "source_url": "https://tow.whfb.app/special-rules/flammable",
+        },
     ]
     context = (
         "## Retrieved sources\n"
         "- [regeneration] Regeneration (SpecialRule): Regeneration allows a model "
         "to regain wounds at the end of each Combat round.\n"
         "- [flaming-attacks] Flaming Attacks (SpecialRule): Hits from Flaming "
-        "Attacks are flaming and cause Fear in cavalry.\n\n"
+        "Attacks are flaming and cause Fear in cavalry.\n"
+        "- [flammable] Flammable (SpecialRule): A model with this special rule "
+        "cannot make a Regeneration save against a wound caused by a Flaming "
+        "attack.\n\n"
         "## Direct links among sources\n"
-        "- [regeneration] --REFERENCES--> [flaming-attacks]"
+        "- [flammable] --REFERENCES--> [regeneration]\n"
+        "- [flammable] --REFERENCES--> [flaming-attacks]"
     )
     tool_call_id = "example_call_regen"
     return [
@@ -81,9 +95,10 @@ def _rule_interaction_example() -> list[AnyMessage]:
         ),
         AIMessage(
             content=(
-                "Flaming Attacks cancel Regeneration. A model with Regeneration "
-                "cannot use it to recover wounds caused by Flaming Attacks "
-                "[regeneration] [flaming-attacks]."
+                "Unless the unit also has the Flammable special rule, "
+                "Regeneration works normally against Flaming Attacks. A model "
+                "with the Flammable special rule cannot make a Regeneration save "
+                "against a Flaming wound [flammable]."
             ),
         ),
     ]

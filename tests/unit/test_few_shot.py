@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import json
+
 from langchain.messages import AIMessage, HumanMessage, ToolMessage
 
 from backend.rag.prompts.few_shot import build_few_shot_messages
@@ -43,3 +45,24 @@ def test_few_shot_final_answers_contain_citations() -> None:
     assert len(final_answers) == 3
     for answer in final_answers:
         assert "[" in answer.content and "]" in answer.content
+
+
+def test_rule_interaction_example_cites_flammable_not_overgeneralises() -> None:
+    """Example A must state the Flammable condition and cite flammable.
+
+    This is a regression guard against an earlier version that incorrectly
+    taught "Flaming Attacks cancel Regeneration" and cited the wrong sources.
+    """
+    messages = build_few_shot_messages()
+
+    # Example A is the first 4 messages: Human, AI tool call, Tool, AI answer.
+    assert isinstance(messages[2], ToolMessage)
+    tool_result = json.loads(messages[2].content)
+    source_ids = {src["id"] for src in tool_result["sources"]}
+    assert "flammable" in source_ids, "flammable must be present as a seed source"
+
+    assert isinstance(messages[3], AIMessage)
+    answer = messages[3].content
+    assert "[flammable]" in answer, "answer must cite the decisive flammable source"
+    assert "cancel Regeneration" not in answer, "answer must not over-generalise"
+    assert "Flammable special rule" in answer, "answer must state the condition"
