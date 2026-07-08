@@ -105,8 +105,6 @@ class SpellParser(BaseParser):
 
         # REFERENCES edge to the casting-value rule when casting value is present
         if casting_value is not None or casting_value_override is not None:
-            result.edges.append(
-                self._make_edge(slug, CASTING_VALUE_RULE_ID, EdgeType.REFERENCES)
-            )
+            result.edges.append(self._make_edge(slug, CASTING_VALUE_RULE_ID, EdgeType.REFERENCES))
 
         return result

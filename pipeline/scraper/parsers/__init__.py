@@ -73,8 +73,8 @@ _PARSERS: dict[str, BaseParser] = {
     "troop_type": RuleParser(),  # RuleParser handles both special_rule + troop_type
     "core_rule": CoreRuleParser(),
     "army_list": ArmyListParser(),
-    "spell": LoreParser(),       # /the-lores-of-magic/{slug} — Lore node + membership edges
-    "spell_page": SpellParser(), # /spell/{slug} — dedicated Spell node
+    "spell": LoreParser(),  # /the-lores-of-magic/{slug} — Lore node + membership edges
+    "spell_page": SpellParser(),  # /spell/{slug} — dedicated Spell node
     "magic_item": MagicItemParser(),
     "weapon": WeaponParser(),
     "faq": FAQParser(),
@@ -472,15 +472,11 @@ def _derive_renegade_lore_membership(
     """
     # Lores that already have at least one BELONGS_TO_LORE edge are standard lores.
     lores_with_edges: set[str] = {
-        e["dst"]
-        for e in existing_edges
-        if e.get("relation") == EdgeType.BELONGS_TO_LORE
+        e["dst"] for e in existing_edges if e.get("relation") == EdgeType.BELONGS_TO_LORE
     }
 
     renegade_lores = [
-        n
-        for n in nodes_by_type.get("lore", [])
-        if n.get("id") and n["id"] not in lores_with_edges
+        n for n in nodes_by_type.get("lore", []) if n.get("id") and n["id"] not in lores_with_edges
     ]
     if not renegade_lores:
         return []

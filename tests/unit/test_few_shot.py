@@ -39,9 +39,7 @@ def test_few_shot_tool_calls_match_tool_messages() -> None:
 def test_few_shot_final_answers_contain_citations() -> None:
     """Every example should end with an assistant answer that cites sources."""
     messages = build_few_shot_messages()
-    final_answers = [
-        msg for msg in messages if isinstance(msg, AIMessage) and not msg.tool_calls
-    ]
+    final_answers = [msg for msg in messages if isinstance(msg, AIMessage) and not msg.tool_calls]
     assert len(final_answers) == 3
     for answer in final_answers:
         assert "[" in answer.content and "]" in answer.content

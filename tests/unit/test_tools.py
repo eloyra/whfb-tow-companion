@@ -43,7 +43,7 @@ class FakeRAGPipeline:
 
 def test_tool_returns_trimmed_payload_with_normalized_sources() -> None:
     """The LLM-visible tool payload should be context + sources, and url -> source_url."""
-    tool = build_tools(FakeRAGPipeline())[0]
+    tool = build_tools(FakeRAGPipeline(), native_citations=False)[0]
     result = json.loads(tool.invoke({"query": "stubborn"}))
 
     assert set(result.keys()) == {"context", "sources"}
@@ -59,3 +59,20 @@ def test_tool_returns_trimmed_payload_with_normalized_sources() -> None:
     assert "score" not in source
     assert "links" not in result
     assert "expansion" not in result
+
+
+def test_tool_returns_native_search_result_blocks() -> None:
+    """Anthropic-native mode returns citable search_result content blocks."""
+    tool = build_tools(FakeRAGPipeline(), native_citations=True)[0]
+    result = tool.invoke({"query": "stubborn"})
+
+    assert isinstance(result, list)
+    assert result[0]["type"] == "text"
+    meta = json.loads(result[0]["text"])
+    assert meta["sources"][0]["id"] == "stubborn"
+
+    search_blocks = [b for b in result if b.get("type") == "search_result"]
+    assert len(search_blocks) >= 1
+    assert search_blocks[0]["title"] == "Stubborn"
+    assert search_blocks[0]["source"] == "https://tow.whfb.app/special-rules/stubborn"
+    assert search_blocks[0]["citations"]["enabled"] is True

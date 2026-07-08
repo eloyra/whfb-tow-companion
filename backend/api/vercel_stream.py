@@ -1,54 +1,217 @@
 import json
+import re
 import uuid
 from typing import Any, AsyncIterator
 
 from langchain.messages import AIMessageChunk, ToolMessage
 
 
+def _sse(payload: dict[str, Any]) -> str:
+    """Format a single SSE data line."""
+    return f"data: {json.dumps(payload)}\n\n"
+
+
+def _extract_text(content: Any) -> str:
+    """Flatten LangChain message content into plain text.
+
+    Anthropic returns content as a list of content blocks (e.g.
+    ``[{"type": "text", "text": "..."}]``), so a simple string check drops the
+    entire stream. OpenAI typically returns a plain string. This helper handles
+    both safely.
+    """
+    if isinstance(content, str):
+        return content
+    if isinstance(content, dict):
+        if content.get("type") in {"text", "text_delta"}:
+            return content.get("text") or content.get("delta") or ""
+        return ""
+    if isinstance(content, list):
+        return "".join(_extract_text(item) for item in content)
+    return ""
+
+
+def _extract_reasoning(content: Any) -> str:
+    """Return reasoning/thinking text from content blocks, if any.
+
+    Anthropic extended thinking emits ``thinking`` blocks; LangChain's standard
+    content-block format uses ``reasoning``. Both are handled so the backend can
+    surface the model's reasoning stream to the UI without mixing it into the
+    final answer text.
+    """
+    if isinstance(content, dict):
+        if content.get("type") in {"thinking", "reasoning"}:
+            return content.get("thinking") or content.get("reasoning") or ""
+        return ""
+    if isinstance(content, list):
+        return "".join(_extract_reasoning(item) for item in content)
+    return ""
+
+
+def _extract_citations(content: Any) -> list[dict[str, Any]]:
+    """Collect native citation objects from a LangChain message chunk.
+
+    Anthropic surfaces citation deltas as ``text`` content blocks carrying a
+    ``citations`` list. We return the raw citation dicts so the caller can map
+    ``search_result_index`` (or other citation identifiers) to source metadata.
+    """
+    citations: list[dict[str, Any]] = []
+    if isinstance(content, dict) and content.get("type") == "text":
+        raw = content.get("citations")
+        if isinstance(raw, list):
+            citations.extend(raw)
+    elif isinstance(content, list):
+        for item in content:
+            citations.extend(_extract_citations(item))
+    return citations
+
+
+def _strip_inline_slugs(text: str, source_ids: set[str]) -> str:
+    """Remove ``[source-id]`` citation markers from assistant text.
+
+    Only tokens matching a known source id are removed, so bracketed stat
+    notation such as ``[D3]`` or ``[X+]`` is preserved.
+    """
+    if not source_ids:
+        return text
+    # Build a regex that matches any of the known ids inside square brackets.
+    ids_pattern = "|".join(re.escape(sid) for sid in source_ids)
+    return re.sub(rf"\[(?:{ids_pattern})\]", "", text)
+
+
 class VercelStream:
     """
-    Adapts a LangGraph `stream_mode="messages"` stream into the Vercel AI SDK v6
+    Adapts a LangGraph ``stream_mode="messages"`` stream into the Vercel AI SDK
     UI Message Stream Protocol (SSE). The frontend reads this via the
-    `x-vercel-ai-ui-message-stream: v1` header.
+    ``x-vercel-ai-ui-message-stream: v1`` header.
 
-    Source chips (`data-sources`) are emitted only for sources the model actually
-    cites in its answer. The tool may return many candidates, but only those whose
-    id appears in the final assistant text as ``[slug]`` are surfaced to the UI.
+    Supports text deltas, reasoning start/delta/end events, and custom
+    ``data-sources`` chips for cited graph nodes.
     """
 
     @staticmethod
     async def stream_langgraph(agent_stream: AsyncIterator[Any]) -> AsyncIterator[str]:
         msg_id = f"msg_{uuid.uuid4().hex}"
 
-        yield f"data: {json.dumps({'type': 'text-start', 'id': msg_id})}\n\n"
-
-        # Candidates come from ToolMessages; the final text from AIMessageChunks.
-        candidate_sources: dict[str, dict[str, Any]] = {}
+        # Final text assembled from text deltas.
         assistant_text_parts: list[str] = []
+
+        # Native Anthropic citation state.
+        search_results: list[dict[str, Any]] = []
+        cited_indices: set[int] = set()
+        source_ids: set[str] = set()
+
+        # Legacy (non-Anthropic) citation state.
+        candidate_sources: dict[str, dict[str, Any]] = {}
+        legacy_cited_ids: set[str] = set()
+
+        # Track whether a tool was called so we know whether to emit data-sources.
+        tool_called = False
+
+        # Track which protocol blocks have been opened so we can close them in
+        # the right order and defer ``text-start`` until the first actual text.
+        text_started = False
+        reasoning_started = False
+        reasoning_id: str | None = None
 
         try:
             async for msg, _metadata in agent_stream:
                 if isinstance(msg, AIMessageChunk):
-                    if msg.content and isinstance(msg.content, str):
-                        assistant_text_parts.append(msg.content)
-                        payload = {
-                            "type": "text-delta",
-                            "id": msg_id,
-                            "delta": msg.content,
-                        }
-                        yield f"data: {json.dumps(payload)}\n\n"
+                    reasoning = _extract_reasoning(msg.content)
+                    if reasoning:
+                        if not reasoning_started:
+                            reasoning_started = True
+                            reasoning_id = f"reasoning_{uuid.uuid4().hex}"
+                            yield _sse({"type": "reasoning-start", "id": reasoning_id})
+                        yield _sse(
+                            {
+                                "type": "reasoning-delta",
+                                "id": reasoning_id,
+                                "delta": reasoning,
+                            }
+                        )
+                    elif reasoning_started:
+                        reasoning_started = False
+                        yield _sse({"type": "reasoning-end", "id": reasoning_id})
+                        reasoning_id = None
+
+                    text = _extract_text(msg.content)
+                    if text:
+                        # Capture legacy inline citations from the raw text
+                        # before stripping known source slugs from the stream.
+                        if not search_results:
+                            for sid in set(re.findall(r"\[([a-z0-9][a-z0-9-]*)\]", text)):
+                                if sid in source_ids:
+                                    legacy_cited_ids.add(sid)
+
+                        # Capture Anthropic native citations.
+                        for citation in _extract_citations(msg.content):
+                            if citation.get("type") == "search_result_location":
+                                idx = citation.get("search_result_index")
+                                if isinstance(idx, int):
+                                    cited_indices.add(idx)
+
+                        text = _strip_inline_slugs(text, source_ids)
+                        if text:
+                            if not text_started:
+                                text_started = True
+                                yield _sse({"type": "text-start", "id": msg_id})
+                            assistant_text_parts.append(text)
+                            yield _sse(
+                                {
+                                    "type": "text-delta",
+                                    "id": msg_id,
+                                    "delta": text,
+                                }
+                            )
 
                 elif isinstance(msg, ToolMessage):
+                    tool_called = True
+
+                    # A tool result means the assistant's reasoning/text block
+                    # for this turn has ended; close any open reasoning block.
+                    if reasoning_started:
+                        reasoning_started = False
+                        yield _sse({"type": "reasoning-end", "id": reasoning_id})
+                        reasoning_id = None
+
+                    # Native Anthropic path: tool result is a list of content
+                    # blocks (text metadata + search_result blocks).
+                    if isinstance(msg.content, list):
+                        for block in msg.content:
+                            if not isinstance(block, dict):
+                                continue
+                            if block.get("type") == "text":
+                                block_text = block.get("text", "")
+                                try:
+                                    tool_data = json.loads(block_text)
+                                except (TypeError, ValueError):
+                                    continue
+                                raw_sources = (
+                                    tool_data.get("sources")
+                                    if isinstance(tool_data, dict)
+                                    else None
+                                )
+                                if isinstance(raw_sources, list):
+                                    search_results.extend(
+                                        src for src in raw_sources if isinstance(src, dict)
+                                    )
+                                    source_ids.update(
+                                        src.get("id")
+                                        for src in raw_sources
+                                        if isinstance(src, dict) and src.get("id")
+                                    )
+                        # The actual search_result blocks are ignored here; we
+                        # trust that their order matches ``search_results``.
+                        continue
+
+                    # Legacy path: tool result is a JSON string.
+                    tool_content = _extract_text(msg.content)
                     try:
-                        tool_data = json.loads(msg.content)
+                        tool_data = json.loads(tool_content)
                     except (TypeError, ValueError):
                         continue
 
-                    raw_sources = (
-                        tool_data.get("sources")
-                        if isinstance(tool_data, dict)
-                        else None
-                    )
+                    raw_sources = tool_data.get("sources") if isinstance(tool_data, dict) else None
                     if not isinstance(raw_sources, list):
                         raw_sources = []
 
@@ -61,30 +224,56 @@ class VercelStream:
                             continue
                         candidate_sources[sid] = {
                             "id": sid,
+                            "name": src.get("name"),
                             "label": src.get("label"),
                             "text": src.get("text"),
                             "source_url": src.get("source_url") or src.get("url"),
                         }
+                        source_ids.add(sid)
 
             assistant_text = "".join(assistant_text_parts)
-            used_sources = [
-                candidate_sources[sid]
-                for sid in candidate_sources
-                if f"[{sid}]" in assistant_text
-            ]
 
-            yield f"data: {json.dumps({'type': 'text-end', 'id': msg_id})}\n\n"
+            # Close any trailing reasoning block before finalising text.
+            if reasoning_started:
+                reasoning_started = False
+                yield _sse({"type": "reasoning-end", "id": reasoning_id})
+                reasoning_id = None
+
+            # Determine which sources to surface.
+            if search_results:
+                # Native Anthropic path: use the model's own citations.
+                displayed_sources = [
+                    search_results[idx]
+                    for idx in sorted(cited_indices)
+                    if 0 <= idx < len(search_results)
+                ]
+            else:
+                # Legacy path: derive citations from inline markers captured
+                # during streaming and from whole-token mentions in the prose.
+                bracket_re = re.compile(r"\[.*?\]")
+                text_without_brackets = bracket_re.sub(" ", assistant_text)
+                mentioned_ids = {
+                    sid
+                    for sid in candidate_sources
+                    if re.search(rf"\b{re.escape(sid)}\b", text_without_brackets, re.IGNORECASE)
+                }
+                used_ids = candidate_sources.keys() & (legacy_cited_ids | mentioned_ids)
+                displayed_sources = [candidate_sources[sid] for sid in used_ids]
+
+            if text_started:
+                yield _sse({"type": "text-end", "id": msg_id})
 
             # Only emit a sources chip list if a tool was actually called this turn.
-            if candidate_sources:
-                payload = {
-                    "type": "data-sources",
-                    "id": msg_id,
-                    "data": used_sources,
-                }
-                yield f"data: {json.dumps(payload)}\n\n"
+            if tool_called:
+                yield _sse(
+                    {
+                        "type": "data-sources",
+                        "id": msg_id,
+                        "data": displayed_sources,
+                    }
+                )
 
-            yield f"data: {json.dumps({'type': 'finish-step'})}\n\n"
+            yield _sse({"type": "finish-step"})
 
         except Exception as e:
-            yield f"data: {json.dumps({'type': 'error', 'value': str(e)})}\n\n"
+            yield _sse({"type": "error", "value": str(e)})

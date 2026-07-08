@@ -73,10 +73,7 @@ def _rule_interaction_example() -> list[AnyMessage]:
     tool_call_id = "example_call_regen"
     return [
         HumanMessage(
-            content=(
-                "What happens when a unit with Regeneration is hit by "
-                "Flaming Attacks?"
-            )
+            content=("What happens when a unit with Regeneration is hit by Flaming Attacks?")
         ),
         AIMessage(
             content="",

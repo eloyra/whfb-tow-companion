@@ -1,4 +1,4 @@
-import { Chip, Tooltip } from "@heroui/react";
+import { Chip } from "@heroui/react";
 import type { GraphSource } from "#/features/chat/model/graph-source";
 import { m } from "#/paraglide/messages";
 
@@ -16,35 +16,47 @@ function isValidUrl(value: string): boolean {
 }
 
 function SourceChip({ source }: { source: GraphSource }) {
+  const displayName = source.name || source.id;
   const tooltipContent =
-    [source.label, source.text].filter(Boolean).join(" — ") || source.id;
+    [source.label, source.text].filter(Boolean).join(" — ") || displayName;
 
   const chip = (
-    <Tooltip>
-      <Tooltip.Trigger>
-        <Chip
-          size="sm"
-          className="cursor-default border border-heraldic/20 bg-heraldic/10 text-heraldic hover:bg-heraldic/15"
-        >
-          {source.id}
-        </Chip>
-      </Tooltip.Trigger>
-      <Tooltip.Content>
-        <p className="text-xs max-w-xs">{tooltipContent}</p>
-      </Tooltip.Content>
-    </Tooltip>
+    <Chip
+      size="sm"
+      className="cursor-default border border-heraldic/20 bg-heraldic/10 text-heraldic hover:bg-heraldic/15"
+    >
+      {displayName}
+    </Chip>
   );
 
   if (source.source_url && isValidUrl(source.source_url)) {
     return (
-      <a
-        href={source.source_url}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-block"
-      >
-        {chip}
-      </a>
+      <div className="relative inline-block group">
+        <a
+          href={source.source_url}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-block"
+          aria-describedby={`source-tooltip-${source.id}`}
+        >
+          {chip}
+        </a>
+        <div
+          id={`source-tooltip-${source.id}`}
+          role="tooltip"
+          className="absolute left-0 bottom-full mb-2 z-50 hidden w-80 group-hover:block"
+        >
+          <div className="rounded-md border border-metal/20 bg-background shadow-lg overflow-hidden">
+            <iframe
+              src={source.source_url}
+              title={displayName}
+              loading="lazy"
+              className="w-full h-48 border-0 bg-white"
+            />
+          </div>
+          <p className="text-xs text-muted mt-1 px-1">{tooltipContent}</p>
+        </div>
+      </div>
     );
   }
 

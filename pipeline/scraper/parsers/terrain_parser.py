@@ -94,9 +94,7 @@ _BLOCKS_MOVEMENT_RE = re.compile(r"\bimpassable\b", re.IGNORECASE)
 _REQUIRES_DANGEROUS_TEST_RE = re.compile(
     r"\b(dangerous terrain test|take a dangerous terrain test)\b", re.IGNORECASE
 )
-_DISRUPTS_UNITS_RE = re.compile(
-    r"\b(disrupted|cannot claim (a |any )?rank bonus)\b", re.IGNORECASE
-)
+_DISRUPTS_UNITS_RE = re.compile(r"\b(disrupted|cannot claim (a |any )?rank bonus)\b", re.IGNORECASE)
 _GRANTS_COVER_RE = re.compile(r"\b(soft cover|hard cover)\b", re.IGNORECASE)
 _MOVEMENT_PENALTY_RE = re.compile(
     r"\b(half(ed)?|halve|moves at half|treat as difficult)\b", re.IGNORECASE
@@ -141,9 +139,7 @@ class TerrainParser(BaseParser):
         page_ref: int | None = fields.get("pageReference")
         association: list[dict] = fields.get("association") or []
         book = (
-            association[0].get("fields", {}).get("name", "Rulebook")
-            if association
-            else "Rulebook"
+            association[0].get("fields", {}).get("name", "Rulebook") if association else "Rulebook"
         )
 
         terrain_class = self._derive_terrain_class(slug, body_text)

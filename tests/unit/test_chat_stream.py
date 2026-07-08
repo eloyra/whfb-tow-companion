@@ -41,9 +41,7 @@ class FakeChatModel(BaseChatModel):
 
         # Mimic a real agent: first call yields any tool-call chunk, second call
         # yields the final answer chunks that cite the tool result.
-        first_is_tool = bool(
-            chunks and getattr(chunks[0], "tool_calls", None)
-        )
+        first_is_tool = bool(chunks and getattr(chunks[0], "tool_calls", None))
         if FakeChatModel.call_count == 1 and first_is_tool:
             yield ChatGenerationChunk(message=chunks[0])
             return
@@ -105,11 +103,12 @@ def _build_client():
 
 
 @pytest.fixture(autouse=True)
-def _reset_fake():
-    """Reset FakeChatModel state before each test."""
+def _reset_fake(monkeypatch):
+    """Reset FakeChatModel state before each test and force legacy tool output."""
     FakeChatModel.chunks = []
     FakeChatModel.call_count = 0
 
+    monkeypatch.setenv("LLM_PROVIDER", "ollama")
     app.dependency_overrides[get_llm] = lambda: FakeChatModel()
     app.dependency_overrides[get_rag_pipeline] = lambda: FakeRAGPipeline()
     yield

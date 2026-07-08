@@ -52,11 +52,20 @@ def _openai_llm() -> BaseChatModel:
 
 
 def _anthropic_llm() -> BaseChatModel:
-    """Build the Anthropic chat model from env."""
+    """Build the Anthropic chat model from env.
+
+    Claude Sonnet 5 defaults to adaptive thinking. We keep it enabled and set
+    ``display: summarized`` so the reasoning text is streamed back; ``omitted``
+    can be selected via env for lower latency. ``max_tokens`` is required to
+    leave headroom for both reasoning and answer text.
+    """
+    max_tokens = int(os.getenv("LLM_MAX_TOKENS", "8192"))
+    thinking_display = os.getenv("ANTHROPIC_THINKING_DISPLAY", "summarized")
     return ChatAnthropic(
-        model=os.getenv("LLM_MODEL", "claude-3-5-sonnet-20241022"),
-        temperature=0.2,
+        model=os.getenv("LLM_MODEL", "claude-sonnet-5"),
         api_key=os.getenv("ANTHROPIC_API_KEY"),
+        max_tokens=max_tokens,
+        thinking={"type": "adaptive", "display": thinking_display},
     )
 
 
@@ -108,6 +117,6 @@ def get_rag_pipeline() -> RAGPipeline:
     """Return the GraphRAG pipeline wired to the Neo4j driver and embedder."""
     driver = get_driver()
     embedder = get_embedder()
-    retriever = GraphRAGRetriever(driver, embedder, top_k=5)
+    retriever = GraphRAGRetriever(driver, embedder, top_k=8)
     traversal = graph_traversal.GraphTraversal(driver)
-    return RAGPipeline(retriever, traversal, max_neighbors_per_seed=4)
+    return RAGPipeline(retriever, traversal, max_neighbors_per_seed=6)

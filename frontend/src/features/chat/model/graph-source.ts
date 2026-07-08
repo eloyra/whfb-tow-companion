@@ -8,6 +8,11 @@ import { z } from "zod";
  */
 export const graphSourceSchema = z.object({
   id: z.string(),
+  name: z
+    .string()
+    .nullish()
+    .transform((value) => value ?? undefined)
+    .optional(),
   label: z
     .string()
     .nullish()

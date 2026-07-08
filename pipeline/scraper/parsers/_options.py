@@ -27,9 +27,7 @@ from pipeline.constants import EdgeType, NodeType
 # ---------------------------------------------------------------------------
 
 _COST_RE = re.compile(r"\(\s*\+(\d+)\s*point[s]?(?:\s+per\s+(model|unit))?\s*\)", re.IGNORECASE)
-_BUDGET_RE = re.compile(
-    r"up\s+to\s+(?:a\s+total\s+of\s+)?(\d+)\s+(?:points?|pts)", re.IGNORECASE
-)
+_BUDGET_RE = re.compile(r"up\s+to\s+(?:a\s+total\s+of\s+)?(\d+)\s+(?:points?|pts)", re.IGNORECASE)
 _MAGIC_STANDARD_BUDGET_RE = re.compile(
     r"(?:magic\s+standard|standard)\s+(?:worth\s+)?up\s+to", re.IGNORECASE
 )
@@ -182,9 +180,11 @@ def _classify_and_emit(
     if _STANDARD_RE.search(text):
         pts, cu = _cost_and_unit(text)
         magic_standard_match = _BUDGET_RE.search(text)
-        magic_standard_budget = int(magic_standard_match.group(1)) if (
-            magic_standard_match and _MAGIC_STANDARD_BUDGET_RE.search(text)
-        ) else None
+        magic_standard_budget = (
+            int(magic_standard_match.group(1))
+            if (magic_standard_match and _MAGIC_STANDARD_BUDGET_RE.search(text))
+            else None
+        )
         node = _make_upgrade_node(
             upgrade_id,
             unit_slug,

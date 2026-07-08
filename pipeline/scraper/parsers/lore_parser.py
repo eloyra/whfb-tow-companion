@@ -80,15 +80,9 @@ class LoreParser(BaseParser):
             if not isinstance(spell_list, list):
                 continue
             for spell_entry in spell_list:
-                spell_data = (
-                    spell_entry.get("fields", {}) if isinstance(spell_entry, dict) else {}
-                )
-                slug = spell_data.get("slug") or self._name_to_slug(
-                    spell_data.get("name", "")
-                )
+                spell_data = spell_entry.get("fields", {}) if isinstance(spell_entry, dict) else {}
+                slug = spell_data.get("slug") or self._name_to_slug(spell_data.get("name", ""))
                 if slug:
-                    result.edges.append(
-                        self._make_edge(slug, lore_slug, EdgeType.BELONGS_TO_LORE)
-                    )
+                    result.edges.append(self._make_edge(slug, lore_slug, EdgeType.BELONGS_TO_LORE))
 
         return result

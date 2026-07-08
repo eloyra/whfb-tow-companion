@@ -37,9 +37,7 @@ async def _scripted_stream(
 
 async def _collect_stream(messages: list[Any]) -> list[dict[str, Any]]:
     """Run VercelStream over scripted messages and return parsed events."""
-    chunks = [
-        chunk async for chunk in VercelStream.stream_langgraph(_scripted_stream(messages))
-    ]
+    chunks = [chunk async for chunk in VercelStream.stream_langgraph(_scripted_stream(messages))]
     return _parse_sse_events("".join(chunks))
 
 
@@ -82,9 +80,7 @@ async def test_emits_only_cited_sources() -> None:
                 tool_call_id="call_1",
                 name="query_warhammer_archive",
             ),
-            AIMessageChunk(
-                content="Stubborn units ignore Combat Result modifiers [stubborn]."
-            ),
+            AIMessageChunk(content="Stubborn units ignore Combat Result modifiers [stubborn]."),
         ]
     )
 
@@ -214,3 +210,120 @@ async def test_bracket_noise_does_not_match_candidates() -> None:
 
     source_event = next(e for e in events if e["type"] == "data-sources")
     assert source_event["data"] == []
+
+
+@pytest.mark.asyncio
+async def test_emits_reasoning_start_delta_end() -> None:
+    """Reasoning content is streamed as start/delta/end protocol events."""
+    events = await _collect_stream(
+        [
+            AIMessageChunk(content=[{"type": "reasoning", "reasoning": "Let me think"}]),
+            AIMessageChunk(content=[{"type": "reasoning", "reasoning": " step by step."}]),
+            AIMessageChunk(content="The answer is 42."),
+        ]
+    )
+
+    types = [e["type"] for e in events]
+    assert types == [
+        "reasoning-start",
+        "reasoning-delta",
+        "reasoning-delta",
+        "reasoning-end",
+        "text-start",
+        "text-delta",
+        "text-end",
+        "finish-step",
+    ]
+
+    reasoning_start = events[0]
+    reasoning_id = reasoning_start["id"]
+    assert reasoning_start["type"] == "reasoning-start"
+    assert reasoning_id.startswith("reasoning_")
+
+    assert events[1] == {"type": "reasoning-delta", "id": reasoning_id, "delta": "Let me think"}
+    assert events[2] == {"type": "reasoning-delta", "id": reasoning_id, "delta": " step by step."}
+    assert events[3] == {"type": "reasoning-end", "id": reasoning_id}
+
+
+@pytest.mark.asyncio
+async def test_native_anthropic_citations_surface_search_results() -> None:
+    """Anthropic native search_result blocks map to source chips by index."""
+    events = await _collect_stream(
+        [
+            AIMessageChunk(
+                content="",
+                tool_calls=[
+                    {
+                        "name": "query_warhammer_archive",
+                        "args": {"query": "stubborn"},
+                        "id": "call_1",
+                    }
+                ],
+            ),
+            ToolMessage(
+                content=[
+                    {
+                        "type": "text",
+                        "text": json.dumps(
+                            {
+                                "context": "Fake context",
+                                "sources": [
+                                    {
+                                        "id": "stubborn",
+                                        "name": "Stubborn",
+                                        "source_url": "https://tow.whfb.app/stubborn",
+                                    },
+                                    {
+                                        "id": "fear",
+                                        "name": "Fear",
+                                        "source_url": "https://tow.whfb.app/fear",
+                                    },
+                                ],
+                            }
+                        ),
+                    },
+                    {
+                        "type": "search_result",
+                        "title": "Stubborn",
+                        "source": "https://tow.whfb.app/stubborn",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Stubborn units ignore Combat Result modifiers.",
+                            }
+                        ],
+                    },
+                    {
+                        "type": "search_result",
+                        "title": "Fear",
+                        "source": "https://tow.whfb.app/fear",
+                        "content": [{"type": "text", "text": "Fear causes Leadership tests."}],
+                    },
+                ],
+                tool_call_id="call_1",
+                name="query_warhammer_archive",
+            ),
+            AIMessageChunk(
+                content=[
+                    {
+                        "type": "text",
+                        "text": "Stubborn units",
+                        "citations": [
+                            {
+                                "type": "search_result_location",
+                                "search_result_index": 0,
+                            }
+                        ],
+                    },
+                    {"type": "text", "text": " ignore Break modifiers."},
+                ]
+            ),
+        ]
+    )
+
+    source_event = next(e for e in events if e["type"] == "data-sources")
+    data = source_event["data"]
+    assert len(data) == 1
+    assert data[0]["id"] == "stubborn"
+    assert data[0]["name"] == "Stubborn"
+    assert not any(item["id"] == "fear" for item in data)

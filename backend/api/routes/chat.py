@@ -12,7 +12,6 @@ from pydantic import BaseModel
 from backend.api.dependencies import get_llm, get_rag_pipeline
 from backend.api.vercel_stream import VercelStream
 from backend.rag.pipeline import RAGPipeline
-from backend.rag.prompts.few_shot import build_few_shot_messages
 from backend.rag.prompts.system_prompt import SYSTEM_PROMPT
 from backend.rag.tools import build_tools
 
@@ -58,10 +57,8 @@ async def chat(
     config = {
         "metadata": {"environment": os.getenv("ENVIRONMENT", "development")},
     }
-    # Prepend few-shot examples so the model sees model tool-call/citation patterns.
-    messages = build_few_shot_messages() + lc_messages
     agent_stream = agent.astream(
-        Command(update={"messages": messages}),
+        Command(update={"messages": lc_messages}),
         stream_mode="messages",
         config=config,
     )

@@ -84,6 +84,7 @@ class ArmyListParser(BaseParser):
             section_id = rule_types[0].get("fields", {}).get("slug", "")
         if not section_id:
             from urllib.parse import urlparse as _urlparse
+
             path_parts = [p for p in _urlparse(url).path.strip("/").split("/") if p]
             section_id = path_parts[0] if path_parts else ""
         section_name = section_id.replace("-", " ").title()
@@ -105,13 +106,9 @@ class ArmyListParser(BaseParser):
             **self._make_i18n(name=name, text=body_text),
         }
         result.nodes.append(core_rule_node)
-        result.edges.append(
-            self._make_edge(army_slug, slug, EdgeType.HAS_COMPOSITION_RULE)
-        )
+        result.edges.append(self._make_edge(army_slug, slug, EdgeType.HAS_COMPOSITION_RULE))
         if section_id:
-            result.edges.append(
-                self._make_edge(slug, section_id, EdgeType.PART_OF_SECTION)
-            )
+            result.edges.append(self._make_edge(slug, section_id, EdgeType.PART_OF_SECTION))
 
         # Build the CompositionList node
         list_id = f"{army_slug}#composition-list"

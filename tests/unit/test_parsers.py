@@ -23,6 +23,7 @@ _FETCHED_AT = "2026-05-01T00:00:00Z"
 # _extract_weapon_profile helper
 # ---------------------------------------------------------------------------
 
+
 # Minimal concrete subclass so we can call the protected method directly.
 class _ConcreteParser(BaseParser):
     def parse(self, html, url, fetched_at):  # type: ignore[override]
@@ -47,7 +48,7 @@ def test_extract_weapon_profile_asrai_longbow():
     result = _parser._extract_weapon_profile(html)
     assert result["range"] == '32"'
     assert result["strength"] == "S"
-    assert result["ap"] is None   # cell is "-"
+    assert result["ap"] is None  # cell is "-"
     assert result["special_rules"] == []
 
 

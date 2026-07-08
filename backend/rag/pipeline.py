@@ -41,8 +41,7 @@ class RAGPipeline:
         if not seeds:
             return {
                 "context": (
-                    "No relevant information was found in the "
-                    "Warhammer: The Old World archive."
+                    "No relevant information was found in the Warhammer: The Old World archive."
                 ),
                 "sources": [],
                 "links": [],
@@ -73,13 +72,22 @@ class RAGPipeline:
         """Build a concise, citation-ready context string for the LLM."""
         parts: list[str] = []
 
+        seed_ids = [s["id"] for s in seeds]
+        expansion_ids = list({e["id"] for e in expansion})
+        seed_props = self._node_properties(seed_ids)
+        neighbor_props = self._node_properties(expansion_ids)
+
         parts.append("## Retrieved sources")
         for seed in seeds:
             score = seed.get("score")
             score_str = f" (score: {score:.3f})" if score is not None else ""
+            text = seed.get("text") or seed.get("name") or ""
+            extra = self._seed_summary(seed.get("label"), seed_props.get(seed["id"], {}))
+            if extra:
+                text = f"{text} {extra}".strip()
             parts.append(
                 f"- [{seed['id']}] {seed.get('name', 'Unnamed')} "
-                f"({seed.get('label', 'Node')}){score_str}: {seed.get('text', '')}"
+                f"({seed.get('label', 'Node')}){score_str}: {text}"
             )
 
         if links:
@@ -104,9 +112,73 @@ class RAGPipeline:
         if expansion:
             parts.append("\n## Related context")
             for row in expansion:
+                extra = self._neighbor_summary(row.get("label"), neighbor_props.get(row["id"], {}))
+                text = row.get("text") or row.get("name") or ""
+                if extra:
+                    text = f"{text} {extra}".strip()
                 parts.append(
                     f"- [{row['seed_id']}] --{row['rel_type']}→ "
-                    f"[{row['id']}] {row.get('name', '')}: {row.get('text', '')}"
+                    f"[{row['id']}] {row.get('name', '')}: {text}"
                 )
 
         return "\n".join(parts)
+
+    def _node_properties(self, node_ids: list[str]) -> dict[str, dict[str, Any]]:
+        """Fetch node properties (excluding embeddings) for a list of ids."""
+        if not node_ids or not hasattr(self.traversal, "driver"):
+            return {}
+        cypher = """
+            UNWIND $ids AS nid
+            MATCH (n {id: nid})
+            RETURN nid, apoc.map.removeKeys(properties(n), ['embedding']) AS props
+        """
+        with self.traversal.driver.session() as session:
+            result = session.run(cypher, ids=node_ids)
+            return {rec["nid"]: dict(rec["props"]) for rec in result}
+
+    @staticmethod
+    def _seed_summary(label: str | None, props: dict[str, Any]) -> str:
+        """Extra human-readable details for seed nodes."""
+        if label == "Unit":
+            details: list[str] = []
+            if props.get("cost_points_per_model") is not None:
+                details.append(f"{props['cost_points_per_model']} pts/model")
+            if props.get("unit_size_min") is not None:
+                size_max = props.get("unit_size_max")
+                if size_max:
+                    size = f"{props['unit_size_min']}-{size_max}"
+                else:
+                    size = f"{props['unit_size_min']}+"
+                details.append(f"Unit size {size}")
+            if props.get("base_width_mm") and props.get("base_depth_mm"):
+                details.append(f"Base {props['base_width_mm']}x{props['base_depth_mm']}mm")
+            if props.get("army_category"):
+                details.append(f"Category {props['army_category']}")
+            return f"({' ; '.join(details)})" if details else ""
+        if label == "MagicItem":
+            details = []
+            if props.get("item_type"):
+                details.append(props["item_type"].replace("_", " "))
+            if props.get("points_cost") is not None:
+                details.append(f"{props['points_cost']} pts")
+            return f"({' ; '.join(details)})" if details else ""
+        return ""
+
+    @staticmethod
+    def _neighbor_summary(label: str | None, props: dict[str, Any]) -> str:
+        """Extra details for expanded neighbor nodes."""
+        if label == "Profile":
+            stats = []
+            for stat in ("M", "WS", "BS", "S", "T", "W", "I", "A", "Ld"):
+                val = props.get(stat)
+                if val is not None:
+                    stats.append(f"{stat}{val}")
+            return f"Stats: {' '.join(stats)}" if stats else ""
+        if label == "Unit":
+            details = []
+            if props.get("cost_points_per_model") is not None:
+                details.append(f"{props['cost_points_per_model']} pts/model")
+            if props.get("base_width_mm") and props.get("base_depth_mm"):
+                details.append(f"Base {props['base_width_mm']}x{props['base_depth_mm']}mm")
+            return f"({' ; '.join(details)})" if details else ""
+        return ""

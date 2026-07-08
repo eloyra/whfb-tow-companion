@@ -25,7 +25,7 @@
     "HAS_INTRINSIC_RULE: 0 edges — TroopType intrinsic rule links missing"
   ],
   "threshold_errors": [],
-  "duration_seconds": 0.05,
+  "duration_seconds": 0.04,
   "node_counts": {
     "Army": {
       "expected": 1,
