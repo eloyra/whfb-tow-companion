@@ -22,6 +22,9 @@ data/embeddings/
 
 # data/graph/, data/parsed/, data/samples/ → committed
 
+# Evaluation reports (generated locally)
+tests/evaluation/reports/
+
 # Notebooks
 .ipynb_checkpoints/
 

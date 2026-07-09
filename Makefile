@@ -61,6 +61,15 @@ test-unit:  ## Run unit tests only
 test-integration:  ## Run integration tests only
 	uv run pytest tests/integration/ -v
 
+test-evaluation:  ## Run evaluation harness unit tests only
+	uv run pytest tests/evaluation/test_evaluate.py -v
+
+evaluate:  ## Run retrieval-only evaluation against the golden set (requires Neo4j)
+	uv run python -m tests.evaluation.evaluate
+
+evaluate-full:  ## Run full agent + LLM-judge evaluation (requires Neo4j + API key)
+	uv run python -m tests.evaluation.evaluate --full
+
 format:  ## Auto-format with ruff
 	uv run ruff format .
 

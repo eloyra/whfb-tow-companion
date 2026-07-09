@@ -31,9 +31,11 @@ cd frontend && pnpm test:e2e   # Playwright (needs dev server running)
 
 ## Evaluation suite
 
-`evaluation/test_queries.json` is intended as the golden set of expected RAG behaviour, but it is currently **skeletal (3 queries only)** and `tests/evaluation/evaluate.py` is a `# TODO` stub — the scoring harness is not implemented. A larger 50-query seed lives in `docs/validation/query-coverage-seed.md` but is not wired to any evaluator.
+`evaluation/test_queries.json` is the 50-query golden set, expanded from `docs/validation/query-coverage-seed.md` and annotated with `expected_rules`, `expected_army`, `category`, and a judge `rubric`. `tests/evaluation/evaluate.py` runs retrieval-only (`make evaluate`) or full agent + LLM-judge (`make evaluate-full`) evaluation and writes JSON/Markdown reports to `tests/evaluation/reports/`.
 
-Do not add RAG-relevant tests elsewhere; keep the golden set here. When implementing the evaluator, expand `test_queries.json` from the `docs/validation/query-coverage-seed.md` catalogue.
+`tests/evaluation/test_evaluate.py` contains pure-function unit tests for scoring, citation extraction, and dataset validation. These run in the normal pytest suite and act as the CI gate for the harness.
+
+Do not add RAG-relevant tests elsewhere; keep the golden set and harness here.
 
 ---
 

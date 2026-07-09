@@ -2,25 +2,451 @@
   {
     "id": "q001",
     "language": "en",
-    "query": "What happens when a unit with Regeneration is hit by Flaming Attacks?",
-    "expected_rules": ["regeneration", "flaming-attacks"],
+    "query": "What does the Fear special rule do?",
+    "expected_rules": ["fear"],
     "expected_army": null,
-    "category": "rule_interaction"
+    "category": "rule_lookup",
+    "rubric": "Fear forces enemy units to take a Leadership test before charging or when engaged if the Fear-causing unit has a higher Unit Strength; failure prevents the charge."
   },
   {
     "id": "q002",
-    "language": "es",
-    "query": "¿Cuántos puntos cuesta una unidad de Blood Knights con Full Plate Armour?",
-    "expected_rules": [],
-    "expected_army": "vampire-counts",
-    "category": "army_building"
+    "language": "en",
+    "query": "How does Regeneration interact with Flaming Attacks?",
+    "expected_rules": ["regeneration", "flaming-attacks"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "Flaming Attacks cancel Regeneration: a model with Regeneration cannot use Regeneration saves against Flaming Attacks."
   },
   {
     "id": "q003",
     "language": "en",
-    "query": "What happens to a Vampire Counts army when the General is killed?",
-    "expected_rules": ["the-death-of-a-general", "necromantic-undead", "regeneration"],
+    "query": "What happens when a unit with Stubborn takes a Break test?",
+    "expected_rules": ["stubborn"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "The first time a Stubborn unit must take a Break test it may choose to automatically Fall Back in Good Order instead, even if outnumbered."
+  },
+  {
+    "id": "q004",
+    "language": "en",
+    "query": "Can a unit with Fly charge over enemy units?",
+    "expected_rules": ["fly"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Yes; a flying model can move over other models and terrain, so it can charge over enemy units."
+  },
+  {
+    "id": "q005",
+    "language": "en",
+    "query": "What is the maximum rank bonus for Heavy Infantry?",
+    "expected_rules": ["rank-bonus", "heavy-infantry"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Heavy Infantry requires 4 models per rank and can claim a maximum Rank Bonus of +2."
+  },
+  {
+    "id": "q006",
+    "language": "en",
+    "query": "How many models for a rank bonus in Swarms?",
+    "expected_rules": ["swarms", "rank-bonus"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Swarms require 4 models per rank and can claim a maximum Rank Bonus of +1."
+  },
+  {
+    "id": "q007",
+    "language": "en",
+    "query": "What unit strength does Monstrous Cavalry have?",
+    "expected_rules": ["unit-strength", "monstrous-cavalry"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Monstrous Cavalry has Unit Strength 3 per model."
+  },
+  {
+    "id": "q008",
+    "language": "en",
+    "query": "How does the Magic phase work?",
+    "expected_rules": ["magic", "lores-of-magic"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "In the Magic phase, Wizards generate Power and Dispel dice, cast spells from their chosen Lores, and the opponent attempts to dispel them."
+  },
+  {
+    "id": "q009",
+    "language": "en",
+    "query": "What's the difference between Magic Missile and Magical Vortex?",
+    "expected_rules": ["magic-missiles", "magical-vortex", "magic-missile-and-magical-vortex-spells"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "Magic Missiles are direct shooting attacks requiring line of sight; Magical Vortexes use templates placed on the battlefield and may remain or scatter."
+  },
+  {
+    "id": "q010",
+    "language": "en",
+    "query": "Can you dispel a Remains in Play spell in your own magic phase?",
+    "expected_rules": ["remains-in-play", "dispelling-remains-in-play-spells"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "No; you can only attempt to dispel an opponent's Remains in Play spell during your Conjuration sub-phase, not your own Magic phase."
+  },
+  {
+    "id": "q011",
+    "language": "en",
+    "query": "What happens when a unit is Disrupted?",
+    "expected_rules": ["disrupted-units"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "A Disrupted unit cannot claim a Rank Bonus; disruption is caused by flank/rear charges of sufficient Unit Strength or by terrain."
+  },
+  {
+    "id": "q012",
+    "language": "en",
+    "query": "How do Cannon balls bounce?",
+    "expected_rules": ["cannon-fire"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "After rolling for the strike point, roll another Artillery dice for bounce distance; the cannonball travels in a straight line and can hit models under its path."
+  },
+  {
+    "id": "q013",
+    "language": "en",
+    "query": "What's the casting value for Invocation of Nehek?",
+    "expected_rules": ["invocation-of-nehek", "necromancy"],
+    "expected_army": null,
+    "category": "unit_stats",
+    "rubric": "State the Casting Value of the Invocation of Nehek spell from the Lore of Necromancy."
+  },
+  {
+    "id": "q014",
+    "language": "en",
+    "query": "What spells are in the Lore of Necromancy?",
+    "expected_rules": ["necromancy"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "List the spells belonging to the Lore of Necromancy, such as Invocation of Nehek, Raise Dead, etc."
+  },
+  {
+    "id": "q015",
+    "language": "en",
+    "query": "Does a shield give +1 to armour save?",
+    "expected_rules": ["armour-value"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Yes; a shield improves Armour Value by 1 (e.g. Heavy Armour 5+ plus shield becomes 4+)."
+  },
+  {
+    "id": "q016",
+    "language": "en",
+    "query": "What is the armour value of full plate armour?",
+    "expected_rules": ["full-plate-armour"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Full plate armour has an Armour Value of 4+."
+  },
+  {
+    "id": "q017",
+    "language": "en",
+    "query": "How does the Ethereal special rule work?",
+    "expected_rules": ["ethereal"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Ethereal models treat all terrain as open ground, can only be wounded by Magical Attacks, and cannot join or be joined by non-Ethereal characters."
+  },
+  {
+    "id": "q018",
+    "language": "en",
+    "query": "Does Ethereal ignore dangerous terrain?",
+    "expected_rules": ["ethereal", "dangerous-terrain"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "Yes; Ethereal creatures treat all terrain, including dangerous terrain, as open ground for movement."
+  },
+  {
+    "id": "q019",
+    "language": "en",
+    "query": "Can Scouts deploy in woods?",
+    "expected_rules": ["scouts", "woods"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "Yes; Scouts can deploy anywhere more than 12\" from an enemy model, including inside woods, if the terrain rules allow."
+  },
+  {
+    "id": "q020",
+    "language": "en",
+    "query": "What are the rules for Open Ground?",
+    "expected_rules": ["open-ground"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Open ground is any terrain not classed otherwise and has no movement or combat effects."
+  },
+  {
+    "id": "q021",
+    "language": "en",
+    "query": "What terrain disrupts units?",
+    "expected_rules": ["disrupted-units", "difficult-terrain", "low-linear-obstacles"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Units become Disrupted if a quarter or more of their models end movement in difficult terrain or straddling a low linear obstacle."
+  },
+  {
+    "id": "q022",
+    "language": "en",
+    "query": "Is cover granted by woods partial or full?",
+    "expected_rules": ["woods", "target-behind-partial-cover", "target-behind-full-cover"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "Woods can grant partial or full cover depending on how much of the target is obscured; partial cover gives -1 To Hit, full cover gives -2."
+  },
+  {
+    "id": "q023",
+    "language": "en",
+    "query": "What's the FAQ about rerolls being discarded?",
+    "expected_rules": [],
+    "expected_army": null,
+    "category": "faq",
+    "rubric": "Answer should state the specific FAQ ruling about rerolls being discarded, or clearly say the archive does not contain it."
+  },
+  {
+    "id": "q024",
+    "language": "en",
+    "query": "What errata changed the Steam Tank rules?",
+    "expected_rules": [],
+    "expected_army": null,
+    "category": "faq",
+    "rubric": "Answer should identify the errata entry affecting the Steam Tank and what changed, or clearly state the archive does not contain it."
+  },
+  {
+    "id": "q025",
+    "language": "en",
+    "query": "What version is the latest FAQ from?",
+    "expected_rules": [],
+    "expected_army": null,
+    "category": "faq",
+    "rubric": "Answer should state the version/date of the latest FAQ document, or clearly say the archive does not contain that metadata."
+  },
+  {
+    "id": "q026",
+    "language": "en",
+    "query": "Build me a 2000pt Vampire Counts list",
+    "expected_rules": [],
     "expected_army": "vampire-counts",
-    "category": "multi_hop"
+    "category": "army_building",
+    "rubric": "Answer should propose a Vampire Counts army list totalling roughly 2000 points with Lords/Heroes/Core/Special/Rare categories and cite the units/items used."
+  },
+  {
+    "id": "q027",
+    "language": "en",
+    "query": "What units are available in the Empire of Man?",
+    "expected_rules": [],
+    "expected_army": "empire-of-man",
+    "category": "army_building",
+    "rubric": "Answer should name several Empire of Man units drawn from the army list and cite them."
+  },
+  {
+    "id": "q028",
+    "language": "en",
+    "query": "What special rules do Blood Knights have?",
+    "expected_rules": ["blood-knights"],
+    "expected_army": null,
+    "category": "unit_stats",
+    "rubric": "Answer should list the special rules of Blood Knights and cite the unit."
+  },
+  {
+    "id": "q029",
+    "language": "en",
+    "query": "How much do Blood Knights cost per model?",
+    "expected_rules": ["blood-knights"],
+    "expected_army": null,
+    "category": "unit_stats",
+    "rubric": "Blood Knights cost 39 points per model."
+  },
+  {
+    "id": "q030",
+    "language": "en",
+    "query": "What's the base size of a Steam Tank?",
+    "expected_rules": ["empire-steam-tank"],
+    "expected_army": null,
+    "category": "unit_stats",
+    "rubric": "The Empire Steam Tank is on a 60x100mm base."
+  },
+  {
+    "id": "q031",
+    "language": "en",
+    "query": "What equipment do Grave Guard come with by default?",
+    "expected_rules": ["grave-guard"],
+    "expected_army": null,
+    "category": "unit_stats",
+    "rubric": "Answer should state Grave Guard's default equipment (e.g. Great Weapon, Heavy Armour) and note shield options."
+  },
+  {
+    "id": "q032",
+    "language": "en",
+    "query": "What upgrades can I give to Skeleton Warriors?",
+    "expected_rules": ["skeleton-warriors-vampire-counts"],
+    "expected_army": null,
+    "category": "unit_stats",
+    "rubric": "Answer should list upgrade options available to Vampire Counts Skeleton Warriors (e.g. spears, shields, champion, standard, musician) and cite the unit."
+  },
+  {
+    "id": "q033",
+    "language": "en",
+    "query": "How much to give shields to 20 Clanrats?",
+    "expected_rules": ["clanrats"],
+    "expected_army": null,
+    "category": "unit_stats",
+    "rubric": "Answer should calculate the points cost for giving shields to 20 Clanrats and cite the unit/upgrade."
+  },
+  {
+    "id": "q034",
+    "language": "en",
+    "query": "Can a Vampire Lord take magic items? How many points?",
+    "expected_rules": ["vampire-count", "purchasing-magic-items"],
+    "expected_army": null,
+    "category": "eligibility",
+    "rubric": "A Vampire Count can take magic items; the exact points limit is listed in the model's options (commonly up to 100 points)."
+  },
+  {
+    "id": "q035",
+    "language": "en",
+    "query": "What magic items can a Tomb King take?",
+    "expected_rules": ["tomb-king", "purchasing-magic-items"],
+    "expected_army": null,
+    "category": "eligibility",
+    "rubric": "A Tomb King can take magic items from the Tomb Kings magic items list up to the points limit in its options."
+  },
+  {
+    "id": "q036",
+    "language": "en",
+    "query": "Does my Wizard have access to Lore of Necromancy?",
+    "expected_rules": ["necromancy"],
+    "expected_army": null,
+    "category": "eligibility",
+    "rubric": "Answer should explain which armies/characters can use the Lore of Necromancy and that a generic Wizard cannot unless allowed by its army list."
+  },
+  {
+    "id": "q037",
+    "language": "en",
+    "query": "What mount options does a Chaos Lord have?",
+    "expected_rules": ["chaos-lord"],
+    "expected_army": null,
+    "category": "unit_stats",
+    "rubric": "Answer should list the mount options available to a Chaos Lord (e.g. Chaos Steed, Daemonic Mount) and cite the unit."
+  },
+  {
+    "id": "q038",
+    "language": "en",
+    "query": "How much does a barded Nightmare cost as a mount?",
+    "expected_rules": ["nightmare"],
+    "expected_army": null,
+    "category": "unit_stats",
+    "rubric": "Answer should state the points cost of a barded Nightmare mount option and cite the source."
+  },
+  {
+    "id": "q039",
+    "language": "en",
+    "query": "What's the profile of a Zombie Dragon?",
+    "expected_rules": ["zombie-dragon"],
+    "expected_army": null,
+    "category": "unit_stats",
+    "rubric": "Answer should provide the Zombie Dragon's profile stats (M, WS, BS, S, T, W, I, A, Ld) and cite the unit."
+  },
+  {
+    "id": "q040",
+    "language": "en",
+    "query": "Can I take a Battle Standard Bearer?",
+    "expected_rules": ["the-battle-standard-bearer-model"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Yes, a Battle Standard Bearer is an option in most army lists, carried by a character who cannot be the General."
+  },
+  {
+    "id": "q041",
+    "language": "en",
+    "query": "What percentage of my army can be Characters?",
+    "expected_rules": ["percentages"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Characters can account for up to 50% of the army's points in a Grand Army composition list."
+  },
+  {
+    "id": "q042",
+    "language": "en",
+    "query": "Which armies can ally with Vampire Counts?",
+    "expected_rules": ["allied-contingents"],
+    "expected_army": "vampire-counts",
+    "category": "army_building",
+    "rubric": "Answer should list the armies that can be taken as allies by Vampire Counts according to its composition list."
+  },
+  {
+    "id": "q043",
+    "language": "en",
+    "query": "Difference between trusted and suspicious allies?",
+    "expected_rules": ["allied-contingents", "uneasy-allied-contingents", "suspicious-allied-contingents"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "Trusted/Uneasy allies follow normal allied rules with a Levies penalty; Suspicious allies add extra restrictions such as causing Panic when fleeing through main-army units."
+  },
+  {
+    "id": "q044",
+    "language": "en",
+    "query": "How many points of magic items can my champion take?",
+    "expected_rules": ["purchasing-magic-items", "champions"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Only some champions have the option to purchase magic items; the points limit is given in the unit's options, not a universal value."
+  },
+  {
+    "id": "q045",
+    "language": "en",
+    "query": "Can a unit standard bearer take a magic standard?",
+    "expected_rules": ["standard-bearers", "purchasing-magic-items"],
+    "expected_army": null,
+    "category": "eligibility",
+    "rubric": "Yes, if the unit's options allow it, a standard bearer can take a Magic Standard (a type of magic item)."
+  },
+  {
+    "id": "q046",
+    "language": "en",
+    "query": "What Great Weapons does this unit swap to?",
+    "expected_rules": [],
+    "expected_army": null,
+    "category": "unit_stats",
+    "rubric": "Answer should ask which unit is meant, or explain that Great Weapon swaps are unit-specific options."
+  },
+  {
+    "id": "q047",
+    "language": "en",
+    "query": "What troops can I bring as Mercenaries?",
+    "expected_rules": ["mercenaries"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Answer should explain that Mercenaries are units drawn from another army list as allowed by the army's composition list and list the restrictions."
+  },
+  {
+    "id": "q048",
+    "language": "en",
+    "query": "What's the split profile for a Demigryph Knight?",
+    "expected_rules": ["demigryph-knights"],
+    "expected_army": null,
+    "category": "unit_stats",
+    "rubric": "Answer should explain that Demigryph Knights use a split profile (rider + Demigryph) and give both profile lines."
+  },
+  {
+    "id": "q049",
+    "language": "en",
+    "query": "What's a Varghulf's WS and attacks?",
+    "expected_rules": ["varghulf"],
+    "expected_army": null,
+    "category": "unit_stats",
+    "rubric": "Answer should state the Varghulf's Weapon Skill and Attacks values from its profile and cite the unit."
+  },
+  {
+    "id": "q050",
+    "language": "en",
+    "query": "Is a named character required to include its unit?",
+    "expected_rules": ["named-characters-warhammer-armies"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "No; named characters are independent choices and are only required to include a unit if their own rules explicitly say so."
   }
 ]
