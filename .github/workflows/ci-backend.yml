@@ -1,0 +1,81 @@
+name: CI — Backend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "backend/**"
+      - "pipeline/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - "Makefile"
+      - ".github/workflows/ci-backend.yml"
+  pull_request:
+    paths:
+      - "backend/**"
+      - "pipeline/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - "Makefile"
+      - ".github/workflows/ci-backend.yml"
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Sync dependencies
+        run: uv sync --all-extras
+
+      - name: Check formatting
+        run: uv run ruff format --check .
+
+      - name: Run linter
+        run: uv run ruff check .
+
+  unit-tests:
+    name: Unit + evaluation tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Sync dependencies
+        run: uv sync --all-extras
+
+      - name: Run unit and evaluation tests
+        run: uv run pytest tests/unit tests/evaluation -v
+
+  integration-tests:
+    name: Integration tests (Neo4j via testcontainers)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Sync dependencies
+        run: uv sync --all-extras
+
+      - name: Run integration tests
+        run: uv run pytest tests/integration -v
