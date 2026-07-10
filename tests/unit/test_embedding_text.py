@@ -313,12 +313,14 @@ class TestUnit:
         unit_rec: dict,
         profile_recs: list[dict],
         edge_rec: dict,
+        upgrade_recs: list[dict] | None = None,
     ) -> MagicMock:
         return _make_driver(
             [
                 [unit_rec],
                 profile_recs,
                 [edge_rec],
+                upgrade_recs or [],
             ]
         )
 
@@ -454,11 +456,11 @@ class TestUnit:
         assert "Lance" in t
 
     def test_missing_unit_returns_empty(self) -> None:
-        driver = _make_driver([[], [], []])
+        driver = _make_driver([[], [], [], []])
         texts = text_builder.build_for_label(driver, "Unit", ["missing"])
         assert texts == [""]
 
-    def test_contains_upgrades(self) -> None:
+    def test_contains_upgrades_with_cost(self) -> None:
         driver = self._make_driver_for_unit(
             {
                 "nid": "x",
@@ -474,20 +476,22 @@ class TestUnit:
                 "troop_types": [],
             },
             [],
-            {
-                "nid": "x",
-                "rules": [],
-                "weapons": [],
-                "upgrades": ["Magic Item Budget (100 pts)", "Level 2 Wizard"],
-            },
+            {"nid": "x", "rules": [], "weapons": []},
+            [
+                {"nid": "x", "name": "Shield", "cost": 1, "cost_unit": "per_model"},
+                {"nid": "x", "name": "Standard Bearer", "cost": 5, "cost_unit": "per_unit"},
+                {"nid": "x", "name": "Weapon Team", "cost": None, "cost_unit": "flat"},
+            ],
         )
         texts = text_builder.build_for_label(driver, "Unit", ["x"])
         t = texts[0]
         assert "Upgrades" in t
-        assert "Magic Item Budget (100 pts)" in t
-        assert "Level 2 Wizard" in t
+        assert "Shield (+1 pt/model)" in t
+        assert "Standard Bearer (+5 pts/unit)" in t
+        assert "Weapon Team" in t
+        assert "Weapon Team (+" not in t
 
-    def test_no_upgrades_key_does_not_crash(self) -> None:
+    def test_no_upgrades_does_not_crash(self) -> None:
         driver = self._make_driver_for_unit(
             {
                 "nid": "x",
@@ -503,7 +507,8 @@ class TestUnit:
                 "troop_types": [],
             },
             [],
-            {"nid": "x", "rules": [], "weapons": []},  # no "upgrades" key
+            {"nid": "x", "rules": [], "weapons": []},
+            [],
         )
         texts = text_builder.build_for_label(driver, "Unit", ["x"])
         assert texts == ["X"]
@@ -524,7 +529,8 @@ class TestUnit:
                 "troop_types": [],
             },
             [],
-            {"nid": "x", "rules": [], "weapons": [], "upgrades": []},
+            {"nid": "x", "rules": [], "weapons": []},
+            [],
         )
         texts = text_builder.build_for_label(driver, "Unit", ["x"])
         assert "Upgrades" not in texts[0]

@@ -51,7 +51,7 @@
     "expected_rules": ["swarms", "rank-bonus"],
     "expected_army": null,
     "category": "rule_lookup",
-    "rubric": "Swarms require 4 models per rank and can claim a maximum Rank Bonus of +1."
+    "rubric": "The troop-type table lists '-' for both Models per Rank and Maximum Rank Bonus for Swarms (source: tow.whfb.app/troop-types-in-detail/swarms), so Swarms cannot claim a Rank Bonus at all."
   },
   {
     "id": "q007",
@@ -110,11 +110,11 @@
   {
     "id": "q013",
     "language": "en",
-    "query": "What's the casting value for Invocation of Nehek?",
-    "expected_rules": ["invocation-of-nehek", "necromancy"],
+    "query": "How does the Invocation of Nehek special rule work?",
+    "expected_rules": ["invocation-of-nehek"],
     "expected_army": null,
-    "category": "unit_stats",
-    "rubric": "State the Casting Value of the Invocation of Nehek spell from the Lore of Necromancy."
+    "category": "rule_lookup",
+    "rubric": "Invocation of Nehek (special-rules/invocation-of-nehek) is a Tomb Kings character ability, not a spell -- it has no Casting Value. In their Command sub-phase, if not in combat, the character may attempt a Leadership test to resurrect Wounds on a friendly Necromantic Undead unit within 12\", with the amount recovered scaled by the unit's troop type and the character's Level of Wizardry."
   },
   {
     "id": "q014",

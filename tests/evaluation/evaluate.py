@@ -130,9 +130,9 @@ async def _main_async(argv: list[str] | None = None) -> int:
     print(f"Loaded {len(queries)} golden queries")
 
     if args.full:
-        judge_llm = None
+        judge_llm = get_llm()
         if args.judge_model:
-            judge_llm = get_llm().bind(model=args.judge_model)
+            judge_llm = judge_llm.bind(model=args.judge_model)
         results = await run_full_evaluation(
             queries,
             top_k=args.top_k,

@@ -62,17 +62,29 @@ def test_tool_returns_trimmed_payload_with_normalized_sources() -> None:
 
 
 def test_tool_returns_native_search_result_blocks() -> None:
-    """Anthropic-native mode returns citable search_result content blocks."""
+    """Anthropic-native mode returns only citable search_result content blocks.
+
+    Anthropic rejects a tool_result whose content mixes a plain ``text`` block
+    with ``search_result`` blocks, so no metadata block may appear alongside
+    them; the content list must be homogeneous.
+    """
     tool = build_tools(FakeRAGPipeline(), native_citations=True)[0]
-    result = tool.invoke({"query": "stubborn"})
+    msg = tool.invoke(
+        {
+            "name": "query_warhammer_archive",
+            "args": {"query": "stubborn"},
+            "id": "call_1",
+            "type": "tool_call",
+        }
+    )
 
-    assert isinstance(result, list)
-    assert result[0]["type"] == "text"
-    meta = json.loads(result[0]["text"])
-    assert meta["sources"][0]["id"] == "stubborn"
+    assert isinstance(msg.content, list)
+    assert all(block["type"] == "search_result" for block in msg.content)
+    assert len(msg.content) >= 1
+    assert msg.content[0]["title"] == "Stubborn"
+    assert msg.content[0]["source"] == "https://tow.whfb.app/special-rules/stubborn"
+    assert msg.content[0]["citations"]["enabled"] is True
 
-    search_blocks = [b for b in result if b.get("type") == "search_result"]
-    assert len(search_blocks) >= 1
-    assert search_blocks[0]["title"] == "Stubborn"
-    assert search_blocks[0]["source"] == "https://tow.whfb.app/special-rules/stubborn"
-    assert search_blocks[0]["citations"]["enabled"] is True
+    # Context + source metadata travel out-of-band via .artifact, never inline.
+    assert msg.artifact["sources"][0]["id"] == "stubborn"
+    assert msg.artifact["context"] == "Context for: stubborn"

@@ -8,12 +8,12 @@ from __future__ import annotations
 
 from langchain.chat_models import BaseChatModel
 from langchain.messages import AIMessage
-from langchain_core.messages import BaseMessage
+from langchain_core.messages import BaseMessage, ToolMessage
 from langchain_core.outputs import ChatGenerationChunk, ChatResult
 
 from tests.evaluation.dataset import load_queries
 from tests.evaluation.models import AgentResult, JudgeVerdict, Query, RetrievalResult
-from tests.evaluation.runner import _extract_cited_ids_from_tool_content
+from tests.evaluation.runner import _extract_cited_ids_from_tool_message
 from tests.evaluation.scoring import (
     aggregate_metrics,
     army_retrieved,
@@ -114,27 +114,26 @@ class TestBuildRetrievalResult:
 
 
 class TestExtractCitedIds:
-    def test_legacy_json_string(self) -> None:
-        content = '{"context": "...", "sources": [{"id": "fear"}, {"id": "stubborn"}]}'
-        assert _extract_cited_ids_from_tool_content(content) == ["fear", "stubborn"]
+    def test_reads_artifact_first(self) -> None:
+        """Native path: sources live on .artifact, never inline in content."""
+        msg = ToolMessage(
+            content=[{"type": "search_result", "title": "Fear", "source": "..."}],
+            artifact={"context": "...", "sources": [{"id": "fear"}, {"id": "stubborn"}]},
+            tool_call_id="call_1",
+        )
+        assert _extract_cited_ids_from_tool_message(msg) == ["fear", "stubborn"]
 
-    def test_native_list_blocks(self) -> None:
-        content = [
-            {
-                "type": "text",
-                "text": '{"context": "...", "sources": [{"id": "fear"}]}',
-            },
-            {
-                "type": "search_result",
-                "title": "Fear",
-                "source": "...",
-            },
-        ]
-        assert _extract_cited_ids_from_tool_content(content) == ["fear"]
+    def test_falls_back_to_legacy_json_content(self) -> None:
+        """No artifact: fall back to parsing the JSON-string content."""
+        msg = ToolMessage(
+            content='{"context": "...", "sources": [{"id": "fear"}]}',
+            tool_call_id="call_1",
+        )
+        assert _extract_cited_ids_from_tool_message(msg) == ["fear"]
 
     def test_invalid_content_returns_empty(self) -> None:
-        assert _extract_cited_ids_from_tool_content("not-json") == []
-        assert _extract_cited_ids_from_tool_content(123) == []
+        msg = ToolMessage(content="not-json", tool_call_id="call_1")
+        assert _extract_cited_ids_from_tool_message(msg) == []
 
 
 class TestAggregateMetrics:

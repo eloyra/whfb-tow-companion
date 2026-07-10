@@ -263,26 +263,6 @@ async def test_native_anthropic_citations_surface_search_results() -> None:
             ToolMessage(
                 content=[
                     {
-                        "type": "text",
-                        "text": json.dumps(
-                            {
-                                "context": "Fake context",
-                                "sources": [
-                                    {
-                                        "id": "stubborn",
-                                        "name": "Stubborn",
-                                        "source_url": "https://tow.whfb.app/stubborn",
-                                    },
-                                    {
-                                        "id": "fear",
-                                        "name": "Fear",
-                                        "source_url": "https://tow.whfb.app/fear",
-                                    },
-                                ],
-                            }
-                        ),
-                    },
-                    {
                         "type": "search_result",
                         "title": "Stubborn",
                         "source": "https://tow.whfb.app/stubborn",
@@ -300,6 +280,21 @@ async def test_native_anthropic_citations_surface_search_results() -> None:
                         "content": [{"type": "text", "text": "Fear causes Leadership tests."}],
                     },
                 ],
+                artifact={
+                    "context": "Fake context",
+                    "sources": [
+                        {
+                            "id": "stubborn",
+                            "name": "Stubborn",
+                            "source_url": "https://tow.whfb.app/stubborn",
+                        },
+                        {
+                            "id": "fear",
+                            "name": "Fear",
+                            "source_url": "https://tow.whfb.app/fear",
+                        },
+                    ],
+                },
                 tool_call_id="call_1",
                 name="query_warhammer_archive",
             ),

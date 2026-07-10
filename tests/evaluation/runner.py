@@ -46,32 +46,22 @@ def run_retrieval_evaluation(
     return results
 
 
-def _extract_cited_ids_from_tool_content(content: Any) -> list[str]:
-    """Pull cited source ids out of a tool result payload.
+def _extract_cited_ids_from_tool_message(msg: Any) -> list[str]:
+    """Pull candidate source ids out of a ``ToolMessage``.
 
-    Handles both the Anthropic native list-of-blocks format and the legacy
-    JSON-string format.
+    Source metadata travels via the LangChain tool ``artifact`` (never sent to
+    the model — see ``backend/rag/tools.py``), so it's read from there first.
+    Falls back to parsing ``content`` for messages built without an artifact.
     """
     import json
 
-    if isinstance(content, list):
-        ids: list[str] = []
-        for block in content:
-            if not isinstance(block, dict):
-                continue
-            if block.get("type") == "text":
-                try:
-                    payload = json.loads(block.get("text", ""))
-                except (TypeError, ValueError):
-                    continue
-                if isinstance(payload, dict) and isinstance(payload.get("sources"), list):
-                    ids.extend(
-                        src["id"]
-                        for src in payload["sources"]
-                        if isinstance(src, dict) and src.get("id")
-                    )
-        return ids
+    artifact = getattr(msg, "artifact", None)
+    if isinstance(artifact, dict) and isinstance(artifact.get("sources"), list):
+        return [
+            src["id"] for src in artifact["sources"] if isinstance(src, dict) and src.get("id")
+        ]
 
+    content = getattr(msg, "content", None)
     if isinstance(content, str):
         try:
             payload = json.loads(content)
@@ -131,7 +121,7 @@ async def run_full_evaluation(
             if hasattr(msg, "tool_calls") and getattr(msg, "tool_calls", None):
                 pass  # tool-call metadata, not a result payload
             if msg.type == "tool":
-                cited_ids.extend(_extract_cited_ids_from_tool_content(msg.content))
+                cited_ids.extend(_extract_cited_ids_from_tool_message(msg))
 
         answer = "\n".join(answer_parts)
         seeds = retriever.retrieve(query.query)
