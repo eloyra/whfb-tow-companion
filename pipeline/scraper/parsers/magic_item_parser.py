@@ -31,7 +31,12 @@ from __future__ import annotations
 
 import logging
 
-from pipeline.constants import MAGIC_ITEM_TYPE_MAP, NodeType
+from pipeline.constants import (
+    ARCANE_JOURNAL_ASSOCIATION_ARMY_MAP,
+    ARCANE_JOURNAL_PAGE_ARMY_OVERRIDES,
+    MAGIC_ITEM_TYPE_MAP,
+    NodeType,
+)
 from pipeline.scraper.parsers.base_parser import BaseParser, ParseResult
 
 logger = logging.getLogger(__name__)  # used for ISR/missing-name warnings above
@@ -118,6 +123,8 @@ class MagicItemParser(BaseParser):
         if data.get("costOverride"):
             cost = None
 
+        army_id = self._normalize_army_id(army_id, url)
+
         return {
             "node_type": NodeType.MAGIC_ITEM,
             "id": slug,
@@ -132,3 +139,18 @@ class MagicItemParser(BaseParser):
             "text": text,
             **self._make_i18n(name=name, text=text),
         }
+
+    def _normalize_army_id(self, army_id: str | None, url: str) -> str | None:
+        """Resolve a raw association slug to a real ``:Army.id`` when known.
+
+        Arcane Journal supplement pages associate with the *book*, not the
+        army, so the raw Contentful slug rarely matches an ``:Army.id``
+        directly. Page-slug overrides take priority over the association-slug
+        map since some Arcane Journal books cover more than one army.
+        """
+        if army_id is None:
+            return None
+        page_slug = url.rstrip("/").rsplit("/", 1)[-1]
+        if page_slug in ARCANE_JOURNAL_PAGE_ARMY_OVERRIDES:
+            return ARCANE_JOURNAL_PAGE_ARMY_OVERRIDES[page_slug]
+        return ARCANE_JOURNAL_ASSOCIATION_ARMY_MAP.get(army_id, army_id)

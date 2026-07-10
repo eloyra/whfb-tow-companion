@@ -1,127 +1,141 @@
 {
   "checks": {
-    "orphan_missing_src_count": 0,
+    "orphan_missing_src_count": 3,
     "orphan_missing_dst_count": 0,
     "orphan_missing_dst_sample": [],
     "dangling_troop_type_id_count": 0,
-    "upgrade_rule_add_count": 0,
-    "upgrade_total_count": 3,
-    "upgrade_rule_add_ratio": 0.0,
+    "upgrade_rule_add_count": 421,
+    "upgrade_total_count": 2424,
+    "upgrade_rule_add_ratio": 0.174,
     "dangling_upgrade_applies_to_profile_count": 0,
-    "armies_without_can_take_item_count": 0,
+    "armies_without_can_take_item_count": 1,
     "null_army_id_unreachable_item_count": 0,
-    "faq_total": 0,
-    "faq_with_clarifies": 0,
-    "errata_total": 0,
-    "errata_with_amends": 0,
-    "faq_clarifies_coverage_pct": 0.0,
-    "errata_amends_coverage_pct": 0.0,
-    "has_intrinsic_rule_count": 0
+    "faq_total": 244,
+    "faq_with_clarifies": 203,
+    "errata_total": 210,
+    "errata_with_amends": 185,
+    "faq_clarifies_coverage_pct": 0.832,
+    "errata_amends_coverage_pct": 0.881,
+    "has_intrinsic_rule_count": 80
   },
-  "warnings": [
-    "TroopType: expected 1, got 13 (delta +12)",
-    "FAQ CLARIFIES coverage 0.0% (0/0) — below 70 % target",
-    "Errata AMENDS coverage 0.0% (0/0) — below 70 % target",
-    "HAS_INTRINSIC_RULE: 0 edges — TroopType intrinsic rule links missing"
-  ],
+  "warnings": [],
   "threshold_errors": [],
-  "duration_seconds": 0.04,
+  "duration_seconds": 0.3,
   "node_counts": {
     "Army": {
-      "expected": 1,
-      "actual": 1,
+      "expected": 19,
+      "actual": 19,
       "delta": 0
     },
     "Unit": {
-      "expected": 1,
-      "actual": 1,
+      "expected": 574,
+      "actual": 574,
       "delta": 0
     },
     "Profile": {
-      "expected": 1,
-      "actual": 1,
+      "expected": 945,
+      "actual": 945,
       "delta": 0
     },
     "SpecialRule": {
-      "expected": 1,
-      "actual": 1,
+      "expected": 643,
+      "actual": 643,
       "delta": 0
     },
     "CoreRule": {
-      "expected": 0,
-      "actual": 0,
+      "expected": 1377,
+      "actual": 1377,
       "delta": 0
     },
     "Document": {
-      "expected": 0,
-      "actual": 0,
+      "expected": 37,
+      "actual": 37,
       "delta": 0
     },
     "TroopType": {
-      "expected": 1,
-      "actual": 13,
-      "delta": 12
+      "expected": 40,
+      "actual": 40,
+      "delta": 0
     },
     "Lore": {
-      "expected": 0,
-      "actual": 0,
+      "expected": 38,
+      "actual": 38,
       "delta": 0
     },
     "Spell": {
-      "expected": 0,
-      "actual": 0,
+      "expected": 139,
+      "actual": 139,
       "delta": 0
     },
     "Weapon": {
-      "expected": 0,
-      "actual": 0,
+      "expected": 264,
+      "actual": 264,
       "delta": 0
     },
     "MagicItem": {
-      "expected": 2,
-      "actual": 2,
+      "expected": 698,
+      "actual": 698,
       "delta": 0
     },
     "FAQ": {
-      "expected": 0,
-      "actual": 0,
+      "expected": 244,
+      "actual": 244,
       "delta": 0
     },
     "Errata": {
-      "expected": 0,
-      "actual": 0,
+      "expected": 210,
+      "actual": 210,
       "delta": 0
     },
     "Upgrade": {
-      "expected": 3,
-      "actual": 3,
+      "expected": 2424,
+      "actual": 2424,
       "delta": 0
     },
     "CompositionList": {
-      "expected": 1,
-      "actual": 1,
+      "expected": 17,
+      "actual": 17,
       "delta": 0
     },
     "CompositionSlot": {
-      "expected": 1,
-      "actual": 1,
+      "expected": 83,
+      "actual": 83,
       "delta": 0
     },
     "Terrain": {
-      "expected": 0,
-      "actual": 0,
+      "expected": 37,
+      "actual": 37,
       "delta": 0
     }
   },
   "edge_counts": {
-    "BELONGS_TO": 1,
-    "HAS_TYPE": 1,
-    "HAS_RULE": 1,
-    "HAS_PROFILE": 1,
-    "HAS_UPGRADE": 3,
-    "HAS_LIST": 1,
-    "HAS_SLOT": 1,
-    "SLOT_ALLOWS": 1
+    "REFERENCES": 6031,
+    "PART_OF_SECTION": 77,
+    "HAS_INTRINSIC_RULE": 80,
+    "BELONGS_TO_LORE": 153,
+    "HAS_RULE": 4395,
+    "HAS_WEAPON": 1607,
+    "USES_LORE": 234,
+    "BELONGS_TO": 595,
+    "CAN_TAKE_ITEM": 73321,
+    "HAS_COMPOSITION_RULE": 17,
+    "HAS_LIST": 17,
+    "HAS_SLOT": 83,
+    "SLOT_ALLOWS": 543,
+    "ALLIED_WITH": 44,
+    "HAS_UPGRADE": 2433,
+    "HAS_PROFILE": 967,
+    "SPLIT_PROFILE_OF": 155,
+    "HAS_TYPE": 581,
+    "HAS_OPTIONAL_RULE": 1292,
+    "UNLOCKS_WEAPON": 824,
+    "UNLOCKS_RULE": 350,
+    "CAN_MOUNT": 288,
+    "UNLOCKS_MOUNT": 285,
+    "UNLOCKS_ITEM": 32,
+    "REPLACES_WEAPON": 69,
+    "AMENDS": 407,
+    "CLARIFIES": 510
   },
   "edge_drops": {}
 }

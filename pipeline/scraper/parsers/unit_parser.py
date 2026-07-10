@@ -107,8 +107,14 @@ class UnitParser(BaseParser):
         if army_slugs:
             army_name = (fields.get("association") or [{}])[0].get("fields", {}).get("name", "")
 
-        # Wizard properties
-        wizard_level: int | None = fields.get("wizardLevel")
+        # Wizard properties. Contentful stores wizardLevel as a numeric string
+        # (e.g. "3"); cast explicitly so downstream Cypher comparisons like
+        # `u.wizard_level >= 1` (arcane-item eligibility) don't silently fail
+        # against a string value.
+        wizard_level_raw = fields.get("wizardLevel")
+        wizard_level: int | None = (
+            int(wizard_level_raw) if wizard_level_raw not in (None, "") else None
+        )
 
         # Intrinsic armour value (e.g. "4+" for monsters with scaly skin)
         av_intrinsic: str | None = fields.get("armourValue") or None

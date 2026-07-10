@@ -452,6 +452,16 @@ name                      : String
 text                      : String
 ```
 
+> `army_id` is normalised to a real `:Army.id` where the source book maps 1:1 onto a
+> single army (`ARCANE_JOURNAL_ASSOCIATION_ARMY_MAP` / `ARCANE_JOURNAL_PAGE_ARMY_OVERRIDES`
+> in `pipeline/constants.py`) — raw Contentful association slugs for Arcane Journal
+> supplements (e.g. `"arcane-journal-dwarfen-mountain-holds"`) otherwise never match any
+> `:Army.id`, silently breaking `CAN_TAKE_ITEM` derivation (`GraphBuilder._derive_can_take_item`
+> requires `i.army_id = a.id`). `"ravening-hordes"` and `"forces-of-fantasy"` are intentionally
+> left as-is — they are universal books, allow-listed directly in the derivation Cypher. A
+> handful of items on niche Army-of-Infamy muster-list pages (no corresponding `:Army` node)
+> are intentionally left unmapped.
+
 ---
 
 ### `:Upgrade`  *(property set updated v3.1; ADR-0005 amendment)*

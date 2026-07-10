@@ -142,6 +142,46 @@ MAGIC_ITEM_TYPE_MAP: dict[str, str] = {
 CASTING_VALUE_RULE_ID: str = "casting-roll-casting-result-and-casting-value"
 
 # ---------------------------------------------------------------------------
+# MagicItem army_id normalisation
+# ---------------------------------------------------------------------------
+#
+# MagicItemParser derives army_id from the magic-items page's Contentful
+# `association` slug. For most armies that slug IS the army id, but Arcane
+# Journal supplement pages are associated with the *book*, not the army, so
+# the raw slug (e.g. "arcane-journal-dwarfen-mountain-holds") never matches
+# any :Army.id. The graph builder's CAN_TAKE_ITEM edge derivation
+# (`_derive_can_take_item`) requires `i.army_id = a.id`, so an unmapped
+# Arcane Journal slug silently drops every item on that page — e.g. Dwarf
+# Runes (29 rune_budget upgrades) were completely unreachable before this map
+# was verified against tow.whfb.app and added.
+#
+# Keyed by the raw association slug; only books that map 1:1 onto a single
+# existing :Army.id are listed here.
+ARCANE_JOURNAL_ASSOCIATION_ARMY_MAP: dict[str, str] = {
+    "arcane-journal-dwarfen-mountain-holds": "dwarfen-mountain-holds",
+    "arcane-journal-empire-of-man": "empire-of-man",
+    "arcane-journal-wood-elf-realms": "wood-elf-realms",
+    "arcane-journal-armies-of-grand-cathay": "grand-cathay",
+    # Verified via the live "Chaotic Traits" page (tow.whfb.app/magic-items/
+    # chaotic-traits): restricted to Chaos Lords, Sorcerer Lords, Chaos
+    # Warriors/Knights and Marauders — i.e. Warriors of Chaos.
+    "arcane-journal-the-razing-of-westerland": "warriors-of-chaos",
+}
+
+# Some Arcane Journal books cover more than one army in the same volume, so
+# the book-level association slug is ambiguous (e.g. "Arcane Journal: The War
+# of Settra's Fury" mixes Tomb Kings scrolls with a Renegade-Crowns Army of
+# Infamy list on separate pages). These overrides key on the magic-items page
+# URL slug instead, which is unambiguous, and take priority over
+# ARCANE_JOURNAL_ASSOCIATION_ARMY_MAP. Pages not listed here (e.g.
+# "infamous-origins", restricted to a niche Army-of-Infamy muster list with no
+# corresponding :Army node) are intentionally left unmapped.
+ARCANE_JOURNAL_PAGE_ARMY_OVERRIDES: dict[str, str] = {
+    # Verified via the live page: breadcrumb links to "Tomb Kings of Khemri".
+    "incantations-scrolls": "tomb-kings-of-khemri",
+}
+
+# ---------------------------------------------------------------------------
 # Node types
 # ---------------------------------------------------------------------------
 

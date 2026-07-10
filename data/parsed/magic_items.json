@@ -878,7 +878,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 20,
-    "army_id": "arcane-journal-wood-elf-realms",
+    "army_id": "wood-elf-realms",
     "is_single_use": null,
     "name": "Aspect of the Hound",
     "text": "Fighting as a pack, those in the kindred of the hound work together to bring down larger prey."
@@ -891,7 +891,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 15,
-    "army_id": "arcane-journal-wood-elf-realms",
+    "army_id": "wood-elf-realms",
     "is_single_use": null,
     "name": "Aspect of the Bear",
     "text": "Elves are usually lithe and slight of build, but those who adopt the aspect of the bear are strong and muscular warriors."
@@ -904,7 +904,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 10,
-    "army_id": "arcane-journal-wood-elf-realms",
+    "army_id": "wood-elf-realms",
     "is_single_use": null,
     "name": "Aspect of the Boar",
     "text": "The kindred of the boar are aggressive fighters who charge into the foe with reckless abandon."
@@ -917,7 +917,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 10,
-    "army_id": "arcane-journal-wood-elf-realms",
+    "army_id": "wood-elf-realms",
     "is_single_use": null,
     "name": "Aspect of the Cat",
     "text": "Hunting from the shadows, the kindred of the cat are experts at hunting down prized game."
@@ -2035,7 +2035,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": null,
-    "army_id": "arcane-journal-the-razing-of-westerland",
+    "army_id": "warriors-of-chaos",
     "is_single_use": null,
     "name": "Unnatural Fortitude",
     "text": "Blessed by the Ruinous Powers with great resilience, some warriors' flesh can turn aside steel."
@@ -2048,7 +2048,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": null,
-    "army_id": "arcane-journal-the-razing-of-westerland",
+    "army_id": "warriors-of-chaos",
     "is_single_use": null,
     "name": "Dark Hearts",
     "text": "Those whose souls have been corrupted by the touch of the Ruinous Powers are chilling to behold."
@@ -2061,7 +2061,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": null,
-    "army_id": "arcane-journal-the-razing-of-westerland",
+    "army_id": "warriors-of-chaos",
     "is_single_use": null,
     "name": "Longstriders",
     "text": "Covering the ground with an unnatural haste, Longstriders are blessed with a daemon-like speed."
@@ -2074,7 +2074,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": null,
-    "army_id": "arcane-journal-the-razing-of-westerland",
+    "army_id": "warriors-of-chaos",
     "is_single_use": null,
     "name": "Enhanced Reflexes",
     "text": "Gifted with unnatural quickness, some warriors are able to slip the most lethal of blows past the defences of even the most skilled enemies."
@@ -2087,7 +2087,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": null,
-    "army_id": "arcane-journal-the-razing-of-westerland",
+    "army_id": "warriors-of-chaos",
     "is_single_use": null,
     "name": "Battle Hunger",
     "text": "Possessed of an unwholesome thirst for battle, whole regiments race eagerly into the fray."
@@ -2100,7 +2100,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": null,
-    "army_id": "arcane-journal-the-razing-of-westerland",
+    "army_id": "warriors-of-chaos",
     "is_single_use": null,
     "name": "Brazen Will",
     "text": "There are those amongst the hordes of Chaos whose warped minds seem to resist the hostile magic of enemies."
@@ -2113,7 +2113,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": null,
-    "army_id": "arcane-journal-the-razing-of-westerland",
+    "army_id": "warriors-of-chaos",
     "is_single_use": null,
     "name": "Prophetic Foresight",
     "text": "Granted brief glimpses of the future, a warrior may predict the movements of enemy scouts and foresee the arrival of reinforcements."
@@ -2555,7 +2555,7 @@
     "last_updated": "2026-04-15",
     "item_type": "enchanted_item",
     "points_cost": 50,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Maw Shard",
     "text": "Some have travelled to the broken lands around the Great Maw and brought back strange objects - among them the Maw Shard, an extra-worldly artefact."
@@ -2568,7 +2568,7 @@
     "last_updated": "2026-04-15",
     "item_type": "enchanted_item",
     "points_cost": 35,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Alchemist's Mask",
     "text": "Created in the House of Secrets of Shang Yang, this sorcerous mask gifts the wearer with the alchemical secrets of the Iron Dragon."
@@ -2581,7 +2581,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_standard",
     "points_cost": 30,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Dragon's Eye Banner",
     "text": "Under the scrutiny of the Celestial Dragon, enemy Wizards falter."
@@ -2594,7 +2594,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_standard",
     "points_cost": 45,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Icon of Heavenly Fury",
     "text": "The heavens are the realm of the Celestial Dragon, and those that would encroach upon his domain must face his wrath."
@@ -2607,7 +2607,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_standard",
     "points_cost": 60,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Standard of Wei-Jin",
     "text": "The banner of the Dragon Emperor inspires all Cathayan soldiers who gaze upon it, while spreading disorder and panic in their foes."
@@ -2620,7 +2620,7 @@
     "last_updated": "2026-04-15",
     "item_type": "arcane_item",
     "points_cost": 15,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Learned Feng Shi Bo*",
     "text": "Some Wizards create Feng Shi Bo to aid them with their scholarly studies, tasking the spirits with remembering obscure lore."
@@ -2633,7 +2633,7 @@
     "last_updated": "2026-04-15",
     "item_type": "arcane_item",
     "points_cost": 35,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Guardian Feng Shi Bo*",
     "text": "Feng Shi Bo are elemental familiars summoned by Cathayan Wizards. Most often, these earthbound spirits guard their masters, protecting them from harm."
@@ -2646,7 +2646,7 @@
     "last_updated": "2026-04-15",
     "item_type": "arcane_item",
     "points_cost": 50,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Cloak of Po Mei",
     "text": "This enchanted cloak grants its wearer exceptional magical strength and mastery over one of the Elemental Winds."
@@ -2659,7 +2659,7 @@
     "last_updated": "2026-04-15",
     "item_type": "enchanted_item",
     "points_cost": 25,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Spirit Lantern*",
     "text": "The ghostly light of a Spirit Lantern reveals the denizens of the underworld and lays bare their weaknesses."
@@ -2672,7 +2672,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_standard",
     "points_cost": 25,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Banner of the Bastion",
     "text": "Those that would fight beneath this venerable banner must be as solid and unwavering as the Great Bastion itself."
@@ -2685,7 +2685,7 @@
     "last_updated": "2026-04-15",
     "item_type": "talisman",
     "points_cost": 20,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Crown of Jade",
     "text": "Hostile magic recoils from the wearer of this gleaming crown of office."
@@ -2698,7 +2698,7 @@
     "last_updated": "2026-04-15",
     "item_type": "talisman",
     "points_cost": 35,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Crystal of Kunlan",
     "text": "The crystals that grow in the peaks of Kunlan unleash sorcerous energy when struck."
@@ -2711,7 +2711,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_armour",
     "points_cost": 20,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Shield of Nan-Gau",
     "text": "Carved from a section of the Great Bastion, the Shield of Nan-Gau is a massive stone and iron shield."
@@ -2724,7 +2724,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_armour",
     "points_cost": 45,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "The Armour of the Warbird",
     "text": "The wearer of the Armour of the Warbird takes to the skies to strike at their enemies from above."
@@ -2737,7 +2737,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 20,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Sun & Moon Blades",
     "text": "According to legend, the blade of the Sun brings enlightenment, whilst the blade of the Moon brings only death."
@@ -2750,7 +2750,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 25,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Spirit Longma Spear",
     "text": "Made from the horn of the Great Spirit Longma Tian Wu and able to pierce any armour, heroes of Cathay carry this spear into battle with pride."
@@ -2763,7 +2763,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 70,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Jade Blade of the Great Fleet",
     "text": "The Jade Blade is an ancient weapon fashioned from the fang of a Lumbrian sea monster. Imbued with the monster's regenerative powers, it continually heals its wielder."
@@ -2776,7 +2776,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 75,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "The Monkey King's Wisdom",
     "text": "A huge and ornate club, studded with jewels and wrapped with precious metals, the Monkey King's Wisdom is a huge and brutal weapon."
@@ -2789,7 +2789,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_armour",
     "points_cost": 40,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Jade Armour of Beichai",
     "text": "Crafted in secret in the city of Beichai, this jade armour glows from within with unwholesome power."
@@ -2802,7 +2802,7 @@
     "last_updated": "2026-04-15",
     "item_type": "enchanted_item",
     "points_cost": 30,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Ring of Jet",
     "text": "Carved from purest jet quarried from the banks of the Dragon River, the Ring of Jet is infused with the power of Shiyama, allowing its wielder to summon ancestral spirits."
@@ -2815,7 +2815,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 65,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "The Sword of Reason",
     "text": "This great blade is sometimes wielded by Yuan Bo when his duties require him to enforce the Celestial Dragon's will upon the unruly."
@@ -2828,7 +2828,7 @@
     "last_updated": "2026-04-15",
     "item_type": "arcane_item",
     "points_cost": 50,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Clockwork Compass",
     "text": "This finely wrought clockwork mechanism emulates the properties of the Wu Xing compass in Wei-jin. When correctly used, it can temporarily still the Winds of Magic."
@@ -2841,7 +2841,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_standard",
     "points_cost": 45,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Banner of the Dragon's Wrath",
     "text": "Those that march to war beneath the Banner of the Dragon's Wrath descend upon the foe with the fury of Li Dao, the Fire Dragon."
@@ -2854,7 +2854,7 @@
     "last_updated": "2026-04-15",
     "item_type": "talisman",
     "points_cost": 35,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Sigil of Smoke & Powder",
     "text": "Clouds of gunpowder smoke hang about the bearer of this blackened sigil, obscuring them from the enemy's sight."
@@ -2867,7 +2867,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 50,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "The Brazen Blade",
     "text": "Crafted in the forges of Nan-Gau, this unusual weapon carves deep wounds that no magic can heal."
@@ -2880,7 +2880,7 @@
     "last_updated": "2026-04-15",
     "item_type": "enchanted_item",
     "points_cost": 25,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Golden Lion",
     "text": "Jade Lions are revered in Cathay for their bravery, and golden amulets carved into their likeness inspire great courage."
@@ -2893,7 +2893,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_standard",
     "points_cost": 40,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "The Jade Banner",
     "text": "Carved from purest jade by Cathay's finest artificers, this ancient banner fills the heart of a Jade Warrior with pride."
@@ -2906,7 +2906,7 @@
     "last_updated": "2026-04-15",
     "item_type": "arcane_item",
     "points_cost": 35,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Seal of Xing Po*",
     "text": "The bearer of a Seal of Xing Po has studied the elemental winds for decades, mastering the Winds of Yin or Yang."
@@ -2919,7 +2919,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_armour",
     "points_cost": 20,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "The Mantle of Heaven",
     "text": "Woven from silk harvested from the slopes of Kunlan, the wearer of these robes is filled with a measure of the Celestial Dragon's essence."
@@ -2932,7 +2932,7 @@
     "last_updated": "2026-04-15",
     "item_type": "talisman",
     "points_cost": 25,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Vermilion Quills*",
     "text": "Great heroes of Grand Cathay are awarded tokens of favour in the form of a Vermilion warbird's tail feather, tokens which are said to bless the bearer with unrivalled fortune."
@@ -2945,7 +2945,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 45,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "The Wrath of Xen Yang",
     "text": "Supposedly once wielded by the Celestial Dragon himself, this long and elegant spear burns with Dragon-fire."
@@ -2958,7 +2958,7 @@
     "last_updated": "2026-04-15",
     "item_type": "arcane_item",
     "points_cost": 10,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "Scrolls of Wei-jin",
     "text": "Those fortunate enough to study the Elemental Winds in the heart of the Celestial City learn many arcane secrets. Such scholars carry with them many scrolls, heavy with knowledge."
@@ -2971,7 +2971,7 @@
     "last_updated": "2026-04-15",
     "item_type": "enchanted_item",
     "points_cost": 20,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "The Fires of Nan-Gau*",
     "text": "Cunningly crafted by the artificers of Nan-Gau, these earthenware jars contain the fury of the city's forges, ready to be unleashed upon Cathays enemies."
@@ -2984,7 +2984,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_standard",
     "points_cost": 25,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "The Shroud of Shiyama",
     "text": "The spectral presence of Shiyama, the Spirit Dragon, lingers about those that fight beneath this silken standard crafted in her memory."
@@ -2997,7 +2997,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_standard",
     "points_cost": 15,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "The Banner of Xen Wun",
     "text": "Enemies often falter before this ashen banner, touched by the spirits of Xen Wun."
@@ -3010,7 +3010,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 35,
-    "army_id": "arcane-journal-armies-of-grand-cathay",
+    "army_id": "grand-cathay",
     "is_single_use": null,
     "name": "The Sword of Nan-Gau",
     "text": "This shimmering blade strikes with a life of its own, seeking any weakness in the armour of those that serve the Ruinous Powers."
@@ -3582,7 +3582,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 50,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Master Rune of Slaying",
     "text": "The power held within this master rune has sent the likes of Giants, Trolls and even Dragons running for cover."
@@ -3595,7 +3595,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 40,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Master Rune of Piercing",
     "text": "Projectiles shot by this weapon punch through armour and flesh without slowing, allowing the wielder to cut down swathes of enemies in a single shot."
@@ -3608,7 +3608,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 35,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Master Rune of Bursting Flame",
     "text": "On contact with the enemy, the shot from weapons inscribed with this powerful rune explodes in a shower of burning fragments."
@@ -3621,7 +3621,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 30,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Rune of Concussive Force",
     "text": "Emblazoned upon the ammunition itself, this rune disorientates the enemy with a flash of light and a thunderous burst of sound."
@@ -3634,7 +3634,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 20,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Rune of Accuracy",
     "text": "Favoured amongst older Engineers, this rune helps the bearer to ignore distractions and focus in on their target."
@@ -3647,7 +3647,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 15,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Rune of Rapid Fire",
     "text": "Thanks to some clever innovation and a specially crafted rune, this weapon can unleash a salvo of rounds in the time it takes similar weapons to fire a single shot."
@@ -3660,7 +3660,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 10,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Rune of Molten Steel",
     "text": "This rune empowers the projectile to burn with the heat of the forge as it impacts the enemy."
@@ -3673,7 +3673,7 @@
     "last_updated": "2026-04-15",
     "item_type": "magic_weapon",
     "points_cost": 5,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Enchanted Rune",
     "text": "Simple runic enchantments help otherwise mundane ammunition to punch through magical wards and otherworldly armour."
@@ -4778,7 +4778,7 @@
     "last_updated": "2026-04-15",
     "item_type": "unique",
     "points_cost": 50,
-    "army_id": "arcane-journal-the-war-of-settras-fury",
+    "army_id": "tomb-kings-of-khemri",
     "is_single_use": null,
     "name": "Scroll of Withering",
     "text": "When read aloud, the incantation contained within a Scroll of Withering slowly and painfully drains the life force from the reader's enemies."
@@ -4791,7 +4791,7 @@
     "last_updated": "2026-04-15",
     "item_type": "unique",
     "points_cost": 45,
-    "army_id": "arcane-journal-the-war-of-settras-fury",
+    "army_id": "tomb-kings-of-khemri",
     "is_single_use": null,
     "name": "Scroll of Summoning",
     "text": "The words inscribed upon a Scroll of Summoning enable the reader to reach into the underworld and call forth the souls of the dead."
@@ -4804,7 +4804,7 @@
     "last_updated": "2026-04-15",
     "item_type": "unique",
     "points_cost": 40,
-    "army_id": "arcane-journal-the-war-of-settras-fury",
+    "army_id": "tomb-kings-of-khemri",
     "is_single_use": null,
     "name": "Scroll of Awakening",
     "text": "When the spirits of the dead are awakened by the words of this incantation, they cluster about the living like moths about a flame."
@@ -4817,7 +4817,7 @@
     "last_updated": "2026-04-15",
     "item_type": "unique",
     "points_cost": 35,
-    "army_id": "arcane-journal-the-war-of-settras-fury",
+    "army_id": "tomb-kings-of-khemri",
     "is_single_use": null,
     "name": "Scroll of the Outcast Dead",
     "text": "Upon reading aloud from a Scroll of the Outcast Dead, the souls of the damned are dragged screaming from the coldness of the void to torment the living."
@@ -4830,7 +4830,7 @@
     "last_updated": "2026-04-15",
     "item_type": "unique",
     "points_cost": 30,
-    "army_id": "arcane-journal-the-war-of-settras-fury",
+    "army_id": "tomb-kings-of-khemri",
     "is_single_use": null,
     "name": "Scroll of Urgency",
     "text": "Scrolls of Urgency contain a simple but effective incantation which, when read aloud, imbues the undead servants of the Mortuary Cult with morbid vitality."
@@ -4843,7 +4843,7 @@
     "last_updated": "2026-04-15",
     "item_type": "unique",
     "points_cost": 10,
-    "army_id": "arcane-journal-the-war-of-settras-fury",
+    "army_id": "tomb-kings-of-khemri",
     "is_single_use": null,
     "name": "Scroll of Righteous Smiting",
     "text": "In response to the words upon a Scroll of Righteous Smiting, the warriors of ancient Nehekhara redouble their efforts to strike down their enemies."
@@ -5376,7 +5376,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": null,
-    "army_id": "arcane-journal-empire-of-man",
+    "army_id": "empire-of-man",
     "is_single_use": null,
     "name": "Order of the Knights Panther",
     "text": "Dedicated to the eradication of Chaos and its corrupt followers, these gallant warriors are amongst the most powerful of the Knightly Orders."
@@ -5389,7 +5389,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": null,
-    "army_id": "arcane-journal-empire-of-man",
+    "army_id": "empire-of-man",
     "is_single_use": null,
     "name": "Order of the White Wolf",
     "text": "The Knights of the White Wolf swing their infamous wolf hammers with primal savagery, shattering shields and skulls with each blow."
@@ -5402,7 +5402,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": null,
-    "army_id": "arcane-journal-empire-of-man",
+    "army_id": "empire-of-man",
     "is_single_use": null,
     "name": "Order of the Blazing Sun",
     "text": "The Knights of the Blazing Sun are vigilant students of war who strive for perfection on the battlefield."
@@ -5415,7 +5415,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": null,
-    "army_id": "arcane-journal-empire-of-man",
+    "army_id": "empire-of-man",
     "is_single_use": null,
     "name": "Order of the Knights of Morr",
     "text": "Clad in jet-black armour, these dour warriors strive to protect the living from the ever-present threat of the undead."
@@ -5428,7 +5428,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": null,
-    "army_id": "arcane-journal-empire-of-man",
+    "army_id": "empire-of-man",
     "is_single_use": null,
     "name": "Order of the Fiery Heart",
     "text": "These fanatical knights work closely with the Cult of Sigmar, earning a reputation as the shield of the Sigmarite faithful."
@@ -5857,7 +5857,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 25,
-    "army_id": "arcane-journal-wood-elf-realms",
+    "army_id": "wood-elf-realms",
     "is_single_use": null,
     "name": "Glamour Weave Kindred",
     "text": "Though the Glamour Weave Kindred is far smaller than the others, its members are all potent spellcasters who play an important role in ensuring balance is maintained within Athel Loren."
@@ -5870,7 +5870,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 20,
-    "army_id": "arcane-journal-wood-elf-realms",
+    "army_id": "wood-elf-realms",
     "is_single_use": null,
     "name": "Eternal Kindred",
     "text": "Those who dwell within the Eternal Kindreds spend the cold winters guarding Athel Loren's most sacred glades and groves."
@@ -5883,7 +5883,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 20,
-    "army_id": "arcane-journal-wood-elf-realms",
+    "army_id": "wood-elf-realms",
     "is_single_use": null,
     "name": "Wild Rider Kindred",
     "text": "Those in command of the Wild Rider Kindreds are truly embodiments of their liege lord, reckless and ferocious almost to a fault."
@@ -5896,7 +5896,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 15,
-    "army_id": "arcane-journal-wood-elf-realms",
+    "army_id": "wood-elf-realms",
     "is_single_use": null,
     "name": "Scout Kindred",
     "text": "Sometimes known as wayfarers or sentinels, the Scout Kindreds guard the borders of Athel Loren and observe the movements of those who wander too close."
@@ -6611,7 +6611,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 50,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Rune of the Dishonoured",
     "text": "This dreadful mark prolongs the shame of the one who bears it."
@@ -6624,7 +6624,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 40,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Rune of Endless Battle",
     "text": "Those who bear this tattoo struggle to contain their rage once battle begins."
@@ -6637,7 +6637,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 35,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Rune of the Reckless",
     "text": "Slayers that bear this tattoo fight with a burning and uncontrollable fury."
@@ -6650,7 +6650,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 30,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Rune of the Hateful",
     "text": "This unpleasant tattoo fills its bearer with hate and bitterness."
@@ -6663,7 +6663,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 25,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Rune of Grit",
     "text": "The flesh of those marked with this rune takes on the texture of stone."
@@ -6676,7 +6676,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 15,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Rune of the Dauntless",
     "text": "Those marked with this rune seek the deadliest foes to challenge in single combat."
@@ -6689,7 +6689,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 15,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Rune of Wrath",
     "text": "Those that bear this rune upon their flesh are filled with wrath."
@@ -6702,7 +6702,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 10,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Warrior's Rune",
     "text": "Only the most skilled of warriors are permitted to bear this mark upon their flesh."
@@ -6715,7 +6715,7 @@
     "last_updated": "2026-04-15",
     "item_type": "ability",
     "points_cost": 5,
-    "army_id": "arcane-journal-dwarfen-mountain-holds",
+    "army_id": "dwarfen-mountain-holds",
     "is_single_use": null,
     "name": "Rune of Blazing Fury",
     "text": "The rage of the ancestors burns brightly within this fiery rune."

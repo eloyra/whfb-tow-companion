@@ -96,7 +96,7 @@ Key rules:
 | Scrape | Done — dual-seed BFS, output in `data/raw/` (~2,720 HTML files, all 19 armies) |
 | Parse | Done — nodes and edges in `data/parsed/` (18 JSON files per ADR-0004); see gaps below |
 | Graph build | Done — graph loaded into Neo4j; `load_report.json` in `data/graph/` |
-| Embeddings | Done — `generator.py`, `text.py` (12 per-label builders), `vector_store.py` (HNSW per-label indexes); wired into `run_pipeline.py` |
+| Embeddings | Done — `generator.py`, `text.py` (13 per-label builders), `vector_store.py` (HNSW per-label indexes); wired into `run_pipeline.py` |
 | Translations | Pending — `i18n/translator.py` is a `# TODO` stub; `run_translate()` is a no-op; `en.json`/`es.json` empty |
 
 Remaining stubs in this subtree: `graph/serializer.py` (1-line `# TODO`, not imported by the builder), `i18n/translator.py` (1-line `# TODO`).
@@ -134,6 +134,39 @@ Shipped (verified in live graph):
 - `TERRAIN_INTERACTION` — 9 edges written by seed; 37 `:Terrain` nodes in graph
 - `CLARIFIES` / `AMENDS` — 510 / 407 edges at 83–88% coverage
 - `HAS_INTRINSIC_RULE` — 80 edges
+- `:Terrain` embedding text builder (`text.py::_build_terrain`) — previously
+  `Terrain` was listed in `EMBEDDABLE_LABELS` with no dedicated builder, so a
+  fresh `make embed` would have silently regressed every `:Terrain` node's
+  `text` to its bare name (`_build_name_only` fallback), destroying the body
+  text and terrain-class/movement flags used for citations. Verified against
+  the live `tow.whfb.app` battlefield-terrain pages before fixing; all 37 live
+  nodes re-embedded with class + movement-flag summary + body text.
+- `:Unit` embedding text now surfaces `Upgrade.availability_constraint`
+  (e.g. `"[0-1 unit in your army may]"`) — this army-composition-legal text
+  was parsed and stored on `:Upgrade` nodes but was unreachable by the agent
+  (not in the `:Unit` upgrade rollup, and `:Upgrade` is intentionally not
+  embedded independently per the ADR-0005 amendment). Verified against a live
+  unit page (`bestigor-herd`) before fixing; all 574 `:Unit` nodes re-embedded.
+- `MagicItem.army_id` for Arcane Journal supplements now normalised to a real
+  `:Army.id` (`ARCANE_JOURNAL_ASSOCIATION_ARMY_MAP` /
+  `ARCANE_JOURNAL_PAGE_ARMY_OVERRIDES` in `pipeline/constants.py`) — the raw
+  Contentful association slug (e.g. `"arcane-journal-dwarfen-mountain-holds"`)
+  never matched any `:Army.id`, so `GraphBuilder._derive_can_take_item`
+  (`i.army_id = a.id`) silently produced **zero** `CAN_TAKE_ITEM` edges for
+  every Dwarf Rune item against all 29 `rune_budget` upgrades, and for Tomb
+  Kings' Nehekharan scrolls. One Arcane Journal book ("The War of Settra's
+  Fury") turned out to cover two unrelated armies on different pages; verified
+  against the live magic-items pages before mapping. Now 17 Rune items / 217
+  edges and 6 scroll items / 90 edges reachable.
+- `Unit.wizard_level` was stored as a **string** (Contentful serialises it as
+  `"3"`, not `3`), so `coalesce(u.wizard_level, 0) >= 1` in
+  `_derive_can_take_item` always evaluated to null/false — every single
+  `arcane_item`-type `:MagicItem` (82 total) was unreachable via
+  `CAN_TAKE_ITEM` for every wizard character in every army. Fixed with an
+  explicit `int()` cast in `UnitParser` (mirrors the existing `unitSize`
+  handling). Verified against the live `archmage.html` fixture before fixing.
+  Now all 82 arcane items are reachable (2,828 edges); the Archmage alone
+  reaches 59 of them.
 
 ---
 
