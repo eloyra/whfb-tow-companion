@@ -276,7 +276,8 @@ def _build_unit(driver: neo4j.Driver, ids: list[str]) -> list[str]:
     upgrade_query = """
         UNWIND $ids AS nid
         MATCH (u:Unit {id: nid})-[:HAS_UPGRADE]->(up:Upgrade)
-        RETURN nid, up.name AS name, up.points_cost AS cost, up.cost_unit AS cost_unit
+        RETURN nid, up.name AS name, up.points_cost AS cost, up.cost_unit AS cost_unit,
+               up.availability_constraint AS availability_constraint
     """
 
     unit_rows = _fetch(driver, unit_query, ids)
@@ -364,12 +365,54 @@ def _build_unit(driver: neo4j.Driver, ids: list[str]) -> list[str]:
                     up.get("cost_unit"), "pts"
                 )
                 label = f"{label} (+{up['cost']} {unit_suffix})"
+            if up.get("availability_constraint"):
+                label = f"{label} [{up['availability_constraint']}]"
             upgrade_strs.append(label)
         if upgrade_strs:
             parts.append("Upgrades: " + ", ".join(sorted(upgrade_strs)))
 
         result[nid] = ". ".join(p for p in parts if p)
 
+    return [result.get(nid, "") for nid in ids]
+
+
+def _build_terrain(driver: neo4j.Driver, ids: list[str]) -> list[str]:
+    query = """
+        UNWIND $ids AS nid
+        MATCH (n:Terrain {id: nid})
+        RETURN nid, n.name AS name, n.terrain_class AS terrain_class,
+               n.movement_penalty AS movement_penalty,
+               n.blocks_movement AS blocks_movement,
+               n.disrupts_units AS disrupts_units,
+               n.requires_dangerous_test AS requires_dangerous_test,
+               n.grants_cover AS grants_cover,
+               n.text AS text
+    """
+    rows = _fetch(driver, query, ids)
+    result: dict[str, str] = {}
+    for rec in rows:
+        nid = rec["nid"]
+        parts = [rec["name"] or ""]
+        if rec["terrain_class"]:
+            parts.append(rec["terrain_class"].replace("_", " ") + " terrain")
+        flags = []
+        if rec["blocks_movement"]:
+            flags.append("blocks movement")
+        if rec["disrupts_units"]:
+            flags.append("disrupts rank bonus")
+        if rec["requires_dangerous_test"]:
+            flags.append("requires a dangerous terrain test")
+        if rec["movement_penalty"]:
+            flags.append(f"movement penalty: {rec['movement_penalty']}")
+        if rec["grants_cover"]:
+            flags.append(f"grants {rec['grants_cover']} cover")
+        if flags:
+            parts.append(", ".join(flags))
+        # special_feature_benefit duplicates body_text verbatim in the parser
+        # (see TerrainParser), so it is intentionally not appended separately.
+        if rec["text"]:
+            parts.append(rec["text"])
+        result[nid] = ". ".join(p for p in parts if p)
     return [result.get(nid, "") for nid in ids]
 
 
@@ -401,6 +444,7 @@ _BUILDERS = {
     "Weapon": _build_weapon,
     "Unit": _build_unit,
     "Army": _build_army,
+    "Terrain": _build_terrain,
 }
 
 # ---------------------------------------------------------------------------

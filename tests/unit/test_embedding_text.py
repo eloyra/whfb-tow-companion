@@ -303,6 +303,83 @@ class TestArmy:
 
 
 # ---------------------------------------------------------------------------
+# Terrain
+# ---------------------------------------------------------------------------
+
+
+class TestTerrain:
+    def test_full_fields(self) -> None:
+        driver = _make_driver(
+            [
+                [
+                    {
+                        "nid": "woods",
+                        "name": "Woods",
+                        "terrain_class": "woods",
+                        "movement_penalty": "treat as difficult",
+                        "blocks_movement": False,
+                        "disrupts_units": True,
+                        "requires_dangerous_test": False,
+                        "grants_cover": "partial",
+                        "text": "Units in woods gain soft cover.",
+                    }
+                ]
+            ]
+        )
+        texts = text_builder.build_for_label(driver, "Terrain", ["woods"])
+        t = texts[0]
+        assert "Woods" in t
+        assert "woods terrain" in t
+        assert "disrupts rank bonus" in t
+        assert "movement penalty: treat as difficult" in t
+        assert "grants partial cover" in t
+        assert "Units in woods gain soft cover." in t
+
+    def test_minimal_fields(self) -> None:
+        driver = _make_driver(
+            [
+                [
+                    {
+                        "nid": "how-much-terrain",
+                        "name": "How Much Terrain?",
+                        "terrain_class": None,
+                        "movement_penalty": None,
+                        "blocks_movement": False,
+                        "disrupts_units": False,
+                        "requires_dangerous_test": False,
+                        "grants_cover": None,
+                        "text": "Use one terrain feature per 12 inches of table edge.",
+                    }
+                ]
+            ]
+        )
+        texts = text_builder.build_for_label(driver, "Terrain", ["how-much-terrain"])
+        t = texts[0]
+        assert t == "How Much Terrain?. Use one terrain feature per 12 inches of table edge."
+
+    def test_impassable_flags(self) -> None:
+        driver = _make_driver(
+            [
+                [
+                    {
+                        "nid": "impassable-terrain",
+                        "name": "Impassable Terrain",
+                        "terrain_class": "impassable",
+                        "movement_penalty": None,
+                        "blocks_movement": True,
+                        "disrupts_units": False,
+                        "requires_dangerous_test": False,
+                        "grants_cover": None,
+                        "text": "Units cannot move through impassable terrain.",
+                    }
+                ]
+            ]
+        )
+        texts = text_builder.build_for_label(driver, "Terrain", ["impassable-terrain"])
+        assert "blocks movement" in texts[0]
+
+
+# ---------------------------------------------------------------------------
 # Unit — most complex builder (3 Cypher queries)
 # ---------------------------------------------------------------------------
 
@@ -490,6 +567,46 @@ class TestUnit:
         assert "Standard Bearer (+5 pts/unit)" in t
         assert "Weapon Team" in t
         assert "Weapon Team (+" not in t
+
+    def test_contains_upgrade_availability_constraint(self) -> None:
+        driver = self._make_driver_for_unit(
+            {
+                "nid": "x",
+                "name": "X",
+                "army_category": None,
+                "cost": None,
+                "size_min": None,
+                "size_max": None,
+                "bw": None,
+                "bd": None,
+                "av": None,
+                "armies": [],
+                "troop_types": [],
+            },
+            [],
+            {"nid": "x", "rules": [], "weapons": []},
+            [
+                {
+                    "nid": "x",
+                    "name": "Stubborn",
+                    "cost": 1,
+                    "cost_unit": "per_model",
+                    "availability_constraint": "0-1 unit in your army may",
+                },
+                {
+                    "nid": "x",
+                    "name": "Shield",
+                    "cost": 1,
+                    "cost_unit": "per_model",
+                    "availability_constraint": None,
+                },
+            ],
+        )
+        texts = text_builder.build_for_label(driver, "Unit", ["x"])
+        t = texts[0]
+        assert "Stubborn (+1 pt/model) [0-1 unit in your army may]" in t
+        assert "Shield (+1 pt/model)" in t
+        assert "Shield (+1 pt/model) [" not in t
 
     def test_no_upgrades_does_not_crash(self) -> None:
         driver = self._make_driver_for_unit(

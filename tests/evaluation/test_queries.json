@@ -448,5 +448,185 @@
     "expected_army": null,
     "category": "rule_lookup",
     "rubric": "No; named characters are independent choices and are only required to include a unit if their own rules explicitly say so."
+  },
+  {
+    "id": "q051",
+    "language": "en",
+    "query": "What special rules does a Great Weapon give in combat?",
+    "expected_rules": ["great-weapon"],
+    "expected_army": null,
+    "category": "weapon_stats",
+    "rubric": "A Great Weapon requires two hands and grants Armour Bane (1); it gives Strength +2 and AP -2, but the wielder Strikes Last."
+  },
+  {
+    "id": "q052",
+    "language": "en",
+    "query": "Does a Halberd get better armour penetration when charging?",
+    "expected_rules": ["halberd"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "Yes; a Halberd normally has AP -1, but its notes give it AP -2 against enemy models the wielder charged that turn."
+  },
+  {
+    "id": "q053",
+    "language": "en",
+    "query": "How many points does the Dragon Slaying Sword cost?",
+    "expected_rules": ["dragon-slaying-sword"],
+    "expected_army": null,
+    "category": "magic_item",
+    "rubric": "The Dragon Slaying Sword is a 50-point magic weapon."
+  },
+  {
+    "id": "q054",
+    "language": "en",
+    "query": "What type of magic item is the Spelleater Axe and what does it cost?",
+    "expected_rules": ["spelleater-axe"],
+    "expected_army": null,
+    "category": "magic_item",
+    "rubric": "The Spelleater Axe is a magic weapon costing 35 points."
+  },
+  {
+    "id": "q055",
+    "language": "en",
+    "query": "My unit has a quarter of its models stuck in difficult terrain -- does that mess with my rank bonus?",
+    "expected_rules": ["difficult-terrain", "disrupted-units"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "Yes; a unit that ends its movement or begins a Combat phase with a quarter (25%) or more of its models within difficult terrain becomes Disrupted and cannot claim a Rank Bonus."
+  },
+  {
+    "id": "q056",
+    "language": "en",
+    "query": "Can I draw line of sight through a wood if neither model is standing inside it?",
+    "expected_rules": ["arboreal-gloom"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "No; per Arboreal Gloom, if a wood lies between two models and neither is within the wood, line of sight can only be drawn if an uninterrupted line can be drawn without crossing over or through the wood."
+  },
+  {
+    "id": "q057",
+    "language": "en",
+    "query": "What counts as impassable terrain?",
+    "expected_rules": ["impassable-terrain"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Impassable terrain completely blocks movement -- rock spires, deep rivers, sheer cliffs, most buildings, and high linear obstacles like castle walls; units must go around it, and a charging unit that can't align due to impassable terrain makes a disordered charge."
+  },
+  {
+    "id": "q058",
+    "language": "en",
+    "query": "How much terrain should I set up on a table with a 72 inch long edge?",
+    "expected_rules": ["how-much-terrain"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "The guideline is one terrain feature per 12 inches of the longest table edge, rounded up -- for a 72-inch edge that's 6 features."
+  },
+  {
+    "id": "q059",
+    "language": "en",
+    "query": "Was there an errata to the Skeleton Chariots' points cost?",
+    "expected_rules": ["page-141-skeleton-chariots"],
+    "expected_army": null,
+    "category": "errata",
+    "rubric": "Yes; the errata changes Skeleton Chariots' points to 41 and their Armour Value to 4+."
+  },
+  {
+    "id": "q060",
+    "language": "en",
+    "query": "What did the errata change about Minotaurs?",
+    "expected_rules": ["page-99-minotaurs"],
+    "expected_army": null,
+    "category": "errata",
+    "rubric": "The errata changes Minotaurs' points cost to 44."
+  },
+  {
+    "id": "q061",
+    "language": "en",
+    "query": "Can a Steam Tank's steam cannon fire grapeshot?",
+    "expected_rules": ["can-a-steam-tanks-steam-cannon-fire-grapeshot"],
+    "expected_army": null,
+    "category": "faq",
+    "rubric": "Yes; grapeshot can be fired by any cannon, i.e. any weapon that fires using the Cannon Fire special rule."
+  },
+  {
+    "id": "q062",
+    "language": "en",
+    "query": "If I re-roll a dice, does the original roll's triggered effect still count?",
+    "expected_rules": ["if-a-specific-natural-roll-triggers-an-effect-is-that-effect-still-triggered"],
+    "expected_army": null,
+    "category": "faq",
+    "rubric": "No; when a dice is re-rolled, the previous roll is discarded, including any effects that roll may have triggered."
+  },
+  {
+    "id": "q063",
+    "language": "en",
+    "query": "Do my mercenaries get my army's special rules?",
+    "expected_rules": ["do-army-special-rules-extend-to-any-mercenaries-i-include"],
+    "expected_army": null,
+    "category": "faq",
+    "rubric": "Unless stated otherwise, no -- army special rules don't extend to included mercenaries."
+  },
+  {
+    "id": "q064",
+    "language": "en",
+    "query": "Can an Archmage ride a Star Dragon into battle?",
+    "expected_rules": ["archmage", "star-dragon"],
+    "expected_army": "high-elf-realms",
+    "category": "eligibility",
+    "rubric": "Yes; the Star Dragon is one of the Archmage's available mount options."
+  },
+  {
+    "id": "q065",
+    "language": "en",
+    "query": "Is a Lothern Skycutter a valid mount option for an Archmage?",
+    "expected_rules": ["archmage", "lothern-skycutter"],
+    "expected_army": "high-elf-realms",
+    "category": "eligibility",
+    "rubric": "Yes; the Lothern Skycutter is one of the Archmage's mount options."
+  },
+  {
+    "id": "q066",
+    "language": "en",
+    "query": "Can an Arch-Necrotect be equipped with the Warding Splint?",
+    "expected_rules": ["arch-necrotect", "warding-splint"],
+    "expected_army": "tomb-kings-of-khemri",
+    "category": "eligibility",
+    "rubric": "Yes; the Warding Splint (a 35-point magic armour) is available to the Arch-Necrotect and grants a 5+ Ward save."
+  },
+  {
+    "id": "q067",
+    "language": "en",
+    "query": "My knights are just passing through a swamp, not stopping there -- are they still at risk?",
+    "expected_rules": ["dangerous-terrain"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "Yes; a Dangerous Terrain test is required whether a model begins its movement in, passes through, or ends its movement in dangerous terrain, not only if it stops there."
+  },
+  {
+    "id": "q068",
+    "language": "en",
+    "query": "If my Unbreakable unit loses combat badly, does it get destroyed?",
+    "expected_rules": ["unbreakable"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "No; a unit with Unbreakable that loses a round of combat is not required to make a Break test -- it automatically Gives Ground instead."
+  },
+  {
+    "id": "q069",
+    "language": "en",
+    "query": "I want to charge through a hedge -- will that slow my unit down?",
+    "expected_rules": ["low-linear-obstacles", "low-and-high-linear-obstacles"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "Yes; a hedge under 2 inches high is a low linear obstacle, which is treated as difficult terrain for movement purposes."
+  },
+  {
+    "id": "q070",
+    "language": "en",
+    "query": "I've got 500 points to spend on Core in a 2000-point Grand Army -- is that enough?",
+    "expected_rules": ["percentages"],
+    "expected_army": null,
+    "category": "army_building",
+    "rubric": "Yes, exactly enough -- a Grand Army composition list requires at least 25% of points on Core, and 25% of 2000 is 500."
   }
 ]
