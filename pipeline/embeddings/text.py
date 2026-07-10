@@ -262,22 +262,30 @@ def _build_unit(driver: neo4j.Driver, ids: list[str]) -> list[str]:
                p.W AS W, p.I AS I, p.A AS A, p.Ld AS Ld, p.order AS ord
         ORDER BY nid, p.order
     """
-    # Fetch rules, weapons, and upgrades
+    # Fetch rules and weapons
     edge_query = """
         UNWIND $ids AS nid
         MATCH (u:Unit {id: nid})
         OPTIONAL MATCH (u)-[:HAS_RULE|HAS_OPTIONAL_RULE]->(r:SpecialRule)
         OPTIONAL MATCH (u)-[:HAS_WEAPON]->(w:Weapon)
-        OPTIONAL MATCH (u)-[:HAS_UPGRADE]->(up:Upgrade)
         RETURN nid,
                collect(DISTINCT r.name) AS rules,
-               collect(DISTINCT w.name) AS weapons,
-               collect(DISTINCT up.name) AS upgrades
+               collect(DISTINCT w.name) AS weapons
+    """
+    # Fetch upgrades separately, with cost, so points aren't lost to a bare name list.
+    upgrade_query = """
+        UNWIND $ids AS nid
+        MATCH (u:Unit {id: nid})-[:HAS_UPGRADE]->(up:Upgrade)
+        RETURN nid, up.name AS name, up.points_cost AS cost, up.cost_unit AS cost_unit
     """
 
     unit_rows = _fetch(driver, unit_query, ids)
     profile_rows = _fetch(driver, profile_query, ids)
     edge_rows = _fetch(driver, edge_query, ids)
+    upgrade_rows = _fetch(driver, upgrade_query, ids)
+    upgrades_by_unit: dict[str, list[dict]] = {}
+    for rec in upgrade_rows:
+        upgrades_by_unit.setdefault(rec["nid"], []).append(rec)
 
     # Index by nid
     units: dict[str, dict] = {rec["nid"]: rec for rec in unit_rows}
@@ -335,17 +343,30 @@ def _build_unit(driver: neo4j.Driver, ids: list[str]) -> list[str]:
                 prof_strs.append(f"{p['pname']}: {' '.join(stats)}" if stats else p["pname"])
             parts.append("Profiles — " + "; ".join(prof_strs))
 
-        # Rules, weapons, and upgrades
+        # Rules and weapons
         ev = edges_by_unit.get(nid, {})
         rules = [r for r in (ev.get("rules") or []) if r]
         weapons = [w for w in (ev.get("weapons") or []) if w]
-        upgrade_names = [u for u in (ev.get("upgrades") or []) if u]
         if rules:
             parts.append("Rules: " + ", ".join(sorted(rules)))
         if weapons:
             parts.append("Weapons: " + ", ".join(sorted(weapons)))
-        if upgrade_names:
-            parts.append("Upgrades: " + ", ".join(sorted(upgrade_names)))
+
+        # Upgrades, with their points cost so "how much for X" queries are answerable
+        # from the Unit's own text without a separate Upgrade-node lookup.
+        upgrade_strs = []
+        for up in upgrades_by_unit.get(nid, []):
+            if not up.get("name"):
+                continue
+            label = up["name"]
+            if up.get("cost") is not None:
+                unit_suffix = {"per_model": "pt/model", "per_unit": "pts/unit"}.get(
+                    up.get("cost_unit"), "pts"
+                )
+                label = f"{label} (+{up['cost']} {unit_suffix})"
+            upgrade_strs.append(label)
+        if upgrade_strs:
+            parts.append("Upgrades: " + ", ".join(sorted(upgrade_strs)))
 
         result[nid] = ". ".join(p for p in parts if p)
 

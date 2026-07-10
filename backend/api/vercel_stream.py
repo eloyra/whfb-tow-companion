@@ -174,46 +174,43 @@ class VercelStream:
                         yield _sse({"type": "reasoning-end", "id": reasoning_id})
                         reasoning_id = None
 
-                    # Native Anthropic path: tool result is a list of content
-                    # blocks (text metadata + search_result blocks).
+                    # Source metadata travels out-of-band via the LangChain tool
+                    # ``artifact`` (never sent to the model): Anthropic rejects a
+                    # tool_result whose content mixes a text block with
+                    # search_result blocks, so the sources list can't live inline
+                    # alongside the search_result blocks anymore.
+                    artifact = getattr(msg, "artifact", None)
+                    raw_sources = artifact.get("sources") if isinstance(artifact, dict) else None
+
+                    # Native Anthropic path: content is a list of search_result
+                    # blocks; citations reference them by position via
+                    # search_result_index, resolved against ``search_results``.
                     if isinstance(msg.content, list):
-                        for block in msg.content:
-                            if not isinstance(block, dict):
-                                continue
-                            if block.get("type") == "text":
-                                block_text = block.get("text", "")
-                                try:
-                                    tool_data = json.loads(block_text)
-                                except (TypeError, ValueError):
-                                    continue
-                                raw_sources = (
-                                    tool_data.get("sources")
-                                    if isinstance(tool_data, dict)
-                                    else None
-                                )
-                                if isinstance(raw_sources, list):
-                                    search_results.extend(
-                                        src for src in raw_sources if isinstance(src, dict)
-                                    )
-                                    source_ids.update(
-                                        src.get("id")
-                                        for src in raw_sources
-                                        if isinstance(src, dict) and src.get("id")
-                                    )
-                        # The actual search_result blocks are ignored here; we
-                        # trust that their order matches ``search_results``.
+                        if isinstance(raw_sources, list):
+                            search_results.extend(
+                                src for src in raw_sources if isinstance(src, dict)
+                            )
+                            source_ids.update(
+                                src.get("id")
+                                for src in raw_sources
+                                if isinstance(src, dict) and src.get("id")
+                            )
                         continue
 
-                    # Legacy path: tool result is a JSON string.
-                    tool_content = _extract_text(msg.content)
-                    try:
-                        tool_data = json.loads(tool_content)
-                    except (TypeError, ValueError):
-                        continue
-
-                    raw_sources = tool_data.get("sources") if isinstance(tool_data, dict) else None
+                    # Legacy path: tool result is a JSON string. Prefer the
+                    # artifact if present; fall back to parsing the content for
+                    # callers that don't attach one.
                     if not isinstance(raw_sources, list):
-                        raw_sources = []
+                        tool_content = _extract_text(msg.content)
+                        try:
+                            tool_data = json.loads(tool_content)
+                        except (TypeError, ValueError):
+                            continue
+                        raw_sources = (
+                            tool_data.get("sources") if isinstance(tool_data, dict) else None
+                        )
+                        if not isinstance(raw_sources, list):
+                            raw_sources = []
 
                     # Collect candidates by id (deduped across multiple tool calls).
                     for src in raw_sources:

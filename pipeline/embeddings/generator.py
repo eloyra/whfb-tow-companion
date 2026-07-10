@@ -89,7 +89,7 @@ class EmbeddingGenerator:
                 normalize_embeddings=False,
             )
 
-            self._write_embeddings(driver, label, list(embed_ids), vectors)
+            self._write_embeddings(driver, label, list(embed_ids), vectors, list(embed_texts))
             total_written += len(embed_ids)
 
         logger.info("%s: wrote %d embeddings", label, total_written)
@@ -100,12 +100,20 @@ class EmbeddingGenerator:
             result = session.run(query)
             return [rec["nid"] for rec in result if rec["nid"]]
 
-    def _write_embeddings(self, driver, label: str, ids: list[str], vectors: np.ndarray) -> None:
-        rows = [{"id": nid, "embedding": vectors[i].tolist()} for i, nid in enumerate(ids)]
+    def _write_embeddings(
+        self, driver, label: str, ids: list[str], vectors: np.ndarray, texts: list[str]
+    ) -> None:
+        # Persist the graph-context text alongside its vector: the retriever
+        # serves n.text verbatim as source content, so it must stay in sync
+        # with whatever text_builder.py actually embedded.
+        rows = [
+            {"id": nid, "embedding": vectors[i].tolist(), "text": texts[i]}
+            for i, nid in enumerate(ids)
+        ]
         query = f"""
             UNWIND $rows AS row
             MATCH (n:{label} {{id: row.id}})
-            SET n.embedding = row.embedding
+            SET n.embedding = row.embedding, n.text = row.text
         """
         for start in range(0, len(rows), _WRITE_BATCH):
             batch = rows[start : start + _WRITE_BATCH]

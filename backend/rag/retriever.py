@@ -46,7 +46,12 @@ class GraphRAGRetriever:
         self.driver = driver
         self.embedder = embedder
         self.top_k = top_k
-        self.per_label_k = per_label_k or top_k
+        # Fetch a wider per-label candidate pool than top_k before the global
+        # merge/cut: relevant nodes often rank outside the top-k within their
+        # own label (e.g. a short CoreRule definition losing raw cosine score
+        # to longer, more verbose FAQ/Lore text) but still belong in the
+        # global top_k once all labels are pooled together.
+        self.per_label_k = per_label_k or max(top_k * 3, 20)
 
     def retrieve(self, query: str) -> list[dict[str, Any]]:
         """Return the top-k most relevant nodes for ``query``.

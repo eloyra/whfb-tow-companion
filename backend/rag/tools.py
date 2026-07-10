@@ -57,13 +57,19 @@ def _citable_nodes(result: dict[str, Any]) -> list[dict[str, Any]]:
     return nodes[:_MAX_CITABLE_NODES]
 
 
-def _build_native_tool_result(result: dict[str, Any]) -> list[dict[str, Any]]:
-    """Build Anthropic-native tool-result content blocks.
+def _build_native_tool_result(
+    result: dict[str, Any],
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Build Anthropic-native tool-result content blocks + out-of-band metadata.
 
-    The returned list starts with a plain ``text`` block carrying our internal
-    context + source metadata, followed by one ``search_result`` block per
-    citable node. The ``sources`` metadata order matches the ``search_result``
-    block order so ``search_result_index`` can be mapped back to a node id.
+    Anthropic rejects a tool_result whose content mixes a plain ``text`` block
+    with ``search_result`` blocks ("if any blocks ... are of type
+    `search_result`, all blocks must be of that type"). So the content sent to
+    the model is *only* ``search_result`` blocks (one per citable node, in
+    order — this order is what ``search_result_index`` citations refer back
+    to). The context summary and ``sources`` metadata instead travel as the
+    LangChain tool ``artifact``, which is attached to the ``ToolMessage`` for
+    local use but never serialized into the API request.
     """
     citable = _citable_nodes(result)
 
@@ -76,20 +82,9 @@ def _build_native_tool_result(result: dict[str, Any]) -> list[dict[str, Any]]:
         }
         for node in citable
     ]
+    artifact = {"context": result.get("context", ""), "sources": sources_meta}
 
-    content_blocks: list[dict[str, Any]] = [
-        {
-            "type": "text",
-            "text": json.dumps(
-                {
-                    "context": result.get("context", ""),
-                    "sources": sources_meta,
-                },
-                ensure_ascii=False,
-            ),
-        }
-    ]
-
+    content_blocks: list[dict[str, Any]] = []
     for node in citable:
         text = _node_text(node)
         if not text:
@@ -104,11 +99,21 @@ def _build_native_tool_result(result: dict[str, Any]) -> list[dict[str, Any]]:
             }
         )
 
-    return content_blocks
+    if not content_blocks:
+        # No citable nodes: no search_result blocks means the homogeneity rule
+        # does not apply, so a plain text summary is safe here.
+        content_blocks = [{"type": "text", "text": result.get("context", "")}]
+
+    return content_blocks, artifact
 
 
-def _build_legacy_tool_result(result: dict[str, Any]) -> str:
-    """Return the JSON-string tool result used by non-Anthropic providers."""
+def _build_legacy_tool_result(result: dict[str, Any]) -> tuple[str, dict[str, Any]]:
+    """Return the JSON-string tool result used by non-Anthropic providers.
+
+    Also returns the same ``sources`` list as the artifact, so downstream
+    consumers (``VercelStream``, the eval harness) can read source metadata
+    uniformly via ``.artifact`` regardless of provider.
+    """
     visible_sources = [
         {
             "id": src.get("id"),
@@ -124,7 +129,8 @@ def _build_legacy_tool_result(result: dict[str, Any]) -> str:
         "context": result.get("context", ""),
         "sources": visible_sources,
     }
-    return json.dumps(visible, ensure_ascii=False)
+    artifact = {"context": result.get("context", ""), "sources": visible_sources}
+    return json.dumps(visible, ensure_ascii=False), artifact
 
 
 def build_tools(pipeline: Any, native_citations: bool | None = None) -> list[Any]:
@@ -144,8 +150,10 @@ def build_tools(pipeline: Any, native_citations: bool | None = None) -> list[Any
 
     use_native_citations = native_citations
 
-    @tool
-    def query_warhammer_archive(query: str) -> list[dict[str, Any]] | str:
+    @tool(response_format="content_and_artifact")
+    def query_warhammer_archive(
+        query: str,
+    ) -> tuple[list[dict[str, Any]] | str, dict[str, Any]]:
         """Query the Warhammer: The Old World knowledge graph.
 
         Use this tool for **any factual question** about rules, units, special
