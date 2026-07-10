@@ -129,7 +129,7 @@
     "id": "q015",
     "language": "en",
     "query": "Does a shield give +1 to armour save?",
-    "expected_rules": ["armour-value"],
+    "expected_rules": ["armour-value", "shield"],
     "expected_army": null,
     "category": "rule_lookup",
     "rubric": "Yes; a shield improves Armour Value by 1 (e.g. Heavy Armour 5+ plus shield becomes 4+)."
@@ -615,10 +615,10 @@
     "id": "q069",
     "language": "en",
     "query": "I want to charge through a hedge -- will that slow my unit down?",
-    "expected_rules": ["low-linear-obstacles", "low-and-high-linear-obstacles"],
+    "expected_rules": ["low-linear-obstacles", "low-and-high-linear-obstacles", "charging-through-terrain"],
     "expected_army": null,
     "category": "rule_interaction",
-    "rubric": "Yes; a hedge under 2 inches high is a low linear obstacle, which is treated as difficult terrain for movement purposes."
+    "rubric": "Yes; a hedge under 2 inches high is a low linear obstacle. A charge through any difficult/dangerous terrain or low linear obstacle forces the charging unit to discard the highest Charge roll die (instead of the lowest) and suffer -1 Movement (to a minimum of 1) for that charge move."
   },
   {
     "id": "q070",

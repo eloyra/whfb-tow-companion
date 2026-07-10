@@ -105,7 +105,9 @@ def test_retrieve_merges_across_labels_and_dedup() -> None:
         ],
     }
     retriever = GraphRAGRetriever(FakeDriver(responses), FakeEmbedder(), top_k=5)
-    results = retriever.retrieve("What are Blood Knights?")
+    # Use a query with no exact node-name phrase so the lexical fallback stays
+    # silent and this test isolates pure vector-score dedup behaviour.
+    results = retriever.retrieve("Tell me about these cavalry riders")
 
     assert len(results) == 2
     assert results[0]["id"] == "blood-knights"
@@ -153,6 +155,93 @@ def test_retrieve_coalesces_missing_text_to_name() -> None:
     results = retriever.retrieve("Vampire Counts army")
 
     assert results[0]["text"] == "Vampire Counts"
+
+
+def test_retrieve_lexical_match_forces_inclusion() -> None:
+    """A node whose exact name appears in the query is included even if it
+    never surfaces in the (mocked) vector-search pool at all."""
+    responses = {
+        "SpecialRule": [
+            _result("fly", "SpecialRule", "Fly", "Models with this rule can fly.", "url1", 0.10),
+        ],
+    }
+    retriever = GraphRAGRetriever(FakeDriver(responses), FakeEmbedder(), top_k=5)
+    results = retriever.retrieve("Can a unit with Fly charge over enemy units?")
+
+    ids = [r["id"] for r in results]
+    assert "fly" in ids
+    fly_result = next(r for r in results if r["id"] == "fly")
+    assert fly_result["score"] == 1.0
+
+
+def test_retrieve_lexical_match_strips_parenthetical_placeholder() -> None:
+    """Variable-value special rules are stored as "Fly (X)"; a plain-language
+    query saying just "Fly" (no value) should still match."""
+    responses = {
+        "SpecialRule": [
+            _result(
+                "fly", "SpecialRule", "Fly (X)", "Models with this rule can fly.", "url1", 0.10
+            ),
+        ],
+    }
+    retriever = GraphRAGRetriever(FakeDriver(responses), FakeEmbedder(), top_k=5)
+    results = retriever.retrieve("Can a unit with Fly charge over enemy units?")
+
+    fly_result = next(r for r in results if r["id"] == "fly")
+    assert fly_result["score"] == 1.0
+
+
+def test_retrieve_lexical_match_stems_multiword_names() -> None:
+    """Multi-word names match a different inflection in the query: "Disrupted
+    Units" should match a query phrased as "disrupts units"."""
+    responses = {
+        "CoreRule": [
+            _result(
+                "disrupted-units",
+                "CoreRule",
+                "Disrupted Units",
+                "A unit becomes Disrupted if...",
+                "url1",
+                0.10,
+            ),
+        ],
+    }
+    retriever = GraphRAGRetriever(FakeDriver(responses), FakeEmbedder(), top_k=5)
+    results = retriever.retrieve("What terrain disrupts units?")
+
+    result = next(r for r in results if r["id"] == "disrupted-units")
+    assert result["score"] == 1.0
+
+
+def test_retrieve_lexical_match_single_word_does_not_stem() -> None:
+    """Single-word names must NOT stem-match: stemming "Fly" would also
+    swallow the unrelated word "flying"."""
+    responses = {
+        "SpecialRule": [
+            _result("fly", "SpecialRule", "Fly", "Models with this rule can fly.", "url1", 0.10),
+        ],
+    }
+    retriever = GraphRAGRetriever(FakeDriver(responses), FakeEmbedder(), top_k=5)
+    results = retriever.retrieve("Tell me about butterfly wings on a flying carpet")
+
+    fly_result = next(r for r in results if r["id"] == "fly")
+    assert fly_result["score"] == 0.10
+
+
+def test_retrieve_lexical_match_is_word_boundary_only() -> None:
+    """A short node name must not false-positive on a substring of a longer,
+    unrelated word in the query — score should stay at the raw vector value,
+    not get boosted to the lexical-match score."""
+    responses = {
+        "SpecialRule": [
+            _result("fly", "SpecialRule", "Fly", "Models with this rule can fly.", "url1", 0.10),
+        ],
+    }
+    retriever = GraphRAGRetriever(FakeDriver(responses), FakeEmbedder(), top_k=5)
+    results = retriever.retrieve("Tell me about butterfly wings on a flying carpet")
+
+    fly_result = next(r for r in results if r["id"] == "fly")
+    assert fly_result["score"] == 0.10
 
 
 def test_retrieve_skips_failed_label_and_continues(caplog: pytest.LogCaptureFixture) -> None:
