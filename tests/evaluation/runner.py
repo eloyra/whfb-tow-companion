@@ -7,7 +7,7 @@ from typing import Any
 from backend.api.dependencies import get_driver, get_embedder, resolve_rag_mode
 from backend.rag.retriever import GraphRAGRetriever
 from tests.evaluation.models import AgentResult, JudgeVerdict, Query, RetrievalResult
-from tests.evaluation.scoring import build_retrieval_result
+from tests.evaluation.scoring import build_retrieval_result, citation_f1, citation_precision
 
 
 def build_retriever(top_k: int = 8, mode: str = "graph") -> GraphRAGRetriever:
@@ -160,17 +160,24 @@ async def run_full_evaluation(
         if judge_llm is not None:
             verdict = await _run_judge(judge_llm, query, answer, cited_ids)
 
+        deduped_cited_ids = sorted(set(cited_ids))
         results.append(
             AgentResult(
                 query_id=query.id,
                 query=query.query,
                 category=query.category,
                 answer=answer,
-                cited_ids=sorted(set(cited_ids)),
+                cited_ids=deduped_cited_ids,
                 expected_rules=query.expected_rules,
                 expected_army=query.expected_army,
                 retrieval=retrieval,
                 verdict=verdict,
+                citation_precision=citation_precision(query.expected_rules, deduped_cited_ids),
+                citation_f1=citation_f1(query.expected_rules, deduped_cited_ids),
+                # "Fully correct" hit, per the thesis's binary answer-hit-rate
+                # objective (Resumen, Section 3.2) — distinct from the
+                # continuous 0-2 mean judge score.
+                answer_hit=(verdict.correctness >= 2) if verdict is not None else None,
             )
         )
     return results

@@ -29,6 +29,10 @@ class RetrievalResult(BaseModel):
     expected_rules: list[str]
     expected_army: str | None = None
     recall_at_k: float | None = None
+    precision_at_k: float | None = None
+    f1_at_k: float | None = None
+    mrr: float | None = None
+    ndcg_at_k: float | None = None
     army_retrieved: bool | None = None
 
 
@@ -53,6 +57,9 @@ class AgentResult(BaseModel):
     expected_army: str | None = None
     retrieval: RetrievalResult | None = None
     verdict: JudgeVerdict | None = None
+    citation_precision: float | None = None
+    citation_f1: float | None = None
+    answer_hit: bool | None = None
 
 
 class SummaryMetrics(BaseModel):
@@ -61,11 +68,19 @@ class SummaryMetrics(BaseModel):
     total_queries: int
     recall_queries: int
     mean_recall_at_k: float | None = None
+    mean_precision_at_k: float | None = None
+    mean_f1_at_k: float | None = None
+    mean_mrr: float | None = None
+    mean_ndcg_at_k: float | None = None
     mean_correctness: float | None = None
     mean_groundedness: float | None = None
     mean_citation: float | None = None
+    mean_citation_precision: float | None = None
+    mean_citation_f1: float | None = None
+    answer_hit_rate: float | None = None
     below_threshold: list[str] = Field(default_factory=list)
     per_category_recall: dict[str, float] = Field(default_factory=dict)
+    per_hop_metrics: dict[str, dict[str, float]] = Field(default_factory=dict)
 
 
 class EvaluationReport(BaseModel):
@@ -78,10 +93,28 @@ class EvaluationReport(BaseModel):
     config: dict[str, Any] = Field(default_factory=dict)
 
 
+class SignificanceResult(BaseModel):
+    """Paired statistical-significance test between two retrieval modes (ADR-0008).
+
+    Wilcoxon signed-rank test on per-query metric deltas across the shared golden
+    set — the two modes are evaluated on the *same* queries, so the comparison is
+    paired, not independent samples.
+    """
+
+    mode_a: str
+    mode_b: str
+    metric: str
+    statistic: float
+    p_value: float
+    n: int
+    significant: bool
+
+
 class ComparisonReport(BaseModel):
     """Report comparing retrieval modes on the same golden set (ADR-0008)."""
 
     modes: list[str]
     total_queries: int
     per_mode: dict[str, SummaryMetrics]
+    significance: list[SignificanceResult] = Field(default_factory=list)
     config: dict[str, Any] = Field(default_factory=dict)
