@@ -268,7 +268,22 @@ def subgraph(
         return {"nodes": [], "edges": []}
 
     all_nodes = {n["id"]: n for n in record["nodes"]}
-    edges = _cap_subgraph_edges(list(record["edges"]))
+    # apoc.path.subgraphAll's undirected BFS can surface the same relationship
+    # twice (observed for self-loop edges, e.g. a unit's own HAS_WEAPON — the
+    # traversal discovers it from both "sides" of the node). Dedupe by the
+    # exact (source, target, rel_type) tuple before capping so a duplicate
+    # doesn't eat into a node's fan-out budget or produce a duplicate React key
+    # on the frontend.
+    seen: set[tuple[str, str, str]] = set()
+    deduped_edges: list[dict[str, Any]] = []
+    for edge in record["edges"]:
+        key = (edge["source"], edge["target"], edge["rel_type"])
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped_edges.append(edge)
+
+    edges = _cap_subgraph_edges(deduped_edges)
 
     kept_ids = {node_id} | {e["source"] for e in edges} | {e["target"] for e in edges}
     nodes = [n for nid, n in all_nodes.items() if nid in kept_ids]

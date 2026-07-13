@@ -351,6 +351,23 @@ def test_subgraph_caps_fan_out_at_any_node_not_just_center() -> None:
     assert len(shared_edges) == 4
 
 
+def test_subgraph_dedupes_duplicate_self_loop_edges() -> None:
+    # apoc.path.subgraphAll's undirected BFS can surface the same self-loop
+    # relationship twice (observed for a unit's own HAS_WEAPON edge).
+    response = {
+        "nodes": [
+            {"id": "hub", "label": "Unit", "name": "Hub", "source_url": None},
+        ],
+        "edges": [
+            _edge("hub", "hub", "HAS_WEAPON"),
+            _edge("hub", "hub", "HAS_WEAPON"),
+        ],
+    }
+    result = subgraph(FakeDriver(subgraph_response=response), "hub")
+
+    assert result["edges"] == [{"source": "hub", "target": "hub", "rel_type": "HAS_WEAPON"}]
+
+
 def test_graph_traversal_class_exposes_subgraph() -> None:
     response = {
         "nodes": [{"id": "fear", "label": "SpecialRule", "name": "Fear", "source_url": "url"}],
