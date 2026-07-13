@@ -83,6 +83,18 @@ def _render_markdown(report: EvaluationReport) -> str:
             )
         lines.append("")
 
+    if metrics.per_category_judge:
+        lines.append("## Per-category answer quality (judge)\n")
+        lines.append("| Category | Correctness | Groundedness | Citation | Answer hit |")
+        lines.append("|---|---|---|---|---|")
+        for category, vals in sorted(metrics.per_category_judge.items()):
+            lines.append(
+                f"| {category} | {_fmt_float(vals.get('correctness'))} | "
+                f"{_fmt_float(vals.get('groundedness'))} | {_fmt_float(vals.get('citation'))} | "
+                f"{_fmt_float(vals.get('answer_hit'))} |"
+            )
+        lines.append("")
+
     if metrics.below_threshold:
         lines.append("## Queries below threshold\n")
         for query_id in metrics.below_threshold:

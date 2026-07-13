@@ -235,6 +235,41 @@ def per_hop_metrics(
     return output
 
 
+def per_category_judge(
+    results: list[RetrievalResult | AgentResult],
+) -> dict[str, dict[str, float]]:
+    """Mean judge axes and answer-hit rate grouped by query ``category``.
+
+    Mirrors ``per_category_recall``, but for the LLM-judge axes produced by a
+    ``--full`` evaluation run (correctness, groundedness, citation, answer_hit).
+    A single overall mean hides *which* query categories the system struggles
+    with (e.g. multi-hop ``rule_interaction`` vs. single-hop ``rule_lookup``);
+    this is the per-category answer-quality breakdown Chapter 6 needs, so a
+    single expensive judged run over the full golden set doesn't have to be
+    re-run just to get this cut of the data.
+    """
+    by_category: dict[str, dict[str, list[float]]] = {}
+    for result in results:
+        if not isinstance(result, AgentResult) or result.verdict is None:
+            continue
+        entry = by_category.setdefault(
+            result.category,
+            {"correctness": [], "groundedness": [], "citation": [], "answer_hit": []},
+        )
+        entry["correctness"].append(result.verdict.correctness)
+        entry["groundedness"].append(result.verdict.groundedness)
+        entry["citation"].append(result.verdict.citation)
+        if result.answer_hit is not None:
+            entry["answer_hit"].append(1.0 if result.answer_hit else 0.0)
+
+    output: dict[str, dict[str, float]] = {}
+    for category, metric_values in sorted(by_category.items()):
+        means = {name: sum(vals) / len(vals) for name, vals in metric_values.items() if vals}
+        if means:
+            output[category] = means
+    return output
+
+
 def paired_significance(deltas: list[float]) -> dict[str, float | int]:
     """Wilcoxon signed-rank test on paired per-query metric deltas.
 
@@ -335,4 +370,5 @@ def aggregate_metrics(
         below_threshold=sorted(set(below)),
         per_category_recall=per_category_recall(results),
         per_hop_metrics=per_hop_metrics(results),
+        per_category_judge=per_category_judge(results),
     )

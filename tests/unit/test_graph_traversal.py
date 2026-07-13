@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from backend.rag.graph_traversal import GraphTraversal, expand, links_between
+from backend.rag.graph_traversal import GraphTraversal, expand, links_between, subgraph
 
 
 class FakeRecord:
@@ -40,9 +40,11 @@ class FakeSession:
         self,
         responses: dict[str, list[dict[str, Any]]],
         links: list[dict[str, Any]],
+        subgraph_response: dict[str, list[dict[str, Any]]] | None = None,
     ) -> None:
         self._responses = responses
         self._links = links
+        self._subgraph_response = subgraph_response
         self.last_query: tuple[str, dict[str, Any]] | None = None
 
     def __enter__(self) -> "FakeSession":
@@ -53,6 +55,11 @@ class FakeSession:
 
     def run(self, cypher: str, **parameters: Any) -> FakeResult:
         self.last_query = (cypher, parameters)
+        if "apoc.path.subgraphAll" in cypher:
+            if self._subgraph_response is None:
+                return FakeResult([])
+            return FakeResult([self._subgraph_response])
+
         if "MATCH (a)-[r]-(b)" in cypher:
             return FakeResult(self._links)
 
@@ -69,12 +76,14 @@ class FakeDriver:
         self,
         responses: dict[str, list[dict[str, Any]]] | None = None,
         links: list[dict[str, Any]] | None = None,
+        subgraph_response: dict[str, list[dict[str, Any]]] | None = None,
     ) -> None:
         self._responses = responses or {}
         self._links = links or []
+        self._subgraph_response = subgraph_response
 
     def session(self) -> FakeSession:
-        return FakeSession(self._responses, self._links)
+        return FakeSession(self._responses, self._links, self._subgraph_response)
 
 
 def _neighbor(
@@ -241,3 +250,114 @@ def test_graph_traversal_class_has_retriever_like_api() -> None:
     direct = traversal.links_between(["a", "b"])
     assert len(direct) == 1
     assert direct[0]["rel_type"] == "REFERENCES"
+
+
+def _edge(source: str, target: str, rel_type: str) -> dict[str, Any]:
+    return {"source": source, "target": target, "rel_type": rel_type}
+
+
+def test_subgraph_not_found_returns_empty() -> None:
+    assert subgraph(FakeDriver(), "missing") == {"nodes": [], "edges": []}
+
+
+def test_subgraph_isolated_center_returns_just_center() -> None:
+    response = {
+        "nodes": [{"id": "fear", "label": "SpecialRule", "name": "Fear", "source_url": "url"}],
+        "edges": [],
+    }
+    result = subgraph(FakeDriver(subgraph_response=response), "fear")
+
+    assert result == {
+        "nodes": [{"id": "fear", "label": "SpecialRule", "name": "Fear", "source_url": "url"}],
+        "edges": [],
+    }
+
+
+def test_subgraph_maps_nodes_and_edges() -> None:
+    response = {
+        "nodes": [
+            {"id": "fear", "label": "SpecialRule", "name": "Fear", "source_url": "url-fear"},
+            {"id": "terror", "label": "SpecialRule", "name": "Terror", "source_url": "url-terror"},
+        ],
+        "edges": [_edge("fear", "terror", "REFERENCES")],
+    }
+    result = subgraph(FakeDriver(subgraph_response=response), "fear")
+
+    assert {n["id"] for n in result["nodes"]} == {"fear", "terror"}
+    assert result["edges"] == [{"source": "fear", "target": "terror", "rel_type": "REFERENCES"}]
+    # embedding must never be part of the shape returned to the frontend.
+    assert all("embedding" not in node for node in result["nodes"])
+
+
+def test_subgraph_drops_nodes_whose_only_edge_was_capped_away() -> None:
+    # "hub" fans out via a default-capped relation type (tier 2, cap 4 — see
+    # _DEFAULT_PER_RELATION_CAP) to 5 leaves; the center is always kept, but a
+    # leaf reachable only through the dropped 5th edge must not survive.
+    nodes = [{"id": "hub", "label": "Unit", "name": "Hub", "source_url": None}]
+    edges = []
+    for i in range(1, 6):
+        leaf_id = f"leaf-{i}"
+        nodes.append({"id": leaf_id, "label": "TroopType", "name": leaf_id, "source_url": None})
+        edges.append(_edge("hub", leaf_id, "HAS_TYPE"))
+
+    response = {"nodes": nodes, "edges": edges}
+    result = subgraph(FakeDriver(subgraph_response=response), "hub")
+
+    assert len(result["edges"]) == 4
+    kept_leaves = {e["target"] for e in result["edges"]}
+    assert kept_leaves == {"leaf-1", "leaf-2", "leaf-3", "leaf-4"}
+    node_ids = {n["id"] for n in result["nodes"]}
+    assert node_ids == {"hub", "leaf-1", "leaf-2", "leaf-3", "leaf-4"}
+    assert "leaf-5" not in node_ids
+
+
+def test_subgraph_caps_use_per_relation_type_overrides() -> None:
+    # CAN_TAKE_ITEM has a tighter override cap (3) than the default (4).
+    nodes = [{"id": "wizard", "label": "Unit", "name": "Wizard", "source_url": None}]
+    edges = []
+    for i in range(1, 6):
+        item_id = f"item-{i}"
+        nodes.append({"id": item_id, "label": "MagicItem", "name": item_id, "source_url": None})
+        edges.append(_edge("wizard", item_id, "CAN_TAKE_ITEM"))
+
+    response = {"nodes": nodes, "edges": edges}
+    result = subgraph(FakeDriver(subgraph_response=response), "wizard")
+
+    assert len(result["edges"]) == 3
+
+
+def test_subgraph_caps_fan_out_at_any_node_not_just_center() -> None:
+    # A node reached at depth 2 ("shared") can be just as densely connected as
+    # the center; the cap must bound fan-out there too, not only at "hub".
+    nodes = [
+        {"id": "hub", "label": "Unit", "name": "Hub", "source_url": None},
+        {"id": "shared", "label": "SpecialRule", "name": "Shared", "source_url": None},
+    ]
+    edges = [_edge("hub", "shared", "HAS_TYPE")]
+    for i in range(1, 6):
+        other_id = f"other-{i}"
+        nodes.append({"id": other_id, "label": "SpecialRule", "name": other_id, "source_url": None})
+        edges.append(_edge(other_id, "shared", "HAS_TYPE"))
+
+    response = {"nodes": nodes, "edges": edges}
+    result = subgraph(FakeDriver(subgraph_response=response), "hub")
+
+    # HAS_TYPE has no override, so the default cap (4) applies — "shared" is
+    # the target of 6 HAS_TYPE edges total (including the hub->shared one),
+    # so only 4 may survive, even though "shared" isn't the center node.
+    shared_edges = [
+        e for e in result["edges"] if e["target"] == "shared" or e["source"] == "shared"
+    ]
+    assert len(shared_edges) == 4
+
+
+def test_graph_traversal_class_exposes_subgraph() -> None:
+    response = {
+        "nodes": [{"id": "fear", "label": "SpecialRule", "name": "Fear", "source_url": "url"}],
+        "edges": [],
+    }
+    traversal = GraphTraversal(FakeDriver(subgraph_response=response))
+
+    result = traversal.subgraph("fear", depth=2)
+    assert result["nodes"][0]["id"] == "fear"
+    assert result["edges"] == []

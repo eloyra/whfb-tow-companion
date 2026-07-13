@@ -19,5 +19,14 @@
   "chat_example_prompt": "Try one of these:",
   "chat_example_1": "What happens when a unit with Regeneration is hit by Flaming Attacks?",
   "chat_example_2": "Tell me about the Blood Knights",
-  "chat_example_3": "How does Fear work?"
+  "chat_example_3": "How does Fear work?",
+  "nav_chat": "Chat",
+  "nav_graph": "Graph",
+  "graph_search_placeholder": "Search rules, units, spells…",
+  "graph_search_label": "Search the knowledge graph",
+  "graph_no_results": "No matching nodes found",
+  "graph_empty_state": "Search for a rule, unit, or spell to explore its neighborhood",
+  "graph_loading_label": "Loading neighborhood…",
+  "graph_error_label": "Could not load the graph",
+  "chat_view_in_graph": "View in graph"
 }

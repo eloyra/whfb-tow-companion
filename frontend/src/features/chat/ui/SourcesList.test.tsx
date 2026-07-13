@@ -1,5 +1,31 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import type { ReactNode } from "react";
+import { describe, expect, it, vi } from "vitest";
+
+// TanStack Router's Link needs a router context to render (it calls
+// useLinkProps internally, which throws outside a RouterProvider); mock it to
+// a plain anchor so this component test stays router-free, mirroring
+// ChatInterface.test.tsx's approach to mocking framework hooks that otherwise
+// require a provider.
+vi.mock("@tanstack/react-router", () => ({
+  Link: ({
+    to,
+    search,
+    children,
+    ...props
+  }: {
+    to: string;
+    search?: Record<string, string>;
+    children?: ReactNode;
+  }) => {
+    const query = search ? `?${new URLSearchParams(search).toString()}` : "";
+    return (
+      <a href={`${to}${query}`} {...props}>
+        {children}
+      </a>
+    );
+  },
+}));
 
 import type { GraphSource } from "#/features/chat/model/graph-source";
 
@@ -59,5 +85,12 @@ describe("SourcesList", () => {
     render(<SourcesList sources={[]} />);
 
     expect(screen.getByText("No sources retrieved")).toBeInTheDocument();
+  });
+
+  it("deep-links each source to the graph viewer by id", () => {
+    render(<SourcesList sources={sources} />);
+
+    const graphLink = screen.getByRole("link", { name: /View in graph: Fear/ });
+    expect(graphLink).toHaveAttribute("href", "/graph?node=fear");
   });
 });

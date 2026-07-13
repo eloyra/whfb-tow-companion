@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import type { ReactNode } from "react";
 import { describe, expect, it, vi } from "vitest";
 
 // vi.mock calls are hoisted — safe to reference mocked modules below
@@ -10,6 +11,28 @@ vi.mock("ai", () => ({
 }));
 vi.mock("#/shared/config/env", () => ({
   env: { apiUrl: "http://localhost:8000" },
+}));
+// SourcesList (rendered via MessageBubble) links each citation to the graph
+// viewer with TanStack Router's Link, which needs a router context to render
+// (it calls useLinkProps internally). Mock it to a plain anchor.
+vi.mock("@tanstack/react-router", () => ({
+  Link: ({
+    to,
+    search,
+    children,
+    ...props
+  }: {
+    to: string;
+    search?: Record<string, string>;
+    children?: ReactNode;
+  }) => {
+    const query = search ? `?${new URLSearchParams(search).toString()}` : "";
+    return (
+      <a href={`${to}${query}`} {...props}>
+        {children}
+      </a>
+    );
+  },
 }));
 
 import { useChat } from "@ai-sdk/react";

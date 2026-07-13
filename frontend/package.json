@@ -37,6 +37,7 @@
     "@tanstack/react-router-ssr-query": "1.166.11",
     "@tanstack/react-start": "1.167.49",
     "@tanstack/router-plugin": "1.167.27",
+    "@xyflow/react": "^12.11.2",
     "ai": "^6.0.168",
     "clsx": "^2.1.1",
     "lucide-react": "^0.577.0",

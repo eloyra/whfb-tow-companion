@@ -27,6 +27,7 @@ from tests.evaluation.scoring import (
     mrr,
     ndcg_at_k,
     paired_significance,
+    per_category_judge,
     per_category_recall,
     per_hop_metrics,
     precision_at_k,
@@ -380,6 +381,52 @@ class TestPerCategoryRecall:
 
     def test_empty_results_returns_empty_dict(self) -> None:
         assert per_category_recall([]) == {}
+
+
+class TestPerCategoryJudge:
+    def _agent(self, query_id: str, category: str, hit: bool | None) -> AgentResult:
+        return AgentResult(
+            query_id=query_id,
+            query="...",
+            category=category,
+            answer="...",
+            cited_ids=["a"],
+            expected_rules=["a"],
+            expected_army=None,
+            verdict=JudgeVerdict(correctness=2, groundedness=1, citation=2),
+            answer_hit=hit,
+        )
+
+    def test_groups_by_category_and_averages_judge_axes(self) -> None:
+        results = [
+            self._agent("q1", "rule_lookup", True),
+            self._agent("q2", "rule_lookup", False),
+            self._agent("q3", "army_building", True),
+        ]
+        result = per_category_judge(results)
+        assert result["rule_lookup"] == {
+            "correctness": 2.0,
+            "groundedness": 1.0,
+            "citation": 2.0,
+            "answer_hit": 0.5,
+        }
+        assert result["army_building"]["answer_hit"] == 1.0
+
+    def test_skips_results_without_a_verdict(self) -> None:
+        no_verdict = RetrievalResult(
+            query_id="q1",
+            query="...",
+            category="rule_lookup",
+            retrieved_ids=["a"],
+            expected_rules=["a"],
+            expected_army=None,
+            recall_at_k=1.0,
+            army_retrieved=None,
+        )
+        assert per_category_judge([no_verdict]) == {}
+
+    def test_empty_results_returns_empty_dict(self) -> None:
+        assert per_category_judge([]) == {}
 
 
 class TestPerHopMetrics:

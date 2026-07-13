@@ -19,5 +19,14 @@
   "chat_example_prompt": "Prueba una de estas:",
   "chat_example_1": "¿Qué ocurre cuando una unidad con Regeneración recibe Ataques Flamígeros?",
   "chat_example_2": "Háblame de los Caballeros de Sangre",
-  "chat_example_3": "¿Cómo funciona el Miedo?"
+  "chat_example_3": "¿Cómo funciona el Miedo?",
+  "nav_chat": "Chat",
+  "nav_graph": "Grafo",
+  "graph_search_placeholder": "Busca reglas, unidades, hechizos…",
+  "graph_search_label": "Buscar en el grafo de conocimiento",
+  "graph_no_results": "No se encontraron nodos coincidentes",
+  "graph_empty_state": "Busca una regla, unidad o hechizo para explorar su vecindario",
+  "graph_loading_label": "Cargando vecindario…",
+  "graph_error_label": "No se pudo cargar el grafo",
+  "chat_view_in_graph": "Ver en el grafo"
 }

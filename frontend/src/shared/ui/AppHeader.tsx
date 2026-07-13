@@ -1,5 +1,12 @@
+import { Link } from "@tanstack/react-router";
 import { m } from "#/paraglide/messages";
 import { ThemeToggle } from "./ThemeToggle";
+
+const navLinkClassName =
+  "text-sm font-display uppercase tracking-[0.08em] text-slate-foreground/70 hover:text-slate-foreground transition-colors";
+const navLinkActiveProps = {
+  className: "text-slate-foreground underline underline-offset-4",
+};
 
 export function AppHeader() {
   return (
@@ -14,7 +21,23 @@ export function AppHeader() {
           </p>
         </div>
 
-        <ThemeToggle />
+        <nav className="flex items-center gap-4 sm:gap-6">
+          <Link
+            to="/"
+            className={navLinkClassName}
+            activeProps={navLinkActiveProps}
+          >
+            {m.nav_chat()}
+          </Link>
+          <Link
+            to="/graph"
+            className={navLinkClassName}
+            activeProps={navLinkActiveProps}
+          >
+            {m.nav_graph()}
+          </Link>
+          <ThemeToggle />
+        </nav>
       </div>
     </header>
   );

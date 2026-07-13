@@ -1,4 +1,6 @@
 import { Chip } from "@heroui/react";
+import { Link } from "@tanstack/react-router";
+import { Network } from "lucide-react";
 import type { GraphSource } from "#/features/chat/model/graph-source";
 import { m } from "#/paraglide/messages";
 
@@ -29,38 +31,58 @@ function SourceChip({ source }: { source: GraphSource }) {
     </Chip>
   );
 
+  const graphLink = (
+    <Link
+      to="/graph"
+      search={{ node: source.id }}
+      aria-label={`${m.chat_view_in_graph()}: ${displayName}`}
+      title={m.chat_view_in_graph()}
+      className="inline-flex items-center justify-center rounded-full p-1 text-heraldic/70 hover:text-heraldic hover:bg-heraldic/10 transition-colors"
+    >
+      <Network size={12} aria-hidden="true" />
+    </Link>
+  );
+
   if (source.source_url && isValidUrl(source.source_url)) {
     return (
-      <div className="relative inline-block group">
-        <a
-          href={source.source_url}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-block"
-          aria-describedby={`source-tooltip-${source.id}`}
-        >
-          {chip}
-        </a>
-        <div
-          id={`source-tooltip-${source.id}`}
-          role="tooltip"
-          className="absolute left-0 bottom-full mb-2 z-50 hidden w-80 group-hover:block"
-        >
-          <div className="rounded-md border border-metal/20 bg-background shadow-lg overflow-hidden">
-            <iframe
-              src={source.source_url}
-              title={displayName}
-              loading="lazy"
-              className="w-full h-48 border-0 bg-white"
-            />
+      <div className="inline-flex items-center gap-0.5">
+        <div className="relative inline-block group">
+          <a
+            href={source.source_url}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-block"
+            aria-describedby={`source-tooltip-${source.id}`}
+          >
+            {chip}
+          </a>
+          <div
+            id={`source-tooltip-${source.id}`}
+            role="tooltip"
+            className="absolute left-0 bottom-full mb-2 z-50 hidden w-80 group-hover:block"
+          >
+            <div className="rounded-md border border-metal/20 bg-background shadow-lg overflow-hidden">
+              <iframe
+                src={source.source_url}
+                title={displayName}
+                loading="lazy"
+                className="w-full h-48 border-0 bg-white"
+              />
+            </div>
+            <p className="text-xs text-muted mt-1 px-1">{tooltipContent}</p>
           </div>
-          <p className="text-xs text-muted mt-1 px-1">{tooltipContent}</p>
         </div>
+        {graphLink}
       </div>
     );
   }
 
-  return chip;
+  return (
+    <div className="inline-flex items-center gap-0.5">
+      {chip}
+      {graphLink}
+    </div>
+  );
 }
 
 /**

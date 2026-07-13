@@ -81,6 +81,7 @@ class SummaryMetrics(BaseModel):
     below_threshold: list[str] = Field(default_factory=list)
     per_category_recall: dict[str, float] = Field(default_factory=dict)
     per_hop_metrics: dict[str, dict[str, float]] = Field(default_factory=dict)
+    per_category_judge: dict[str, dict[str, float]] = Field(default_factory=dict)
 
 
 class EvaluationReport(BaseModel):
