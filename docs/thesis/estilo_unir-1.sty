@@ -1,0 +1,205 @@
+%
+%Comandos y paquetes que se introducen
+%
+%
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{unir}
+%
+%---paquetes---------------------
+%
+%idioma i codificación
+\usepackage{babel}
+\usepackage[utf8]{inputenc} %descomentar esta línea si se trabaja en linux
+%\usepackage[latin1]{inputenc} %comentar esta línea si se trabaja en linux
+% NOTA TÉCNICA (corrección 2026-06-23): sin \usepackage[T1]{fontenc}, LaTeX
+% usa la codificación de fuente OT1 por defecto, que no incluye los
+% caracteres acentuados del español como glifos compuestos. Esto provoca
+% que tildes y eñes se rendericen incorrectamente (p. ej. "´o" en lugar de
+% "ó") en la salida PDF aunque el código fuente .tex sea UTF-8 correcto.
+% T1 es imprescindible para cualquier documento en español.
+\usepackage[T1]{fontenc}
+
+
+%simbolos
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathabx}
+\usepackage{amsfonts}
+
+\usepackage{titling}
+\usepackage{titlesec}
+
+%imagenes
+\usepackage[dvips]{epsfig}
+\usepackage{graphicx}
+\usepackage{color}
+
+%colores en tablas
+\usepackage{colortbl}
+
+%cabeceras y pies de página
+\usepackage{vmargin}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhfoffset{20pt}
+\renewcommand{\headrulewidth}{0.0pt}
+% El título del TFE puede ser largo y ocupar varias líneas en la cabecera
+% (normativa UNIR, apdo. 1.3: nombre del estudiante + título del TFE en
+% TODAS las páginas). Se reserva suficiente altura y se reduce ligeramente
+% el tamaño de letra de la cabecera para evitar que se solape con el cuerpo.
+\setlength{\headheight}{40pt}%
+
+\renewcommand{\maketitle}{\creaportada}
+
+\renewcommand{\baselinestretch}{1.5}
+
+
+
+\usepackage{etoolbox}
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{\if@openright\clearpage\else\clearpage\fi}{}{}
+
+% Normativa UNIR (apdo. 1.3): el encabezado debe aparecer en TODAS las
+% páginas. Por defecto, book.cls aplica \thispagestyle{plain} a la primera
+% página de cada capítulo, lo que oculta el \rhead en esa página. Forzamos
+% el estilo "fancy" también ahí.
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+
+
+
+%hiper-referencias
+\usepackage{hyperref}
+
+
+%
+%
+%
+\definecolor{azulunir}{rgb}{0,0.59,0.80}
+
+\newcommand\director[1]{\def\@director{#1}}
+\newcommand\nombreciudad[1]{\def\@nombreciudad{#1}}
+\newcommand\titulacion[1]{\def\@titulacion{#1}}
+\director{}
+\nombreciudad{}
+
+% NOTA TÉCNICA: \thetitle (paquete titling) entra en conflicto con la
+% redefinición de \title que hace hyperref, dejando \thetitle vacío o con
+% contenido incorrecto en el cuerpo del documento. Para mostrar el título
+% del TFE en la cabecera de forma fiable (normativa UNIR, apdo. 1.3) se
+% define aquí una macro independiente, \tfetitulo, que se debe rellenar
+% con \tfetitulo{...} en el documento principal (ver plantilla.tex).
+\newcommand\tfetitulo[1]{\def\@tfetitulo{#1}}
+\tfetitulo{}
+
+% NOTA TÉCNICA (corrección 2026-06-23): el valor original de -4cm empujaba
+% el título del capítulo demasiado lejos del encabezado, generando un hueco
+% visual excesivo e inconsistente entre páginas (capítulos numerados vs.
+% \tableofcontents, títulos de una vs. dos líneas). -2.5cm da un equilibrio
+% visual estable verificado en Cap. 1 (título corto), Cap. 5 (título a dos
+% líneas) e Índice de Contenidos (capítulo no numerado).
+\titleformat{\chapter}[hang]{\vspace{-2.5cm}\Huge\bfseries\color{azulunir}}{\thechapter. }{0pt}{\Huge\bfseries}
+
+
+
+%Entornos de teoremas
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{prop}{Proposición}
+\newtheorem{coro}{Corolario}
+\newtheorem{lema}{Lema}
+\newtheorem{defi}{Definición}
+%aquests entorns no estan en italica
+\theoremstyle{definition}
+\newtheorem{obs}{Observación}
+\newtheorem{ex}{Ejemplo}
+
+%
+%shortcuts
+%
+%lletres dobles
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+%cals
+\newcommand{\CC}{\mathcal{C}}
+%gregues
+\newcommand{\al}{\alpha}
+\newcommand{\g}{\gamma}
+\renewcommand{\d}{\delta}
+\newcommand{\s}{\sigma}
+\newcommand{\la}{\lambda}
+\newcommand{\e}{\varepsilon}
+\newcommand{\om}{\omega}
+\newcommand{\vp}{\varphi}
+%derivada parcial
+\newcommand{\p}{\partial}
+%dispstyle
+\newcommand{\ds}{\displaystyle}
+%mathrm's
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\diag}{\mathrm{diag}}
+
+
+
+
+
+
+\newcommand{\creaportada}{\begingroup  
+\thispagestyle{empty}
+\includegraphics[width= 0.8\textwidth]{logo_unir}
+
+\vspace{1cm}
+\centering{
+\begin{tabular}{!{\color{azulunir}\vrule width 2pt}p{12cm}}
+{\Large {\bf Universidad Internacional de la Rioja (UNIR)}} \\ \vspace{0.1cm}
+{ \huge {\bf Escuela Superior de Ingeniería y Tecnología}} \\ \vspace{0.1cm}
+{ \Large {\bf \@titulacion}}\\ \vspace{1cm}
+{\Huge {\bf {\color{azulunir}{\@tfetitulo} }  }  }
+\end{tabular}
+}
+\vfill
+
+\noindent
+\flushleft{
+{\bf Trabajo Fin de Estudios}\\  \vspace{0.3cm}
+{\bf presentado por:} \theauthor\\  \vspace{0.3cm}
+{\bf Dirigido por:} \@director %\thedirector
+}
+\vspace{3cm}
+
+{\color{azulunir}{Ciudad:}}\@nombreciudad\\
+{\color{azulunir}{Fecha:}} \thedate
+\newpage
+\thispagestyle{empty}
+\endgroup}
+
+
+
+
+
+%---------------------------
+%cabecera del trabajo
+%---------------------------
+% Normativa UNIR (apdo. 1.3): todas las páginas deben llevar un encabezado
+% con el nombre completo del estudiante y el título del TFE.
+\lhead{}
+\rhead{\footnotesize\theauthor\\\footnotesize\@tfetitulo}
+%\lfoot{\thetitle}
+\rfoot{\thepage}
+\cfoot[]{}
+\chead[]{}
+
+
+
+
+
+
+
+
+
+
+
