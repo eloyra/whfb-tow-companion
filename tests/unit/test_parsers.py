@@ -223,3 +223,17 @@ def test_magic_item_parser_dedicated_page_ogre_blade():
     assert node["id"] == "ogre-blade"
     assert node["name"] == "Ogre Blade"
     assert node["points_cost"] == 75
+
+
+def test_magic_item_parser_dedicated_page_references_edges():
+    """A dedicated magic-item page whose body text links to other rules should emit
+    REFERENCES edges — previously this parser emitted zero edges for any page shape."""
+    html = (_RAW / "core_rule" / "sword-of-sorrow.html").read_text(encoding="utf-8")
+    url = "https://tow.whfb.app/magic-item/sword-of-sorrow"
+    result = _magic_item_parser.parse(html, url, _FETCHED_AT)
+    assert len(result.nodes) == 1
+    ref_edges = [e for e in result.edges if e["relation"] == "REFERENCES"]
+    ref_targets = {e["dst"] for e in ref_edges}
+    assert "ward-saves" in ref_targets
+    assert "regeneration" in ref_targets
+    assert all(e["src"] == "sword-of-sorrow" for e in ref_edges)

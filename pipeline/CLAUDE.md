@@ -89,7 +89,7 @@ Key rules:
 
 ## Current pipeline state
 
-*(Last updated: 2026-07-03)*
+*(Last updated: 2026-07-14)*
 
 | Stage | Status |
 |---|---|
@@ -126,6 +126,24 @@ HTML-extraction rationale: see `docs/decisions/ADR-0006-parser-data-source-strat
 `docs/plans/scraper-html-pivot-explained.md`.
 
 Shipped (verified in live graph):
+- Dedicated `/magic-item/{slug}` pages (731, singular URL) were routed to `CoreRuleParser`
+  by the manifest's generic `core_rule` fallback — same bug class as the `/spell/` collision
+  fixed in ADR-0006, undetected until now. Produced a same-id `CoreRule` node for every
+  `MagicItem`, so any labelless `MATCH (n {id: ...})` (e.g. `pipeline/rag/pipeline.py`
+  context enrichment) could non-deterministically resolve to the wrong node. Fixed with a
+  `parsers/__init__.py` routing override (mirroring `/spell/`) and a `MagicItemParser`
+  branch for the dedicated single-entry page shape (`entry.sys.contentType.sys.id ==
+  "magicItem"`, fields identical to one list-page item entry). Also recovered 33 magic items
+  that only ever existed on a dedicated page, never in a listing embed, and — since
+  `MagicItemParser` had never emitted `REFERENCES` edges at all (unlike
+  `rule_parser.py`/`spell_parser.py`/`weapon_parser.py`) — added that extraction too,
+  recovering 1,262 `REFERENCES` edges that the phantom `CoreRule` nodes had been
+  accidentally carrying under the wrong node identity. Verified: 0 MagicItem/CoreRule
+  id collisions (was 731); `CoreRule` 1,377→646, `MagicItem` 698→731 nodes;
+  `REFERENCES` 6,031→4,786 edges after full wipe+rebuild. `CAN_TAKE_ITEM` also dropped
+  73,321→45,733 as a side effect of the first true full wipe in a long time — MERGE-based
+  rebuilds never delete stale edges, so that figure had been accumulating cruft across
+  the project's history; 45,733 is the first count reflecting only current derivation logic.
 - `SPLIT_PROFILE_OF` — 155 edges (mount-profile heuristic: M present, T+W absent)
 - `HAS_COMPOSITION_RULE` — 17 edges (Army → army-list CoreRule page)
 - `PART_OF_SECTION` — 77 edges

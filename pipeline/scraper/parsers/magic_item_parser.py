@@ -36,7 +36,13 @@ army-specific items page (e.g. Vampire Counts vampiric powers). For dedicated
 pages this reads the same ``association`` field directly off the item entry.
 
 Output nodes: one ``MagicItem`` node (dedicated page) or multiple (list page).
-Output edges: none.
+Output edges: ``REFERENCES``, one per entry-hyperlink found in an item's ``body``
+rich text (e.g. an item's rules text linking to "Ward Save" or "Flaming
+Attacks") — mirrors ``RuleParser``'s ``SpecialRule`` branch. Previously this
+parser never emitted any edges; that scope gap was masked for the ~700
+dedicated-page items by the routing bug described above, since
+``CoreRuleParser`` (which does extract these) was accidentally processing
+those pages instead.
 """
 
 from __future__ import annotations
@@ -47,6 +53,7 @@ from pipeline.constants import (
     ARCANE_JOURNAL_ASSOCIATION_ARMY_MAP,
     ARCANE_JOURNAL_PAGE_ARMY_OVERRIDES,
     MAGIC_ITEM_TYPE_MAP,
+    EdgeType,
     NodeType,
 )
 from pipeline.scraper.parsers.base_parser import BaseParser, ParseResult
@@ -83,6 +90,7 @@ class MagicItemParser(BaseParser):
             node = self._parse_item(fields, url, date, book, army_id)
             if node:
                 result.nodes.append(node)
+                result.edges.extend(self._references_edges(fields, node["id"]))
             return result
 
         # List page: magic items are embedded in the body as
@@ -99,8 +107,20 @@ class MagicItemParser(BaseParser):
                 node = self._parse_item(item_data, url, date, book, army_id)
                 if node:
                     result.nodes.append(node)
+                    result.edges.extend(self._references_edges(item_data, node["id"]))
 
         return result
+
+    def _references_edges(self, data: dict, slug: str) -> list[dict]:
+        """REFERENCES edges from entry-hyperlinks in an item's ``body`` rich text.
+
+        Mirrors ``RuleParser``'s ``SpecialRule`` branch (``rule_parser.py``).
+        """
+        return [
+            self._make_edge(slug, link_slug, EdgeType.REFERENCES)
+            for link_slug in self._richtext_entry_links(data.get("body"))
+            if link_slug != slug
+        ]
 
     @staticmethod
     def _book_and_army_id(fields: dict) -> tuple[str, str | None]:

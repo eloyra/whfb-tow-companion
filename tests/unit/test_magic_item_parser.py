@@ -161,3 +161,72 @@ class TestDedicatedItemPage:
         )
         assert len(result.nodes) == 1
         assert result.nodes[0]["id"] == "sword-of-sorrow"
+
+    def test_list_page_item_body_link_emits_references_edge(self) -> None:
+        """List-page embedded items must also get REFERENCES edges from body links —
+        the same _references_edges helper is called for both page shapes."""
+        entry = {
+            "sys": {"contentType": {"sys": {"id": "rule"}}},
+            "fields": {
+                "name": "Magic Weapons",
+                "association": [{"fields": {"slug": "rulebook", "name": "Rulebook"}}],
+                "body": {
+                    "nodeType": "document",
+                    "data": {},
+                    "content": [
+                        {
+                            "nodeType": "embedded-entry-block",
+                            "data": {
+                                "magicItem": [
+                                    {
+                                        "fields": {
+                                            "name": "Sword of Sorrow",
+                                            "slug": "sword-of-sorrow",
+                                            "type": "Magic Weapon",
+                                            "cost": 50,
+                                            "description": {
+                                                "nodeType": "document",
+                                                "content": [],
+                                                "data": {},
+                                            },
+                                            "body": {
+                                                "nodeType": "document",
+                                                "data": {},
+                                                "content": [
+                                                    {
+                                                        "nodeType": "entry-hyperlink",
+                                                        "data": {
+                                                            "target": {
+                                                                "fields": {"slug": "ward-saves"},
+                                                                "sys": {
+                                                                    "contentType": {
+                                                                        "sys": {"id": "rule"}
+                                                                    }
+                                                                },
+                                                            }
+                                                        },
+                                                    }
+                                                ],
+                                            },
+                                        }
+                                    }
+                                ]
+                            },
+                        }
+                    ],
+                },
+            },
+        }
+        html = _html_with_next_data(entry)
+        result = self.parser.parse(
+            html, "https://tow.whfb.app/magic-items/magic-weapons", "2026-01-01T00:00:00Z"
+        )
+        ref_edges = [e for e in result.edges if e["relation"] == "REFERENCES"]
+        assert ref_edges == [
+            {
+                "src": "sword-of-sorrow",
+                "dst": "ward-saves",
+                "relation": "REFERENCES",
+                "properties": {},
+            }
+        ]
