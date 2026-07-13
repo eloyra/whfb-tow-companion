@@ -51,19 +51,48 @@ _EDGE_TYPE_TIERS: dict[str, int] = {
 
 _EDGE_TYPES = list(_EDGE_TYPE_TIERS.keys())
 
+# Warhammer is a densely interconnected ruleset by design (units interact with
+# rules, terrain, mounts, magic items, upgrades — that density is exactly what
+# GraphRAG exists to exploit, versus flat vector RAG). A single relation type
+# can vastly outnumber the others for a given seed (a spellcaster is eligible
+# for 100-250+ CAN_TAKE_ITEM magic items; a well-referenced rule can have
+# dozens of REFERENCES), which — sorted into one shared per-seed cap — used to
+# silently starve every other relation type (e.g. a Vampire Count's ~14
+# HAS_UPGRADE mount/equipment options, each carrying a points cost, never
+# surfaced at all once one high-volume type filled the whole budget). Each
+# type gets its own cap instead, so a single tool call returns breadth across
+# rules/mounts/items/upgrades rather than depth in just one of them — the
+# agent should rarely need a follow-up call to see "what interacts with this."
+_DEFAULT_PER_RELATION_CAP = 4
+_MAX_PER_RELATION_TYPE: dict[str, int] = {
+    "CAN_TAKE_ITEM": 3,  # by far the largest possible fan-out; kept tightest
+    "REFERENCES": 5,  # can also run into the dozens for heavily cross-linked rules
+    # A unit's own purchase options (mounts, wargear, command group, magic
+    # item/standard budgets) — bounded by what's actually on that unit's page
+    # (rarely more than ~20 even for the most loaded characters), unlike
+    # CAN_TAKE_ITEM's external pool of every eligible item in the game. Kept
+    # high rather than tightly capped: these are exactly the numbers "how much
+    # does X cost" questions need, and dropping half of them to an arbitrary
+    # alphabetical tie-break defeats the point of raising the cap at all.
+    "HAS_UPGRADE": 20,
+}
+
 
 def expand(
     driver: neo4j.Driver,
     seed_ids: list[str],
     *,
-    max_neighbors_per_seed: int = 6,
+    max_neighbors_per_seed: int = 40,
 ) -> list[dict[str, Any]]:
     """Return bounded, ranked 1-hop neighbors for ``seed_ids``.
 
     Each returned dict has keys:
     ``seed_id``, ``rel_type``, ``id``, ``label``, ``name``, ``text``, ``url``.
     Neighbors are deduplicated per seed and ranked by relationship tier (semantic
-    links first); at most ``max_neighbors_per_seed`` are kept per seed.
+    links first). Each relation type is capped independently (see
+    ``_MAX_PER_RELATION_TYPE``) before the overall ``max_neighbors_per_seed``
+    ceiling is applied, so breadth across types isn't sacrificed to depth in
+    whichever type happens to have the most edges.
     """
     if not seed_ids:
         return []
@@ -80,9 +109,28 @@ def expand(
     for sid in seed_ids:
         neighbors = grouped[sid]
         neighbors.sort(key=_neighbor_priority)
+        neighbors = _cap_per_relation_type(neighbors)
         results.extend(neighbors[:max_neighbors_per_seed])
 
     return results
+
+
+def _cap_per_relation_type(neighbors: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Drop excess rows per relation type, using ``_MAX_PER_RELATION_TYPE``
+    (falling back to ``_DEFAULT_PER_RELATION_CAP`` for any type not listed).
+
+    Applied after priority sort, so the surviving rows for a capped type are
+    still its highest-priority ones (alphabetically first, tier ties aside).
+    """
+    counts: dict[str, int] = {}
+    kept: list[dict[str, Any]] = []
+    for row in neighbors:
+        limit = _MAX_PER_RELATION_TYPE.get(row["rel_type"], _DEFAULT_PER_RELATION_CAP)
+        counts[row["rel_type"]] = counts.get(row["rel_type"], 0) + 1
+        if counts[row["rel_type"]] > limit:
+            continue
+        kept.append(row)
+    return kept
 
 
 def links_between(
@@ -139,7 +187,9 @@ def _fetch_neighbors(
                neighbor.id AS id,
                neighbor.name AS name,
                coalesce(neighbor.text, neighbor.name, '') AS text,
-               neighbor.url AS url
+               neighbor.url AS url,
+               neighbor.points_cost AS points_cost,
+               neighbor.cost_unit AS cost_unit
     """
     with driver.session() as session:
         result = session.run(
@@ -176,7 +226,7 @@ class GraphTraversal:
         self,
         seed_ids: list[str],
         *,
-        max_neighbors_per_seed: int = 6,
+        max_neighbors_per_seed: int = 40,
     ) -> list[dict[str, Any]]:
         """Return bounded, ranked 1-hop neighbors for ``seed_ids``."""
         return expand(

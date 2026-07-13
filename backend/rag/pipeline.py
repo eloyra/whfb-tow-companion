@@ -20,7 +20,7 @@ class RAGPipeline:
         traversal: Any,
         *,
         top_k: int = 8,
-        max_neighbors_per_seed: int = 6,
+        max_neighbors_per_seed: int = 40,
     ) -> None:
         self.retriever = retriever
         self.traversal = traversal
@@ -281,6 +281,8 @@ class RAGPipeline:
             if props.get("points_cost") is not None:
                 details.append(f"{props['points_cost']} pts")
             return f"({' ; '.join(details)})" if details else ""
+        if label == "Upgrade":
+            return RAGPipeline._upgrade_cost_summary(props)
         return ""
 
     @staticmethod
@@ -300,4 +302,22 @@ class RAGPipeline:
             if props.get("base_width_mm") and props.get("base_depth_mm"):
                 details.append(f"Base {props['base_width_mm']}x{props['base_depth_mm']}mm")
             return f"({' ; '.join(details)})" if details else ""
+        if label == "Upgrade":
+            return RAGPipeline._upgrade_cost_summary(props)
         return ""
+
+    @staticmethod
+    def _upgrade_cost_summary(props: dict[str, Any]) -> str:
+        """Render an Upgrade node's points cost (e.g. mount/equipment options).
+
+        ``Upgrade`` nodes carry the cost that answers "how much for X" questions
+        (mount options, wargear swaps, command group additions) but have no
+        prose ``text`` field of their own, so without this the cost is silently
+        dropped from what the agent sees during graph expansion.
+        """
+        if props.get("points_cost") is None:
+            return ""
+        unit_suffix = {"per_model": "pt/model", "per_unit": "pts/unit"}.get(
+            props.get("cost_unit"), "pts"
+        )
+        return f"(+{props['points_cost']} {unit_suffix})"

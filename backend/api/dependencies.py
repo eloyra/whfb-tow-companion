@@ -119,4 +119,4 @@ def get_rag_pipeline() -> RAGPipeline:
     embedder = get_embedder()
     retriever = GraphRAGRetriever(driver, embedder, top_k=8)
     traversal = graph_traversal.GraphTraversal(driver)
-    return RAGPipeline(retriever, traversal, max_neighbors_per_seed=6)
+    return RAGPipeline(retriever, traversal, max_neighbors_per_seed=40)

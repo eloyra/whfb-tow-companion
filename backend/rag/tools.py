@@ -21,8 +21,14 @@ from langchain.tools import tool
 
 # Maximum number of citable search_result blocks returned to Anthropic models
 # for a semantic-search result. More blocks give finer citations but increase
-# input-token cost.
-_MAX_CITABLE_NODES = 20
+# input-token cost. Seeds are listed first and always included ahead of this
+# cap (see _citable_nodes); this budget mainly governs how much of each
+# seed's 1-hop expansion survives. Sized to comfortably fit a full seed's
+# expansion under graph_traversal.expand()'s current per-seed ceiling (40,
+# itself split across per-relation-type caps) — a lower value here would
+# silently re-drop content that traversal was deliberately raised to keep
+# (e.g. a Unit's full mount/upgrade list), defeating that fix.
+_MAX_CITABLE_NODES = 60
 
 # Higher cap for the army-roster tool: a roster is only useful when complete,
 # and its per-unit blocks are one line each, so the token cost stays small.
@@ -51,8 +57,21 @@ def _source_url(node: dict[str, Any]) -> str:
 
 
 def _node_text(node: dict[str, Any]) -> str:
-    """Return non-empty text for a node, falling back to its name."""
-    return (node.get("text") or node.get("name") or "").strip()
+    """Return non-empty text for a node, falling back to its name.
+
+    ``Upgrade`` nodes (mount options, wargear swaps, command additions) carry
+    their points cost as a bare property with no prose ``text`` field, so it
+    is appended here — otherwise "how much for X" questions silently lose the
+    number on every citation path (native search_result blocks and the legacy
+    JSON path both flow through this helper).
+    """
+    text = (node.get("text") or node.get("name") or "").strip()
+    if node.get("label") == "Upgrade" and node.get("points_cost") is not None:
+        unit_suffix = {"per_model": "pt/model", "per_unit": "pts/unit"}.get(
+            node.get("cost_unit"), "pts"
+        )
+        text = f"{text} (+{node['points_cost']} {unit_suffix})".strip()
+    return text
 
 
 def _citable_nodes(result: dict[str, Any], max_nodes: int) -> list[dict[str, Any]]:

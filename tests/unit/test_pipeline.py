@@ -108,6 +108,18 @@ def test_query_formats_context_with_sources_links_and_expansion() -> None:
     assert "(SpecialRule)" in context
 
 
+def test_neighbor_summary_surfaces_upgrade_cost() -> None:
+    """Upgrade nodes (mount options, wargear swaps) have no prose text -- their
+    points cost is a bare property and must not be silently dropped."""
+    assert RAGPipeline._neighbor_summary("Upgrade", {"points_cost": 16, "cost_unit": "flat"}) == (
+        "(+16 pts)"
+    )
+    assert RAGPipeline._neighbor_summary(
+        "Upgrade", {"points_cost": 1, "cost_unit": "per_model"}
+    ) == ("(+1 pt/model)")
+    assert RAGPipeline._neighbor_summary("Upgrade", {"points_cost": None}) == ""
+
+
 def test_query_preserves_full_source_text() -> None:
     """Rule text is primary evidence and must never be truncated."""
     long_text = "A" * 600

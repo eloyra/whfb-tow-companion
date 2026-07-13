@@ -180,6 +180,59 @@ def test_native_expansion_blocks_are_labelled_as_related_context() -> None:
     assert "Causes Terror." in terror_text
 
 
+class UpgradePipeline:
+    """Fake pipeline whose sole expansion neighbour is an Upgrade node.
+
+    ``Upgrade`` nodes (mount options, wargear swaps) have no prose ``text``
+    field -- their points cost is a bare property. Regression test for the
+    bug where that cost silently never reached the agent on either citation
+    path (native search_result blocks or the legacy JSON context string).
+    """
+
+    def query(self, query: str) -> dict[str, Any]:
+        return {
+            "context": "Context",
+            "sources": [
+                {
+                    "id": "vampire-count",
+                    "label": "Unit",
+                    "name": "Vampire Count",
+                    "text": "Vampire Count profile text.",
+                    "url": "https://tow.whfb.app/unit/vampire-count",
+                }
+            ],
+            "links": [],
+            "expansion": [
+                {
+                    "seed_id": "vampire-count",
+                    "rel_type": "HAS_UPGRADE",
+                    "id": "vampire-count#upgrade-6",
+                    "label": "Upgrade",
+                    "name": "Nightmare",
+                    "text": "",
+                    "url": None,
+                    "points_cost": 16,
+                    "cost_unit": "flat",
+                }
+            ],
+        }
+
+
+def test_native_expansion_surfaces_upgrade_cost() -> None:
+    tool = _tools_by_name(UpgradePipeline(), native=True)["query_warhammer_archive"]
+    msg = tool.invoke(
+        {
+            "name": "query_warhammer_archive",
+            "args": {"query": "nightmare mount cost"},
+            "id": "call_1",
+            "type": "tool_call",
+        }
+    )
+
+    upgrade_text = msg.content[1]["content"][0]["text"]
+    assert "+16 pts" in upgrade_text
+
+
 def test_native_sources_metadata_stays_aligned_with_blocks() -> None:
     """``search_result_index`` citations are positional: the artifact sources
     list must match the content blocks one-to-one, including when a node has
