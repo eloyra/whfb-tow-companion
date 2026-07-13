@@ -97,9 +97,9 @@ Key rules:
 | Parse | Done — nodes and edges in `data/parsed/` (18 JSON files per ADR-0004); see gaps below |
 | Graph build | Done — graph loaded into Neo4j; `load_report.json` in `data/graph/` |
 | Embeddings | Done — `generator.py`, `text.py` (13 per-label builders), `vector_store.py` (HNSW per-label indexes); wired into `run_pipeline.py` |
-| Translations | Pending — `i18n/translator.py` is a `# TODO` stub; `run_translate()` is a no-op; `en.json`/`es.json` empty |
+| Translations | Done — `i18n/translator.py` implements `Translator`, mirroring `EmbeddingGenerator`; writes flat `name_es`/`text_es` via a local Ollama model (no paid API); `translations/es.json` is a translation-memory cache, not a data store |
 
-Remaining stubs in this subtree: `graph/serializer.py` (1-line `# TODO`, not imported by the builder), `i18n/translator.py` (1-line `# TODO`).
+Remaining stubs in this subtree: `graph/serializer.py` (1-line `# TODO`, not imported by the builder).
 
 Known gaps (deferred, not bugs):
 - Champion magic-item budget **not profile-scoped** — `points_budget` is 0 / `None` on
@@ -117,7 +117,10 @@ Known gaps (deferred, not bugs):
   fallback only.
 - `_options.py` typed-href rework — deferred; two-pass UNLOCKS relabel is working and
   sufficient.
-- Translations stage — pending (see state table above).
+- `text_es` mirrors the post-`embed` `n.text` (the enriched graph-context blob), so
+  re-running `embed` after `translate` makes `text_es` stale — the `name_es IS NULL`
+  filter only detects untranslated nodes, not changed `text`. Re-run `translate` again
+  after any `embed` re-run.
 
 HTML-extraction rationale: see `docs/decisions/ADR-0006-parser-data-source-strategy.md` and
 `docs/plans/scraper-html-pivot-explained.md`.

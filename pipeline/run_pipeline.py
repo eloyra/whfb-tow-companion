@@ -50,7 +50,9 @@ def run_embed() -> None:
 
 def run_translate() -> None:
     logger.info("Stage: translate")
-    # TODO: from pipeline.i18n.translator import Translator; Translator().run()
+    from pipeline.i18n.translator import Translator
+
+    Translator().run()
 
 
 STAGE_FN = {
