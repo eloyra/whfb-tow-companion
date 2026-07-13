@@ -197,7 +197,7 @@ class TestAggregateMetrics:
 class TestDataset:
     def test_loads_all_queries(self) -> None:
         queries = load_queries()
-        assert len(queries) == 70
+        assert len(queries) == 100
         assert all(isinstance(q, Query) for q in queries)
         assert queries[0].id == "q001"
 

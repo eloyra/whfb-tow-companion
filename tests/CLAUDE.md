@@ -31,7 +31,7 @@ cd frontend && pnpm test:e2e   # Playwright (needs dev server running)
 
 ## Evaluation suite
 
-`evaluation/test_queries.json` is the 70-query golden set, expanded from `docs/validation/query-coverage-seed.md` and annotated with `expected_rules`, `expected_army`, `category`, and a judge `rubric`. `tests/evaluation/evaluate.py` runs retrieval-only (`make evaluate`) or full agent + LLM-judge (`make evaluate-full`) evaluation and writes JSON/Markdown reports to `tests/evaluation/reports/`.
+`evaluation/test_queries.json` is the 100-query golden set, expanded from `docs/validation/query-coverage-seed.md` and annotated with `expected_rules`, `expected_army`, `category`, and a judge `rubric`. `tests/evaluation/evaluate.py` runs retrieval-only (`make evaluate`) or full agent + LLM-judge (`make evaluate-full`) evaluation and writes JSON/Markdown reports to `tests/evaluation/reports/`.
 
 `tests/evaluation/test_evaluate.py` contains pure-function unit tests for scoring, citation extraction, and dataset validation. These run in the normal pytest suite and act as the CI gate for the harness.
 

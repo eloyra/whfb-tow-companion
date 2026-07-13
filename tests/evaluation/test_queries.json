@@ -628,5 +628,275 @@
     "expected_army": null,
     "category": "army_building",
     "rubric": "Yes, exactly enough -- a Grand Army composition list requires at least 25% of points on Core, and 25% of 2000 is 500."
+  },
+  {
+    "id": "q071",
+    "language": "en",
+    "query": "Half my unit just got shot to bits -- do they turn and run straight away?",
+    "expected_rules": ["panic-tests"],
+    "expected_army": null,
+    "category": "psychology",
+    "rubric": "Not automatically -- the unit makes a Panic test against its Leadership. If it fails with more than 50% of its starting models remaining it Falls Back in Good Order; with 50% or fewer remaining it flees."
+  },
+  {
+    "id": "q072",
+    "language": "en",
+    "query": "My frenzied warriors have a charge available but I'd rather hold them back -- can I?",
+    "expected_rules": ["frenzy"],
+    "expected_army": null,
+    "category": "psychology",
+    "rubric": "No; a unit with one or more Frenzied models that can declare a charge must do so. Frenzied models also get +1 Attacks during a turn they charged (or the turn after a follow up move)."
+  },
+  {
+    "id": "q073",
+    "language": "en",
+    "query": "My trolls failed their Stupidity test -- what can they actually still do this turn?",
+    "expected_rules": ["stupidity"],
+    "expected_army": null,
+    "category": "psychology",
+    "rubric": "Very little: a unit that succumbs to Stupidity cannot move (except to flee), cannot shoot or cast spells, cannot attempt a Wizardly dispel, and must Hold if charged."
+  },
+  {
+    "id": "q074",
+    "language": "en",
+    "query": "A terror-causing dragon just declared a charge on my spearmen -- what do I roll before anything else?",
+    "expected_rules": ["terror"],
+    "expected_army": null,
+    "category": "psychology",
+    "rubric": "The charged unit immediately makes a Leadership test: if failed it must Flee; if passed it declares its charge reaction normally. (If the unit cannot choose to Flee, no test is made.)"
+  },
+  {
+    "id": "q075",
+    "language": "en",
+    "query": "Why do Lizardmen shrug off fear and panic so easily?",
+    "expected_rules": ["cold-blooded"],
+    "expected_army": null,
+    "category": "psychology",
+    "rubric": "Cold Blooded: when making a Fear, Panic or Terror test, the model rolls an extra D6 and discards the highest result."
+  },
+  {
+    "id": "q076",
+    "language": "en",
+    "query": "The chargers started really close to my archers -- can they still stand and shoot?",
+    "expected_rules": ["stand-and-shoot"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "No; if the distance between the units is less than the charging unit's Movement characteristic, the charged unit cannot Stand & Shoot and must Hold or Flee instead. (If far enough, it may shoot even if the charger is beyond weapon range, then Holds.)"
+  },
+  {
+    "id": "q077",
+    "language": "en",
+    "query": "What do I need to roll to get my fleeing unit back in the fight?",
+    "expected_rules": ["rally-fleeing-units"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "A Rally test -- during the Rally Fleeing Units sub-phase of the Strategy phase, test against the fleeing unit's Leadership; pass and it rallies, fail and it continues fleeing."
+  },
+  {
+    "id": "q078",
+    "language": "en",
+    "query": "Can units near my general borrow his Leadership?",
+    "expected_rules": ["inspiring-presence"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Yes; Inspiring Presence lets friendly units within the General's Command range use the General's Leadership instead of their own, unless the General is fleeing."
+  },
+  {
+    "id": "q079",
+    "language": "en",
+    "query": "What re-rolls does my Battle Standard Bearer actually hand out?",
+    "expected_rules": ["hold-your-ground"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Hold Your Ground: friendly units within the BSB's Command range may re-roll failed Panic or Rally tests (unless the BSB is fleeing), and may re-roll the 2D6 of a Break test, accepting the second result even if worse."
+  },
+  {
+    "id": "q080",
+    "language": "en",
+    "query": "Does armour piercing chew through ward saves too?",
+    "expected_rules": ["ward-saves"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "No; rules that affect armour values (like Armour Piercing) do not affect Warding values unless explicitly stated otherwise."
+  },
+  {
+    "id": "q081",
+    "language": "en",
+    "query": "I rolled a 6 to wound with my Killing Blow guy -- what happens to that knight?",
+    "expected_rules": ["killing-blow"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "A natural 6 To Wound in combat strikes a Killing Blow: infantry or cavalry victims get no armour or Regeneration save (Ward saves are allowed), and an unsaved wound makes the model lose all its remaining Wounds."
+  },
+  {
+    "id": "q082",
+    "language": "en",
+    "query": "Do poisoned attacks auto-wound when I roll a 6 to hit?",
+    "expected_rules": ["poisoned-attacks"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "No auto-wound; a natural 6 To Hit lets the model apply a +2 modifier to that hit's roll To Wound. It doesn't work on spells, magic weapon attacks, attacks needing 7+ To Hit, or automatic hits."
+  },
+  {
+    "id": "q083",
+    "language": "en",
+    "query": "Do my chariot's impact hits need to roll to hit?",
+    "expected_rules": ["impact-hits"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "No; Impact Hits hit automatically, using the model's unmodified Strength. They require the charger to have moved 3\" or more into base contact, and are resolved when the combat is chosen, before challenges are issued."
+  },
+  {
+    "id": "q084",
+    "language": "en",
+    "query": "Can my dragon breathe fire at chargers as a stand and shoot reaction?",
+    "expected_rules": ["breath-weapon"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "No; a Breath Weapon can be used once per round during the model's own Shooting phase, and cannot be used as a Stand & Shoot reaction or while engaged in combat."
+  },
+  {
+    "id": "q085",
+    "language": "en",
+    "query": "What do lances actually do for my knights on the charge?",
+    "expected_rules": ["lance"],
+    "expected_army": null,
+    "category": "weapon_stats",
+    "rubric": "A lance gives Strength +2 and AP -2, but only during a turn in which the wielder charged and only against models it charged; usable only by cavalry or monster troop types."
+  },
+  {
+    "id": "q086",
+    "language": "en",
+    "query": "How far does a handgun shoot and how hard does it hit?",
+    "expected_rules": ["handgun"],
+    "expected_army": null,
+    "category": "weapon_stats",
+    "rubric": "A handgun has Range 24\", Strength 4, and AP -1."
+  },
+  {
+    "id": "q087",
+    "language": "en",
+    "query": "If my archers fire multiple shots, what's the accuracy penalty?",
+    "expected_rules": ["multiple-shots"],
+    "expected_army": null,
+    "category": "weapon_stats",
+    "rubric": "Each roll To Hit suffers an additional -1 modifier when firing Multiple Shots, and all models in the unit must fire the same way (all single or all multiple)."
+  },
+  {
+    "id": "q088",
+    "language": "en",
+    "query": "What kicks in when I roll a 6 to wound with an Armour Bane weapon?",
+    "expected_rules": ["armour-bane"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "On a natural 6 To Wound, the weapon's Armour Piercing characteristic is improved by the bracketed X value (e.g. AP '-' with Armour Bane (1) counts as AP -1 for that wound)."
+  },
+  {
+    "id": "q089",
+    "language": "en",
+    "query": "I rolled snake eyes on my casting roll -- how bad is it?",
+    "expected_rules": ["miscast"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "A natural double 1 on a Casting roll is a miscast: the spell is (unless stated otherwise) not cast and you roll 2D6 on the Miscast table -- the worst result (2-4, Dimensional Cascade) centres a 5\" template on the Wizard dealing Strength 10, AP -4 hits."
+  },
+  {
+    "id": "q090",
+    "language": "en",
+    "query": "Is a Dispel Scroll a one-shot thing, and what does it actually do?",
+    "expected_rules": ["dispel-scroll"],
+    "expected_army": null,
+    "category": "magic_item",
+    "rubric": "Yes, single use: when attempting a Wizardly dispel the Wizard rolls an extra D6 and discards the lowest result; but if a double 1 comes up on any two dice, the Wizard is outclassed."
+  },
+  {
+    "id": "q091",
+    "language": "en",
+    "query": "Can my general dodge a cannonball by hiding in a unit?",
+    "expected_rules": ["look-out-sir-characters"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "If the character is hit by a shooting attack while in a unit with five or more rank and file models of the same troop type, roll a D6 for \"Look Out, Sir!\": on a 2+ a unit member is hit instead; on a 1 the character takes the hit."
+  },
+  {
+    "id": "q092",
+    "language": "en",
+    "query": "How far can my troops march, and can they still shoot afterwards?",
+    "expected_rules": ["marching"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "A marching unit doubles its Movement (a Close Order formation in Marching Column may triple it) and may only wheel; a unit that marched cannot shoot that turn, including casting Magic Missile or Magical Vortex spells."
+  },
+  {
+    "id": "q093",
+    "language": "en",
+    "query": "What does Swiftstride add to my cavalry's charge range?",
+    "expected_rules": ["swiftstride"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "A unit made up entirely of Swiftstride models increases its maximum possible charge range by 3\" and may choose to apply a +D6 modifier before making a Charge, Flee or Pursuit roll."
+  },
+  {
+    "id": "q094",
+    "language": "en",
+    "query": "I wiped the enemy out on the charge -- can I keep rolling forward into the next unit?",
+    "expected_rules": ["overrun"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "If a unit completely destroys its enemy before the Break Test sub-phase it may overrun: a normal pursuit move that must go directly forwards, without pivoting (or it may attempt to restrain and reform)."
+  },
+  {
+    "id": "q095",
+    "language": "en",
+    "query": "What happens to my hero if he chickens out of a challenge?",
+    "expected_rules": ["refusing-a-challenge"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "If a challenge is refused, the issuing player nominates one of the eligible characters/champions, who must retire from combat: it moves away from the fighting rank, cannot attack or be attacked, and confers no benefits (Leadership, special rules or otherwise) to its unit."
+  },
+  {
+    "id": "q096",
+    "language": "en",
+    "query": "My daemons lost combat by 3 -- what do they roll and what's the worst case?",
+    "expected_rules": ["daemonic-instability"],
+    "expected_army": null,
+    "category": "rule_interaction",
+    "rubric": "A Leadership test with +1 to the result per combat result point lost (here +3): if failed, the unit loses Wounds equal to the amount it failed by; on a natural double 6 the unit is dragged back into the aether and removed from play."
+  },
+  {
+    "id": "q097",
+    "language": "en",
+    "query": "When can my Orc warboss call a Waaagh and what does everyone get?",
+    "expected_rules": ["waaagh"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Once per game, during the Command sub-phase, the character passes a Leadership test: until your next Start of Turn sub-phase the character, their mount and any joined Orc unit re-roll To Hit rolls of a natural 1 and claim +1 combat result point."
+  },
+  {
+    "id": "q098",
+    "language": "en",
+    "query": "What does my Bretonnian army trade away for the Lady's blessing?",
+    "expected_rules": ["blessings-of-the-lady"],
+    "expected_army": null,
+    "category": "rule_lookup",
+    "rubric": "Instead of rolling off for first turn, the Bretonnian army kneels and prays -- the opponent counts as winning the roll-off. In exchange, models with the rule get a 6+ Ward save against any wounds, improved to 5+ against wounds from Strength 5 or higher attacks."
+  },
+  {
+    "id": "q099",
+    "language": "en",
+    "query": "What am I paying for Grail Knights and what do they bring to the table?",
+    "expected_rules": ["grail-knights"],
+    "expected_army": "kingdom-of-bretonnia",
+    "category": "unit_stats",
+    "rubric": "Grail Knights cost 38 points per model (unit size 3+), with WS6 S4 T4 A2 Ld9, and carry rules including Blessings of the Lady, Lance Formation, First Charge, Counter Charge and Swiftstride."
+  },
+  {
+    "id": "q100",
+    "language": "en",
+    "query": "Are Saurus Warriors any good for their points?",
+    "expected_rules": ["saurus-warriors"],
+    "expected_army": "lizardmen",
+    "category": "unit_stats",
+    "rubric": "Saurus Warriors cost 14 points per model (unit size 10+), with M4 WS3 S4 T4 A2 Ld8 and the Close Order, Cold Blooded and Obsidian Blades rules -- durable, hard-hitting core infantry."
   }
 ]

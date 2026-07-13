@@ -149,6 +149,112 @@ def test_query_notes_when_no_direct_links_exist() -> None:
     assert "No direct edge was found" in context
 
 
+class _FakeSession:
+    def __init__(self, rows: list[dict[str, Any]], calls: list[dict[str, Any]]) -> None:
+        self._rows = rows
+        self._calls = calls
+
+    def __enter__(self) -> "_FakeSession":
+        return self
+
+    def __exit__(self, *exc: Any) -> None:
+        return None
+
+    def run(self, cypher: str, **params: Any) -> list[dict[str, Any]]:
+        self._calls.append({"cypher": cypher, "params": params})
+        return self._rows
+
+
+class _FakeDriver:
+    def __init__(self, rows: list[dict[str, Any]]) -> None:
+        self._rows = rows
+        self.calls: list[dict[str, Any]] = []
+
+    def session(self) -> _FakeSession:
+        return _FakeSession(self._rows, self.calls)
+
+
+class _FakeTraversalWithDriver(FakeTraversal):
+    def __init__(self, driver: _FakeDriver) -> None:
+        super().__init__([], [])
+        self.driver = driver
+
+
+_ROSTER_ROWS = [
+    {
+        "army_name": "Vampire Counts",
+        "id": "vampire-lord",
+        "name": "Vampire Lord",
+        "url": "url-lord",
+        "unit_category": "Character",
+        "army_category": "Characters",
+        "cost": 185,
+        "size_min": 1,
+        "size_max": None,
+        "troop_types": ["Infantry"],
+    },
+    {
+        "army_name": "Vampire Counts",
+        "id": "skeleton-warriors",
+        "name": "Skeleton Warriors",
+        "url": "url-skeletons",
+        "unit_category": "Infantry",
+        "army_category": None,
+        "cost": 6,
+        "size_min": 10,
+        "size_max": None,
+        "troop_types": ["Regular Infantry"],
+    },
+]
+
+
+def test_list_army_units_returns_roster_payload() -> None:
+    driver = _FakeDriver(_ROSTER_ROWS)
+    pipeline = RAGPipeline(FakeRetriever([]), _FakeTraversalWithDriver(driver))
+    result = pipeline.list_army_units("Vampire Counts")
+
+    assert [src["id"] for src in result["sources"]] == ["vampire-lord", "skeleton-warriors"]
+    assert result["links"] == []
+    assert result["expansion"] == []
+
+    # Both the display name and its slugified form are passed to Cypher so
+    # either input form resolves the army.
+    params = driver.calls[0]["params"]
+    assert params["army"] == "Vampire Counts"
+    assert params["slug"] == "vampire-counts"
+
+    context = result["context"]
+    assert "## Units of Vampire Counts (2 entries)" in context
+    assert "[skeleton-warriors] Skeleton Warriors: Infantry" in context
+    assert "6 pts/model" in context
+    assert "unit size 10+" in context
+    assert "Core/Special/Rare" in context  # slot caveat surfaced to the model
+
+    # Per-unit text is self-contained (used as the citable block content).
+    skeletons = result["sources"][1]
+    assert skeletons["text"] == (
+        "Skeleton Warriors (Vampire Counts): Infantry; Regular Infantry; "
+        "6 pts/model; unit size 10+"
+    )
+
+
+def test_list_army_units_filters_by_category() -> None:
+    pipeline = RAGPipeline(
+        FakeRetriever([]), _FakeTraversalWithDriver(_FakeDriver(_ROSTER_ROWS))
+    )
+    result = pipeline.list_army_units("vampire-counts", "characters")
+
+    assert [src["id"] for src in result["sources"]] == ["vampire-lord"]
+
+
+def test_list_army_units_reports_empty_roster() -> None:
+    pipeline = RAGPipeline(FakeRetriever([]), _FakeTraversalWithDriver(_FakeDriver([])))
+    result = pipeline.list_army_units("not-an-army")
+
+    assert result["sources"] == []
+    assert "No units found" in result["context"]
+
+
 def test_query_formats_link_props() -> None:
     seeds = [
         {

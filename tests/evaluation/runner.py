@@ -93,14 +93,14 @@ async def run_full_evaluation(
 
     from backend.api.dependencies import get_llm
     from backend.api.dependencies import get_rag_pipeline as _get_rag_pipeline
-    from backend.rag.prompts.system_prompt import SYSTEM_PROMPT
+    from backend.rag.prompts.templates import build_system_prompt
     from backend.rag.tools import build_tools
 
     retriever = build_retriever(top_k=top_k)
     pipeline = _get_rag_pipeline()
     llm = get_llm()
     tools = build_tools(pipeline)
-    agent = create_agent(llm, tools=tools, system_prompt=SYSTEM_PROMPT)
+    agent = create_agent(llm, tools=tools, system_prompt=build_system_prompt())
     config = {"metadata": {"environment": os.getenv("ENVIRONMENT", "evaluation")}}
 
     results: list[AgentResult] = []
