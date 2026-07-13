@@ -10,7 +10,7 @@ from typing import Any
 
 import pytest
 
-from backend.rag.retriever import GraphRAGRetriever
+from backend.rag.retriever import RRF_K, GraphRAGRetriever, _lucene_escape
 from pipeline.constants import EMBEDDABLE_LABELS
 
 
@@ -54,8 +54,11 @@ class FakeSession:
     def __exit__(self, *exc: object) -> None:
         return None
 
-    def run(self, cypher: str, **parameters: Any) -> FakeResult:
-        self.queries.append((cypher, parameters))
+    def run(self, query: str, **parameters: Any) -> FakeResult:
+        # Parameter named "query" (not "cypher") to match neo4j.Session.run's
+        # real signature — a kwarg also named "query" would collide here just
+        # as it would against the live driver, catching that class of bug.
+        self.queries.append((query, parameters))
         label = parameters.get("label", "")
         return FakeResult(self._responses.get(label, []))
 
@@ -165,7 +168,9 @@ def test_retrieve_lexical_match_forces_inclusion() -> None:
             _result("fly", "SpecialRule", "Fly", "Models with this rule can fly.", "url1", 0.10),
         ],
     }
-    retriever = GraphRAGRetriever(FakeDriver(responses), FakeEmbedder(), top_k=5)
+    retriever = GraphRAGRetriever(
+        FakeDriver(responses), FakeEmbedder(), top_k=5, lexical_fallback=True
+    )
     results = retriever.retrieve("Can a unit with Fly charge over enemy units?")
 
     ids = [r["id"] for r in results]
@@ -184,7 +189,9 @@ def test_retrieve_lexical_match_strips_parenthetical_placeholder() -> None:
             ),
         ],
     }
-    retriever = GraphRAGRetriever(FakeDriver(responses), FakeEmbedder(), top_k=5)
+    retriever = GraphRAGRetriever(
+        FakeDriver(responses), FakeEmbedder(), top_k=5, lexical_fallback=True
+    )
     results = retriever.retrieve("Can a unit with Fly charge over enemy units?")
 
     fly_result = next(r for r in results if r["id"] == "fly")
@@ -206,7 +213,9 @@ def test_retrieve_lexical_match_stems_multiword_names() -> None:
             ),
         ],
     }
-    retriever = GraphRAGRetriever(FakeDriver(responses), FakeEmbedder(), top_k=5)
+    retriever = GraphRAGRetriever(
+        FakeDriver(responses), FakeEmbedder(), top_k=5, lexical_fallback=True
+    )
     results = retriever.retrieve("What terrain disrupts units?")
 
     result = next(r for r in results if r["id"] == "disrupted-units")
@@ -221,7 +230,9 @@ def test_retrieve_lexical_match_single_word_does_not_stem() -> None:
             _result("fly", "SpecialRule", "Fly", "Models with this rule can fly.", "url1", 0.10),
         ],
     }
-    retriever = GraphRAGRetriever(FakeDriver(responses), FakeEmbedder(), top_k=5)
+    retriever = GraphRAGRetriever(
+        FakeDriver(responses), FakeEmbedder(), top_k=5, lexical_fallback=True
+    )
     results = retriever.retrieve("Tell me about butterfly wings on a flying carpet")
 
     fly_result = next(r for r in results if r["id"] == "fly")
@@ -237,7 +248,9 @@ def test_retrieve_lexical_match_is_word_boundary_only() -> None:
             _result("fly", "SpecialRule", "Fly", "Models with this rule can fly.", "url1", 0.10),
         ],
     }
-    retriever = GraphRAGRetriever(FakeDriver(responses), FakeEmbedder(), top_k=5)
+    retriever = GraphRAGRetriever(
+        FakeDriver(responses), FakeEmbedder(), top_k=5, lexical_fallback=True
+    )
     results = retriever.retrieve("Tell me about butterfly wings on a flying carpet")
 
     fly_result = next(r for r in results if r["id"] == "fly")
@@ -266,3 +279,120 @@ def test_retrieve_skips_failed_label_and_continues(caplog: pytest.LogCaptureFixt
 
     assert results == []
     assert any("Vector query failed" in rec.message for rec in caplog.records)
+
+
+def test_lexical_fallback_defaults_to_disabled() -> None:
+    """Without explicit ``lexical_fallback=True``, an exact-name match must
+    not force a low-scoring node above the top_k cut — the lexical boost is
+    a droppable add-on, not the retriever's default behaviour."""
+    responses = {
+        "SpecialRule": [
+            _result("fly", "SpecialRule", "Fly", "Models with this rule can fly.", "url1", 0.10),
+        ],
+        "Unit": [
+            _result("blood-knights", "Unit", "Blood Knights", "Cavalry.", "url2", 0.99),
+        ],
+    }
+    retriever = GraphRAGRetriever(FakeDriver(responses), FakeEmbedder(), top_k=1)
+    results = retriever.retrieve("Can a unit with Fly charge over enemy units?")
+
+    assert [r["id"] for r in results] == ["blood-knights"]
+
+
+def test_invalid_strategy_raises_value_error() -> None:
+    with pytest.raises(ValueError, match="Unsupported retrieval strategy"):
+        GraphRAGRetriever(FakeDriver({}), FakeEmbedder(), strategy="bogus")
+
+
+def test_hybrid_strategy_fuses_vector_and_fulltext_results() -> None:
+    """Hybrid strategy must include nodes found only via full-text search,
+    not just the per-label vector pool."""
+
+    class HybridSession:
+        def __init__(
+            self, vector_responses: dict[str, list[dict[str, Any]]], fulltext_rows: list
+        ) -> None:
+            self._vector_responses = vector_responses
+            self._fulltext_rows = fulltext_rows
+
+        def __enter__(self) -> "HybridSession":
+            return self
+
+        def __exit__(self, *exc: object) -> None:
+            return None
+
+        def run(self, query: str, **params: Any) -> FakeResult:
+            # Parameter named "query" to match neo4j.Session.run's real
+            # signature — see FakeSession.run above.
+            if "fulltext" in query:
+                return FakeResult(self._fulltext_rows)
+            return FakeResult(self._vector_responses.get(params.get("label", ""), []))
+
+    class HybridDriver:
+        def __init__(
+            self, vector_responses: dict[str, list[dict[str, Any]]], fulltext_rows: list
+        ) -> None:
+            self._vector_responses = vector_responses
+            self._fulltext_rows = fulltext_rows
+
+        def session(self) -> HybridSession:
+            return HybridSession(self._vector_responses, self._fulltext_rows)
+
+    vector_responses = {
+        "SpecialRule": [
+            _result("fear", "SpecialRule", "Fear", "Causes Fear.", "url1", 0.95),
+        ],
+    }
+    fulltext_rows = [
+        _result("terror", "SpecialRule", "Terror", "Causes Terror.", "url2", 5.0),
+    ]
+    retriever = GraphRAGRetriever(
+        HybridDriver(vector_responses, fulltext_rows),
+        FakeEmbedder(),
+        top_k=5,
+        strategy="hybrid",
+    )
+    results = retriever.retrieve("Fear and Terror")
+
+    assert {r["id"] for r in results} == {"fear", "terror"}
+
+
+def test_fuse_rrf_ranks_nodes_present_in_both_lists_higher() -> None:
+    """A node ranked #2 in one list and #1 in the other should outrank a node
+    ranked #1 in only a single list — that's the point of RRF over either
+    ranking alone."""
+    vector_ranked = [
+        {"id": "a", "score": 0.9},
+        {"id": "b", "score": 0.5},
+    ]
+    fulltext_ranked = [
+        {"id": "b", "score": 12.0},
+        {"id": "c", "score": 8.0},
+    ]
+    fused = GraphRAGRetriever._fuse_rrf(vector_ranked, fulltext_ranked, k_const=60)
+
+    ids = [r["id"] for r in fused]
+    assert ids[0] == "b"
+    assert set(ids) == {"a", "b", "c"}
+
+    expected_b_score = 1 / (60 + 2) + 1 / (60 + 1)
+    assert fused[0]["score"] == pytest.approx(expected_b_score)
+
+
+def test_fuse_rrf_score_replaces_original_score() -> None:
+    """The fused score is rank-based, not the original cosine/BM25 value —
+    the two scales are incomparable, so mixing them would be meaningless."""
+    fused = GraphRAGRetriever._fuse_rrf([{"id": "a", "score": 0.99}], [])
+    assert fused[0]["score"] == pytest.approx(1 / (RRF_K + 1))
+
+
+def test_lucene_escape_escapes_question_mark_and_parens() -> None:
+    escaped = _lucene_escape("What is the Stubborn (Ld) rule?")
+    assert escaped == r"What is the Stubborn \(Ld\) rule\?"
+
+
+def test_lucene_escape_escapes_colon_and_wildcards() -> None:
+    escaped = _lucene_escape("field:value AND wild*card?")
+    assert "\\:" in escaped
+    assert "\\*" in escaped
+    assert "\\?" in escaped

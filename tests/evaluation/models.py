@@ -65,6 +65,7 @@ class SummaryMetrics(BaseModel):
     mean_groundedness: float | None = None
     mean_citation: float | None = None
     below_threshold: list[str] = Field(default_factory=list)
+    per_category_recall: dict[str, float] = Field(default_factory=dict)
 
 
 class EvaluationReport(BaseModel):
@@ -74,4 +75,13 @@ class EvaluationReport(BaseModel):
     total_queries: int
     metrics: SummaryMetrics
     results: list[RetrievalResult | AgentResult]
+    config: dict[str, Any] = Field(default_factory=dict)
+
+
+class ComparisonReport(BaseModel):
+    """Report comparing retrieval modes on the same golden set (ADR-0008)."""
+
+    modes: list[str]
+    total_queries: int
+    per_mode: dict[str, SummaryMetrics]
     config: dict[str, Any] = Field(default_factory=dict)

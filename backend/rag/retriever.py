@@ -10,6 +10,13 @@ This implementation uses raw ``db.index.vector.queryNodes`` calls instead: they
 expose the same HNSW ANN behaviour with less wrapper overhead, which keeps the
 baseline small and easy to debug. A future refactor can wrap this in
 ``VectorCypherRetriever`` without changing the public ``retrieve()`` contract.
+
+``strategy`` selects the ranking source: ``"vector"`` (default) is pure ANN;
+``"hybrid"`` additionally queries the single multi-label full-text index and
+fuses both ranked lists via Reciprocal Rank Fusion (see ADR-0008). The
+``lexical_fallback`` exact-name-match boost is an independent, optional knob
+orthogonal to ``strategy`` — see ``backend/api/dependencies.py::get_rag_pipeline``
+for how ``RAG_MODE`` maps to both.
 """
 
 from __future__ import annotations
@@ -22,6 +29,7 @@ import neo4j
 import numpy as np
 
 from pipeline.constants import EMBEDDABLE_LABELS
+from pipeline.graph.ddl import FULLTEXT_INDEX_NAME
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +37,18 @@ logger = logging.getLogger(__name__)
 # pure-vector results. Neo4j's cosine-similarity vector index returns scores
 # in [0, 1], so this always sorts first.
 _LEXICAL_MATCH_SCORE = 1.0
+
+# Reciprocal Rank Fusion smoothing constant. 60 is the standard value from the
+# original RRF paper (Cormack et al., 2009) and is not query-tuned; it damps
+# the influence of rank-1 items just enough that a node appearing in both
+# lists (even at a middling rank in each) can outscore a node ranked #1 in
+# only one list.
+RRF_K = 60
+
+# Lucene special characters that must be backslash-escaped in a full-text
+# query string, or Neo4j's query-parser throws a syntax error. Order matters:
+# backslash itself must be escaped first so later escapes aren't re-escaped.
+_LUCENE_SPECIAL_CHARS = '\\+-&|!(){}[]^"~*?:/'
 
 # Matches a trailing parenthetical placeholder, e.g. " (X)" in "Fly (X)".
 _PARENTHETICAL_SUFFIX_RE = re.compile(r"\s*\([^)]*\)\s*$")
@@ -54,6 +74,17 @@ def _stem(word: str) -> str:
     return word
 
 
+def _lucene_escape(query: str) -> str:
+    """Escape Lucene special characters in a raw query string.
+
+    Golden-set queries routinely contain ``?`` and ``:`` (e.g. "What is the
+    Stubborn rule?"); passed unescaped to ``db.index.fulltext.queryNodes``
+    these are parsed as Lucene operators (wildcard, field-selector) and raise
+    a syntax error instead of matching literally.
+    """
+    return "".join(f"\\{ch}" if ch in _LUCENE_SPECIAL_CHARS else ch for ch in query)
+
+
 def _label_to_snake(label: str) -> str:
     """Convert CamelCase label to snake_case for vector-index naming."""
     s = re.sub(r"([A-Z])", r"_\1", label).lower().lstrip("_")
@@ -70,6 +101,8 @@ class GraphRAGRetriever:
         *,
         top_k: int = 8,
         per_label_k: int | None = None,
+        strategy: str = "vector",
+        lexical_fallback: bool = False,
     ) -> None:
         self.driver = driver
         self.embedder = embedder
@@ -80,6 +113,12 @@ class GraphRAGRetriever:
         # to longer, more verbose FAQ/Lore text) but still belong in the
         # global top_k once all labels are pooled together.
         self.per_label_k = per_label_k or max(top_k * 3, 20)
+        if strategy not in ("vector", "hybrid"):
+            raise ValueError(
+                f"Unsupported retrieval strategy '{strategy}'. Use 'vector' or 'hybrid'."
+            )
+        self.strategy = strategy
+        self.lexical_fallback = lexical_fallback
         self._name_index: list[tuple[str, str, str, str]] | None = None
 
     def retrieve(self, query: str) -> list[dict[str, Any]]:
@@ -106,15 +145,26 @@ class GraphRAGRetriever:
             if rid not in by_id or result["score"] > by_id[rid]["score"]:
                 by_id[rid] = result
 
+        if self.strategy == "hybrid":
+            vector_ranked = sorted(by_id.values(), key=lambda r: r["score"], reverse=True)
+            try:
+                fulltext_ranked = self._query_fulltext(query, self.per_label_k)
+            except Exception as exc:  # noqa: BLE001 — degrade to vector-only on failure
+                logger.warning("Full-text query failed: %s", exc)
+                fulltext_ranked = []
+            by_id = {r["id"]: r for r in self._fuse_rrf(vector_ranked, fulltext_ranked)}
+
         # Lexical fallback: a node whose exact name appears as a whole phrase
         # in the query is very likely relevant even when its raw cosine score
         # is mediocre (short/common node names like "Fly" or rulebook-prose
         # register mismatches lose to more verbose competing text). Force
         # these into the pool at the top score so they aren't crowded out.
-        for match in self._lexical_matches(query):
-            rid = match["id"]
-            if rid not in by_id or by_id[rid]["score"] < _LEXICAL_MATCH_SCORE:
-                by_id[rid] = match
+        # Independent of ``strategy`` — a droppable add-on, not core behavior.
+        if self.lexical_fallback:
+            for match in self._lexical_matches(query):
+                rid = match["id"]
+                if rid not in by_id or by_id[rid]["score"] < _LEXICAL_MATCH_SCORE:
+                    by_id[rid] = match
 
         ranked = sorted(by_id.values(), key=lambda r: r["score"], reverse=True)
         return ranked[: self.top_k]
@@ -248,3 +298,68 @@ class GraphRAGRetriever:
                 row["text"] = row.get("text") or row.get("name") or ""
                 rows.append(row)
             return rows
+
+    def _query_fulltext(self, query: str, k: int) -> list[dict[str, Any]]:
+        """Run BM25 full-text search over the single multi-label index.
+
+        Unlike vector search, one full-text index spans every embeddable
+        label, so this yields one already-globally-ranked list — no per-label
+        merge step needed.
+        """
+        cypher = """
+            CALL db.index.fulltext.queryNodes($index_name, $search_text, {limit: $k})
+            YIELD node, score
+            RETURN node.id AS id,
+                   labels(node)[0] AS label,
+                   node.name AS name,
+                   coalesce(node.text, node.name, '') AS text,
+                   node.url AS url,
+                   score
+            ORDER BY score DESC
+        """
+        with self.driver.session() as session:
+            # Note: neo4j's Session.run(query, ...) reserves the name "query"
+            # for its own first positional parameter, so the Cypher parameter
+            # must be named differently to avoid a keyword collision.
+            result = session.run(
+                cypher,
+                index_name=FULLTEXT_INDEX_NAME,
+                search_text=_lucene_escape(query),
+                k=k,
+            )
+            rows = []
+            for record in result:
+                row = dict(record)
+                row["text"] = row.get("text") or row.get("name") or ""
+                rows.append(row)
+            return rows
+
+    @staticmethod
+    def _fuse_rrf(
+        vector_ranked: list[dict[str, Any]],
+        fulltext_ranked: list[dict[str, Any]],
+        k_const: int = RRF_K,
+    ) -> list[dict[str, Any]]:
+        """Fuse two independently-ranked result lists via Reciprocal Rank Fusion.
+
+        ``score = sum(1 / (k_const + rank))`` over every list a node appears
+        in, with 1-based rank. Each input list must already be sorted best
+        first (as both ``_query_label``/vector-merge and ``_query_fulltext``
+        return). The fused ``score`` replaces each node's original
+        vector-cosine or BM25 score — the two are on incomparable scales, so
+        only the fused rank-based score is meaningful downstream.
+        """
+        fused: dict[str, dict[str, Any]] = {}
+        rrf_scores: dict[str, float] = {}
+
+        for ranked_list in (vector_ranked, fulltext_ranked):
+            for rank, row in enumerate(ranked_list, start=1):
+                rid = row["id"]
+                rrf_scores[rid] = rrf_scores.get(rid, 0.0) + 1.0 / (k_const + rank)
+                if rid not in fused:
+                    fused[rid] = row
+
+        for rid, node in fused.items():
+            node["score"] = rrf_scores[rid]
+
+        return sorted(fused.values(), key=lambda r: r["score"], reverse=True)

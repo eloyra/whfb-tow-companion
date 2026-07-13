@@ -109,6 +109,7 @@ LLM_MODEL           model name (e.g. gpt-4o)
 OPENAI_API_KEY
 ANTHROPIC_API_KEY
 LOCAL_LLM_BASE_URL  e.g. http://localhost:11434 for Ollama
+RAG_MODE            vector | graph (default) | hybrid — retrieval-mode ablation, see ADR-0008
 EMBEDDING_MODEL     paraphrase-multilingual-mpnet-base-v2
 NEO4J_URI           bolt://localhost:7687
 NEO4J_USER          neo4j
@@ -134,6 +135,9 @@ make pipeline       # run all stages end to end
 make serve           # start API on :8000
 make test            # run all tests
 make lint           # run ruff
+make evaluate        # retrieval-only evaluation against the golden set
+make evaluate-full   # full agent + LLM-judge evaluation
+make evaluate-compare  # compare vector/graph/hybrid retrieval modes (ADR-0008)
 ```
 
 ---

@@ -15,7 +15,13 @@ import logging
 
 import neo4j
 
+from pipeline.constants import EMBEDDABLE_LABELS
+
 logger = logging.getLogger(__name__)
+
+# Name of the single multi-label full-text index used by the "hybrid"
+# retrieval mode (see ADR-0008, backend/rag/retriever.py::_query_fulltext).
+FULLTEXT_INDEX_NAME = "archive_fulltext_idx"
 
 # ---------------------------------------------------------------------------
 # Uniqueness constraints (one per label)
@@ -65,11 +71,29 @@ _INDEXES: list[str] = [
 ]
 
 
+def _fulltext_index_statement() -> str:
+    """Build the ``CREATE FULLTEXT INDEX`` statement over every embeddable label.
+
+    Unlike vector indexes (which require at least one populated node before
+    Neo4j accepts the type hint — see ``pipeline/embeddings/vector_store.py``),
+    full-text indexes have no such requirement, so this one lives in DDL
+    alongside the constraints/btree indexes rather than in the embeddings
+    stage. It is a single index spanning all labels (rather than one per
+    label like the vector indexes) because full-text search benefits from one
+    globally-ranked BM25 result list — see ADR-0008.
+    """
+    label_pattern = "|".join(EMBEDDABLE_LABELS)
+    return (
+        f"CREATE FULLTEXT INDEX {FULLTEXT_INDEX_NAME} IF NOT EXISTS "
+        f"FOR (n:{label_pattern}) ON EACH [n.name, n.text]"
+    )
+
+
 def apply_constraints_and_indexes(driver: neo4j.Driver) -> None:
     """Create all constraints and indexes idempotently."""
-    total = len(_CONSTRAINTS) + len(_INDEXES)
-    logger.info("Applying %d DDL statements (IF NOT EXISTS)", total)
+    statements = [*_CONSTRAINTS, *_INDEXES, _fulltext_index_statement()]
+    logger.info("Applying %d DDL statements (IF NOT EXISTS)", len(statements))
     with driver.session() as session:
-        for stmt in _CONSTRAINTS + _INDEXES:
+        for stmt in statements:
             session.run(stmt)
     logger.info("DDL complete")

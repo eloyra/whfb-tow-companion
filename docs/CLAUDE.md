@@ -38,6 +38,7 @@ Current ADRs:
 | `ADR-0005-graph-storage-conventions.md` | Node IDs, property names, index design |
 | `ADR-0006-parser-data-source-strategy.md` | Hybrid parsing (Contentful JSON + HTML DOM), spell source-of-truth |
 | `ADR-0007-llm-provider-strategy.md` | Canonical LLM resolution via `api/dependencies.py`; `llm/client.py` deprecated |
+| `ADR-0008-retrieval-modes.md` | `RAG_MODE` retrieval-mode ablation (vector / graph / hybrid); RRF fusion, full-text index |
 
 ---
 

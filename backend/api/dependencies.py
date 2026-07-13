@@ -76,6 +76,17 @@ _LLM_REGISTRY: dict[str, Callable[[], BaseChatModel]] = {
     "anthropic": _anthropic_llm,
 }
 
+# RAG_MODE -> (retriever strategy, lexical_fallback, pipeline expand).
+# See ADR-0008 for the retrieval-mode ablation this drives:
+#   vector = naive/simple RAG baseline (no lexical boost, no graph traversal)
+#   graph  = current GraphRAG baseline (lexical name-match boost + traversal)
+#   hybrid = GraphRAG + BM25/vector RRF fusion (replaces the lexical boost)
+_RAG_MODE_CONFIG: dict[str, tuple[str, bool, bool]] = {
+    "vector": ("vector", False, False),
+    "graph": ("vector", True, True),
+    "hybrid": ("hybrid", False, True),
+}
+
 
 def get_llm() -> BaseChatModel:
     """Resolve the configured LLM provider.
@@ -113,10 +124,35 @@ def get_embedder() -> "SentenceTransformer":
     return SentenceTransformer(model_name, device=device)
 
 
+def resolve_rag_mode(mode: str | None = None) -> tuple[str, bool, bool]:
+    """Resolve a ``RAG_MODE`` value to ``(strategy, lexical_fallback, expand)``.
+
+    Reads the ``RAG_MODE`` env var (default ``graph``) when ``mode`` is
+    ``None``. Shared by ``get_rag_pipeline()`` and the evaluation harness
+    (``tests/evaluation/runner.py``) so the mode-to-knob mapping has one
+    source of truth. See ADR-0008 for mode semantics.
+    """
+    mode = (mode or os.getenv("RAG_MODE", "graph")).lower()
+    config = _RAG_MODE_CONFIG.get(mode)
+    if config is None:
+        supported = ", ".join(sorted(_RAG_MODE_CONFIG.keys()))
+        raise ValueError(f"Unsupported RAG mode '{mode}'. Use one of: {supported}")
+    return config
+
+
 def get_rag_pipeline() -> RAGPipeline:
-    """Return the GraphRAG pipeline wired to the Neo4j driver and embedder."""
+    """Return the GraphRAG pipeline wired to the Neo4j driver and embedder.
+
+    ``RAG_MODE`` (default ``graph``) selects the retrieval-mode ablation
+    variant: ``vector`` (naive RAG), ``graph`` (GraphRAG baseline), or
+    ``hybrid`` (GraphRAG + BM25/vector RRF fusion). See ADR-0008.
+    """
+    strategy, lexical_fallback, expand = resolve_rag_mode()
+
     driver = get_driver()
     embedder = get_embedder()
-    retriever = GraphRAGRetriever(driver, embedder, top_k=8)
+    retriever = GraphRAGRetriever(
+        driver, embedder, top_k=8, strategy=strategy, lexical_fallback=lexical_fallback
+    )
     traversal = graph_traversal.GraphTraversal(driver)
-    return RAGPipeline(retriever, traversal, max_neighbors_per_seed=40)
+    return RAGPipeline(retriever, traversal, max_neighbors_per_seed=40, expand=expand)

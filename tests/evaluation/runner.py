@@ -4,30 +4,38 @@ from __future__ import annotations
 
 from typing import Any
 
-from backend.api.dependencies import get_driver, get_embedder
+from backend.api.dependencies import get_driver, get_embedder, resolve_rag_mode
 from backend.rag.retriever import GraphRAGRetriever
 from tests.evaluation.models import AgentResult, JudgeVerdict, Query, RetrievalResult
 from tests.evaluation.scoring import build_retrieval_result
 
 
-def build_retriever(top_k: int = 8) -> GraphRAGRetriever:
-    """Build a retriever wired to the configured Neo4j instance."""
+def build_retriever(top_k: int = 8, mode: str = "graph") -> GraphRAGRetriever:
+    """Build a retriever wired to the configured Neo4j instance.
+
+    ``mode`` selects the retrieval-mode ablation variant (``vector`` /
+    ``graph`` / ``hybrid``) via ``resolve_rag_mode`` — see ADR-0008.
+    """
+    strategy, lexical_fallback, _ = resolve_rag_mode(mode)
     driver = get_driver()
     embedder = get_embedder()
-    return GraphRAGRetriever(driver, embedder, top_k=top_k)
+    return GraphRAGRetriever(
+        driver, embedder, top_k=top_k, strategy=strategy, lexical_fallback=lexical_fallback
+    )
 
 
 def run_retrieval_evaluation(
     queries: list[Query],
     *,
     top_k: int = 8,
+    mode: str = "graph",
 ) -> list[RetrievalResult]:
     """Run the retrieval-only pass over the golden set.
 
     Returns one ``RetrievalResult`` per query, containing recall@k and army
     presence flags.
     """
-    retriever = build_retriever(top_k=top_k)
+    retriever = build_retriever(top_k=top_k, mode=mode)
     results: list[RetrievalResult] = []
     for query in queries:
         seeds = retriever.retrieve(query.query)
@@ -79,11 +87,15 @@ async def run_full_evaluation(
     *,
     top_k: int = 8,
     judge_llm: Any | None = None,
+    mode: str = "graph",
 ) -> list[AgentResult]:
     """Run the full agent + optional LLM-judge pass over the golden set.
 
     If ``judge_llm`` is not provided, the agent answer and citations are
-    recorded but ``verdict`` is left as ``None``.
+    recorded but ``verdict`` is left as ``None``. ``mode`` (``vector`` /
+    ``graph`` / ``hybrid``) is applied via the ``RAG_MODE`` env var for the
+    duration of this call, since the agent's tools are built from
+    ``get_rag_pipeline()``, which reads that env var (ADR-0008).
     """
     import os
 
@@ -96,8 +108,16 @@ async def run_full_evaluation(
     from backend.rag.prompts.templates import build_system_prompt
     from backend.rag.tools import build_tools
 
-    retriever = build_retriever(top_k=top_k)
-    pipeline = _get_rag_pipeline()
+    retriever = build_retriever(top_k=top_k, mode=mode)
+    previous_mode = os.environ.get("RAG_MODE")
+    os.environ["RAG_MODE"] = mode
+    try:
+        pipeline = _get_rag_pipeline()
+    finally:
+        if previous_mode is None:
+            os.environ.pop("RAG_MODE", None)
+        else:
+            os.environ["RAG_MODE"] = previous_mode
     llm = get_llm()
     tools = build_tools(pipeline)
     agent = create_agent(llm, tools=tools, system_prompt=build_system_prompt())

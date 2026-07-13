@@ -21,11 +21,15 @@ class RAGPipeline:
         *,
         top_k: int = 8,
         max_neighbors_per_seed: int = 40,
+        expand: bool = True,
     ) -> None:
         self.retriever = retriever
         self.traversal = traversal
         self.top_k = top_k
         self.max_neighbors_per_seed = max_neighbors_per_seed
+        # When False, skip graph traversal entirely (naive/vector-only RAG
+        # baseline for the retrieval-mode ablation — see ADR-0008).
+        self.expand = expand
 
     def query(self, user_query: str) -> dict[str, Any]:
         """Run the full GraphRAG pipeline for ``user_query``.
@@ -36,6 +40,9 @@ class RAGPipeline:
         - ``sources``: the seed nodes retrieved by semantic search.
         - ``links``: direct edges among the seed nodes.
         - ``expansion``: bounded 1-hop neighbors of the seed nodes.
+
+        When ``self.expand`` is ``False``, ``links``/``expansion`` are always
+        empty and ``context`` contains sources only (no traversal is run).
         """
         seeds = self.retriever.retrieve(user_query)
         if not seeds:
@@ -47,6 +54,10 @@ class RAGPipeline:
                 "links": [],
                 "expansion": [],
             }
+
+        if not self.expand:
+            context = self._format_seeds_only(seeds)
+            return {"context": context, "sources": seeds, "links": [], "expansion": []}
 
         seed_ids = [s["id"] for s in seeds]
         expansion = self.traversal.expand(
@@ -240,6 +251,28 @@ class RAGPipeline:
                     f"[{row['id']}] {row.get('name', '')}: {text}"
                 )
 
+        return "\n".join(parts)
+
+    def _format_seeds_only(self, seeds: list[dict[str, Any]]) -> str:
+        """Build context from seed nodes alone — no traversal, no links section.
+
+        Used when ``self.expand`` is ``False`` (naive/vector-only RAG
+        baseline): omitting the empty "Direct links"/"Related context"
+        headings keeps the baseline's context free of GraphRAG-specific noise.
+        """
+        seed_ids = [s["id"] for s in seeds]
+        seed_props = self._node_properties(seed_ids)
+
+        parts = ["## Retrieved sources"]
+        for seed in seeds:
+            text = seed.get("text") or seed.get("name") or ""
+            extra = self._seed_summary(seed.get("label"), seed_props.get(seed["id"], {}))
+            if extra:
+                text = f"{text} {extra}".strip()
+            parts.append(
+                f"- [{seed['id']}] {seed.get('name', 'Unnamed')} "
+                f"({seed.get('label', 'Node')}): {text}"
+            )
         return "\n".join(parts)
 
     def _node_properties(self, node_ids: list[str]) -> dict[str, dict[str, Any]]:

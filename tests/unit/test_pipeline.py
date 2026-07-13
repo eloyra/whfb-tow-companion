@@ -23,6 +23,8 @@ class FakeTraversal:
     ) -> None:
         self._expansion = expansion
         self._links = links
+        self.expand_calls = 0
+        self.links_between_calls = 0
 
     def expand(
         self,
@@ -30,9 +32,11 @@ class FakeTraversal:
         *,
         max_neighbors_per_seed: int = 6,
     ) -> list[dict[str, Any]]:
+        self.expand_calls += 1
         return list(self._expansion)
 
     def links_between(self, seed_ids: list[str]) -> list[dict[str, Any]]:
+        self.links_between_calls += 1
         return list(self._links)
 
 
@@ -106,6 +110,36 @@ def test_query_formats_context_with_sources_links_and_expansion() -> None:
     assert "(1 direct edge(s) among the retrieved sources)" in context
     assert "(Unit)" in context
     assert "(SpecialRule)" in context
+
+
+def test_query_skips_traversal_when_expand_is_false() -> None:
+    """Naive/vector-only RAG baseline (RAG_MODE=vector): no graph traversal
+    call at all, and the context carries only the retrieved sources — no
+    empty "Direct links"/"Related context" GraphRAG-specific noise."""
+    seeds = [
+        {
+            "id": "blood-knights",
+            "label": "Unit",
+            "name": "Blood Knights",
+            "text": "Elite cavalry of the Vampire Counts.",
+            "url": "url1",
+            "score": 0.95,
+        },
+    ]
+    traversal = FakeTraversal([{"id": "unused"}], [{"source": "a", "target": "b"}])
+    pipeline = RAGPipeline(FakeRetriever(seeds), traversal, expand=False)
+    result = pipeline.query("Tell me about Blood Knights")
+
+    assert traversal.expand_calls == 0
+    assert traversal.links_between_calls == 0
+    assert result["links"] == []
+    assert result["expansion"] == []
+
+    context = result["context"]
+    assert "## Retrieved sources" in context
+    assert "[blood-knights]" in context
+    assert "## Direct links among sources" not in context
+    assert "## Related context" not in context
 
 
 def test_neighbor_summary_surfaces_upgrade_cost() -> None:

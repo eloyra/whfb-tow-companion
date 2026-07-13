@@ -19,6 +19,7 @@ from tests.evaluation.scoring import (
     army_retrieved,
     build_retrieval_result,
     citation_coverage,
+    per_category_recall,
     recall_at_k,
 )
 
@@ -192,6 +193,46 @@ class TestAggregateMetrics:
         assert metrics.mean_groundedness == 2.0
         assert metrics.mean_citation == 2.0
         assert metrics.below_threshold == []
+
+
+class TestPerCategoryRecall:
+    def test_groups_by_category_and_skips_none(self) -> None:
+        results = [
+            RetrievalResult(
+                query_id="q1",
+                query="...",
+                category="rule_lookup",
+                retrieved_ids=["a"],
+                expected_rules=["a"],
+                expected_army=None,
+                recall_at_k=1.0,
+                army_retrieved=None,
+            ),
+            RetrievalResult(
+                query_id="q2",
+                query="...",
+                category="rule_lookup",
+                retrieved_ids=["a"],
+                expected_rules=["a", "b"],
+                expected_army=None,
+                recall_at_k=0.5,
+                army_retrieved=None,
+            ),
+            RetrievalResult(
+                query_id="q3",
+                query="...",
+                category="army_building",
+                retrieved_ids=[],
+                expected_rules=[],
+                expected_army="vampire-counts",
+                recall_at_k=None,
+                army_retrieved=True,
+            ),
+        ]
+        assert per_category_recall(results) == {"rule_lookup": 0.75}
+
+    def test_empty_results_returns_empty_dict(self) -> None:
+        assert per_category_recall([]) == {}
 
 
 class TestDataset:

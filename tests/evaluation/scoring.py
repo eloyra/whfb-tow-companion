@@ -73,6 +73,22 @@ def build_retrieval_result(
     )
 
 
+def per_category_recall(results: list[RetrievalResult | AgentResult]) -> dict[str, float]:
+    """Mean recall@k grouped by query ``category``, skipping ``None`` values.
+
+    Lets the comparison report show *where* a retrieval mode wins or loses
+    (e.g. hybrid helping "rule_interaction" queries but not "army_building"),
+    which a single overall mean recall obscures.
+    """
+    by_category: dict[str, list[float]] = {}
+    for result in results:
+        is_agent = isinstance(result, AgentResult)
+        retrieval = result.retrieval if is_agent else result
+        if isinstance(retrieval, RetrievalResult) and retrieval.recall_at_k is not None:
+            by_category.setdefault(result.category, []).append(retrieval.recall_at_k)
+    return {cat: sum(vals) / len(vals) for cat, vals in sorted(by_category.items())}
+
+
 def aggregate_metrics(
     results: list[RetrievalResult | AgentResult],
     recall_threshold: float = 0.5,
@@ -119,4 +135,5 @@ def aggregate_metrics(
         mean_groundedness=_mean(groundedness),
         mean_citation=_mean(citation),
         below_threshold=sorted(set(below)),
+        per_category_recall=per_category_recall(results),
     )

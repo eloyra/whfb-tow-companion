@@ -70,6 +70,9 @@ evaluate:  ## Run retrieval-only evaluation against the golden set (requires Neo
 evaluate-full:  ## Run full agent + LLM-judge evaluation (requires Neo4j + API key)
 	uv run python -m tests.evaluation.evaluate --full
 
+evaluate-compare:  ## Compare vector/graph/hybrid retrieval modes (requires Neo4j; ADR-0008)
+	uv run python -m tests.evaluation.evaluate --compare
+
 format:  ## Auto-format with ruff
 	uv run ruff format .
 

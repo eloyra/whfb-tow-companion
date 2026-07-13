@@ -40,6 +40,8 @@ backend/
 
 **Graph access**: always go through the RAG pipeline (`rag/pipeline.py`) for retrieval. Graph traversal lives in `rag/graph_traversal.py`.
 
+**Retrieval mode**: `RAG_MODE` env var (default `graph`) selects `vector` (naive RAG, no traversal), `graph` (GraphRAG baseline: vector + lexical name-match boost + traversal), or `hybrid` (vector + BM25 full-text fused via RRF, replacing the lexical boost, + traversal). See ADR-0008. `api/dependencies.py::resolve_rag_mode()` is the single source of truth for the mode → `(strategy, lexical_fallback, expand)` mapping — both `get_rag_pipeline()` and the evaluation harness (`tests/evaluation/runner.py`) call it, so production and evaluation cannot drift apart.
+
 **System prompt**: always build it via `rag/prompts/templates.py::build_system_prompt()` — the prompt has provider-specific sections (tool-result format, citation mechanics) resolved by the same `use_native_citations()` switch that `build_tools()` uses. A prompt describing the wrong tool-result format silently degrades answer quality; on the Anthropic path the graph structure travels *inside* the `search_result` block texts (`rag/tools.py::_relationship_annotations`), not in the `context` string.
 
 ---
@@ -60,7 +62,7 @@ Not all files are stubs. Per-file state:
 | `rag/tools.py` | Implemented — `build_tools()` wires two tools into the real `RAGPipeline`: `query_warhammer_archive` (semantic + graph) and `list_army_units` (deterministic roster) |
 | `rag/prompts/system_prompt.py` | Implemented — compat shim exposing the legacy fixed `SYSTEM_PROMPT`; new code uses `templates.build_system_prompt()` |
 | `rag/prompts/templates.py` | Implemented — provider-aware system-prompt composition (`build_system_prompt`) |
-| `rag/retriever.py` | Implemented — `GraphRAGRetriever`: multi-label vector search over Neo4j HNSW indexes |
+| `rag/retriever.py` | Implemented — `GraphRAGRetriever`: multi-label vector search over Neo4j HNSW indexes, plus `strategy="hybrid"` (BM25 full-text + RRF fusion) and `lexical_fallback` (ADR-0008) |
 | `rag/graph_traversal.py` | Implemented — `expand()` (bounded 1-hop neighbourhood) + `links_between()` (direct seed-to-seed edges) |
 | `rag/pipeline.py` | Implemented — `RAGPipeline` orchestrates retrieve → traverse → format for the LLM |
 
