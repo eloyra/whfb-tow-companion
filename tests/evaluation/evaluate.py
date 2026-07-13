@@ -363,6 +363,7 @@ async def _run_one_mode(
     queries: list[Query],
     args: argparse.Namespace,
     rag_mode: str,
+    checkpoint_path: Path | None = None,
 ) -> tuple[list[RetrievalResult] | list[AgentResult], SummaryMetrics]:
     """Run retrieval-only or full-agent evaluation for a single ``rag_mode``."""
     if args.full:
@@ -374,6 +375,7 @@ async def _run_one_mode(
             top_k=args.top_k,
             judge_llm=judge_llm,
             mode=rag_mode,
+            checkpoint_path=checkpoint_path,
         )
     else:
         results = run_retrieval_evaluation(queries, top_k=args.top_k, mode=rag_mode)
@@ -392,25 +394,50 @@ async def _main_async(argv: list[str] | None = None) -> int:
 
     queries = load_queries()
     print(f"Loaded {len(queries)} golden queries")
+    args.output_dir.mkdir(parents=True, exist_ok=True)
 
     if args.compare:
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
         per_mode_metrics: dict[str, SummaryMetrics] = {}
         per_mode_results: dict[str, list[RetrievalResult] | list[AgentResult]] = {}
         for rag_mode in RAG_MODES:
             print(f"Running mode={rag_mode}...")
-            results, metrics = await _run_one_mode(queries, args, rag_mode)
+            checkpoint_path = (
+                args.output_dir / f"checkpoint_{rag_mode}_{timestamp}.jsonl" if args.full else None
+            )
+            try:
+                results, metrics = await _run_one_mode(queries, args, rag_mode, checkpoint_path)
+            except Exception as exc:  # noqa: BLE001 - one mode failing must not lose the others
+                print(f"Mode {rag_mode} failed, skipping it: {exc}", file=sys.stderr)
+                continue
             per_mode_results[rag_mode] = results
             per_mode_metrics[rag_mode] = metrics
             print(f"  Mean recall@{args.top_k}: {_fmt_float(metrics.mean_recall_at_k)}")
+
+        if not per_mode_metrics:
+            print("All modes failed; no comparison report to write.", file=sys.stderr)
+            return 1
+
+        completed_modes = [m for m in RAG_MODES if m in per_mode_metrics]
+        if len(completed_modes) < len(RAG_MODES):
+            print(
+                f"Only {len(completed_modes)}/{len(RAG_MODES)} modes completed "
+                f"({', '.join(completed_modes)}); writing a partial comparison report.",
+                file=sys.stderr,
+            )
 
         # Full-agent mode: the answer's correctness is the metric that
         # actually matters end-to-end. Retrieval-only mode has no answer, so
         # fall back to recall@k, the harness's existing headline metric.
         significance_metric = "answer_hit" if args.full else "recall_at_k"
-        significance = _pairwise_significance(per_mode_results, significance_metric)
+        significance = (
+            _pairwise_significance(per_mode_results, significance_metric)
+            if "vector" in per_mode_results and len(completed_modes) > 1
+            else []
+        )
 
         comparison = ComparisonReport(
-            modes=list(RAG_MODES),
+            modes=completed_modes,
             total_queries=len(queries),
             per_mode=per_mode_metrics,
             significance=significance,
@@ -427,7 +454,12 @@ async def _main_async(argv: list[str] | None = None) -> int:
         return 0 if all(not m.below_threshold for m in per_mode_metrics.values()) else 1
 
     rag_mode = args.mode or os.environ.get("RAG_MODE", "graph")
-    results, metrics = await _run_one_mode(queries, args, rag_mode)
+    checkpoint_path = (
+        args.output_dir / f"checkpoint_{rag_mode}_{datetime.now(timezone.utc):%Y%m%d_%H%M%S}.jsonl"
+        if args.full
+        else None
+    )
+    results, metrics = await _run_one_mode(queries, args, rag_mode, checkpoint_path)
     report = EvaluationReport(
         mode="full" if args.full else "retrieval",
         total_queries=len(queries),

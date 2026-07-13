@@ -12,6 +12,7 @@ from pathlib import Path
 from pipeline.constants import CASTING_VALUE_RULE_ID
 from pipeline.scraper.parsers.base_parser import BaseParser
 from pipeline.scraper.parsers.lore_parser import LoreParser
+from pipeline.scraper.parsers.magic_item_parser import MagicItemParser
 from pipeline.scraper.parsers.spell_parser import SpellParser
 from pipeline.scraper.parsers.weapon_parser import WeaponParser
 
@@ -196,3 +197,29 @@ def test_lore_parser_emits_belongs_to_lore_edges():
     slug_set = {e["src"] for e in btl_edges}
     assert "oaken-shield" in slug_set
     assert "hammerhand" in slug_set
+
+
+# ---------------------------------------------------------------------------
+# MagicItemParser integration (dedicated /magic-item/{slug} pages)
+#
+# The manifest labels these pages "core_rule" (same bug class as the /spell/
+# collision fixed in ADR-0006 — no dedicated page_type bucket exists for the
+# singular URL). Before the parsers/__init__.py routing override, every one
+# of these ~700 cached pages was parsed by CoreRuleParser instead, producing
+# a same-id CoreRule node for every MagicItem.
+# ---------------------------------------------------------------------------
+
+_magic_item_parser = MagicItemParser()
+
+
+def test_magic_item_parser_dedicated_page_ogre_blade():
+    """A real cached dedicated magic-item page should yield one MagicItem node."""
+    html = (_RAW / "core_rule" / "ogre-blade.html").read_text(encoding="utf-8")
+    url = "https://tow.whfb.app/magic-item/ogre-blade"
+    result = _magic_item_parser.parse(html, url, _FETCHED_AT)
+    assert len(result.nodes) == 1
+    node = result.nodes[0]
+    assert node["node_type"] == "magic_item"
+    assert node["id"] == "ogre-blade"
+    assert node["name"] == "Ogre Blade"
+    assert node["points_cost"] == 75

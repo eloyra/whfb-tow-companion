@@ -195,6 +195,11 @@ def run_all_parsers() -> None:
             elif page_type == "core_rule" and url_path.startswith("/spell/"):
                 # Existing manifest labels /spell/{slug} pages as core_rule — route to SpellParser.
                 parser = _PARSERS["spell_page"]
+            elif page_type == "core_rule" and url_path.startswith("/magic-item/"):
+                # Same bug class as /spell/ above (ADR-0006): manifest labels dedicated
+                # /magic-item/{slug} pages as core_rule, creating a same-id CoreRule node
+                # for every MagicItem. MagicItemParser handles both page shapes.
+                parser = _PARSERS["magic_item"]
             else:
                 parser = _PARSERS[page_type]
 

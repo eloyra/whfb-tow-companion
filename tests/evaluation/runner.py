@@ -88,6 +88,7 @@ async def run_full_evaluation(
     top_k: int = 8,
     judge_llm: Any | None = None,
     mode: str = "graph",
+    checkpoint_path: Any | None = None,
 ) -> list[AgentResult]:
     """Run the full agent + optional LLM-judge pass over the golden set.
 
@@ -96,8 +97,16 @@ async def run_full_evaluation(
     ``graph`` / ``hybrid``) is applied via the ``RAG_MODE`` env var for the
     duration of this call, since the agent's tools are built from
     ``get_rag_pipeline()``, which reads that env var (ADR-0008).
+
+    A single query's failure (a transient API error, a Neo4j hiccup, a
+    malformed judge response) does not abort the run: the error is logged and
+    a placeholder result recorded, so the other queries' paid-for LLM calls
+    are not discarded. If ``checkpoint_path`` is given, every completed
+    result is appended there as one JSON line immediately, so a hard process
+    kill loses at most the query in flight rather than the whole run.
     """
     import os
+    import sys
 
     from langchain.agents import create_agent
     from langchain.messages import AIMessage, AnyMessage, HumanMessage
@@ -125,44 +134,44 @@ async def run_full_evaluation(
 
     results: list[AgentResult] = []
     for query in queries:
-        messages: list[AnyMessage] = [HumanMessage(content=query.query)]
-        final_state = await agent.ainvoke(
-            Command(update={"messages": messages}),
-            config=config,
-        )
-        final_messages = final_state.get("messages", [])
-        answer_parts = []
-        cited_ids: list[str] = []
-        for msg in final_messages:
-            if isinstance(msg, AIMessage):
-                answer_parts.append(str(msg.content))
-            # ToolMessage is in langchain_core.messages, but importing here
-            # avoids an unconditional dependency at module load time.
-            if hasattr(msg, "tool_calls") and getattr(msg, "tool_calls", None):
-                pass  # tool-call metadata, not a result payload
-            if msg.type == "tool":
-                cited_ids.extend(_extract_cited_ids_from_tool_message(msg))
+        try:
+            messages: list[AnyMessage] = [HumanMessage(content=query.query)]
+            final_state = await agent.ainvoke(
+                Command(update={"messages": messages}),
+                config=config,
+            )
+            final_messages = final_state.get("messages", [])
+            answer_parts = []
+            cited_ids: list[str] = []
+            for msg in final_messages:
+                if isinstance(msg, AIMessage):
+                    answer_parts.append(str(msg.content))
+                # ToolMessage is in langchain_core.messages, but importing here
+                # avoids an unconditional dependency at module load time.
+                if hasattr(msg, "tool_calls") and getattr(msg, "tool_calls", None):
+                    pass  # tool-call metadata, not a result payload
+                if msg.type == "tool":
+                    cited_ids.extend(_extract_cited_ids_from_tool_message(msg))
 
-        answer = "\n".join(answer_parts)
-        seeds = retriever.retrieve(query.query)
-        retrieved_ids = [seed["id"] for seed in seeds]
-        retrieval = build_retrieval_result(
-            query_id=query.id,
-            query=query.query,
-            category=query.category,
-            expected_rules=query.expected_rules,
-            expected_army=query.expected_army,
-            retrieved=retrieved_ids,
-            k=top_k,
-        )
+            answer = "\n".join(answer_parts)
+            seeds = retriever.retrieve(query.query)
+            retrieved_ids = [seed["id"] for seed in seeds]
+            retrieval = build_retrieval_result(
+                query_id=query.id,
+                query=query.query,
+                category=query.category,
+                expected_rules=query.expected_rules,
+                expected_army=query.expected_army,
+                retrieved=retrieved_ids,
+                k=top_k,
+            )
 
-        verdict: JudgeVerdict | None = None
-        if judge_llm is not None:
-            verdict = await _run_judge(judge_llm, query, answer, cited_ids)
+            verdict: JudgeVerdict | None = None
+            if judge_llm is not None:
+                verdict = await _run_judge(judge_llm, query, answer, cited_ids)
 
-        deduped_cited_ids = sorted(set(cited_ids))
-        results.append(
-            AgentResult(
+            deduped_cited_ids = sorted(set(cited_ids))
+            result = AgentResult(
                 query_id=query.id,
                 query=query.query,
                 category=query.category,
@@ -179,7 +188,28 @@ async def run_full_evaluation(
                 # continuous 0-2 mean judge score.
                 answer_hit=(verdict.correctness >= 2) if verdict is not None else None,
             )
-        )
+        except Exception as exc:  # noqa: BLE001 - a single bad query must not lose the whole paid run
+            print(f"[eval] query {query.id} failed, recording as errored: {exc}", file=sys.stderr)
+            result = AgentResult(
+                query_id=query.id,
+                query=query.query,
+                category=query.category,
+                answer=f"[ERROR] {exc}",
+                cited_ids=[],
+                expected_rules=query.expected_rules,
+                expected_army=query.expected_army,
+                retrieval=None,
+                verdict=None,
+                citation_precision=None,
+                citation_f1=None,
+                answer_hit=None,
+            )
+
+        results.append(result)
+        if checkpoint_path is not None:
+            with open(checkpoint_path, "a", encoding="utf-8") as f:
+                f.write(result.model_dump_json() + "\n")
+
     return results
 
 

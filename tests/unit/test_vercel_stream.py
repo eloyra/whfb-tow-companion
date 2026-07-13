@@ -322,3 +322,70 @@ async def test_native_anthropic_citations_surface_search_results() -> None:
     assert data[0]["id"] == "stubborn"
     assert data[0]["name"] == "Stubborn"
     assert not any(item["id"] == "fear" for item in data)
+
+
+@pytest.mark.asyncio
+async def test_native_path_falls_back_to_bracket_marker_without_native_citation() -> None:
+    """A source only bracket-tagged (no search_result_index) still gets a chip.
+
+    Claude's automatic citation mechanism only fires when it quotes a
+    search_result's text near-verbatim; a paraphrased claim produces no
+    ``search_result_location`` citation at all even though the system prompt
+    told the model to tag it with ``[source-id]`` as a required fallback. If
+    that fallback is dropped, a genuinely-used, genuinely-retrieved source
+    would incorrectly render as "No sources retrieved".
+    """
+    events = await _collect_stream(
+        [
+            AIMessageChunk(
+                content="",
+                tool_calls=[
+                    {
+                        "name": "query_warhammer_archive",
+                        "args": {"query": "regeneration flaming attacks"},
+                        "id": "call_1",
+                    }
+                ],
+            ),
+            ToolMessage(
+                content=[
+                    {
+                        "type": "search_result",
+                        "title": "Flammable",
+                        "source": "https://tow.whfb.app/special-rules/flammable",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "A model with this rule cannot Regenerate a Flaming wound.",
+                            }
+                        ],
+                    },
+                ],
+                artifact={
+                    "context": "Fake context",
+                    "sources": [
+                        {
+                            "id": "flammable",
+                            "name": "Flammable",
+                            "source_url": "https://tow.whfb.app/special-rules/flammable",
+                        },
+                    ],
+                },
+                tool_call_id="call_1",
+                name="query_warhammer_archive",
+            ),
+            AIMessageChunk(
+                content=[
+                    {
+                        "type": "text",
+                        "text": "A Flammable model cannot Regenerate fire wounds [flammable].",
+                    },
+                ]
+            ),
+        ]
+    )
+
+    source_event = next(e for e in events if e["type"] == "data-sources")
+    data = source_event["data"]
+    assert len(data) == 1
+    assert data[0]["id"] == "flammable"

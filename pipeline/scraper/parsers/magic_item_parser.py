@@ -1,17 +1,28 @@
 """
-Parser for magic item list pages (``/magic-items/{slug}``).
+Parser for magic item pages: both list pages and dedicated single-item pages.
 
-Content type: ``rule`` with ``ruleType[0].fields.slug`` matching ``magic-items``
-or ``magic-items-and-abilities``.
-
-Individual magic items are **not** separate pages.  They are embedded inside
-the list-page body as Contentful ``embedded-entry-block`` nodes.  Each block's
+**List pages** (``/magic-items/{slug}``): content type ``rule`` with
+``ruleType[0].fields.slug`` matching ``magic-items`` or
+``magic-items-and-abilities``. Individual magic items are embedded inside the
+page body as Contentful ``embedded-entry-block`` nodes; each block's
 ``data.magicItem`` key holds an array of item objects.
 
 Data source: ``__NEXT_DATA__.props.pageProps.entry`` (Contentful ``rule``).
 Item data: ``entry.fields.body`` → embedded-entry-block → ``data.magicItem[]``.
 
-Each magic item object in the array has:
+**Dedicated pages** (``/magic-item/{slug}``, singular): content type
+``magicItem`` directly — ``entry.fields`` *is* the single item's data (same
+field shape as one list-page item entry: ``name``, ``slug``, ``cost``,
+``type``, ``costOverride``, ``description``, ``body``, ``association``). The
+manifest labels these pages ``core_rule`` (no dedicated ``page_type`` bucket
+exists for the singular URL), so ``parsers/__init__.py`` routes them here
+explicitly by URL prefix — mirroring the ``/spell/`` override for the
+identical duplicate-id bug documented in ADR-0006. Before this override
+existed, every one of these ~700 pages was parsed by ``CoreRuleParser``
+instead, producing a same-id ``CoreRule`` node for every ``MagicItem`` and
+making any labelless ``MATCH (n {id: ...})`` property fetch non-deterministic.
+
+Each magic item object (list-embedded or dedicated-page-direct) has:
 - ``name``        (str)      display name
 - ``slug``        (str)      canonical id
 - ``cost``        (int|null) points cost
@@ -21,9 +32,10 @@ Each magic item object in the array has:
 
 ``army_id`` is derived from ``entry.fields.association[0].fields.slug`` when
 the association is not the generic ``"rulebook"`` entry — indicating an
-army-specific items page (e.g. Vampire Counts vampiric powers).
+army-specific items page (e.g. Vampire Counts vampiric powers). For dedicated
+pages this reads the same ``association`` field directly off the item entry.
 
-Output nodes: multiple ``MagicItem`` nodes per page.
+Output nodes: one ``MagicItem`` node (dedicated page) or multiple (list page).
 Output edges: none.
 """
 
@@ -62,21 +74,19 @@ class MagicItemParser(BaseParser):
             return result
 
         # Determine army_id and book name from association
-        association: list[dict] = fields.get("association") or []
-        army_id: str | None = None
-        book = "Rulebook"
-        if association:
-            assoc_fields = association[0].get("fields", {})
-            assoc_slug: str = assoc_fields.get("slug", "")
-            assoc_name: str = assoc_fields.get("name", "Rulebook")
-            if assoc_slug and assoc_slug != "rulebook":
-                army_id = assoc_slug
-                book = assoc_name
-            else:
-                book = assoc_name
+        book, army_id = self._book_and_army_id(fields)
 
-        # Magic items are embedded in the body as embedded-entry-block nodes.
-        # Each block has data.magicItem = [item_object, ...]
+        content_type = entry.get("sys", {}).get("contentType", {}).get("sys", {}).get("id")
+        if content_type == "magicItem":
+            # Dedicated /magic-item/{slug} page: entry.fields IS the one item's
+            # data directly, not a list-page body with embedded item blocks.
+            node = self._parse_item(fields, url, date, book, army_id)
+            if node:
+                result.nodes.append(node)
+            return result
+
+        # List page: magic items are embedded in the body as
+        # embedded-entry-block nodes. Each block has data.magicItem = [item_object, ...]
         embedded_blocks = self._richtext_find_embedded_blocks(fields.get("body"))
 
         for block in embedded_blocks:
@@ -91,6 +101,29 @@ class MagicItemParser(BaseParser):
                     result.nodes.append(node)
 
         return result
+
+    @staticmethod
+    def _book_and_army_id(fields: dict) -> tuple[str, str | None]:
+        """Resolve ``(book, army_id)`` from a page's ``association`` field.
+
+        Shared by list pages (page-level ``entry.fields.association``) and
+        dedicated single-item pages (item-level ``entry.fields.association``
+        — same field, same shape, since a dedicated page's ``entry.fields``
+        stands in for one list-page item entry).
+        """
+        association: list[dict] = fields.get("association") or []
+        army_id: str | None = None
+        book = "Rulebook"
+        if association:
+            assoc_fields = association[0].get("fields", {})
+            assoc_slug: str = assoc_fields.get("slug", "")
+            assoc_name: str = assoc_fields.get("name", "Rulebook")
+            if assoc_slug and assoc_slug != "rulebook":
+                army_id = assoc_slug
+                book = assoc_name
+            else:
+                book = assoc_name
+        return book, army_id
 
     # ------------------------------------------------------------------
     # Helpers

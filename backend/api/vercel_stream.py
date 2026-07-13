@@ -136,12 +136,17 @@ class VercelStream:
 
                     text = _extract_text(msg.content)
                     if text:
-                        # Capture legacy inline citations from the raw text
+                        # Capture bracket-marker citations from the raw text
                         # before stripping known source slugs from the stream.
-                        if not search_results:
-                            for sid in set(re.findall(r"\[([a-z0-9][a-z0-9-]*)\]", text)):
-                                if sid in source_ids:
-                                    legacy_cited_ids.add(sid)
+                        # These are captured on both paths: on the native
+                        # Anthropic path they are the system prompt's required
+                        # fallback for when Claude's automatic citation
+                        # mechanism doesn't fire for a paraphrased (not
+                        # verbatim-quoted) claim, so ``cited_indices`` alone
+                        # would otherwise silently under-report sources.
+                        for sid in set(re.findall(r"\[([a-z0-9][a-z0-9-]*)\]", text)):
+                            if sid in source_ids:
+                                legacy_cited_ids.add(sid)
 
                         # Capture Anthropic native citations.
                         for citation in _extract_citations(msg.content):
@@ -238,12 +243,23 @@ class VercelStream:
 
             # Determine which sources to surface.
             if search_results:
-                # Native Anthropic path: use the model's own citations.
-                displayed_sources = [
-                    search_results[idx]
-                    for idx in sorted(cited_indices)
-                    if 0 <= idx < len(search_results)
-                ]
+                # Native Anthropic path: use the model's own citations,
+                # unioned with the bracket-marker fallback (by source id) for
+                # claims the automatic citation mechanism didn't annotate.
+                by_id = {s.get("id"): s for s in search_results if s.get("id")}
+                ordered_ids: list[str] = []
+                seen_ids: set[str] = set()
+                for idx in sorted(cited_indices):
+                    if 0 <= idx < len(search_results):
+                        sid = search_results[idx].get("id")
+                        if sid and sid not in seen_ids:
+                            seen_ids.add(sid)
+                            ordered_ids.append(sid)
+                for sid in legacy_cited_ids:
+                    if sid in by_id and sid not in seen_ids:
+                        seen_ids.add(sid)
+                        ordered_ids.append(sid)
+                displayed_sources = [by_id[sid] for sid in ordered_ids]
             else:
                 # Legacy path: derive citations from inline markers captured
                 # during streaming and from whole-token mentions in the prose.

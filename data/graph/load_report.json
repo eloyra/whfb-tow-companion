@@ -20,7 +20,7 @@
   },
   "warnings": [],
   "threshold_errors": [],
-  "duration_seconds": 0.3,
+  "duration_seconds": 0.43,
   "node_counts": {
     "Army": {
       "expected": 19,
@@ -43,8 +43,8 @@
       "delta": 0
     },
     "CoreRule": {
-      "expected": 1377,
-      "actual": 1377,
+      "expected": 646,
+      "actual": 646,
       "delta": 0
     },
     "Document": {
@@ -73,8 +73,8 @@
       "delta": 0
     },
     "MagicItem": {
-      "expected": 698,
-      "actual": 698,
+      "expected": 731,
+      "actual": 731,
       "delta": 0
     },
     "FAQ": {
@@ -109,15 +109,15 @@
     }
   },
   "edge_counts": {
-    "REFERENCES": 6031,
+    "REFERENCES": 3524,
     "PART_OF_SECTION": 77,
     "HAS_INTRINSIC_RULE": 80,
     "BELONGS_TO_LORE": 153,
-    "HAS_RULE": 4395,
-    "HAS_WEAPON": 1607,
+    "HAS_RULE": 4388,
+    "HAS_WEAPON": 1603,
     "USES_LORE": 234,
     "BELONGS_TO": 595,
-    "CAN_TAKE_ITEM": 73321,
+    "CAN_TAKE_ITEM": 45733,
     "HAS_COMPOSITION_RULE": 17,
     "HAS_LIST": 17,
     "HAS_SLOT": 83,
@@ -127,15 +127,15 @@
     "HAS_PROFILE": 967,
     "SPLIT_PROFILE_OF": 155,
     "HAS_TYPE": 581,
-    "HAS_OPTIONAL_RULE": 1292,
+    "HAS_OPTIONAL_RULE": 1276,
     "UNLOCKS_WEAPON": 824,
     "UNLOCKS_RULE": 350,
     "CAN_MOUNT": 288,
     "UNLOCKS_MOUNT": 285,
-    "UNLOCKS_ITEM": 32,
+    "UNLOCKS_ITEM": 16,
     "REPLACES_WEAPON": 69,
-    "AMENDS": 407,
-    "CLARIFIES": 510
+    "AMENDS": 386,
+    "CLARIFIES": 486
   },
   "edge_drops": {}
 }

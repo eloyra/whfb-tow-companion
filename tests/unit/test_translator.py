@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from pipeline.i18n.translator import Translator
+from pipeline.i18n.translator import _WRITE_BATCH, Translator
 
 
 class FakeRecord:
@@ -140,6 +140,30 @@ def test_translation_memory_cache_dedups_repeated_source_strings() -> None:
     _, rows = driver.write_log[0]
     assert rows[0]["name_es"] == "ES:Fear"
     assert rows[1]["name_es"] == "ES:Fear"
+
+
+def test_translate_label_writes_incrementally_not_only_at_the_end() -> None:
+    """A label larger than _WRITE_BATCH must flush to Neo4j as it goes, so an
+    interrupted run (or a graph rebuild between labels) doesn't lose already
+    -translated nodes' persisted state — only the cache file would otherwise
+    survive a kill mid-label."""
+    node_count = _WRITE_BATCH + 5
+    driver = FakeDriver(
+        [{"id": f"n{i}", "name": f"Name{i}", "text": None} for i in range(node_count)]
+    )
+    calls: list[str] = []
+    translator = Translator()
+
+    translator._translate_label(driver, _translate_fn_factory(calls), {}, "SpecialRule")
+
+    # One full batch of _WRITE_BATCH plus a final flush of the remaining 5 —
+    # not a single write after collecting all node_count rows.
+    assert len(driver.write_log) == 2
+    first_batch_rows = driver.write_log[0][1]
+    second_batch_rows = driver.write_log[1][1]
+    assert len(first_batch_rows) == _WRITE_BATCH
+    assert len(second_batch_rows) == 5
+    assert sum(len(rows) for _, rows in driver.write_log) == node_count
 
 
 def test_write_translations_splits_batches_with_and_without_text() -> None:
