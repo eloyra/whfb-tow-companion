@@ -1,7 +1,14 @@
 """Tools exposed to the chat agent.
 
-The single tool ``query_warhammer_archive`` is built at runtime by
-``build_tools(pipeline)`` so it closes over the injected ``RAGPipeline``.
+The tools are built at runtime by ``build_tools(pipeline)`` so they close over
+the injected ``RAGPipeline``:
+
+- ``query_warhammer_archive`` — semantic search + 1-hop graph traversal.
+- ``list_army_units`` — deterministic army roster (Cypher, no vector search).
+
+Both tools return their result through the same pair of builders so provider
+handling stays uniform: Anthropic gets citable ``search_result`` content
+blocks, everything else gets a JSON string.
 """
 
 from __future__ import annotations
@@ -12,9 +19,30 @@ from typing import Any
 
 from langchain.tools import tool
 
-# Maximum number of citable search_result blocks returned to Anthropic models.
-# More blocks give finer citations but increase input-token cost.
+# Maximum number of citable search_result blocks returned to Anthropic models
+# for a semantic-search result. More blocks give finer citations but increase
+# input-token cost.
 _MAX_CITABLE_NODES = 20
+
+# Higher cap for the army-roster tool: a roster is only useful when complete,
+# and its per-unit blocks are one line each, so the token cost stays small.
+_MAX_ROSTER_NODES = 100
+
+# Relationship properties worth surfacing to the model; everything else is
+# internal bookkeeping and would only add noise.
+_READABLE_LINK_PROPS = {"budget", "alliance_type", "via_upgrade"}
+
+
+def use_native_citations(override: bool | None = None) -> bool:
+    """Resolve whether Anthropic-native ``search_result`` blocks are in use.
+
+    ``build_tools`` and ``build_system_prompt`` share this switch so the
+    system prompt always describes the tool-result format the model actually
+    receives.
+    """
+    if override is not None:
+        return override
+    return os.getenv("LLM_PROVIDER", "ollama").lower() == "anthropic"
 
 
 def _source_url(node: dict[str, Any]) -> str:
@@ -27,7 +55,7 @@ def _node_text(node: dict[str, Any]) -> str:
     return (node.get("text") or node.get("name") or "").strip()
 
 
-def _citable_nodes(result: dict[str, Any]) -> list[dict[str, Any]]:
+def _citable_nodes(result: dict[str, Any], max_nodes: int) -> list[dict[str, Any]]:
     """Build an ordered, deduplicated list of nodes that can be cited.
 
     Seeds are listed first, then one-hop expansion neighbours. The order is
@@ -54,11 +82,57 @@ def _citable_nodes(result: dict[str, Any]) -> list[dict[str, Any]]:
         seen.add(nid)
         nodes.append(node)
 
-    return nodes[:_MAX_CITABLE_NODES]
+    return nodes[:max_nodes]
+
+
+def _format_link(link: dict[str, Any]) -> str:
+    """Render one seed-to-seed graph edge as a readable line."""
+    props = link.get("props") or {}
+    readable = {k: v for k, v in props.items() if k in _READABLE_LINK_PROPS}
+    props_str = f" {json.dumps(readable, ensure_ascii=False)}" if readable else ""
+    return f"[{link['source']}] --{link['rel_type']}--{props_str}> [{link['target']}]"
+
+
+def _relationship_annotations(
+    result: dict[str, Any],
+) -> tuple[dict[str, list[str]], dict[str, list[str]]]:
+    """Per-node graph annotations for the native ``search_result`` path.
+
+    On Anthropic, the pipeline's ``context`` string (which carries the graph
+    structure on the legacy path) never reaches the model — only the content
+    blocks do. Without these annotations the model would see bare node texts
+    with no edges at all, defeating the graph half of GraphRAG.
+
+    Returns two maps keyed by node id:
+    - ``related_by_node``: header lines for expansion nodes explaining which
+      seed they hang off and via which relationship.
+    - ``links_by_node``: "Graph relationships" lines for seed nodes listing
+      their direct edges to other retrieved seeds.
+    """
+    related_by_node: dict[str, list[str]] = {}
+    for row in result.get("expansion", []):
+        if not isinstance(row, dict) or not row.get("id"):
+            continue
+        related_by_node.setdefault(row["id"], []).append(
+            f"Related context for [{row.get('seed_id')}] (via {row.get('rel_type')})."
+        )
+
+    links_by_node: dict[str, list[str]] = {}
+    for link in result.get("links", []):
+        if not isinstance(link, dict):
+            continue
+        line = f"- {_format_link(link)}"
+        for endpoint in (link.get("source"), link.get("target")):
+            if endpoint:
+                links_by_node.setdefault(endpoint, []).append(line)
+
+    return related_by_node, links_by_node
 
 
 def _build_native_tool_result(
     result: dict[str, Any],
+    *,
+    max_nodes: int = _MAX_CITABLE_NODES,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     """Build Anthropic-native tool-result content blocks + out-of-band metadata.
 
@@ -70,34 +144,53 @@ def _build_native_tool_result(
     to). The context summary and ``sources`` metadata instead travel as the
     LangChain tool ``artifact``, which is attached to the ``ToolMessage`` for
     local use but never serialized into the API request.
-    """
-    citable = _citable_nodes(result)
 
-    sources_meta = [
-        {
-            "id": node.get("id"),
-            "name": node.get("name"),
-            "label": node.get("label"),
-            "source_url": _source_url(node),
-        }
-        for node in citable
-    ]
-    artifact = {"context": result.get("context", ""), "sources": sources_meta}
+    Because the model never sees the ``context`` string here, the graph
+    structure (seed-to-seed edges, expansion relationships) is folded into
+    each block's text via ``_relationship_annotations``.
+
+    The ``sources`` artifact list is built in the same loop as the content
+    blocks so both stay index-aligned: ``VercelStream`` resolves each native
+    citation's ``search_result_index`` positionally against that list.
+    """
+    citable = _citable_nodes(result, max_nodes)
+    related_by_node, links_by_node = _relationship_annotations(result)
 
     content_blocks: list[dict[str, Any]] = []
+    sources_meta: list[dict[str, Any]] = []
     for node in citable:
         text = _node_text(node)
         if not text:
             continue
+        nid = node.get("id")
+
+        related_lines = related_by_node.get(nid, [])
+        if related_lines:
+            text = "\n".join(related_lines) + "\n\n" + text
+
+        link_lines = links_by_node.get(nid, [])
+        if link_lines:
+            text = text + "\n\nGraph relationships:\n" + "\n".join(link_lines)
+
+        sources_meta.append(
+            {
+                "id": nid,
+                "name": node.get("name"),
+                "label": node.get("label"),
+                "source_url": _source_url(node),
+            }
+        )
         content_blocks.append(
             {
                 "type": "search_result",
-                "title": node.get("name") or node.get("id"),
-                "source": _source_url(node) or node.get("id"),
+                "title": node.get("name") or nid,
+                "source": _source_url(node) or nid,
                 "citations": {"enabled": True},
                 "content": [{"type": "text", "text": text}],
             }
         )
+
+    artifact = {"context": result.get("context", ""), "sources": sources_meta}
 
     if not content_blocks:
         # No citable nodes: no search_result blocks means the homogeneity rule
@@ -139,16 +232,13 @@ def build_tools(pipeline: Any, native_citations: bool | None = None) -> list[Any
     ``pipeline`` is typically injected via FastAPI's ``Depends(get_rag_pipeline)``.
 
     Args:
-        pipeline: The ``RAGPipeline`` instance the tool should query.
+        pipeline: The ``RAGPipeline`` instance the tools should query.
         native_citations: When ``True``, return Anthropic-native
             ``search_result`` content blocks. When ``False`` (default for tests
             and non-Anthropic providers), return a JSON string. When ``None``,
             derive from the ``LLM_PROVIDER`` environment variable.
     """
-    if native_citations is None:
-        native_citations = os.getenv("LLM_PROVIDER", "ollama").lower() == "anthropic"
-
-    use_native_citations = native_citations
+    native = use_native_citations(native_citations)
 
     @tool(response_format="content_and_artifact")
     def query_warhammer_archive(
@@ -157,35 +247,69 @@ def build_tools(pipeline: Any, native_citations: bool | None = None) -> list[Any
         """Query the Warhammer: The Old World knowledge graph.
 
         Use this tool for **any factual question** about rules, units, special
-        rules, magic items, spells, lore, army composition, or army building.
-        It performs semantic search over the graph, expands the results by one
-        graph hop, and returns a readable summary plus citable source nodes.
+        rules, magic items, spells, lore, terrain, or FAQ/errata rulings. It
+        performs semantic search over the graph, expands the results by one
+        graph hop, and returns citable source entries including the direct
+        graph relationships found among them.
 
-        On Anthropic models the result is returned as citable ``search_result``
-        content blocks; on other providers it returns a JSON object with keys:
-        - ``context``: the primary summary to read. It contains the retrieved
-          sources, any direct edges among them, and related 1-hop context.
-        - ``sources``: the seed nodes retrieved by semantic search.
+        Do NOT use it to enumerate an army's units — use ``list_army_units``
+        for that; semantic search returns only the closest matches, never a
+        complete roster.
 
-        How to phrase ``query``:
-        - Rule lookup: "stubborn special rule"
-        - Rule interaction: combine both concepts, e.g.
-          "regeneration flaming attacks interaction"
+        How to phrase ``query`` — always in English, using official English
+        game terms, with casual table-talk translated into rulebook wording:
+        - Rule lookup: "Stubborn special rule"
+        - Rule interaction: combine both concept names, e.g.
+          "Regeneration Flaming Attacks interaction"
         - Eligibility ("can X use/ride Y?"): include BOTH the subject and the
-          object, e.g. "vampire-lord nightshroud" or "orc-warboss wyvern".
-        - Unit stats: "blood-knights profile"
-        - Army-list building: "vampire-counts core units points"
+          object, e.g. "Vampire Lord Nightshroud" or "Orc Warboss Wyvern".
+          This maximises the chance that both entries are retrieved and the
+          direct relationship between them is found.
+        - Unit stats: "Blood Knights profile"
+        - Lore/spell: "Lore of Battle Magic" or "Oaken Shield spell"
+        - Follow-up questions: rewrite them standalone, resolving pronouns to
+          the entity names from the conversation.
 
         You may call this tool more than once when a question needs multiple
-        concepts or a list of candidates.
+        concepts; reword the query (official rule name, synonyms, the general
+        mechanic) if the first result misses the concept.
 
         Args:
-            query: A clear, specific question or search phrase. Rephrase the
+            query: A clear, specific search phrase in English. Rephrase the
                 user's question if needed to improve retrieval.
         """
         result = pipeline.query(query)
-        if use_native_citations:
+        if native:
             return _build_native_tool_result(result)
         return _build_legacy_tool_result(result)
 
-    return [query_warhammer_archive]
+    @tool(response_format="content_and_artifact")
+    def list_army_units(
+        army: str,
+        category: str | None = None,
+    ) -> tuple[list[dict[str, Any]] | str, dict[str, Any]]:
+        """List every unit of an army with points cost and unit size.
+
+        Use this tool — never semantic search — whenever you need to
+        enumerate an army's units (army-list building, "what units can X
+        field?"). It reads the roster directly from the knowledge graph, so
+        the result is complete and deterministic.
+
+        The roster does NOT record Core/Special/Rare army-list slots; if slot
+        limits matter, query the army's composition rules with
+        ``query_warhammer_archive``.
+
+        Args:
+            army: Army id slug or exact English name, e.g. "vampire-counts"
+                or "Vampire Counts".
+            category: Optional case-insensitive filter matched against the
+                unit's category ("Characters", "Named Characters", "Mounts",
+                "Infantry", "Cavalry", ...) or troop type. Omit it to get the
+                full roster.
+        """
+        result = pipeline.list_army_units(army, category)
+        if native:
+            return _build_native_tool_result(result, max_nodes=_MAX_ROSTER_NODES)
+        return _build_legacy_tool_result(result)
+
+    return [query_warhammer_archive, list_army_units]

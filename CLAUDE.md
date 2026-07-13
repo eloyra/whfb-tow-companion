@@ -151,7 +151,7 @@ make lint           # run ruff
 - [x] `pipeline/embeddings/` — generator, per-label text builders, HNSW vector_store (ADR-0005)
 - [x] `backend/api/main.py` — FastAPI app wired; `/chat` route implemented (LangGraph agent + Vercel SSE); `/graph` routes still raise `NotImplementedError`
 - [x] `backend/llm/` — `client.py` dispatcher exists but provider submodules are stubs; **deprecated** in favour of `api/dependencies.py::get_llm()` (ADR-0007)
-- [x] `backend/rag/` — `retriever.py`, `graph_traversal.py`, `pipeline.py`, `tools.py`, `prompts/system_prompt.py` implemented; `prompts/templates.py` remains a `# TODO` stub
+- [x] `backend/rag/` — `retriever.py`, `graph_traversal.py`, `pipeline.py`, `tools.py` (semantic search + deterministic army-roster tool), `prompts/templates.py` (provider-aware system-prompt composition), `prompts/system_prompt.py` (compat shim) implemented
 - [ ] `pipeline/i18n/` — `translator.py` is a `# TODO` stub; translation JSON files empty
 - [ ] `tests/evaluation/` — `evaluate.py` is a `# TODO` stub; golden set has only 3 queries
 - [ ] Frontend graph visualisation (chat UI is implemented; see `frontend/CLAUDE.md`)

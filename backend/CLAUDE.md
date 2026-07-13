@@ -40,6 +40,8 @@ backend/
 
 **Graph access**: always go through the RAG pipeline (`rag/pipeline.py`) for retrieval. Graph traversal lives in `rag/graph_traversal.py`.
 
+**System prompt**: always build it via `rag/prompts/templates.py::build_system_prompt()` — the prompt has provider-specific sections (tool-result format, citation mechanics) resolved by the same `use_native_citations()` switch that `build_tools()` uses. A prompt describing the wrong tool-result format silently degrades answer quality; on the Anthropic path the graph structure travels *inside* the `search_result` block texts (`rag/tools.py::_relationship_annotations`), not in the `context` string.
+
 ---
 
 ## Status
@@ -55,9 +57,9 @@ Not all files are stubs. Per-file state:
 | `api/dependencies.py` | Implemented — `get_llm()` (Ollama/OpenAI/Anthropic via LangChain), `get_driver()`, `get_embedder()`, `get_rag_pipeline()` |
 | `llm/client.py` | Dispatcher implemented but **deprecated/unused** (ADR-0007); delegates to stubbed submodules |
 | `llm/_openai.py`, `_anthropic.py`, `_local.py` | Stubs (`# TODO`) — deprecated, do not implement |
-| `rag/tools.py` | Implemented — `build_tools()` factory wires the real `RAGPipeline` into a LangChain `@tool` |
-| `rag/prompts/system_prompt.py` | Implemented — polished `SYSTEM_PROMPT` with mandatory tool use and citations |
-| `rag/prompts/templates.py` | Stub (`# TODO`) |
+| `rag/tools.py` | Implemented — `build_tools()` wires two tools into the real `RAGPipeline`: `query_warhammer_archive` (semantic + graph) and `list_army_units` (deterministic roster) |
+| `rag/prompts/system_prompt.py` | Implemented — compat shim exposing the legacy fixed `SYSTEM_PROMPT`; new code uses `templates.build_system_prompt()` |
+| `rag/prompts/templates.py` | Implemented — provider-aware system-prompt composition (`build_system_prompt`) |
 | `rag/retriever.py` | Implemented — `GraphRAGRetriever`: multi-label vector search over Neo4j HNSW indexes |
 | `rag/graph_traversal.py` | Implemented — `expand()` (bounded 1-hop neighbourhood) + `links_between()` (direct seed-to-seed edges) |
 | `rag/pipeline.py` | Implemented — `RAGPipeline` orchestrates retrieve → traverse → format for the LLM |

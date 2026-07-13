@@ -63,6 +63,127 @@ class RAGPipeline:
             "expansion": expansion,
         }
 
+    def list_army_units(self, army: str, category: str | None = None) -> dict[str, Any]:
+        """Return the complete unit roster of an army, straight from the graph.
+
+        Deterministic Cypher over ``BELONGS_TO`` — no vector search. Army-list
+        enumeration must be complete, which semantic top-k retrieval cannot
+        guarantee. The payload has the same shape as ``query()`` (``context``,
+        ``sources``, ``links``, ``expansion``) so the tool layer formats both
+        uniformly.
+
+        Args:
+            army: Army id slug (e.g. ``"vampire-counts"``) or exact name.
+            category: Optional case-insensitive filter matched against the
+                unit category, army category, or troop type names.
+        """
+        driver = getattr(self.traversal, "driver", None)
+        if driver is None:
+            return self._empty_roster(army)
+
+        # Accept both the id slug and the display name; also slugify the input
+        # so "Vampire Counts" finds army id "vampire-counts".
+        slugified = army.strip().lower().replace(" ", "-")
+        cypher = """
+            MATCH (u:Unit)-[:BELONGS_TO]->(a:Army)
+            WHERE a.id = $army OR a.id = $slug OR toLower(a.name) = toLower($army)
+            OPTIONAL MATCH (u)-[:HAS_TYPE]->(tt:TroopType)
+            RETURN a.name AS army_name,
+                   u.id AS id,
+                   u.name AS name,
+                   u.url AS url,
+                   u.unit_category AS unit_category,
+                   u.army_category AS army_category,
+                   u.cost_points_per_model AS cost,
+                   u.unit_size_min AS size_min,
+                   u.unit_size_max AS size_max,
+                   collect(DISTINCT tt.name) AS troop_types
+            ORDER BY u.unit_category, u.name
+        """
+        with driver.session() as session:
+            result = session.run(cypher, army=army.strip(), slug=slugified)
+            rows = [dict(record) for record in result]
+
+        if category:
+            needle = category.strip().lower()
+            rows = [
+                row
+                for row in rows
+                if any(
+                    value and needle in value.lower()
+                    for value in (
+                        row.get("unit_category"),
+                        row.get("army_category"),
+                        *(row.get("troop_types") or []),
+                    )
+                )
+            ]
+
+        if not rows:
+            return self._empty_roster(army, category)
+
+        army_name = rows[0].get("army_name") or army
+        sources: list[dict[str, Any]] = []
+        lines: list[str] = []
+        for row in rows:
+            details = self._roster_details(row)
+            text = f"{row['name']} ({army_name}): {details}" if details else f"{row['name']}"
+            sources.append(
+                {
+                    "id": row["id"],
+                    "label": "Unit",
+                    "name": row["name"],
+                    "text": text,
+                    "url": row.get("url"),
+                }
+            )
+            lines.append(f"- [{row['id']}] {row['name']}: {details}")
+
+        filter_str = f", category filter: {category!r}" if category else ""
+        context = "\n".join(
+            [
+                f"## Units of {army_name} ({len(sources)} entries{filter_str})",
+                "(Complete roster from the knowledge graph. Core/Special/Rare army-list "
+                "slots are not recorded per unit; query the army's composition rules "
+                "for slot limits.)",
+                *lines,
+            ]
+        )
+        return {"context": context, "sources": sources, "links": [], "expansion": []}
+
+    @staticmethod
+    def _empty_roster(army: str, category: str | None = None) -> dict[str, Any]:
+        """Payload for an army/category combination with no matching units."""
+        detail = f" with category {category!r}" if category else ""
+        return {
+            "context": (
+                f"No units found for army {army!r}{detail}. Use the army's id slug "
+                '(e.g. "vampire-counts") or its exact English name.'
+            ),
+            "sources": [],
+            "links": [],
+            "expansion": [],
+        }
+
+    @staticmethod
+    def _roster_details(row: dict[str, Any]) -> str:
+        """One-line summary of a roster row (category, points, size)."""
+        details: list[str] = []
+        if row.get("unit_category"):
+            details.append(row["unit_category"])
+        if row.get("army_category") and row["army_category"] != row.get("unit_category"):
+            details.append(row["army_category"])
+        troop_types = [t for t in (row.get("troop_types") or []) if t]
+        if troop_types:
+            details.append(", ".join(troop_types))
+        if row.get("cost") is not None:
+            details.append(f"{row['cost']} pts/model")
+        if row.get("size_min") is not None:
+            size_max = row.get("size_max")
+            size = f"{row['size_min']}-{size_max}" if size_max else f"{row['size_min']}+"
+            details.append(f"unit size {size}")
+        return "; ".join(details)
+
     def _format_context(
         self,
         seeds: list[dict[str, Any]],
@@ -79,15 +200,13 @@ class RAGPipeline:
 
         parts.append("## Retrieved sources")
         for seed in seeds:
-            score = seed.get("score")
-            score_str = f" (score: {score:.3f})" if score is not None else ""
             text = seed.get("text") or seed.get("name") or ""
             extra = self._seed_summary(seed.get("label"), seed_props.get(seed["id"], {}))
             if extra:
                 text = f"{text} {extra}".strip()
             parts.append(
                 f"- [{seed['id']}] {seed.get('name', 'Unnamed')} "
-                f"({seed.get('label', 'Node')}){score_str}: {text}"
+                f"({seed.get('label', 'Node')}): {text}"
             )
 
         if links:

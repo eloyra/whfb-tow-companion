@@ -12,7 +12,7 @@ from pydantic import BaseModel
 from backend.api.dependencies import get_llm, get_rag_pipeline
 from backend.api.vercel_stream import VercelStream
 from backend.rag.pipeline import RAGPipeline
-from backend.rag.prompts.system_prompt import SYSTEM_PROMPT
+from backend.rag.prompts.templates import build_system_prompt
 from backend.rag.tools import build_tools
 
 router = APIRouter()
@@ -53,7 +53,7 @@ async def chat(
             lc_messages.append(AIMessage(content=msg.text_content))
 
     tools = build_tools(pipeline)
-    agent = create_agent(llm, tools=tools, system_prompt=SYSTEM_PROMPT)
+    agent = create_agent(llm, tools=tools, system_prompt=build_system_prompt())
     config = {
         "metadata": {"environment": os.getenv("ENVIRONMENT", "development")},
     }
