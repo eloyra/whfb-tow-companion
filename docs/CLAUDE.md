@@ -39,6 +39,7 @@ Current ADRs:
 | `ADR-0006-parser-data-source-strategy.md` | Hybrid parsing (Contentful JSON + HTML DOM), spell source-of-truth |
 | `ADR-0007-llm-provider-strategy.md` | Canonical LLM resolution via `api/dependencies.py`; `llm/client.py` deprecated |
 | `ADR-0008-retrieval-modes.md` | `RAG_MODE` retrieval-mode ablation (vector / graph / hybrid); RRF fusion, full-text index |
+| `ADR-0009-retriever-architecture.md` | Actual retriever/traversal design vs. ADR-0001's superseded `VectorCypherRetriever` mandate; why `neo4j-graphrag`'s retrievers were evaluated and rejected |
 
 ---
 

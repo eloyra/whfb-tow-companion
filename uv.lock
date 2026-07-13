@@ -901,15 +901,6 @@ wheels = [
 ]
 
 [[package]]
-name = "json-repair"
-version = "0.44.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/a8/6b/ed6e92efc5acfbc9c35ccae1676b70e4adb1552421e64f838c2a3f097d9a/json_repair-0.44.1.tar.gz", hash = "sha256:1130eb9733b868dac1340b43cb2effebb519ae6d52dd2d0728c6cca517f1e0b4", size = 32886, upload-time = "2025-04-30T16:09:38.54Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/82/b4/3cbd27a3240b2962c3b87bbb1c20eb6c56e5b26cde61f141f86ca98e2f68/json_repair-0.44.1-py3-none-any.whl", hash = "sha256:51d82532c3b8263782a301eb7904c75dce5fee8c0d1aba490287fc0ab779ac50", size = 22478, upload-time = "2025-04-30T16:09:37.303Z" },
-]
-
-[[package]]
 name = "json5"
 version = "0.13.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1265,15 +1256,6 @@ wheels = [
 ]
 
 [[package]]
-name = "langdetect"
-version = "1.0.9"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "six" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/0e/72/a3add0e4eec4eb9e2569554f7c70f4a3c27712f40e3284d483e88094cc0e/langdetect-1.0.9.tar.gz", hash = "sha256:cbc1fef89f8d062739774bd51eda3da3274006b3661d199c2655f6b3f6d605a0", size = 981474, upload-time = "2021-05-07T07:54:13.562Z" }
-
-[[package]]
 name = "langgraph"
 version = "1.1.10"
 source = { registry = "https://pypi.org/simple" }
@@ -1617,27 +1599,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/1b/01/d6ce65e4647f6cb2b9cca3b813978f7329b54b4e36660aaec1ddf0ccce7a/neo4j-6.1.0.tar.gz", hash = "sha256:b5dde8c0d8481e7b6ae3733569d990dd3e5befdc5d452f531ad1884ed3500b84", size = 239629, upload-time = "2026-01-12T11:27:34.777Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/70/5c/ee71e2dd955045425ef44283f40ba1da67673cf06404916ca2950ac0cd39/neo4j-6.1.0-py3-none-any.whl", hash = "sha256:3bd93941f3a3559af197031157220af9fd71f4f93a311db687bd69ffa417b67d", size = 325326, upload-time = "2026-01-12T11:27:33.196Z" },
-]
-
-[[package]]
-name = "neo4j-graphrag"
-version = "1.14.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "fsspec" },
-    { name = "json-repair" },
-    { name = "neo4j" },
-    { name = "numpy", marker = "python_full_version < '3.15'" },
-    { name = "pydantic" },
-    { name = "pypdf" },
-    { name = "pyyaml" },
-    { name = "scipy", marker = "python_full_version < '3.15'" },
-    { name = "tenacity" },
-    { name = "types-pyyaml" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/d2/56/f026661828d410a6fcc5e19821686d46936ecf740f586bdd081fa03fe733/neo4j_graphrag-1.14.1.tar.gz", hash = "sha256:ee43adeda093a869d59d7ca7190bb561060e74405790ad26e096dddc50b7695f", size = 1344548, upload-time = "2026-03-25T15:35:25.531Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/e0/18/41abfe1d5bd1b1311d6b291585f0f9de3dee3c332388159fae58535dd373/neo4j_graphrag-1.14.1-py3-none-any.whl", hash = "sha256:3d9ee03e31a7650c98d6b40a304fb9a30cf58d0aff9b0a881035b8673789044a", size = 234042, upload-time = "2026-03-25T15:35:23.592Z" },
 ]
 
 [[package]]
@@ -2231,15 +2192,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/b0/77/a5b8c569bf593b0140bde72ea885a803b82086995367bf2037de0159d924/pygments-2.19.2.tar.gz", hash = "sha256:636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887", size = 4968631, upload-time = "2025-06-21T13:39:12.283Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c7/21/705964c7812476f378728bdf590ca4b771ec72385c533964653c68e86bdc/pygments-2.19.2-py3-none-any.whl", hash = "sha256:86540386c03d588bb81d44bc3928634ff26449851e99741617ecb9037ee5ec0b", size = 1225217, upload-time = "2025-06-21T13:39:07.939Z" },
-]
-
-[[package]]
-name = "pypdf"
-version = "6.10.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/66/79/f2730c42ec7891a75a2fcea2eb4f356872bcbc671b711418060424796612/pypdf-6.10.1.tar.gz", hash = "sha256:62e6ca7f65aaa28b3d192addb44f97296e4be1748f57ed0f4efb2d4915841880", size = 5315704, upload-time = "2026-04-14T12:55:20.996Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/f0/04/e3aa7f1f14dbc53429cae34666261eb935d99bd61d24756ab94d7e0309da/pypdf-6.10.1-py3-none-any.whl", hash = "sha256:6331940d3bfe75b7e6601d35db7adabab5fc1d716efaeb384e3c0c3957d033de", size = 335606, upload-time = "2026-04-14T12:55:18.941Z" },
 ]
 
 [[package]]
@@ -3265,15 +3217,6 @@ wheels = [
 ]
 
 [[package]]
-name = "types-pyyaml"
-version = "6.0.12.20260408"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/74/73/b759b1e413c31034cc01ecdfb96b38115d0ab4db55a752a3929f0cd449fd/types_pyyaml-6.0.12.20260408.tar.gz", hash = "sha256:92a73f2b8d7f39ef392a38131f76b970f8c66e4c42b3125ae872b7c93b556307", size = 17735, upload-time = "2026-04-08T04:30:50.974Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/1c/f0/c391068b86abb708882c6d75a08cd7d25b2c7227dab527b3a3685a3c635b/types_pyyaml-6.0.12.20260408-py3-none-any.whl", hash = "sha256:fbc42037d12159d9c801ebfcc79ebd28335a7c13b08a4cfbc6916df78fee9384", size = 20339, upload-time = "2026-04-08T04:30:50.113Z" },
-]
-
-[[package]]
 name = "typing-extensions"
 version = "4.15.0"
 source = { registry = "https://pypi.org/simple" }
@@ -3563,12 +3506,10 @@ dependencies = [
     { name = "langchain-core" },
     { name = "langchain-ollama" },
     { name = "langchain-openai" },
-    { name = "langdetect" },
     { name = "langgraph" },
     { name = "langsmith" },
     { name = "lxml" },
     { name = "neo4j" },
-    { name = "neo4j-graphrag" },
     { name = "openai" },
     { name = "pydantic" },
     { name = "python-dotenv" },
@@ -3602,12 +3543,10 @@ requires-dist = [
     { name = "langchain-core", specifier = ">=1.0,<2.0" },
     { name = "langchain-ollama", specifier = ">=1.1.0" },
     { name = "langchain-openai", specifier = ">=0.2.0" },
-    { name = "langdetect", specifier = ">=1.0.9" },
     { name = "langgraph", specifier = ">=1.0,<2.0" },
     { name = "langsmith", specifier = ">=0.3.0" },
     { name = "lxml", specifier = ">=5.0.0" },
     { name = "neo4j", specifier = ">=5.20.0" },
-    { name = "neo4j-graphrag", specifier = ">=1.0.0" },
     { name = "openai", specifier = ">=1.30.0" },
     { name = "pydantic", specifier = ">=2.7.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.2.0" },

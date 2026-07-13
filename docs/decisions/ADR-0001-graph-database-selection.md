@@ -93,8 +93,20 @@ This keeps the embedding model under local control and avoids external API calls
 
 ---
 
+## Amendment — retrieval design superseded (2026-07-13)
+
+The `VectorCypherRetriever`-based retrieval design mandated above was not implemented as
+specified. The actual retrieval and traversal architecture — and the reasoning for
+diverging, including why `neo4j-graphrag`'s retriever classes were re-evaluated and
+rejected rather than assumed unusable — is documented in ADR-0009. This section is
+retained for historical context; ADR-0009 is authoritative for how retrieval actually
+works.
+
+---
+
 ## References
 
 - Neo4j GraphRAG Python package: <https://github.com/neo4j/neo4j-graphrag-python>
 - Neo4j vector index documentation: <https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/>
 - Edge, L., et al. (2024). *From Local to Global: A Graph RAG Approach to Query-Focused Summarization*. arXiv:2404.16130.
+- ADR-0009 — retriever and traversal architecture actually implemented
