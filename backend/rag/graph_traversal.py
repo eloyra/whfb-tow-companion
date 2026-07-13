@@ -235,15 +235,22 @@ def subgraph(
     Node dicts: ``{id, label, name, source_url}`` — ``embedding`` (768-d) is
     never fetched. Edge dicts: ``{source, target, rel_type}``.
 
-    Each node's fan-out per relation type is additionally capped, reusing
-    ``expand()``'s ``_MAX_PER_RELATION_TYPE``/``_EDGE_TYPE_TIERS`` budget (the
-    cap applies per node, not globally across the whole subgraph — a
-    multi-hop neighborhood has no single "seed" the way ``expand()`` does, so
-    every node in the traversal is capped as if it were one), so a single
+    Each node's fan-out per relation type is additionally capped by
+    ``_capped_bfs_edges``, reusing ``expand()``'s
+    ``_MAX_PER_RELATION_TYPE``/``_EDGE_TYPE_TIERS`` budget, so a single
     high-fan-out node (e.g. a spellcaster with 100-250+ ``CAN_TAKE_ITEM``
-    edges) doesn't crowd out every other relation type/node around it. Unlike
-    ``expand()``, no edge-type allow-list is applied — the viewer is for
-    open-ended graph exploration, not compact LLM context.
+    edges) doesn't crowd out every other relation type/node around it. The
+    cap is applied via a BFS out from ``node_id`` — critically, *not* a flat
+    sort-and-cap over the whole edge list — so every kept edge either extends
+    the connected frontier from the center or links two nodes already
+    connected to it. A flat per-node cap over the raw edge list can silently
+    orphan whole subtrees: it discards an edge without checking whether that
+    edge was the *only* path from the center to everything past it, leaving
+    nodes in the result that are unreachable from ``node_id`` through any kept
+    edge (confirmed against the live graph: capping "regeneration"'s subgraph
+    this way left 46 of 64 returned nodes with no path back to the center).
+    Unlike ``expand()``, no edge-type allow-list is applied — the viewer is
+    for open-ended graph exploration, not compact LLM context.
 
     ``node_id`` not found (or found but isolated) returns
     ``{"nodes": [], "edges": []}``/``{"nodes": [center], "edges": []}``
@@ -283,7 +290,7 @@ def subgraph(
         seen.add(key)
         deduped_edges.append(edge)
 
-    edges = _cap_subgraph_edges(deduped_edges)
+    edges = _capped_bfs_edges(node_id, deduped_edges)
 
     kept_ids = {node_id} | {e["source"] for e in edges} | {e["target"] for e in edges}
     nodes = [n for nid, n in all_nodes.items() if nid in kept_ids]
@@ -291,33 +298,85 @@ def subgraph(
     return {"nodes": nodes, "edges": edges}
 
 
-def _cap_subgraph_edges(edges: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Cap each node's fan-out per relation type (see ``subgraph()``).
+def _capped_bfs_edges(center_id: str, edges: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Cap fan-out per (node, relation type) while BFS-ing out from ``center_id``.
 
-    Edges are sorted by tier (``_EDGE_TYPE_TIERS``, unlisted types default to
-    the lowest priority) before capping, so the surviving edges of a capped
-    node/type are still its highest-priority ones (stable id ordering as
-    tiebreak). An edge is dropped once *either* endpoint has already reached
-    its per-type limit — this bounds fan-out at every node in the subgraph,
-    not just the center, since at depth > 1 an intermediate node can be just
-    as densely connected as the center itself.
+    This guarantees every returned edge keeps the result connected to the
+    center — capping is applied *as* each node is discovered, never after the
+    fact over a flat edge list (see ``subgraph()`` for why that's unsafe).
+
+    Two passes:
+    1. BFS outward from ``center_id``. At each node's expansion, edges to
+       not-yet-discovered neighbors are sorted by tier (``_EDGE_TYPE_TIERS``,
+       ties broken by neighbor id) and accepted up to
+       ``_MAX_PER_RELATION_TYPE``/``_DEFAULT_PER_RELATION_CAP` per relation
+       type — this is the connectivity-critical budget.
+    2. Any remaining edges between two nodes *already* included (cross-links)
+       are added back in, same tier order, capped cumulatively with pass 1 so
+       one node can't accumulate unbounded cross-links either. These can never
+       orphan anything since both endpoints are already connected.
     """
-    ordered = sorted(
-        edges,
+    adjacency: dict[str, list[tuple[str, dict[str, Any]]]] = {}
+    for edge in edges:
+        adjacency.setdefault(edge["source"], []).append((edge["target"], edge))
+        adjacency.setdefault(edge["target"], []).append((edge["source"], edge))
+
+    included = {center_id}
+    kept: list[dict[str, Any]] = []
+    frontier = [center_id]
+    while frontier:
+        next_frontier: list[str] = []
+        for node in sorted(frontier):
+            candidates = sorted(
+                (
+                    (neighbor, edge)
+                    for neighbor, edge in adjacency.get(node, [])
+                    if neighbor not in included
+                ),
+                key=lambda item: (_EDGE_TYPE_TIERS.get(item[1]["rel_type"], 99), item[0]),
+            )
+            counts: dict[str, int] = {}
+            for neighbor, edge in candidates:
+                if neighbor in included:
+                    continue  # claimed by a sibling node processed earlier this round
+                rel_type = edge["rel_type"]
+                limit = _MAX_PER_RELATION_TYPE.get(rel_type, _DEFAULT_PER_RELATION_CAP)
+                if counts.get(rel_type, 0) >= limit:
+                    continue
+                counts[rel_type] = counts.get(rel_type, 0) + 1
+                included.add(neighbor)
+                kept.append(edge)
+                next_frontier.append(neighbor)
+        frontier = next_frontier
+
+    kept_keys = {(e["source"], e["target"], e["rel_type"]) for e in kept}
+    per_node_counts: dict[tuple[str, str], int] = {}
+    for edge in kept:
+        for endpoint in (edge["source"], edge["target"]):
+            key = (endpoint, edge["rel_type"])
+            per_node_counts[key] = per_node_counts.get(key, 0) + 1
+
+    cross_links = sorted(
+        (
+            edge
+            for edge in edges
+            if (edge["source"], edge["target"], edge["rel_type"]) not in kept_keys
+            and edge["source"] in included
+            and edge["target"] in included
+        ),
         key=lambda e: (_EDGE_TYPE_TIERS.get(e["rel_type"], 99), e["source"], e["target"]),
     )
-    counts: dict[tuple[str, str], int] = {}  # (node_id, rel_type) -> edges kept so far
-    kept: list[dict[str, Any]] = []
-    for edge in ordered:
+    for edge in cross_links:
         rel_type = edge["rel_type"]
         limit = _MAX_PER_RELATION_TYPE.get(rel_type, _DEFAULT_PER_RELATION_CAP)
         src_key = (edge["source"], rel_type)
         tgt_key = (edge["target"], rel_type)
-        if counts.get(src_key, 0) >= limit or counts.get(tgt_key, 0) >= limit:
+        if per_node_counts.get(src_key, 0) >= limit or per_node_counts.get(tgt_key, 0) >= limit:
             continue
-        counts[src_key] = counts.get(src_key, 0) + 1
-        counts[tgt_key] = counts.get(tgt_key, 0) + 1
+        per_node_counts[src_key] = per_node_counts.get(src_key, 0) + 1
+        per_node_counts[tgt_key] = per_node_counts.get(tgt_key, 0) + 1
         kept.append(edge)
+
     return kept
 
 

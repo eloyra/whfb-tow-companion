@@ -5,7 +5,13 @@ export interface LayoutNode {
   position: { x: number; y: number };
 }
 
-const RING_SPACING = 220;
+const RING_SPACING = 260;
+// Minimum arc length (px) between adjacent node centers on a ring. Node cards
+// are ~140-220px wide, so a ring packed with many nodes needs its radius
+// pushed out — otherwise nodes at the same hop distance overlap each other
+// (evenly dividing 2π by count alone ignores how much circumference the ring
+// actually needs).
+const MIN_ARC_LENGTH = 170;
 
 /**
  * Deterministic radial layout for the graph viewer.
@@ -65,9 +71,15 @@ export function computeRadialLayout(
       continue;
     }
     const sorted = [...ids].sort();
-    const radius = ring * RING_SPACING;
+    const radius = Math.max(
+      ring * RING_SPACING,
+      (sorted.length * MIN_ARC_LENGTH) / (2 * Math.PI),
+    );
+    // Stagger each ring's start angle so nodes don't line up in radial
+    // "spokes" directly outward from ring to ring.
+    const angleOffset = (ring * Math.PI) / 7;
     sorted.forEach((id, index) => {
-      const angle = (2 * Math.PI * index) / sorted.length;
+      const angle = angleOffset + (2 * Math.PI * index) / sorted.length;
       positions.push({
         id,
         position: { x: radius * Math.cos(angle), y: radius * Math.sin(angle) },

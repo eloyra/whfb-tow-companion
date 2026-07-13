@@ -326,9 +326,11 @@ def test_subgraph_caps_use_per_relation_type_overrides() -> None:
     assert len(result["edges"]) == 3
 
 
-def test_subgraph_caps_fan_out_at_any_node_not_just_center() -> None:
-    # A node reached at depth 2 ("shared") can be just as densely connected as
-    # the center; the cap must bound fan-out there too, not only at "hub".
+def test_subgraph_caps_new_discoveries_per_expanding_node() -> None:
+    # "shared" is offered by 6 different HAS_TYPE edges (1 from hub, 5 from
+    # other-1..5), but only "shared" spends its own discovery budget when *it*
+    # expands outward during BFS — the incoming hub->shared edge is hub's
+    # budget, a separate accounting, and isn't capped by shared's own limit.
     nodes = [
         {"id": "hub", "label": "Unit", "name": "Hub", "source_url": None},
         {"id": "shared", "label": "SpecialRule", "name": "Shared", "source_url": None},
@@ -342,13 +344,44 @@ def test_subgraph_caps_fan_out_at_any_node_not_just_center() -> None:
     response = {"nodes": nodes, "edges": edges}
     result = subgraph(FakeDriver(subgraph_response=response), "hub")
 
-    # HAS_TYPE has no override, so the default cap (4) applies — "shared" is
-    # the target of 6 HAS_TYPE edges total (including the hub->shared one),
-    # so only 4 may survive, even though "shared" isn't the center node.
-    shared_edges = [
-        e for e in result["edges"] if e["target"] == "shared" or e["source"] == "shared"
-    ]
-    assert len(shared_edges) == 4
+    # hub->shared (hub's own budget) survives unconditionally; "shared"'s own
+    # discovery budget for HAS_TYPE (default cap 4) admits only 4 of other-1..5.
+    assert len(result["edges"]) == 5
+    kept_others = {e["source"] for e in result["edges"] if e["source"].startswith("other-")}
+    assert kept_others == {"other-1", "other-2", "other-3", "other-4"}
+    assert "other-5" not in {n["id"] for n in result["nodes"]}
+
+
+def test_subgraph_never_returns_a_node_unreachable_from_center() -> None:
+    """Regression test for a real bug: a flat sort-and-cap over the raw edge
+    list could keep an edge whose *only* path back to the center had itself
+    been capped away, producing "floating island" nodes with no path to
+    node_id through any returned edge. Confirmed against the live graph: the
+    old flat-cap approach left 46 of 64 nodes unreachable from "regeneration"
+    at depth=2. The fix (a capped BFS) must never do this.
+    """
+    # hub has 5 outgoing HAS_TYPE edges (default cap 4); branch-5 gets capped
+    # away. branch-5 also leads onward (via a high-priority, uncapped
+    # REFERENCES edge) to leaf-5 — a flat cap could keep that downstream edge
+    # while dropping the only edge connecting branch-5 (and leaf-5) to "hub".
+    nodes = [{"id": "hub", "label": "Unit", "name": "Hub", "source_url": None}]
+    edges = []
+    for i in range(1, 6):
+        branch_id = f"branch-{i}"
+        nodes.append({"id": branch_id, "label": "TroopType", "name": branch_id, "source_url": None})
+        edges.append(_edge("hub", branch_id, "HAS_TYPE"))
+    nodes.append({"id": "leaf-5", "label": "SpecialRule", "name": "leaf-5", "source_url": None})
+    edges.append(_edge("branch-5", "leaf-5", "REFERENCES"))
+
+    response = {"nodes": nodes, "edges": edges}
+    result = subgraph(FakeDriver(subgraph_response=response), "hub")
+
+    node_ids = {n["id"] for n in result["nodes"]}
+    assert "branch-5" not in node_ids
+    assert "leaf-5" not in node_ids
+    for edge in result["edges"]:
+        assert edge["source"] in node_ids
+        assert edge["target"] in node_ids
 
 
 def test_subgraph_dedupes_duplicate_self_loop_edges() -> None:

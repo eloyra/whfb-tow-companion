@@ -20,7 +20,7 @@
   },
   "warnings": [],
   "threshold_errors": [],
-  "duration_seconds": 0.43,
+  "duration_seconds": 0.4,
   "node_counts": {
     "Army": {
       "expected": 19,
@@ -109,7 +109,7 @@
     }
   },
   "edge_counts": {
-    "REFERENCES": 3524,
+    "REFERENCES": 4786,
     "PART_OF_SECTION": 77,
     "HAS_INTRINSIC_RULE": 80,
     "BELONGS_TO_LORE": 153,

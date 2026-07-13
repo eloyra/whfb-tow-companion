@@ -244,6 +244,31 @@ body {
   }
 }
 
+/*
+ * Graph viewer (@xyflow/react) theming — map its CSS variables onto our
+ * design tokens instead of relying on the library's own light/dark variable
+ * sets, so the graph automatically follows the app's theme (the tokens below
+ * already flip between .light/.dark) with no JS-side theme detection needed.
+ */
+.graph-flow {
+  --xy-background-color: var(--background);
+  --xy-background-pattern-dots-color: var(--border);
+  --xy-edge-label-background-color: var(--surface-secondary);
+  --xy-edge-label-color: var(--muted);
+  --xy-minimap-background-color: var(--surface);
+  --xy-minimap-mask-background-color: var(--overlay);
+  --xy-minimap-node-background-color: var(--heraldic);
+  --xy-minimap-node-stroke-color: var(--border);
+  --xy-controls-button-background-color: var(--surface);
+  --xy-controls-button-background-color-hover: var(--surface-secondary);
+  --xy-controls-button-color: var(--foreground);
+  --xy-controls-button-color-hover: var(--accent);
+  --xy-controls-button-border-color: var(--border);
+  --xy-controls-box-shadow: var(--shadow-sm);
+  --xy-selection-background-color: oklch(0.62 0.08 200 / 0.15);
+  --xy-selection-border: 1px dashed var(--accent);
+}
+
 /* High contrast */
 @media (prefers-contrast: more) {
   :root,
