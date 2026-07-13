@@ -1,4 +1,4 @@
-.PHONY: help install scrape parse build-graph embed translate pipeline serve test test-unit test-integration lint lint-fix format
+.PHONY: help install scrape parse build-graph embed translate pipeline serve test test-unit test-integration test-evaluation evaluate evaluate-full evaluate-compare evaluate-compare-full lint lint-fix format
 
 help:  ## Show available commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
@@ -72,6 +72,9 @@ evaluate-full:  ## Run full agent + LLM-judge evaluation (requires Neo4j + API k
 
 evaluate-compare:  ## Compare vector/graph/hybrid retrieval modes (requires Neo4j; ADR-0008)
 	uv run python -m tests.evaluation.evaluate --compare
+
+evaluate-compare-full:  ## Full agent + LLM-judge comparison across vector/graph/hybrid (requires Neo4j + API key; ADR-0008)
+	uv run python -m tests.evaluation.evaluate --full --compare
 
 format:  ## Auto-format with ruff
 	uv run ruff format .

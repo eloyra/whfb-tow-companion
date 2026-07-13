@@ -152,6 +152,7 @@ def _render_comparison_markdown(report: ComparisonReport) -> str:
     lines.append(_row("Mean MRR", lambda sm: sm.mean_mrr))
     lines.append(_row(f"Mean nDCG@{top_k}", lambda sm: sm.mean_ndcg_at_k))
     lines.append(_row("Mean correctness", lambda sm: sm.mean_correctness))
+    lines.append(_row("Mean groundedness", lambda sm: sm.mean_groundedness))
     lines.append(_row("Mean citation (recall)", lambda sm: sm.mean_citation))
     lines.append(_row("Mean citation precision", lambda sm: sm.mean_citation_precision))
     lines.append(_row("Mean citation F1", lambda sm: sm.mean_citation_f1))
@@ -175,6 +176,28 @@ def _render_comparison_markdown(report: ComparisonReport) -> str:
             )
             lines.append(f"| {cat} | {row} |")
         lines.append("")
+
+    judge_categories = sorted(
+        {cat for m in report.modes for cat in report.per_mode[m].per_category_judge}
+    )
+    if judge_categories:
+        lines.append("## Per-category answer quality (judge)\n")
+        for metric_key, label in (
+            ("correctness", "Correctness"),
+            ("groundedness", "Groundedness"),
+            ("citation", "Citation"),
+            ("answer_hit", "Answer hit"),
+        ):
+            lines.append(f"### {label}\n")
+            lines.append("| Category | " + " | ".join(report.modes) + " |")
+            lines.append("|---|" + "---|" * len(report.modes))
+            for cat in judge_categories:
+                row = " | ".join(
+                    _fmt_float(report.per_mode[m].per_category_judge.get(cat, {}).get(metric_key))
+                    for m in report.modes
+                )
+                lines.append(f"| {cat} | {row} |")
+            lines.append("")
 
     hop_buckets = sorted(
         {bucket for m in report.modes for bucket in report.per_mode[m].per_hop_metrics},
