@@ -22,7 +22,9 @@ const config = defineConfig({
       },
     }),
     viteReact(),
-    nitro(),
+    nitro({
+      compressPublicAssets: { gzip: true, brotli: true },
+    }),
   ],
 });
 
