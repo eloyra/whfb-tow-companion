@@ -26,6 +26,8 @@ jobs:
           cache-dependency-path: frontend/pnpm-lock.yaml
       - run: pnpm install --frozen-lockfile
         working-directory: frontend
+      - run: pnpm build
+        working-directory: frontend
       - run: pnpm check
         working-directory: frontend
       - run: pnpm knip
@@ -47,6 +49,8 @@ jobs:
           cache: pnpm
           cache-dependency-path: frontend/pnpm-lock.yaml
       - run: pnpm install --frozen-lockfile
+        working-directory: frontend
+      - run: pnpm build
         working-directory: frontend
       - run: pnpm typecheck
         working-directory: frontend
