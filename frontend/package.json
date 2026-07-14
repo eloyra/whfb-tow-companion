@@ -71,6 +71,7 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "jsdom": "^28.1.0",
     "knip": "^5.33.0",
+    "react-compiler-healthcheck": "^1.0.0",
     "react-doctor": "^0.0.47",
     "typescript": "^5.7.2",
     "vite": "^8.0.0",
