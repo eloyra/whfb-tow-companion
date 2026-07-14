@@ -125,7 +125,7 @@ class GraphRAGRetriever:
         """Return the top-k most relevant nodes for ``query``.
 
         Each result is a dict with keys: ``id``, ``label``, ``name``, ``text``,
-        ``url``, ``score``.
+        ``url``, ``book``, ``page``, ``score``.
         """
         vector = self._embed(query)
         all_results: list[dict[str, Any]] = []
@@ -172,9 +172,9 @@ class GraphRAGRetriever:
     def _lexical_matches(self, query: str) -> list[dict[str, Any]]:
         """Return nodes whose ``name`` appears as a whole phrase in ``query``.
 
-        Builds an in-memory (id, label, name, text, url) index once per
-        retriever instance (cheap: a few thousand rows, no embeddings
-        involved).
+        Builds an in-memory (id, label, name, text, url, book, page) index
+        once per retriever instance (cheap: a few thousand rows, no
+        embeddings involved).
 
         Variable-value special rules are stored with a placeholder suffix
         (e.g. "Fly (X)", "Armour Bane (X)") that never appears verbatim in
@@ -196,7 +196,7 @@ class GraphRAGRetriever:
         query_stems = [_stem(w) for w in query_words]
 
         matches: list[dict[str, Any]] = []
-        for node_id, label, name, text, url in self._name_index:
+        for node_id, label, name, text, url, book, page in self._name_index:
             if not name:
                 continue
             bare_name = _PARENTHETICAL_SUFFIX_RE.sub("", name).strip()
@@ -210,6 +210,8 @@ class GraphRAGRetriever:
                         "name": name,
                         "text": text or name,
                         "url": url,
+                        "book": book,
+                        "page": page,
                         "score": _LEXICAL_MATCH_SCORE,
                     }
                 )
@@ -234,20 +236,31 @@ class GraphRAGRetriever:
             query_stems[i : i + n] == candidate_stems for i in range(len(query_stems) - n + 1)
         )
 
-    def _fetch_name_index(self) -> list[tuple[str, str, str, str, str]]:
-        """Fetch (id, label, name, text, url) for every embeddable node, once."""
-        rows: list[tuple[str, str, str, str, str]] = []
+    def _fetch_name_index(
+        self,
+    ) -> list[tuple[str, str, str, str, str, str | None, int | None]]:
+        """Fetch (id, label, name, text, url, book, page) for every embeddable node, once."""
+        rows: list[tuple[str, str, str, str, str, str | None, int | None]] = []
         for label in EMBEDDABLE_LABELS:
             try:
                 with self.driver.session() as session:
                     result = session.run(
                         f"MATCH (n:{label}) WHERE n.name IS NOT NULL "
-                        "RETURN n.id AS id, n.name AS name, n.text AS text, n.url AS url",
+                        "RETURN n.id AS id, n.name AS name, n.text AS text, n.url AS url, "
+                        "n.source_citation_book AS book, n.source_citation_page AS page",
                         label=label,
                     )
                     for record in result:
                         rows.append(
-                            (record["id"], label, record["name"], record["text"], record["url"])
+                            (
+                                record["id"],
+                                label,
+                                record["name"],
+                                record["text"],
+                                record["url"],
+                                record["book"],
+                                record["page"],
+                            )
                         )
             except Exception as exc:  # noqa: BLE001 — log and continue with other labels
                 logger.warning("Name-index fetch failed for %s: %s", label, exc)
@@ -280,6 +293,8 @@ class GraphRAGRetriever:
                    node.name AS name,
                    coalesce(node.text, node.name, '') AS text,
                    node.url AS url,
+                   node.source_citation_book AS book,
+                   node.source_citation_page AS page,
                    score
             ORDER BY score DESC
         """
@@ -314,6 +329,8 @@ class GraphRAGRetriever:
                    node.name AS name,
                    coalesce(node.text, node.name, '') AS text,
                    node.url AS url,
+                   node.source_citation_book AS book,
+                   node.source_citation_page AS page,
                    score
             ORDER BY score DESC
         """

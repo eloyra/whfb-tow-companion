@@ -85,6 +85,9 @@ def _result(
     text: str,
     url: str,
     score: float,
+    *,
+    book: str | None = None,
+    page: int | None = None,
 ) -> dict[str, Any]:
     return {
         "id": node_id,
@@ -92,6 +95,8 @@ def _result(
         "name": name,
         "text": text,
         "url": url,
+        "book": book,
+        "page": page,
         "score": score,
     }
 

@@ -28,6 +28,16 @@ export const graphSourceSchema = z.object({
     .nullish()
     .transform((value) => value ?? undefined)
     .optional(),
+  book: z
+    .string()
+    .nullish()
+    .transform((value) => value ?? undefined)
+    .optional(),
+  page: z
+    .number()
+    .nullish()
+    .transform((value) => value ?? undefined)
+    .optional(),
 });
 
 export type GraphSource = z.infer<typeof graphSourceSchema>;

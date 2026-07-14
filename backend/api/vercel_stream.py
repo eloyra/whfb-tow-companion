@@ -230,6 +230,8 @@ class VercelStream:
                             "label": src.get("label"),
                             "text": src.get("text"),
                             "source_url": src.get("source_url") or src.get("url"),
+                            "book": src.get("book"),
+                            "page": src.get("page"),
                         }
                         source_ids.add(sid)
 

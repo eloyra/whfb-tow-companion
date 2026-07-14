@@ -196,7 +196,9 @@ def _fetch_neighbors(
                coalesce(neighbor.text, neighbor.name, '') AS text,
                neighbor.url AS url,
                neighbor.points_cost AS points_cost,
-               neighbor.cost_unit AS cost_unit
+               neighbor.cost_unit AS cost_unit,
+               neighbor.source_citation_book AS book,
+               neighbor.source_citation_page AS page
     """
     with driver.session() as session:
         result = session.run(

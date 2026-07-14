@@ -1,10 +1,18 @@
 import { Chip } from "@heroui/react";
 import { Link } from "@tanstack/react-router";
 import { Network } from "lucide-react";
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { GraphSource } from "#/features/chat/model/graph-source";
 import { m } from "#/paraglide/messages";
+
+// Grace period before hiding the preview after the mouse leaves the trigger
+// or the preview itself. Without it, moving the mouse from the chip up to
+// the (gapped, portaled) preview card passes through dead space that belongs
+// to neither element, firing mouseleave before the card's own mouseenter —
+// closing the card before the pointer ever reaches it, which makes its
+// scrollable text unreachable by mouse.
+const HIDE_DELAY_MS = 200;
 
 interface SourcesListProps {
   sources: GraphSource[];
@@ -24,6 +32,13 @@ interface PreviewPosition {
   left: number;
 }
 
+function citationLine(source: GraphSource): string | null {
+  if (!source.book) return null;
+  return source.page != null
+    ? `${source.book}, p. ${source.page}`
+    : source.book;
+}
+
 /**
  * Hover preview card: the node's own name/label/text. Renders our own themed
  * content rather than embedding the external wiki in an iframe — the iframe
@@ -41,12 +56,17 @@ function SourcePreview({
   source,
   position,
   tooltipId,
+  onMouseEnter,
+  onMouseLeave,
 }: {
   source: GraphSource;
   position: PreviewPosition;
   tooltipId: string;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
 }) {
   const displayName = source.name || source.id;
+  const citation = citationLine(source);
 
   return createPortal(
     <div
@@ -58,12 +78,17 @@ function SourcePreview({
         left: position.left,
         transform: "translateY(-100%)",
       }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <div className="mb-2 rounded-lg border border-metal/25 bg-surface shadow-lg overflow-hidden">
-        <div className="flex items-center justify-between gap-2 border-b border-metal/15 bg-surface-secondary px-3 py-2">
-          <p className="truncate text-sm font-semibold text-surface-foreground">
-            {displayName}
-          </p>
+        <div className="flex items-start justify-between gap-2 border-b border-metal/15 bg-surface-secondary px-3 py-2">
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold text-surface-foreground">
+              {displayName}
+            </p>
+            {citation && <p className="text-[10px] text-muted">{citation}</p>}
+          </div>
           {source.label && (
             <span className="shrink-0 text-[10px] uppercase tracking-wide text-muted">
               {source.label}
@@ -84,6 +109,7 @@ function SourcePreview({
 function SourceChip({ source }: { source: GraphSource }) {
   const [position, setPosition] = useState<PreviewPosition | null>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
+  const hideTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const tooltipId = useId();
   const displayName = source.name || source.id;
   const hasPreview = Boolean(source.text || source.label);
@@ -91,13 +117,35 @@ function SourceChip({ source }: { source: GraphSource }) {
     source.source_url && isValidUrl(source.source_url),
   );
 
+  useEffect(() => {
+    return () => {
+      if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
+    };
+  }, []);
+
+  function cancelHide() {
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+      hideTimeoutRef.current = null;
+    }
+  }
+
   function showPreview() {
+    cancelHide();
     const rect = triggerRef.current?.getBoundingClientRect();
     if (!rect) return;
     setPosition({ top: rect.top - 8, left: rect.left });
   }
 
+  function scheduleHide() {
+    cancelHide();
+    hideTimeoutRef.current = setTimeout(() => {
+      setPosition(null);
+    }, HIDE_DELAY_MS);
+  }
+
   function hidePreview() {
+    cancelHide();
     setPosition(null);
   }
 
@@ -135,7 +183,7 @@ function SourceChip({ source }: { source: GraphSource }) {
         ref={triggerRef}
         className="relative inline-block"
         onMouseEnter={hasPreview ? showPreview : undefined}
-        onMouseLeave={hasPreview ? hidePreview : undefined}
+        onMouseLeave={hasPreview ? scheduleHide : undefined}
         onFocus={hasPreview ? showPreview : undefined}
         onBlur={hasPreview ? hidePreview : undefined}
       >
@@ -158,6 +206,8 @@ function SourceChip({ source }: { source: GraphSource }) {
           source={source}
           position={position}
           tooltipId={tooltipId}
+          onMouseEnter={cancelHide}
+          onMouseLeave={scheduleHide}
         />
       )}
       {graphLink}

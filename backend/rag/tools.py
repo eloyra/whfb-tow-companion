@@ -202,6 +202,8 @@ def _build_native_tool_result(
                 "label": node.get("label"),
                 "text": display_text,
                 "source_url": _source_url(node),
+                "book": node.get("book"),
+                "page": node.get("page"),
             }
         )
         content_blocks.append(
@@ -238,6 +240,8 @@ def _build_legacy_tool_result(result: dict[str, Any]) -> tuple[str, dict[str, An
             "name": src.get("name"),
             "text": src.get("text"),
             "source_url": _source_url(src),
+            "book": src.get("book"),
+            "page": src.get("page"),
         }
         for src in result.get("sources", [])
         if isinstance(src, dict)

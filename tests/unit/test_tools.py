@@ -21,6 +21,8 @@ class FakeRAGPipeline:
                     "name": "Stubborn",
                     "text": "Stubborn units ignore Combat Result modifiers.",
                     "url": "https://tow.whfb.app/special-rules/stubborn",
+                    "book": "Warhammer: The Old World Rulebook",
+                    "page": 94,
                     "score": 0.95,
                 },
                 {
@@ -103,6 +105,8 @@ def test_tool_returns_trimmed_payload_with_normalized_sources() -> None:
     assert source["label"] == "SpecialRule"
     assert source["name"] == "Stubborn"
     assert source["source_url"] == "https://tow.whfb.app/special-rules/stubborn"
+    assert source["book"] == "Warhammer: The Old World Rulebook"
+    assert source["page"] == 94
     assert "url" not in source
     assert "score" not in source
     assert "links" not in result
@@ -281,6 +285,8 @@ def test_native_sources_metadata_includes_clean_text_for_frontend_preview() -> N
 
     meta_by_id = {src["id"]: src for src in msg.artifact["sources"]}
     assert meta_by_id["stubborn"]["text"] == "Stubborn units ignore Combat Result modifiers."
+    assert meta_by_id["stubborn"]["book"] == "Warhammer: The Old World Rulebook"
+    assert meta_by_id["stubborn"]["page"] == 94
 
     # The model-facing block for the same node DOES carry the annotation —
     # confirming the split, not just that the metadata field happens to exist.

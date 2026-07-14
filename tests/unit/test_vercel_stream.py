@@ -49,6 +49,8 @@ def _source(id_: str, **kwargs: Any) -> dict[str, Any]:
         "name": kwargs.get("name", id_.replace("-", " ").title()),
         "text": kwargs.get("text", "..."),
         "source_url": kwargs.get("source_url", f"https://tow.whfb.app/{id_}"),
+        "book": kwargs.get("book"),
+        "page": kwargs.get("page"),
     }
 
 
@@ -92,6 +94,48 @@ async def test_emits_only_cited_sources() -> None:
     assert len(data) == 1
     assert data[0]["id"] == "stubborn"
     assert not any(item["id"] == "fear" for item in data)
+
+
+@pytest.mark.asyncio
+async def test_data_sources_carry_book_and_page() -> None:
+    """The citation preview shows the rulebook + page number below the title
+    (SourcesList.tsx); that data must survive the legacy JSON tool-result path
+    into the emitted "data-sources" chip."""
+    events = await _collect_stream(
+        [
+            AIMessageChunk(
+                content="",
+                tool_calls=[
+                    {
+                        "name": "query_warhammer_archive",
+                        "args": {"query": "stubborn"},
+                        "id": "call_1",
+                    }
+                ],
+            ),
+            ToolMessage(
+                content=json.dumps(
+                    {
+                        "context": "Fake context",
+                        "sources": [
+                            _source(
+                                "stubborn",
+                                book="Warhammer: The Old World Rulebook",
+                                page=94,
+                            ),
+                        ],
+                    }
+                ),
+                tool_call_id="call_1",
+                name="query_warhammer_archive",
+            ),
+            AIMessageChunk(content="Stubborn units ignore Combat Result modifiers [stubborn]."),
+        ]
+    )
+
+    source_event = next(e for e in events if e["type"] == "data-sources")
+    assert source_event["data"][0]["book"] == "Warhammer: The Old World Rulebook"
+    assert source_event["data"][0]["page"] == 94
 
 
 @pytest.mark.asyncio

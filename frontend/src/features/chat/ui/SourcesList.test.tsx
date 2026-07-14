@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import type { ReactNode } from "react";
 import { describe, expect, it, vi } from "vitest";
 
@@ -90,17 +90,68 @@ describe("SourcesList", () => {
     expect(screen.getByRole("tooltip")).toBeInTheDocument();
   });
 
-  it("hides the preview again on mouse leave", () => {
-    render(<SourcesList sources={sources} />);
+  it("hides the preview again on mouse leave, after the hide delay", () => {
+    vi.useFakeTimers();
+    try {
+      render(<SourcesList sources={sources} />);
 
-    const trigger = screen.getByText("Fear").closest("div") as HTMLElement;
-    fireEvent.mouseEnter(trigger);
-    expect(screen.getByText(/Fear forces the enemy unit/)).toBeInTheDocument();
+      const trigger = screen.getByText("Fear").closest("div") as HTMLElement;
+      fireEvent.mouseEnter(trigger);
+      expect(
+        screen.getByText(/Fear forces the enemy unit/),
+      ).toBeInTheDocument();
 
-    fireEvent.mouseLeave(trigger);
-    expect(
-      screen.queryByText(/Fear forces the enemy unit/),
-    ).not.toBeInTheDocument();
+      fireEvent.mouseLeave(trigger);
+      // Still visible immediately after leaving — the delay is what lets the
+      // mouse travel from the chip to the (gapped, portaled) preview card
+      // without the card closing before the pointer ever reaches it.
+      expect(
+        screen.getByText(/Fear forces the enemy unit/),
+      ).toBeInTheDocument();
+
+      act(() => {
+        vi.advanceTimersByTime(300);
+      });
+      expect(
+        screen.queryByText(/Fear forces the enemy unit/),
+      ).not.toBeInTheDocument();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it("cancels the pending hide when the mouse enters the preview card itself", () => {
+    // This is the actual fix: without it, moving the mouse from the chip to
+    // the tooltip to scroll its text closes the tooltip before the pointer
+    // arrives, since a mouseleave on the chip fires first.
+    vi.useFakeTimers();
+    try {
+      render(<SourcesList sources={sources} />);
+
+      const trigger = screen.getByText("Fear").closest("div") as HTMLElement;
+      fireEvent.mouseEnter(trigger);
+      fireEvent.mouseLeave(trigger);
+
+      const tooltip = screen.getByRole("tooltip");
+      fireEvent.mouseEnter(tooltip);
+
+      act(() => {
+        vi.advanceTimersByTime(300);
+      });
+      expect(
+        screen.getByText(/Fear forces the enemy unit/),
+      ).toBeInTheDocument();
+
+      fireEvent.mouseLeave(tooltip);
+      act(() => {
+        vi.advanceTimersByTime(300);
+      });
+      expect(
+        screen.queryByText(/Fear forces the enemy unit/),
+      ).not.toBeInTheDocument();
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it("shows a preview even without a source_url, using text alone", () => {
@@ -138,6 +189,50 @@ describe("SourcesList", () => {
       screen.queryByText(/Terror also forces a Break test/),
     ).not.toBeInTheDocument();
     expect(screen.getAllByRole("tooltip")).toHaveLength(1);
+  });
+
+  it("shows the rulebook and page number below the title when present", () => {
+    const withCitation: GraphSource[] = [
+      {
+        id: "fear",
+        name: "Fear",
+        text: "Fear forces the enemy unit to take a Panic test.",
+        book: "Warhammer: The Old World Rulebook",
+        page: 94,
+      },
+    ];
+    render(<SourcesList sources={withCitation} />);
+
+    fireEvent.mouseEnter(
+      screen.getByText("Fear").closest("div") as HTMLElement,
+    );
+
+    expect(
+      screen.getByText("Warhammer: The Old World Rulebook, p. 94"),
+    ).toBeInTheDocument();
+  });
+
+  it("omits the citation line entirely when the source has no book", () => {
+    render(<SourcesList sources={sources} />);
+
+    fireEvent.mouseEnter(
+      screen.getByText("Fear").closest("div") as HTMLElement,
+    );
+
+    expect(screen.queryByText(/, p\. /)).not.toBeInTheDocument();
+  });
+
+  it("shows just the book name when no page number is available", () => {
+    const bookOnly: GraphSource[] = [
+      { id: "fear", name: "Fear", text: "...", book: "FAQ v2.1" },
+    ];
+    render(<SourcesList sources={bookOnly} />);
+
+    fireEvent.mouseEnter(
+      screen.getByText("Fear").closest("div") as HTMLElement,
+    );
+
+    expect(screen.getByText("FAQ v2.1")).toBeInTheDocument();
   });
 
   it("renders the 'no sources' message for an empty array", () => {
