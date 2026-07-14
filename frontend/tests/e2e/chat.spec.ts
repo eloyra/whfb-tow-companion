@@ -112,9 +112,11 @@ test.describe("Chat sources rendering", () => {
       timeout: 5_000,
     });
     await expect(page.getByText("Sources")).toBeVisible();
-    await expect(page.getByRole("button", { name: "fear" })).toBeVisible();
     await expect(
-      page.getByRole("button", { name: "flaming-attacks" }),
+      page.locator(".chip__label").filter({ hasText: "fear" }),
+    ).toBeVisible();
+    await expect(
+      page.locator(".chip__label").filter({ hasText: "flaming-attacks" }),
     ).toBeVisible();
   });
 
