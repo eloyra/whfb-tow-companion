@@ -42,6 +42,10 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       {
         title: m.app_title(),
       },
+      {
+        name: "description",
+        content: m.app_subtitle(),
+      },
     ],
     links: [
       {
