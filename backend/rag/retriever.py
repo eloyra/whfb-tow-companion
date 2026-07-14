@@ -201,8 +201,10 @@ class GraphRAGRetriever:
                 continue
             bare_name = _PARENTHETICAL_SUFFIX_RE.sub("", name).strip()
             candidates = {name.lower(), bare_name.lower()}
-            if any(candidate and self._phrase_in_query(candidate, query_lower, query_stems)
-                   for candidate in candidates):
+            if any(
+                candidate and self._phrase_in_query(candidate, query_lower, query_stems)
+                for candidate in candidates
+            ):
                 matches.append(
                     {
                         "id": node_id,

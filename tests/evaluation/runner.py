@@ -65,9 +65,7 @@ def _extract_cited_ids_from_tool_message(msg: Any) -> list[str]:
 
     artifact = getattr(msg, "artifact", None)
     if isinstance(artifact, dict) and isinstance(artifact.get("sources"), list):
-        return [
-            src["id"] for src in artifact["sources"] if isinstance(src, dict) and src.get("id")
-        ]
+        return [src["id"] for src in artifact["sources"] if isinstance(src, dict) and src.get("id")]
 
     content = getattr(msg, "content", None)
     if isinstance(content, str):

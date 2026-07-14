@@ -279,15 +279,12 @@ def test_list_army_units_returns_roster_payload() -> None:
     # Per-unit text is self-contained (used as the citable block content).
     skeletons = result["sources"][1]
     assert skeletons["text"] == (
-        "Skeleton Warriors (Vampire Counts): Infantry; Regular Infantry; "
-        "6 pts/model; unit size 10+"
+        "Skeleton Warriors (Vampire Counts): Infantry; Regular Infantry; 6 pts/model; unit size 10+"
     )
 
 
 def test_list_army_units_filters_by_category() -> None:
-    pipeline = RAGPipeline(
-        FakeRetriever([]), _FakeTraversalWithDriver(_FakeDriver(_ROSTER_ROWS))
-    )
+    pipeline = RAGPipeline(FakeRetriever([]), _FakeTraversalWithDriver(_FakeDriver(_ROSTER_ROWS)))
     result = pipeline.list_army_units("vampire-counts", "characters")
 
     assert [src["id"] for src in result["sources"]] == ["vampire-lord"]

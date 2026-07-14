@@ -59,9 +59,7 @@ def driver(neo4j_container):
     import neo4j as neo4j_driver
 
     bolt_url = neo4j_container.get_connection_url()
-    d = neo4j_driver.GraphDatabase.driver(
-        bolt_url, auth=("neo4j", neo4j_container.password)
-    )
+    d = neo4j_driver.GraphDatabase.driver(bolt_url, auth=("neo4j", neo4j_container.password))
     with d.session() as session:
         session.run(_SEED_CYPHER)
     yield d
