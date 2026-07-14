@@ -5,7 +5,10 @@ Spanish translation stage for the Neo4j knowledge graph.
 ``name_es`` property is NULL (resumable — re-running skips already-translated nodes),
 translates ``name`` and ``text`` via a local Ollama chat model, and writes the
 translations back as the flat sibling columns ``name_es``/``text_es`` (schema v3.1,
-ADR-0005 §4 — no nested ``i18n`` map).
+ADR-0005 §4 — no nested ``i18n`` map). Writes to Neo4j happen incrementally every
+``_WRITE_BATCH`` nodes within a label (not only after the whole label finishes), so
+a graph rebuild (``make build-graph`` wipes every node property) or an interrupted
+run only needs to redo the untranslated tail, not the whole label from scratch.
 
 This is a one-off enrichment stage, mirroring ``pipeline/embeddings/generator.py``:
 same per-label loop, same resumable ``WHERE ... IS NULL`` fetch, same batched
@@ -122,8 +125,17 @@ class Translator:
             return
 
         logger.info("%s: translating %d nodes", label, len(nodes))
-        rows: list[dict[str, str]] = []
+        # Write to Neo4j every _WRITE_BATCH nodes as we go, rather than after
+        # collecting the whole label — a resumable graph rebuild (make
+        # build-graph wipes all properties) shouldn't also force redoing the
+        # slow local-LLM translation for nodes that were already done before
+        # an interrupted run, only the write. The translation-memory cache
+        # (translations/es.json) already dedups repeated source strings
+        # across a rebuild; this makes the *graph-side* progress resumable
+        # too, not just the cache file.
+        pending: list[dict[str, str]] = []
         new_cache_entries = 0
+        total_written = 0
 
         for node in tqdm(nodes, desc=f"Translating {label}", unit="node"):
             name_es = self._translate_cached(translate, cache, node["name"])
@@ -133,16 +145,19 @@ class Translator:
             if text:
                 row["text_es"] = self._translate_cached(translate, cache, text)
 
-            rows.append(row)
+            pending.append(row)
             new_cache_entries += 1
             if new_cache_entries % _CACHE_SAVE_EVERY == 0:
                 self._save_cache(cache)
 
-        total_written = 0
-        for start in range(0, len(rows), _WRITE_BATCH):
-            batch = rows[start : start + _WRITE_BATCH]
-            self._write_translations(driver, label, batch)
-            total_written += len(batch)
+            if len(pending) >= _WRITE_BATCH:
+                self._write_translations(driver, label, pending)
+                total_written += len(pending)
+                pending = []
+
+        if pending:
+            self._write_translations(driver, label, pending)
+            total_written += len(pending)
 
         logger.info("%s: wrote %d translations", label, total_written)
 
