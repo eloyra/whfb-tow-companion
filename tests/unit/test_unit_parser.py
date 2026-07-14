@@ -1,6 +1,6 @@
 """Tests for UnitParser.
 
-Uses real raw HTML fixtures from data/raw/ so the tests verify actual wiki markup.
+Uses real raw HTML fixtures from data/samples/ so the tests verify actual wiki markup.
 All tests are unit-level: no Neo4j, no network.
 """
 
@@ -10,7 +10,7 @@ from pathlib import Path
 
 from pipeline.scraper.parsers.unit_parser import UnitParser
 
-_RAW = Path("data/raw")
+_RAW = Path("data/samples")
 _FETCHED_AT = "2026-05-01T00:00:00Z"
 
 _parser = UnitParser()

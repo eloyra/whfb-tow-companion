@@ -1,7 +1,7 @@
 """
 Tests for WeaponParser, SpellParser, and LoreParser helpers and integration.
 
-Uses real raw HTML fixtures from data/raw/ so the tests verify actual wiki markup.
+Uses real raw HTML fixtures from data/samples/ so the tests verify actual wiki markup.
 All tests are unit-level: no Neo4j, no network.
 """
 
@@ -16,7 +16,7 @@ from pipeline.scraper.parsers.magic_item_parser import MagicItemParser
 from pipeline.scraper.parsers.spell_parser import SpellParser
 from pipeline.scraper.parsers.weapon_parser import WeaponParser
 
-_RAW = Path("data/raw")
+_RAW = Path("data/samples")
 _FETCHED_AT = "2026-05-01T00:00:00Z"
 
 
