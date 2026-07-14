@@ -10,6 +10,7 @@ For project overview, stack, environment variables, and coding conventions, see 
 | Directory | Purpose |
 |---|---|
 | `scraper/` | BFS crawler + per-section parsers |
+| `markdown/` | `exporter.py` — converts rendered DOM (not Contentful JSON) into a URL-mirrored markdown corpus in `data/markdown/`; opt-in stage, not part of `--all` |
 | `graph/` | Neo4j graph builder, loader, validator (`serializer.py` is a `# TODO` stub, unused) |
 | `embeddings/` | Sentence-transformer embedding generation (per-label text builders + HNSW vector_store) |
 | `i18n/` | Translation injection into graph nodes (`translator.py` is a `# TODO` stub) |
@@ -94,6 +95,7 @@ Key rules:
 | Stage | Status |
 |---|---|
 | Scrape | Done — dual-seed BFS, output in `data/raw/` (~2,720 HTML files, all 19 armies) |
+| Markdown export | Done — `markdown/exporter.py`; opt-in stage (`make markdown`, not in `--all`), output in `data/markdown/` mirroring URL paths; converts rendered DOM, not the Contentful JSON `parse` stage reads |
 | Parse | Done — nodes and edges in `data/parsed/` (18 JSON files per ADR-0004); see gaps below |
 | Graph build | Done — graph loaded into Neo4j; `load_report.json` in `data/graph/` |
 | Embeddings | Done — `generator.py`, `text.py` (13 per-label builders), `vector_store.py` (HNSW per-label indexes); wired into `run_pipeline.py` |

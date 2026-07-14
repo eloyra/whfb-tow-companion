@@ -14,6 +14,7 @@ dependencies = [
     "requests>=2.31.0",
     "beautifulsoup4>=4.12.0",
     "lxml>=5.0.0",
+    "markdownify>=0.13.0",
     # Embeddings & vector store
     "sentence-transformers>=3.0.0",
     # Graph database

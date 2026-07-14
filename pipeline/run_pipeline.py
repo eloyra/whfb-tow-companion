@@ -4,6 +4,7 @@ Run individual stages or the full pipeline end to end.
 
 Usage:
     python -m pipeline.run_pipeline --stage scrape
+    python -m pipeline.run_pipeline --stage markdown
     python -m pipeline.run_pipeline --stage parse
     python -m pipeline.run_pipeline --stage graph
     python -m pipeline.run_pipeline --stage embed
@@ -17,7 +18,11 @@ import logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
 
-STAGES = ["scrape", "parse", "graph", "embed", "translate"]
+# "markdown" is opt-in only (run explicitly via --stage markdown) — it is a
+# parallel export artifact for the offline wiki copy / RAG baseline corpus,
+# not part of the graph-building critical path, so --all does not run it.
+STAGES = ["scrape", "markdown", "parse", "graph", "embed", "translate"]
+_ALL_STAGES = ["scrape", "parse", "graph", "embed", "translate"]
 
 
 def run_scrape() -> None:
@@ -25,6 +30,13 @@ def run_scrape() -> None:
     from pipeline.scraper.crawler import Crawler
 
     Crawler().run()
+
+
+def run_markdown() -> None:
+    logger.info("Stage: markdown")
+    from pipeline.markdown.exporter import MarkdownExporter
+
+    MarkdownExporter().run()
 
 
 def run_parse() -> None:
@@ -57,6 +69,7 @@ def run_translate() -> None:
 
 STAGE_FN = {
     "scrape": run_scrape,
+    "markdown": run_markdown,
     "parse": run_parse,
     "graph": run_graph,
     "embed": run_embed,
@@ -72,7 +85,7 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.all:
-        for stage in STAGES:
+        for stage in _ALL_STAGES:
             STAGE_FN[stage]()
     else:
         STAGE_FN[args.stage]()

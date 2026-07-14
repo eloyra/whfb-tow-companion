@@ -1,4 +1,4 @@
-.PHONY: help install scrape parse build-graph embed translate pipeline serve test test-unit test-integration test-evaluation evaluate evaluate-full evaluate-compare evaluate-compare-full lint lint-fix format
+.PHONY: help install scrape markdown parse build-graph embed translate pipeline serve test test-unit test-integration test-evaluation evaluate evaluate-full evaluate-compare evaluate-compare-full lint lint-fix format
 
 help:  ## Show available commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
@@ -26,6 +26,9 @@ neo4j-logs:  ## Tail Neo4j container logs
 
 scrape:  ## Crawl tow.whfb.app and save raw HTML to data/raw/
 	uv run python -m pipeline.run_pipeline --stage scrape
+
+markdown:  ## Convert raw HTML into a URL-mirrored markdown corpus (data/markdown/)
+	uv run python -m pipeline.run_pipeline --stage markdown
 
 parse:  ## Parse raw HTML into structured JSON (data/parsed/)
 	uv run python -m pipeline.run_pipeline --stage parse
