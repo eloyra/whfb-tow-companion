@@ -53,7 +53,7 @@ Each slice owns its `ui/`, `model/`, and `api/` subdirs. Slices may import from 
 - Backend produces Vercel AI SDK-compatible SSE — see `../backend/api/vercel_stream.py`.
 - `src/shared/api/query/` wires TanStack Query (provider, SSR integration, devtools) — not yet used by any route.
 - Chat talks to the backend via the Vercel AI SDK `DefaultChatTransport` pointing at `${env.apiUrl}/chat/`; `src/features/chat/` owns the chat feature.
-- A typed REST client for the future `/graph` endpoints is **not yet implemented**; land it in `src/shared/api/` when graph viewer starts.
+- A typed REST client for the `/graph` endpoints is implemented in `src/shared/api/graph.ts`; the graph viewer lives in `src/widgets/graph-viewer/` (route `src/routes/graph.tsx`).
 
 ---
 

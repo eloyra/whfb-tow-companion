@@ -54,7 +54,7 @@ Not all files are stubs. Per-file state:
 |---|---|
 | `api/main.py` | Implemented — FastAPI app, CORS, `/health`, mounts `chat` + `graph` routers |
 | `api/routes/chat.py` | Implemented — `POST /chat/` builds a LangGraph agent (`create_agent`) and streams via `VercelStream` |
-| `api/routes/graph.py` | Stub — `/graph/nodes` and `/graph/subgraph/{node_id}` raise `NotImplementedError` |
+| `api/routes/graph.py` | Implemented — `/graph/nodes` (label-validated name-prefix search), `/graph/subgraph/{node_id}` (calls `graph_traversal.subgraph`) |
 | `api/vercel_stream.py` | Implemented — Vercel AI SDK v6 UI Message Stream SSE adapter |
 | `api/dependencies.py` | Implemented — `get_llm()` (Ollama/OpenAI/Anthropic via LangChain), `get_driver()`, `get_embedder()`, `get_rag_pipeline()` |
 | `llm/client.py` | Dispatcher implemented but **deprecated/unused** (ADR-0007); delegates to stubbed submodules |
@@ -63,10 +63,10 @@ Not all files are stubs. Per-file state:
 | `rag/prompts/system_prompt.py` | Implemented — compat shim exposing the legacy fixed `SYSTEM_PROMPT`; new code uses `templates.build_system_prompt()` |
 | `rag/prompts/templates.py` | Implemented — provider-aware system-prompt composition (`build_system_prompt`) |
 | `rag/retriever.py` | Implemented — `GraphRAGRetriever`: multi-label vector search over Neo4j HNSW indexes, plus `strategy="hybrid"` (BM25 full-text + RRF fusion) and `lexical_fallback` (ADR-0008) |
-| `rag/graph_traversal.py` | Implemented — `expand()` (bounded 1-hop neighbourhood) + `links_between()` (direct seed-to-seed edges) |
+| `rag/graph_traversal.py` | Implemented — `expand()` (bounded 1-hop neighbourhood), `links_between()` (direct seed-to-seed edges), `subgraph()` (variable-depth traversal for the `/graph` API) |
 | `rag/pipeline.py` | Implemented — `RAGPipeline` orchestrates retrieve → traverse → format for the LLM |
 
-Upstream scrape/parse/graph/embeddings stages are complete (see `pipeline/CLAUDE.md`). The baseline GraphRAG pipeline is implemented; a future ADR will formally capture the retrieval/traversal design if it moves beyond this baseline.
+Upstream scrape/parse/graph/embeddings stages are complete (see `pipeline/CLAUDE.md`). The baseline GraphRAG pipeline is implemented; ADR-0009 formally captures the retrieval/traversal design (supersedes ADR-0001's `VectorCypherRetriever` mandate).
 
 ---
 

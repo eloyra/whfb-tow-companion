@@ -153,12 +153,12 @@ make evaluate-compare  # compare vector/graph/hybrid retrieval modes (ADR-0008)
 - [x] `pipeline/scraper/parsers/*.py` — 13 parsers + coordinator (ADR-0003, ADR-0006)
 - [x] `pipeline/graph/` — builder, client, DDL, loader, seeds, validator (ADR-0001, ADR-0004, ADR-0005); `load_report.json` produced
 - [x] `pipeline/embeddings/` — generator, per-label text builders, HNSW vector_store (ADR-0005)
-- [x] `backend/api/main.py` — FastAPI app wired; `/chat` route implemented (LangGraph agent + Vercel SSE); `/graph` routes still raise `NotImplementedError`
+- [x] `backend/api/main.py` — FastAPI app wired; `/chat` route implemented (LangGraph agent + Vercel SSE); `/graph` routes (`/graph/nodes`, `/graph/subgraph/{id}`) implemented (ADR-0009)
 - [x] `backend/llm/` — `client.py` dispatcher exists but provider submodules are stubs; **deprecated** in favour of `api/dependencies.py::get_llm()` (ADR-0007)
 - [x] `backend/rag/` — `retriever.py`, `graph_traversal.py`, `pipeline.py`, `tools.py` (semantic search + deterministic army-roster tool), `prompts/templates.py` (provider-aware system-prompt composition), `prompts/system_prompt.py` (compat shim) implemented
-- [x] `pipeline/i18n/` — `translator.py` implements `Translator` (local Ollama model, flat `name_es`/`text_es`)
-- [ ] `tests/evaluation/` — `evaluate.py` is a `# TODO` stub; golden set has only 3 queries
-- [ ] Frontend graph visualisation (chat UI is implemented; see `frontend/CLAUDE.md`)
+- [x] `pipeline/i18n/` — `translator.py` implements `Translator` (local Ollama model, flat `name_es`/`text_es`); ~62% of SpecialRule translated, other labels pending
+- [x] `tests/evaluation/` — `evaluate.py` implemented (retrieval-only + full agent/LLM-judge modes, `--compare` retrieval-mode ablation); 100-query golden set
+- [x] Frontend graph visualisation — `widgets/graph-viewer/` + `/graph` route implemented (see `frontend/CLAUDE.md`)
 
 ---
 

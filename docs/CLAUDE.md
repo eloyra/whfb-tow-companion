@@ -12,10 +12,11 @@ For project overview and coding conventions, see [`../CLAUDE.md`](../CLAUDE.md).
 | `decisions/` | Binding | Architecture Decision Records (ADRs), including amendments |
 | `schema/` | Authoritative | Knowledge graph node/edge schema (v3.1; re-aligned with ADR-0004/0005 amendments) |
 | `diagrams/` | Empty / pending | Architecture and flow diagrams — not yet produced |
-| `plans/` | Non-binding | Planning artefacts, may be stale |
+| `plans/` | Non-binding | Planning artefacts; predate current implementation state — see `thesis-completion-briefing.md` for current status before trusting a plan's "Not started"/stub claims |
 | `validation/` | Non-binding | Graph-validation tracker, query-coverage seed, conformity reports (currently empty) |
-| `architecture-and-chat-review.md` | Non-binding | One-off review of backend chat + frontend architecture |
-| `partial-deliverable-briefing.md` | Non-binding | TFM deliverable briefing notes |
+| `architecture-and-chat-review.md` | Non-binding | One-off review of backend chat + frontend architecture; several findings since fixed (CI landed, RAG is no longer a mock) |
+| `partial-deliverable-briefing.md` | Non-binding | TFM deliverable briefing notes, dated 2026-06-22; superseded on most status/metric points by `thesis-completion-briefing.md` (2026-07-14) |
+| `thesis-completion-briefing.md` | Authoritative snapshot | Current (2026-07-14) verified project state — implementation status, graph metrics, evaluation results. Prefer this over `partial-deliverable-briefing.md` or `plans/` for "is X done?" questions |
 | `warhammer_tow_domain_knowledge.md` | Reference | Domain knowledge dump used for prompt/evaluation context |
 | `demo-queries.cypher` | Reference | Example Cypher queries for demos |
 
