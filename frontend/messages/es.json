@@ -28,5 +28,6 @@
   "graph_empty_state": "Busca una regla, unidad o hechizo para explorar su vecindario",
   "graph_loading_label": "Cargando vecindario…",
   "graph_error_label": "No se pudo cargar el grafo",
-  "chat_view_in_graph": "Ver en el grafo"
+  "chat_view_in_graph": "Ver en el grafo",
+  "chat_view_source": "Ver fuente"
 }

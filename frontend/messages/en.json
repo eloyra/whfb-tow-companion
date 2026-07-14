@@ -28,5 +28,6 @@
   "graph_empty_state": "Search for a rule, unit, or spell to explore its neighborhood",
   "graph_loading_label": "Loading neighborhood…",
   "graph_error_label": "Could not load the graph",
-  "chat_view_in_graph": "View in graph"
+  "chat_view_in_graph": "View in graph",
+  "chat_view_source": "View source"
 }

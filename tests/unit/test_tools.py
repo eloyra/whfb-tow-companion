@@ -263,6 +263,32 @@ def test_native_sources_metadata_stays_aligned_with_blocks() -> None:
     assert "ghost" not in {src["id"] for src in msg.artifact["sources"]}
 
 
+def test_native_sources_metadata_includes_clean_text_for_frontend_preview() -> None:
+    """The frontend's citation hover preview reads ``text`` off the native
+    artifact's ``sources`` metadata (see SourcesList.tsx). It must be the
+    node's own prose — not the graph-relationship-annotated version mixed
+    into the model-facing search_result block, which would show a human
+    "Graph relationships:\n- [x] --REFERENCES--> [y]" formatting artifact."""
+    tool = _tools_by_name(FakeRAGPipeline(), native=True)["query_warhammer_archive"]
+    msg = tool.invoke(
+        {
+            "name": "query_warhammer_archive",
+            "args": {"query": "stubborn"},
+            "id": "call_1",
+            "type": "tool_call",
+        }
+    )
+
+    meta_by_id = {src["id"]: src for src in msg.artifact["sources"]}
+    assert meta_by_id["stubborn"]["text"] == "Stubborn units ignore Combat Result modifiers."
+
+    # The model-facing block for the same node DOES carry the annotation —
+    # confirming the split, not just that the metadata field happens to exist.
+    block_by_title = {block["title"]: block for block in msg.content}
+    block_text = block_by_title["Stubborn"]["content"][0]["text"]
+    assert "Graph relationships:" in block_text
+
+
 def test_roster_tool_returns_legacy_payload() -> None:
     pipeline = FakeRAGPipeline()
     tool = _tools_by_name(pipeline, native=False)["list_army_units"]

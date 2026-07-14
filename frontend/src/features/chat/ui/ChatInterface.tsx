@@ -38,7 +38,11 @@ export function ChatInterface() {
   // biome-ignore lint/correctness/useExhaustiveDependencies: messages triggers scroll; body uses stable ref
   useEffect(() => {
     const container = scrollContainerRef.current;
-    if (!container) return;
+    // Nothing to scroll to in the empty state — calling scrollIntoView on the
+    // anchor here forces the browser to open up extra scroll room to "fully
+    // reveal" it, producing a scrollbar even though the empty-state content
+    // already fits the viewport exactly.
+    if (!container || messages.length === 0) return;
     const distanceFromBottom =
       container.scrollHeight - container.scrollTop - container.clientHeight;
     if (distanceFromBottom < 100) {
@@ -108,7 +112,7 @@ export function ChatInterface() {
         aria-live="polite"
         aria-label={m.chat_history_label()}
         onScroll={handleScroll}
-        className="relative flex-1 overflow-y-auto p-4 sm:p-6 space-y-8"
+        className="relative min-h-0 flex-1 overflow-y-auto p-4 sm:p-6 space-y-8"
       >
         {messages.length === 0 ? (
           <EmptyState onSelect={doSend} />
@@ -220,7 +224,7 @@ function EmptyState({ onSelect }: EmptyStateProps) {
   const examples = [m.chat_example_1(), m.chat_example_2(), m.chat_example_3()];
 
   return (
-    <div className="h-full flex flex-col items-center justify-center text-center px-2 py-8">
+    <div className="mb-0 h-full flex flex-col items-center justify-center text-center px-2 py-8">
       <WaxSeal
         icon={Scroll}
         size={64}

@@ -117,6 +117,44 @@ test.describe("Chat sources rendering", () => {
       page.getByRole("button", { name: "flaming-attacks" }),
     ).toBeVisible();
   });
+
+  test("hovering one citation shows only that citation's preview", async ({
+    page,
+  }) => {
+    // Regression test for a real browser :hover bug (not reproducible in
+    // jsdom unit tests): the previous implementation relied on Tailwind's
+    // bare `group-hover`, which matches *any* ancestor with class "group" —
+    // including MessageBubble's own unrelated hover-actions group — so
+    // hovering anywhere in the message row opened every citation's preview
+    // simultaneously.
+    await page.route("**/chat/", async (route) => {
+      await route.fulfill({
+        status: 200,
+        headers: {
+          "Content-Type": "text/event-stream",
+          "x-vercel-ai-ui-message-stream": "v1",
+          "Cache-Control": "no-cache",
+        },
+        body: ChatMother.sseStream(FEAR_REPLY, { sources: SOURCES }),
+      });
+    });
+
+    await page.goto("/");
+    await page.getByRole("textbox").fill(USER_QUESTION);
+    await page.getByRole("button", { name: "Send" }).click();
+    await expect(page.getByText("Sources")).toBeVisible();
+
+    await page.locator(".chip__label").filter({ hasText: "fear" }).hover();
+
+    const tooltip = page.getByRole("tooltip");
+    await expect(tooltip).toHaveCount(1);
+    await expect(
+      tooltip.getByText("Fear forces the enemy unit to take a Panic test."),
+    ).toBeVisible();
+    await expect(
+      page.getByText("Flaming Attacks cause Fear tests for Regeneration."),
+    ).not.toBeVisible();
+  });
 });
 
 test.describe("Chat stop flow", () => {

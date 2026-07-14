@@ -1,6 +1,8 @@
 import { Chip } from "@heroui/react";
 import { Link } from "@tanstack/react-router";
 import { Network } from "lucide-react";
+import { useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import type { GraphSource } from "#/features/chat/model/graph-source";
 import { m } from "#/paraglide/messages";
 
@@ -17,10 +19,87 @@ function isValidUrl(value: string): boolean {
   }
 }
 
-function SourceChip({ source }: { source: GraphSource }) {
+interface PreviewPosition {
+  top: number;
+  left: number;
+}
+
+/**
+ * Hover preview card: the node's own name/label/text. Renders our own themed
+ * content rather than embedding the external wiki in an iframe — the iframe
+ * showed the target site's own header/nav (which dominates a small preview
+ * and can't be cropped without cross-origin script access to scroll it), and
+ * offered no benefit over text we already have.
+ *
+ * Rendered through a portal to `document.body`, positioned from the
+ * trigger's own bounding rect. This is deliberate, not decorative: the
+ * message bubble (`Card` in MessageBubble.tsx) has `overflow-hidden` for its
+ * rounded corners, which clips anything absolutely positioned inside it — a
+ * portal is the standard way to escape a clipped ancestor.
+ */
+function SourcePreview({
+  source,
+  position,
+  tooltipId,
+}: {
+  source: GraphSource;
+  position: PreviewPosition;
+  tooltipId: string;
+}) {
   const displayName = source.name || source.id;
-  const tooltipContent =
-    [source.label, source.text].filter(Boolean).join(" — ") || displayName;
+
+  return createPortal(
+    <div
+      id={tooltipId}
+      role="tooltip"
+      className="fixed z-50 w-64"
+      style={{
+        top: position.top,
+        left: position.left,
+        transform: "translateY(-100%)",
+      }}
+    >
+      <div className="mb-2 rounded-lg border border-metal/25 bg-surface shadow-lg overflow-hidden">
+        <div className="flex items-center justify-between gap-2 border-b border-metal/15 bg-surface-secondary px-3 py-2">
+          <p className="truncate text-sm font-semibold text-surface-foreground">
+            {displayName}
+          </p>
+          {source.label && (
+            <span className="shrink-0 text-[10px] uppercase tracking-wide text-muted">
+              {source.label}
+            </span>
+          )}
+        </div>
+        {source.text && (
+          <p className="max-h-40 overflow-y-auto px-3 py-2 text-xs leading-relaxed text-surface-foreground/90">
+            {source.text}
+          </p>
+        )}
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
+function SourceChip({ source }: { source: GraphSource }) {
+  const [position, setPosition] = useState<PreviewPosition | null>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const tooltipId = useId();
+  const displayName = source.name || source.id;
+  const hasPreview = Boolean(source.text || source.label);
+  const hasValidUrl = Boolean(
+    source.source_url && isValidUrl(source.source_url),
+  );
+
+  function showPreview() {
+    const rect = triggerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    setPosition({ top: rect.top - 8, left: rect.left });
+  }
+
+  function hidePreview() {
+    setPosition(null);
+  }
 
   const chip = (
     <Chip
@@ -43,43 +122,44 @@ function SourceChip({ source }: { source: GraphSource }) {
     </Link>
   );
 
-  if (source.source_url && isValidUrl(source.source_url)) {
-    return (
-      <div className="inline-flex items-center gap-0.5">
-        <div className="relative inline-block group">
+  return (
+    <div className="inline-flex items-center gap-0.5">
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: not an independent
+          control — it only relays hover/focus bubbling from the real
+          interactive child (the <a>, when present) to show/hide the portaled
+          preview. Giving it its own role would create a nested-interactive
+          element around that <a>, the exact anti-pattern this file's git
+          history already had to fix once (HeroUI's Tooltip.Trigger wrapper
+          did this). */}
+      <div
+        ref={triggerRef}
+        className="relative inline-block"
+        onMouseEnter={hasPreview ? showPreview : undefined}
+        onMouseLeave={hasPreview ? hidePreview : undefined}
+        onFocus={hasPreview ? showPreview : undefined}
+        onBlur={hasPreview ? hidePreview : undefined}
+      >
+        {hasValidUrl ? (
           <a
             href={source.source_url}
             target="_blank"
             rel="noreferrer"
             className="inline-block"
-            aria-describedby={`source-tooltip-${source.id}`}
+            aria-describedby={hasPreview ? tooltipId : undefined}
           >
             {chip}
           </a>
-          <div
-            id={`source-tooltip-${source.id}`}
-            role="tooltip"
-            className="absolute left-0 bottom-full mb-2 z-50 hidden w-80 group-hover:block"
-          >
-            <div className="rounded-md border border-metal/20 bg-background shadow-lg overflow-hidden">
-              <iframe
-                src={source.source_url}
-                title={displayName}
-                loading="lazy"
-                className="w-full h-48 border-0 bg-white"
-              />
-            </div>
-            <p className="text-xs text-muted mt-1 px-1">{tooltipContent}</p>
-          </div>
-        </div>
-        {graphLink}
+        ) : (
+          chip
+        )}
       </div>
-    );
-  }
-
-  return (
-    <div className="inline-flex items-center gap-0.5">
-      {chip}
+      {hasPreview && position && (
+        <SourcePreview
+          source={source}
+          position={position}
+          tooltipId={tooltipId}
+        />
+      )}
       {graphLink}
     </div>
   );

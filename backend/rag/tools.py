@@ -182,6 +182,10 @@ def _build_native_tool_result(
         if not text:
             continue
         nid = node.get("id")
+        # Captured before the graph-relationship annotations below are mixed
+        # in — those are LLM-context formatting (raw "[id] --REL--> [id2]"
+        # lines), not something a human should see in a citation preview.
+        display_text = text
 
         related_lines = related_by_node.get(nid, [])
         if related_lines:
@@ -196,6 +200,7 @@ def _build_native_tool_result(
                 "id": nid,
                 "name": node.get("name"),
                 "label": node.get("label"),
+                "text": display_text,
                 "source_url": _source_url(node),
             }
         )

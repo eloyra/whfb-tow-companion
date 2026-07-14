@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import type { ReactNode } from "react";
 import { describe, expect, it, vi } from "vitest";
 
@@ -74,11 +74,70 @@ describe("SourcesList", () => {
     expect(link).toHaveAttribute("target", "_blank");
   });
 
-  it("renders a hover iframe preview for sources with a URL", () => {
+  it("shows a hover preview card with the source's own text, not an iframe", () => {
     render(<SourcesList sources={sources} />);
 
-    const iframe = document.querySelector('iframe[src="https://example.com"]');
-    expect(iframe).toBeInTheDocument();
+    expect(document.querySelector("iframe")).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Fear forces the enemy unit/),
+    ).not.toBeInTheDocument();
+
+    fireEvent.mouseEnter(
+      screen.getByText("Fear").closest("div") as HTMLElement,
+    );
+
+    expect(screen.getByText(/Fear forces the enemy unit/)).toBeInTheDocument();
+    expect(screen.getByRole("tooltip")).toBeInTheDocument();
+  });
+
+  it("hides the preview again on mouse leave", () => {
+    render(<SourcesList sources={sources} />);
+
+    const trigger = screen.getByText("Fear").closest("div") as HTMLElement;
+    fireEvent.mouseEnter(trigger);
+    expect(screen.getByText(/Fear forces the enemy unit/)).toBeInTheDocument();
+
+    fireEvent.mouseLeave(trigger);
+    expect(
+      screen.queryByText(/Fear forces the enemy unit/),
+    ).not.toBeInTheDocument();
+  });
+
+  it("shows a preview even without a source_url, using text alone", () => {
+    // "Fear" in the fixture has text but no source_url.
+    render(<SourcesList sources={sources} />);
+
+    fireEvent.mouseEnter(
+      screen.getByText("Fear").closest("div") as HTMLElement,
+    );
+    expect(screen.getByText(/Fear forces the enemy unit/)).toBeInTheDocument();
+  });
+
+  it("hovering one chip does not reveal a different chip's preview", () => {
+    // Regression test: the previous implementation used Tailwind's bare
+    // `group-hover`, which matches *any* ancestor with class "group" —
+    // including MessageBubble's own unrelated hover-actions group — so
+    // hovering anywhere in the message row opened every citation's preview
+    // at once. Each chip's preview must be scoped to that specific chip only.
+    const twoTextSources: GraphSource[] = [
+      { id: "fear", name: "Fear", text: "Fear forces a Panic test." },
+      {
+        id: "terror",
+        name: "Terror",
+        text: "Terror also forces a Break test.",
+      },
+    ];
+    render(<SourcesList sources={twoTextSources} />);
+
+    fireEvent.mouseEnter(
+      screen.getByText("Fear").closest("div") as HTMLElement,
+    );
+
+    expect(screen.getByText(/Fear forces a Panic test/)).toBeInTheDocument();
+    expect(
+      screen.queryByText(/Terror also forces a Break test/),
+    ).not.toBeInTheDocument();
+    expect(screen.getAllByRole("tooltip")).toHaveLength(1);
   });
 
   it("renders the 'no sources' message for an empty array", () => {
