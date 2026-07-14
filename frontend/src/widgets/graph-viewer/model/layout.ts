@@ -1,6 +1,6 @@
 import type { GraphEdge, GraphNode } from "#/shared/api/graph";
 
-export interface LayoutNode {
+interface LayoutNode {
   id: string;
   position: { x: number; y: number };
 }

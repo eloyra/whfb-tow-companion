@@ -41,9 +41,9 @@ const subgraphResponseSchema = z.object({
   nodes: z.array(graphNodeSchema),
   edges: z.array(graphEdgeSchema),
 });
-export type SubgraphResponse = z.infer<typeof subgraphResponseSchema>;
+type SubgraphResponse = z.infer<typeof subgraphResponseSchema>;
 
-export interface FetchNodesParams {
+interface FetchNodesParams {
   nodeType?: string;
   q?: string;
   limit?: number;

@@ -2,7 +2,7 @@ import type { NodeProps } from "@xyflow/react";
 import { Handle, Position } from "@xyflow/react";
 import { cn } from "#/shared/lib/utils";
 
-export interface GraphNodeData extends Record<string, unknown> {
+interface GraphNodeData extends Record<string, unknown> {
   title: string;
   category?: string;
   isCenter: boolean;
